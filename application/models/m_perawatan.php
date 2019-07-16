@@ -1,6 +1,9 @@
 <?php
 class m_perawatan extends CI_Model{
-    
+    public $table = 'inv_perawatan_d';
+    public $id = 'vc_kd_trans';
+    public $order = 'DESC';
+
     function __construct()
     {
         parent::__construct();
@@ -15,11 +18,17 @@ class m_perawatan extends CI_Model{
     }
     function update($id, $data){
         $this->db->where($this->id, $id);
+        $this->db->join('inv_perawatan_h', 'inv_perawatan_d.vc_kd_trans = inv_perawatan_h.vc_kd_trans');
+        $this->db->join('inv_perawatan_tindakan', 'inv_perawatan_d.vc_kd_tindakan = inv_perawatan_tindakan.vc_kd_tindakan');
         $this->db->update($this->table, $data);
+
     }
     function get_by_id($id){
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+    function inset($data){
+        $this->db->instert($this->table, $data);
     }
 }
 ?>

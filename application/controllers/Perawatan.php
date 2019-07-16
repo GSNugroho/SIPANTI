@@ -36,10 +36,10 @@ class perawatan extends CI_Controller{
                 'dt_selesai' => set_value('dt_selesai', $row->dt_selesai),
                 'vc_nm_tindakan' => set_value('vc_nm_tindakan', $row->vc_nm_tindakan)
             );
-            $this->load->view('perbaikan/perbaikan_form_edit', $data);
+            $this->load->view('perawatan/perawatan_form_edit', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('monitor'));
+			redirect(base_url('perawatan'));
         }
     }
 }
