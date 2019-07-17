@@ -7,7 +7,7 @@
 	<table style="margin:20px auto;" border="1">
 		<tr>
 			<th>No</th>
-			<th>Tanggal Terima</th>
+			<th>Tanggal Terima Barang</th>
 			<th>Kode Inventaris</th>
 			<th>Nama Barang</th>
 			<th>Merk</th>

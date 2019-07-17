@@ -11,7 +11,8 @@ class perawatan extends CI_Controller{
         $this->load->view('perawatan/perawatan',$data);
     }
     function create(){
-        $this->load->view('perawatan/perawatan_form');
+        $data['gki'] = $this->m_perawatan->get_kdinv();
+        $this->load->view('perawatan/perawatan_form', $data);
     }
     function create_action(){
         $data = array(
@@ -34,7 +35,8 @@ class perawatan extends CI_Controller{
                 'vc_no_inv' => set_value('vc_no_inv', $row->vc_no_inv),
                 'dt_mulai' => set_value('dt_mulai', $row->dt_mulai),
                 'dt_selesai' => set_value('dt_selesai', $row->dt_selesai),
-                'vc_nm_tindakan' => set_value('vc_nm_tindakan', $row->vc_nm_tindakan)
+                'vc_nm_tindakan' => set_value('vc_nm_tindakan', $row->vc_nm_tindakan),
+                'gki' => $this->m_perawatan->get_kdinv()
             );
             $this->load->view('perawatan/perawatan_form_edit', $data);
         } else {

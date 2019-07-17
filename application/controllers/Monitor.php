@@ -7,7 +7,7 @@ class monitor extends CI_Controller {
 		}
  
 	public function index(){
-		$this->load->database();
+		/*$this->load->database();
 		$jumlah_data = $this->m_monitor->jumlah_data();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'monitor/';
@@ -16,9 +16,9 @@ class monitor extends CI_Controller {
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
 		$data['inv_barang'] = $this->m_monitor->data($config['per_page'],$from);
+		*/
 		
-		
-		//$data['inv_barang'] = $this->m_monitor->get_data();
+		$data['inv_barang'] = $this->m_monitor->get_data();
 		$this->load->view('monitor/monitor', $data);
 		}
 		

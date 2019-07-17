@@ -3,7 +3,10 @@
 		<title> Data Perawatan Inventaris </title>
 	</head>
 	<body>
-	<?php echo anchor(base_url('perawatan/create'),'Create', 'class="btn btn-primary"'); ?>
+	<?php 
+	echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
+	echo"</br>";
+	echo anchor(base_url('perawatan/create'),'Create', 'class="btn btn-primary"'); ?>
 	<table style="margin:20px auto;" border="1">
 		<tr>
 			<th>No</th>

@@ -33,5 +33,11 @@ class m_perawatan extends CI_Model{
     function inset($data){
         $this->db->instert($this->table, $data);
     }
+    function get_kdinv(){
+        $query = $this->db->query("SELECT * FROM [dbo].[inv_barang] 
+                                JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+                                WHERE inv_barang.kd_aset != ' ' ");
+        return $query->result();
+    }
 }
 ?>

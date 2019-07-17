@@ -17,7 +17,7 @@ class m_monitor extends CI_Model{
 		$query = $this->db2->get();
 		return ($query->num_rows() > 0)?$query->result_array():FALSE;
 		*/
-		$this->db->order_by('kd_inv', 'asc');
+		$this->db->order_by('kd_inv', 'desc');
 		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk');
 		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
 		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol');
