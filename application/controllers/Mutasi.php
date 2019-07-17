@@ -12,14 +12,17 @@ class mutasi extends CI_Controller{
     }
 
     function create(){
-        $data['dd_gr'] = $this->m_mutasi->get_ruang();
+        $data = array(
+            'dd_gr' => $this->m_mutasi->get_ruang(),
+            'gki' => $this->m_mutasi->get_kdinv()
+        );
         $this->load->view('mutasi/mutasi_form',$data);
     }
 
     function create_action(){
         $data = array(
             'kd_inv_mts' => $this->input->post('kd_inv_mts', TRUE),
-            'id_ruang_mts' => $this->input->post('id_ruang_mts', TRUE),
+            'id_ruang_mts' => $this->input->post('id_ruang', TRUE),
             'jmlh_mts' => $this->input->post('jmlh_mts',TRUE),
             'tgl_terima_mts' => $this->input->post('tgl_terima_mts', TRUE),
             'status_mts' => $this->input->post('status_mts', TRUE),

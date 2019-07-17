@@ -31,7 +31,7 @@ class m_perawatan extends CI_Model{
         return $this->db->get($this->table)->row();
     }
     function inset($data){
-        $this->db->instert($this->table, $data);
+        $this->db->insert($this->table, $data);
     }
     function get_kdinv(){
         $query = $this->db->query("SELECT * FROM [dbo].[inv_barang] 

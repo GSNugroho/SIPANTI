@@ -3,6 +3,8 @@
     <head>
         <title>Tambah Data</title>
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
+        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
+        <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
         <style>
             body{
                 padding: 15px;
@@ -15,9 +17,22 @@
         <table>
         <tr>
         <td>
+        <div id="abc">
+            <div id="popupContact">
+                <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
+                <h3>Daftar Inventaris</h3>
+                <table id="pop" border="1">
+                    <?php 
+                    foreach ($gki as $row){
+                    echo '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
         <div class="form-group">
             <label for="kd_inv_mts">Kode Inventaris <?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="text" name="kd_inv_mts" id="kd_inv_mts" placeholder="Kode Inventaris">
+			<input class="form-control" type="text" name="kd_inv_mts" id="vc_no_inv" placeholder="Kode Inventaris" onclick="div_show()">
         </div>
         </td>
         </tr>

@@ -3,7 +3,10 @@
         <title> Data Mutasi </title>
     </head>
     <body>
-    <?php echo anchor(base_url('mutasi/create'),'Create', 'class="btn btn-primary"'); ?> 
+    <?php 
+    echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
+    echo"</br>";
+    echo anchor(base_url('mutasi/create'),'Create', 'class="btn btn-primary"'); ?> 
     <table style="margin:20px auto;" border="1">
         <tr>
             <th>No</th>
@@ -26,7 +29,7 @@
                 <td><?php echo $ib->kd_aset ?></td>
                 <td><?php echo $ib->nm_inv ?></td>
                 <td><?php echo $ib->jmlh_mts ?></td>
-                <td><?php echo $ib->tgl_terima_mts ?></td>
+                <td><?php echo date('d-M-Y', strtotime($ib->tgl_terima_mts)); ?></td>
                 <td><?php echo $ib->vc_n_gugus ?></td>
                 <td><?php echo $ib->status_mts ?></td>
                 <td><?php echo $ib->kondisi_mts ?></td>
