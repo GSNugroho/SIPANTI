@@ -197,6 +197,11 @@
 						</div>
 					</div>
 				  
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<?php echo anchor(base_url('dt_perawatan'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
+						</div>
+					</div>
 				  <input type="hidden" name="id" class="form-control" id="id">
 				
 				
@@ -271,6 +276,7 @@
 				}
 			?>
 				{
+					title: '<?php echo $event->nm_jd?>',
 					id_jd: '<?php echo $event->id_jd ?>',
                     nm_jd: '<?php echo $event->nm_jd ?>',
                     kd_inv: '<?php echo $event->kd_inv ?>',

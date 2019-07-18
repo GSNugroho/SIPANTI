@@ -17,6 +17,9 @@
 body .fc { /* extra precedence to overcome jqui */
 	font-size: 1em;
 }
+.fc-time{
+	display : none;
+ }
 
 
 /* Colors
