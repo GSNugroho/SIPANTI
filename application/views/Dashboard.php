@@ -12,6 +12,7 @@
 				<ul class="nav">
 					<li class="active"><?php echo anchor(base_url('dashboard'), 'Beranda')?></li>
 					<li><?php echo anchor(base_url('monitor'), 'Daftar Inventaris'); ?></li>
+					<li><?php echo anchor(base_url('jadwal'), 'Jadwal Perawatan Inventaris');?></li>
 					<li><?php echo anchor(base_url('perawatan'), 'Perawatan Inventaris'); ?></li>
 					<li><?php echo anchor(base_url('mutasi'), 'Mutasi Inventaris'); ?></li>
 					<li><?php echo anchor(base_url('report'), 'Report'); ?></li>

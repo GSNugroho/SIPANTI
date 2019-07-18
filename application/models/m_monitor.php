@@ -17,12 +17,12 @@ class m_monitor extends CI_Model{
 		$query = $this->db2->get();
 		return ($query->num_rows() > 0)?$query->result_array():FALSE;
 		*/
-		$this->db->order_by('kd_inv', 'desc');
-		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk');
-		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
-		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol');
-		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis');
-		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
+		$this->db->order_by('tgl_terima', 'desc');
+		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk', 'left');
+		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
+		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol', 'left');
+		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis', 'left');
+		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
 		$this->db->where('inv_barang.kd_aset IS NOT NULL');
 		return $this->db->get('inv_barang')->result();
 	}
