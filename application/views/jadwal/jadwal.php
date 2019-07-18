@@ -43,7 +43,10 @@
 
     <!-- Page Content -->
     <div class="container">
-
+    <?php 
+    	echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
+        echo"</br>";
+    ?>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h3>Jadwal Perawatan Inventaris</h3>
