@@ -164,7 +164,12 @@
                         ?>
                       </div>
                   </div>
-
+                  <div class="form-group">
+                    <label for="kd_inv" class="col-sm-2 control-label">Kode Inventaris</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kd_inv" class="form-control" id="kd_inv" placeholder="Kode Inventaris">
+                    </div>
+                  </div>  
 				  <div class="form-group">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
@@ -228,9 +233,11 @@
 			},
 			eventRender: function(event, element) {
 				element.bind('dblclick', function() {
-					$('#ModalEdit #id').val(event.id_jd);
-					$('#ModalEdit #title').val(event.nm_jd);
-					$('#ModalEdit #color').val(event.color);
+					$('#ModalEdit #id_jd').val(event.id_jd);
+					$('#ModalEdit #nm_jd').val(event.nm_jd);
+                    $('#ModalEdit #color').val(event.color);
+                    $('#ModalEdit #kd_ruang').val(event.kd_ruang);
+                    $('#ModalEdit #kd_inv').val(event.kd_inv);
 					$('#ModalEdit').modal('show');
 				});
 			},
