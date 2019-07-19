@@ -26,7 +26,7 @@ class m_jadwal extends CI_Model{
         $this->db->update('inv_jadwal', $data);
     }
     function updatetgl($id, $data){
-        $this->db->where('id', $id);
+        $this->db->where('id_jd', $id);
         $this->db->update('inv_jadwal', $data);
     }
     

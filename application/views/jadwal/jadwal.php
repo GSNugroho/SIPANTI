@@ -199,7 +199,7 @@
 				  
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<?php echo anchor(base_url('perawatan/create'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
+							<?php echo anchor(base_url('perbaikan/update'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
 						</div>
 					</div>
 				  <input type="hidden" name="id_jd" class="form-control" id="id_jd">
@@ -303,17 +303,20 @@
 			event[0] = id_jd;
 			event[1] = start;
 			event[2] = end;
-
+			
+			//var event = ['id_jd', 'start', 'end'];
 			
 			$.ajax({
 			 url: '<?php echo base_url().'jadwal/update_action_tgl'?>',
-			 type: "POST",
+			 type: "post",
 			 data: {event:event},
 			 success: function(rep) {
 					if(rep == 'OK'){
 						alert('Saved');
 					}else{
 						alert('Could not be saved. try again.'); 
+						alert('Error : '+event.status);
+						console.log(event);
 					}
 				}
 			});

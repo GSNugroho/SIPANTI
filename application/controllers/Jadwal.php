@@ -44,16 +44,19 @@ class jadwal extends CI_Controller{
     }
     
     public function update_action_tgl(){
+        if (isset($_POST['event'][0]) && isset($_POST['event'][1]) && isset($_POST['event'][2])){
         $data = array(
-        //'tgl_jd' => $this->input->post('start', TRUE),
-        //'tgl_jd_selesai' => $this->input->post('end', TRUE)
+        // 'tgl_jd' => $this->input->post(event[1], TRUE),
+        // 'tgl_jd_selesai' => $this->input->post(event[2], TRUE)
         'tgl_jd' => $_POST['event'][1],
 	    'tgl_jd_selesai' => $_POST['event'][2]
         );
 
-        $this->mjadwal->updatetgl($_POST['event'][0], $data);
+       $this->m_jadwal->updatetgl($_POST['event'][0], $data);
+        // $this->m_jadwal->updatetgl($this->input->post(event[0], $data));
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
         redirect(base_url('jadwal'));
+        }else {echo 'gagal';}
     }
 
 
