@@ -44,19 +44,30 @@ class jadwal extends CI_Controller{
     }
     
     public function update_action_tgl(){
-        if (isset($_POST['event'][0]) && isset($_POST['event'][1]) && isset($_POST['event'][2])){
-        $data = array(
-        // 'tgl_jd' => $this->input->post(event[1], TRUE),
-        // 'tgl_jd_selesai' => $this->input->post(event[2], TRUE)
-        'tgl_jd' => $_POST['event'][1],
-	    'tgl_jd_selesai' => $_POST['event'][2]
+        // if (isset($_POST['event'][0]) && isset($_POST['event'][1]) && isset($_POST['event'][2])){
+        // $data = array(
+        // // 'tgl_jd' => $this->input->post(event[1], TRUE),
+        // // 'tgl_jd_selesai' => $this->input->post(event[2], TRUE)
+        // 'tgl_jd' => $_POST['event'][1],
+	    // 'tgl_jd_selesai' => $_POST['event'][2]
+        // );
+
+        // $data = $this->input->post();
+        // $id_jd = $data['id_jd'];echo $id_jd;
+        // $tgl_jd = $data['start'];echo $tgl_jd;
+        // $tgl_jd_selesai = $data['end'];echo $tgl_jd_selesai;
+        
+        $id = $_POST['event'][0];
+        $data = array (
+            'tgl_jd' => $_POST['event'][1],
+	        'tgl_jd_selesai' => $_POST['event'][2]
         );
 
-       $this->m_jadwal->updatetgl($_POST['event'][0], $data);
+       $this->m_jadwal->updatetgl($id, $data);
         // $this->m_jadwal->updatetgl($this->input->post(event[0], $data));
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
         redirect(base_url('jadwal'));
-        }else {echo 'gagal';}
+        // }else {echo 'gagal';}
     }
 
 

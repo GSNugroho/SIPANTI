@@ -19,7 +19,7 @@ class m_mutasi extends CI_Model{
         return $this->db->get('inv_mutasi')->result();
     }
     function get_ruang(){
-        $query = $this->db->query('SELECT * FROM inv_pubgugus');
+        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
         return $query->result();
     }
     function get_by_id($id){

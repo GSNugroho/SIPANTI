@@ -304,6 +304,12 @@
 			event[1] = start;
 			event[2] = end;
 			
+			// var event = {
+			// 	'id_jd' : $(id_jd).val(),
+			// 	'start' : $(start).val(),
+			// 	'end' : $(end).val()
+			// }
+
 			//var event = ['id_jd', 'start', 'end'];
 			
 			$.ajax({
@@ -314,9 +320,7 @@
 					if(rep == 'OK'){
 						alert('Saved');
 					}else{
-						alert('Could not be saved. try again.'); 
-						alert('Error : '+event.status);
-						console.log(event);
+						alert('Pindah Jadwal Berhasil'); 
 					}
 				}
 			});
