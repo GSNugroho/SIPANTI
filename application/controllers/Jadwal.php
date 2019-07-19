@@ -30,18 +30,44 @@ class jadwal extends CI_Controller{
         redirect(site_url('jadwal'));
     }
 
-    public function update_action(){
+    public function update_action_konten(){        
         $data = array(
-        'tgl_jd' => $this->input->post('Event', 4, TRUE),
-        'nm_jd' => $this->input->post('Event', 1, TRUE),
-        'kd_inv' => $this->input->post('Event', 2, TRUE),
-        'kd_tgl_selesai' => $this->input->post('Event', 5, TRUE),
-        'kd_ruang' => $this->input->post('Event', 3, TRUE)
+        'nm_jd' => $this->input->post('nm_jd', TRUE),
+        'kd_inv' => $this->input->post('kd_inv', TRUE),
+        'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+        'color' => $this->input->post('color', TRUE)
         );
 
-        $this->m_jadwal->update($this->input->post('Event', 0, TRUE), $data);
+        $this->m_jadwal->updatekonten($this->input->post('id_jd', TRUE), $data);
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
         redirect(base_url('jadwal'));
+    }
+    
+    public function update_action_tgl(){
+        $data = array(
+        //'tgl_jd' => $this->input->post('start', TRUE),
+        //'tgl_jd_selesai' => $this->input->post('end', TRUE)
+        'tgl_jd' => $_POST['event'][1],
+	    'tgl_jd_selesai' => $_POST['event'][2]
+        );
+
+        $this->mjadwal->updatetgl($_POST['event'][0], $data);
+        $this->session->set_flashdata('message', 'Ubah Data Berhasil');
+        redirect(base_url('jadwal'));
+    }
+
+
+    
+    public function delete($id){
+        $row = $this->m_jadwal->get_by_id($id);
+
+        if($row){
+            $this->m_monitor->delete($id);
+            $this->session_flashdata('message', 'Hapus Data Berhasil');
+        }else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			redirect(base_url('jadwal'));
+        }
     }
 }
 ?>

@@ -14,6 +14,7 @@
 					<li><?php echo anchor(base_url('monitor'), 'Daftar Inventaris'); ?></li>
 					<li><?php echo anchor(base_url('jadwal'), 'Jadwal Perawatan Inventaris');?></li>
 					<li><?php echo anchor(base_url('perawatan'), 'Perawatan Inventaris'); ?></li>
+					<li><?php echo anchor(base_url('perbaikan'), 'Perbaikan Inventaris');?></li>
 					<li><?php echo anchor(base_url('mutasi'), 'Mutasi Inventaris'); ?></li>
 					<li><?php echo anchor(base_url('report'), 'Report'); ?></li>
 					<li><a href="dashboard.php?page=laporan">Report</a></li>

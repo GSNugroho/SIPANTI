@@ -22,6 +22,7 @@
                 <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
                 <h3>Daftar Inventaris</h3>
                 <table id="pop" border="1">
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td></tr>
                     <?php 
                     foreach ($gki as $row){
                     echo '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';

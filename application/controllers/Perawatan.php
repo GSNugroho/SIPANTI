@@ -44,5 +44,29 @@ class perawatan extends CI_Controller{
 			redirect(base_url('perawatan'));
         }
     }
+
+    function update_action(){
+        $data = array(
+            'vc_no_inv' => $this->input->post('vc_no_inv', TRUE),
+            'dt_mulai' => $this->input->post('dt_mulai', TRUE),
+            'dt_selesai' => $this->input->post('dt_selesai', TRUE),
+            'vc_nm_tindakan' => $this->input->post('vc_nm_tindakan', TRUE)
+        );
+        $this->m_perawatan->update($this->input->post('id', TRUE), $data);
+        $this->session->set_flashdata('message', 'Ubah Data Berhasil');
+        redirect(base_url('perawatan'));
+    }
+
+    function delete($id){
+        $row = $this->m_perawatan->get_by_id($id);
+
+        if($row){
+            $this->m_perawatan->delete($id);
+            $this->session->set_flashdata('message', 'Hapus Data Berhasil');
+        }else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(base_url('perawatan'));
+        }
+    }
 }
 ?>

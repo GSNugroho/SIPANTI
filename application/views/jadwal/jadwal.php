@@ -57,7 +57,7 @@
         </div>
         <!-- /.row -->
 		
-		<!-- Modal -->
+		<!-- Modal Add-->
 		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -140,7 +140,7 @@
 		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="editEventTitle.php">
+			<form class="form-horizontal" method="POST" action="<?php echo base_url().'jadwal/update_action_konten'?>">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Jadwal Perawatan</h4>
@@ -188,7 +188,7 @@
 						  
 						</select>
 					</div>
-				  </div>
+				  </div>			
 				    <div class="form-group"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
@@ -199,10 +199,10 @@
 				  
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<?php echo anchor(base_url('dt_perawatan'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
+							<?php echo anchor(base_url('perawatan/create'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
 						</div>
 					</div>
-				  <input type="hidden" name="id" class="form-control" id="id">
+				  <input type="hidden" name="id_jd" class="form-control" id="id_jd">
 				
 				
 			  </div>
@@ -297,20 +297,18 @@
 				end = start;
 			}
 			
-			id =  event.id;
+			id_jd =  event.id_jd;
 			
-			Event = [];
-            Event[0] = id_jd;
-            Event[1] = nm_jd;
-            Event[2] = kd_inv;
-            Event[3] = kd_ruang;
-			Event[4] = start;
-			Event[5] = end;
+			event = [];
+			event[0] = id_jd;
+			event[1] = start;
+			event[2] = end;
+
 			
 			$.ajax({
-			 url: '<?php echo base_url().'jadwal/update_action'?>',
+			 url: '<?php echo base_url().'jadwal/update_action_tgl'?>',
 			 type: "POST",
-			 data: {Event:Event},
+			 data: {event:event},
 			 success: function(rep) {
 					if(rep == 'OK'){
 						alert('Saved');
