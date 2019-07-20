@@ -39,5 +39,10 @@ class m_perawatan extends CI_Model{
                                 WHERE inv_barang.kd_aset != ' ' ");
         return $query->result();
     }
+    function get_by_id_jd($id){
+        $this->db->order_by('inv_jadwal_pr','asc');
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
 }
 ?>

@@ -71,7 +71,7 @@ class perawatan extends CI_Controller{
 
     function updateperawatan(){
         $id = $this->input->post('id_jd', TRUE);
-        $row = $this->m_perawatan->get_by_id($id);
+        $row = $this->m_perawatan->get_by_id_jd($id);
 
         if($row){
             $data = array(
@@ -81,7 +81,7 @@ class perawatan extends CI_Controller{
         }else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
             echo 'Data tidak ditemukan';
-            //redirect(base_url('jadwal'));
+            redirect(base_url('jadwal'));
         }
 
     }
