@@ -70,7 +70,20 @@ class perawatan extends CI_Controller{
     }
 
     function updateperawatan(){
-        
+        $id = $this->input->post('id_jd', TRUE);
+        $row = $this->m_perawatan->get_by_id($id);
+
+        if($row){
+            $data = array(
+                
+            );
+            $this->load->view('perawatan/perawatan_form_edit');
+        }else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            echo 'Data tidak ditemukan';
+            //redirect(base_url('jadwal'));
+        }
+
     }
 }
 ?>

@@ -198,7 +198,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<?php //echo anchor(base_url('perawatan/update/'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
-							<?php echo anchor('perawatan/update/1', 'Data Perawatan')?>
+							<?php echo anchor('perawatan/create', 'Data Perawatan')?>
 						</div> 
 					</div>				
 			  </div>
