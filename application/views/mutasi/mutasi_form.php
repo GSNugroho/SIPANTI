@@ -64,7 +64,7 @@
         <tr>
         <td>
         <div class="form-group">
-            <label for="tgl_terima_mts">Tanggal Terima <?php //echo form_error('nm_inv') ?></label>
+            <label for="tgl_terima_mts">Tanggal Terima Mutasi<?php //echo form_error('nm_inv') ?></label>
 			<input class="form-control" type="date" name="tgl_terima_mts" id="tgl_terima_mts" placeholder="Tanggal Terima">
         </div>
         </td>
@@ -103,7 +103,7 @@
         </tr>
         <tr>
         <td>
-	    <input type="hidden" name="id_inv" value="<?php// echo $id_inv; ?>" /> 
+
         <button type="submit" class="btn btn-primary">Save</button> 
         </td>
         <td>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Full Calender</title>
+    <title>Jadwal Perawatan Inventaris</title>
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
 	<!-- FullCalendar -->
@@ -40,13 +40,12 @@
 </head>
 
 <body>
-
+<?php 
+    echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
+    echo"</br>";
+?>	
     <!-- Page Content -->
     <div class="container">
-    <?php 
-    	echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
-        echo"</br>";
-    ?>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h3>Jadwal Perawatan Inventaris</h3>
@@ -196,21 +195,28 @@
 						  </div>
 						</div>
 					</div>
-				  
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<?php echo anchor(base_url('perbaikan/update'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
-						</div>
-					</div>
-				  <input type="hidden" name="id_jd" class="form-control" id="id_jd">
-				
-				
+							<?php //echo anchor(base_url('perawatan/update/'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
+							<?php echo anchor('perawatan/update/1', 'Data Perawatan')?>
+						</div> 
+					</div>				
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Save changes</button>
 			  </div>
 			</form>
+							  
+			<form method="post" action="<?php echo base_url().'perawatan/updateperawatan'?>">
+					<div class="form-group">
+						<!-- <div class="col-sm-offset-2 col-sm-10">
+							<?php //echo anchor(base_url('perawatan/update'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
+						</div> -->
+					</div>
+					<input type="hidden" name="id_jd" class="form-control" id="id_jd">
+					<button type="submit" class="btn btn-primary">Data Perawatan</button>
+					</form>
 			</div>
 		  </div>
 		</div>

@@ -210,7 +210,7 @@
         
         <tr>
         <td>
-	    <input type="hidden" name="id_inv" value="<?php// echo $id_inv; ?>" /> 
+	    
         <button type="submit" class="btn btn-primary">Save</button> 
         </td>
         <td>

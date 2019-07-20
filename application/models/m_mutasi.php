@@ -13,8 +13,8 @@ class m_mutasi extends CI_Model{
     function get_data()
     {
         $this->db->order_by('tgl_terima_mts', 'desc');
-        $this->db->join('inv_barang', 'inv_mutasi.kd_inv_mts = inv_barang.kd_inv');
-        $this->db->join('inv_pubgugus', 'inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus');
+        $this->db->join('inv_barang', 'inv_mutasi.kd_inv_mts = inv_barang.kd_inv', 'left');
+        $this->db->join('inv_pubgugus', 'inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus', 'left');
         $this->db->where("inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset !=' '");
         return $this->db->get('inv_mutasi')->result();
     }

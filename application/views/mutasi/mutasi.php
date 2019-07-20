@@ -13,7 +13,7 @@
             <th>Kode Barang</th>
             <th>Nama Barang</th>
             <th>Jumlah Barang</th>
-            <th>Tanggal Terima</th>
+            <th>Tanggal Terima Mutasi</th>
             <th>Ruang Mutasi</th>
             <th>Status</th>
             <th>Kondisi</th>

@@ -22,7 +22,7 @@ class m_monitor extends CI_Model{
 		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
 		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol', 'left');
 		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis', 'left');
-		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
+		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
 		$this->db->where('inv_barang.kd_aset IS NOT NULL');
 		return $this->db->get('inv_barang')->result();
 	}
