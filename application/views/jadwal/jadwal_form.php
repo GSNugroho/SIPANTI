@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>Tambah Jadwal</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
+        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
     </head>
     <body>
 			<form class="form-horizontal" method="post" action="<?php echo base_url().'jadwal/create_action'?>">
@@ -54,13 +55,13 @@
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Tanggal Perawatan</label>
 					<div class="col-sm-10">
-					  <input type="text" name="start" class="form-control" id="start" readonly>
+					  <input type="date" name="start" class="form-control" id="start">
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">Tanggal Selesai</label>
 					<div class="col-sm-10">
-					  <input type="text" name="end" class="form-control" id="end" readonly>
+					  <input type="date" name="end" class="form-control" id="end">
 					</div>
 				  </div>
 				

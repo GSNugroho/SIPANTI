@@ -18,7 +18,7 @@
             <td rowspan="2">No</td>
             <td rowspan="2">Golongan</td>
             <td colspan="6" rowspan="2" align="center">Spesifikasi</td>
-            <td colspan="3">Kondisi</td>
+            <td colspan="3" align="center">Kondisi</td>
         </tr>
         <tr>
             <td>&nbsp;B&nbsp;</td>
