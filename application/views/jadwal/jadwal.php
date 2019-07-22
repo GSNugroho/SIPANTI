@@ -42,7 +42,8 @@
 <body>
 <?php 
     echo anchor(base_url('dashboard'), 'Beranda', 'class="btn btn-primary"'); 
-    echo"</br>";
+	echo"</br>";
+	echo anchor(base_url('jadwal/create'),'Tambah Jadwal', 'class="btn btn-primary"');
 ?>	
     <!-- Page Content -->
     <div class="container">
@@ -194,12 +195,6 @@
 							<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
 						  </div>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<?php //echo anchor(base_url('perawatan/update/'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
-							<?php echo anchor('perawatan/create', 'Data Perawatan')?>
-						</div> 
 					</div>				
 			  </div>
 			  <div class="modal-footer">
@@ -209,14 +204,11 @@
 			</form>
 							  
 			<form method="post" action="<?php echo base_url().'perawatan/updateperawatan'?>">
-					<div class="form-group">
-						<!-- <div class="col-sm-offset-2 col-sm-10">
-							<?php //echo anchor(base_url('perawatan/update'), 'Data Perawatan', 'class="btn btn-default", name="dt_perawatan"'); ?>
-						</div> -->
-					</div>
-					<input type="hidden" name="id_jd" class="form-control" id="id_jd">
-					<button type="submit" class="btn btn-primary">Data Perawatan</button>
-					</form>
+			<div class="modal-footer">
+			<input type="hidden" name="id_jd" class="form-control" id="id_jd">
+			<button type="submit" class="btn btn-primary" >Data Perawatan</button>
+			</div>
+			</form>
 			</div>
 		  </div>
 		</div>
@@ -309,14 +301,6 @@
 			event[0] = id_jd;
 			event[1] = start;
 			event[2] = end;
-			
-			// var event = {
-			// 	'id_jd' : $(id_jd).val(),
-			// 	'start' : $(start).val(),
-			// 	'end' : $(end).val()
-			// }
-
-			//var event = ['id_jd', 'start', 'end'];
 			
 			$.ajax({
 			 url: '<?php echo base_url().'jadwal/update_action_tgl'?>',

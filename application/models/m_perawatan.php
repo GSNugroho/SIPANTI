@@ -3,6 +3,8 @@ class m_perawatan extends CI_Model{
     public $table = 'inv_perawatan_d';
     public $id = 'inv_perawatan_d.vc_kd_trans';
     public $order = 'DESC';
+    public $idjd = 'inv_jadwal_perawatan.kd_jadwal';
+    public $tablejd = 'inv_jadwal_perawatan';
 
     function __construct()
     {
@@ -40,9 +42,14 @@ class m_perawatan extends CI_Model{
         return $query->result();
     }
     function get_by_id_jd($id){
-        $this->db->order_by('inv_jadwal_pr','asc');
-        $this->db->where($this->id, $id);
+        $this->db->order_by('inv_jadwal_perawatan','asc');
+        $this->db->where($this->idjd, $id);
         return $this->db->get($this->table)->row();
+    }
+    
+    function update_perawatan($id, $data){
+        $this->db->where($this->idjd, $id);
+        $this->db->update($this->tablejd, $data);
     }
 }
 ?>

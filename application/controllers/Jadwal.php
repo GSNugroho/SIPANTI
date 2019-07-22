@@ -15,6 +15,13 @@ class jadwal extends CI_Controller{
         $this->load->view('jadwal/jadwal', $data);
     }
 
+    function create(){
+        $data = array(
+            'dd_gr' => $this->m_jadwal->get_ruang()
+        );
+        $this->load->view('jadwal/jadwal_form', $data);
+    }
+
     public function create_action(){
         $data = array(
         'tgl_jd' => $this->input->post('start', TRUE),
