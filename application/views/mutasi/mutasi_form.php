@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
         <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
+        <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>" type="text/javascript"></script>
+        <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
         <style>
             body{
                 padding: 15px;
@@ -17,26 +19,25 @@
         <table>
         <tr>
         <td>
-        <div id="abc">
-            <div id="popupContact">
-                <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
-                <h3>Daftar Inventaris</h3>
-                <table id="pop" border="1">
-                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td></tr>
-                    <?php 
-                    foreach ($gki as $row){
-                    echo '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
-                    }
-                    ?>
-                </table>
-            </div>
-        </div>
         <div class="form-group">
             <label for="kd_inv_mts">Kode Inventaris <?php //echo form_error('nm_inv') ?></label>
 			<input class="form-control" type="text" name="kd_inv_mts" id="vc_no_inv" placeholder="Kode Inventaris" onclick="div_show()">
         </div>
         </td>
         </tr>
+      <td>
+        <div id="abc">
+            <div id="popupContact">
+                <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
+                <h3>Daftar Inventaris</h3>
+                <table id="pop" border="1">
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                
+                </table>
+            </div>
+        </div>
+      </td>
+    </tr>
         <tr>
         <td>
         <div class="form-group">
@@ -111,5 +112,37 @@
         </td>
         </tr>
         </table>
+        <script>
+
+        $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+            // Kita sembunyikan dulu untuk loadingnya
+            $("#loading").hide();
+            
+            $("#id_ruang").change(function(){ // Ketika user mengganti atau memilih data provinsi
+            $("#kd_inv_mts").hide(); // Sembunyikan dulu combobox kota nya
+            $("#loading").show(); // Tampilkan loadingnya
+            
+            $.ajax({
+                type: "POST", // Method pengiriman data bisa dengan GET atau POST
+                url: "<?php echo base_url("mutasi/list_inv"); ?>", // Isi dengan url/path file php yang dituju
+                data: {id_ruang : $("#id_ruang").val()}, // data yang akan dikirim ke file yang dituju
+                dataType: "json",
+                beforeSend: function(e) {
+                if(e && e.overrideMimeType) {
+                    e.overrideMimeType("application/json;charset=UTF-8");
+                }
+                },
+                success: function(response){ // Ketika proses pengiriman berhasil
+                $("#loading").hide(); 
+
+                $("#pop").html(response.list_inv).show();
+                },
+                error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                }
+            });
+            });
+        });
+        </script>
     </body>
 </html>

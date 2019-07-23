@@ -37,6 +37,12 @@ class m_jadwal extends CI_Model{
     function get_by_id($id){
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-	}
+    }
+    function get_inv($id_ruang){
+        $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
+        $this->db->where("inv_barang.kd_aset != ' '");
+        return $this->db->get('inv_barang')->result();
+    }
 }
 ?>

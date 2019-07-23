@@ -17,7 +17,7 @@
         <td>
         <div class="form-group">
             <label for="kd_inv_mts">Kode Inventaris <?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="text" name="kd_inv_mts" id="kd_inv_mts" placeholder="Kode Inventaris" value="<?php echo $kd_inv_mts; ?>">
+			<input class="form-control" type="text" name="kd_inv_mts" id="kd_inv_mts" placeholder="Kode Inventaris" value="<?php echo $kd_inv_mts; ?>" readonly>
         </div>
         </td>
         </tr>

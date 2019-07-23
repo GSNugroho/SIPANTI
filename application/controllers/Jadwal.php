@@ -90,5 +90,20 @@ class jadwal extends CI_Controller{
 			redirect(base_url('jadwal'));
         }
     }
+
+    function list_inv(){
+        $id_ruang = $this->input->post('id_ruang', TRUE);
+
+        $inv = $this->m_mutasi->get_inv($id_ruang);
+        $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td><td>Action</td></tr>";     
+        foreach ($inv as $row){
+            //echo
+            $lists .= '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
+            }
+
+            $callback = array('list_inv'=>$lists); 
+            echo json_encode($callback); 
+    }
+    
 }
 ?>
