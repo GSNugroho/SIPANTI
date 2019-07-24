@@ -34,6 +34,7 @@ class m_mutasi extends CI_Model{
     }
     public function get_inv($id_ruang){
         $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
         $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
         $this->db->where("inv_barang.kd_aset != ' '");
         return $this->db->get('inv_barang')->result();

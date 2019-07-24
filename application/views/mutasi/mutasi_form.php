@@ -29,9 +29,9 @@
         <div id="abc">
             <div id="popupContact">
                 <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
-                <h3>Daftar Inventaris</h3>
+                <h5>Daftar Inventaris</h5>
                 <table id="pop" border="1">
-                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
                 
                 </table>
             </div>

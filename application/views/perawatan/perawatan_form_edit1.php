@@ -758,13 +758,31 @@
                 Keterangan
             </td>
             <td colspan="7">
-                <textarea name="ket" style="width: 590px; height: 80px;"></textarea>
+                <textarea name="ket" style="width: 674.5px; height: 80px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                Status Pengerjaan
+            </td>
+            <td colspan="2">
+                <input type="radio" name="status" value="1">Belum Dikerjakan
+            </td>
+            <td >
+                <input type="radio" name="status" value="2">Sedang Dikerjakan
+            </td>
+            <td colspan="4">
+                <input type="radio" name="status" value="3">Sudah Selesai Dikerjakan
             </td>
         </tr>
     </table>
     <table align="center">
         <tr>
             <td>
+            <input type="hidden" name="kd_jd" class="form-control" id="kd_jd" value="<?php echo $kd_jd;?>">
             <button type="submit" class="btn btn-primary">Simpan Data</button>
             </td>
             <td>

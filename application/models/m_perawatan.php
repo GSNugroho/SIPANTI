@@ -18,6 +18,13 @@ class m_perawatan extends CI_Model{
         $this->db->where('inv_perawatan_tindakan.vc_kd_tindakan = 001 OR inv_perawatan_tindakan.vc_kd_tindakan = 002 OR inv_perawatan_tindakan.vc_kd_tindakan = 003 ');
         return $this->db->get('inv_perawatan_d')->result();
     }
+    function get_data_jd(){
+        $this->db->order_by('inv_jadwal.tgl_jd','desc');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
+        $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
+        return $this->db->get('inv_jadwal')->result();
+    }
     function update($id, $data){
         $this->db->where($this->id, $id);
         $this->db->join('inv_perawatan_h', 'inv_perawatan_d.vc_kd_trans = inv_perawatan_h.vc_kd_trans');
@@ -42,9 +49,9 @@ class m_perawatan extends CI_Model{
         return $query->result();
     }
     function get_by_id_jd($id){
-        $this->db->order_by('inv_jadwal_perawatan','asc');
+        // $this->db->order_by('inv_jadwal_perawatan','asc');
         $this->db->where($this->idjd, $id);
-        return $this->db->get($this->table)->row();
+        return $this->db->get($this->tablejd)->row();
     }
     
     function update_perawatan($id, $data){

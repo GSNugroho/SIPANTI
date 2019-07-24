@@ -7,7 +7,7 @@ class perawatan extends CI_Controller{
     }
 
     public function index(){
-        $data['inv_perawatan'] = $this->m_perawatan->get_data();
+        $data['inv_perawatan'] = $this->m_perawatan->get_data_jd();
         $this->load->view('perawatan/perawatan',$data);
     }
     function create(){
@@ -70,19 +70,24 @@ class perawatan extends CI_Controller{
     }
 
     function updateperawatan(){
-        // $id = $this->input->post('id_jd', TRUE);
-        // $row = $this->m_perawatan->get_by_id_jd($id);
+         $id = $this->input->post('kd_jd', TRUE);
+         if($id==NULL){ 
+             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             redirect(base_url('jadwal'));
+        }else{
+         $row = $this->m_perawatan->get_by_id_jd($id);
 
-        // if($row){
-        //     $data = array(
-                
-        //     );
-            $this->load->view('perawatan/perawatan_form_edit1');
-        // }else {
-        //     $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-        //     echo 'Data tidak ditemukan';
-        //     redirect(base_url('jadwal'));
-        // }
+         if($row){
+              $data = array(
+                'kd_jd'=> set_value('kd_jd', $row->kd_jadwal)
+              );
+            $this->load->view('perawatan/perawatan_form_edit1',$data);
+         }else {
+             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+             echo 'Data tidak ditemukan';
+             redirect(base_url('jadwal'));
+         };
+        }
     }
 
     function update_action_perawatan(){
@@ -176,9 +181,10 @@ class perawatan extends CI_Controller{
             'hw_lis_cpm' => $this->input->post('kkpwrmon', TRUE),
             'hw_lis_cpsata' => $this->input->post('kkpwrsata', TRUE),
             'hw_lis_cmp' => $this->input->post('kkmolpwr', TRUE),
-            'ket' => $this->input->post('kramd1c2', TRUE)   
+            'ket' => $this->input->post('ket', TRUE),
+            'status_p' => $this->input->post('status', TRUE)
         );
-        $this->m_perawatan->update_perawatan($this->input->post('id', TRUE), $data);
+        $this->m_perawatan->update_perawatan($this->input->post('kd_jd', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
         redirect(base_url('jadwal'));
     }

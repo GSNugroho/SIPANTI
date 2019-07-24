@@ -29,7 +29,8 @@ class jadwal extends CI_Controller{
         'kd_inv' => $this->input->post('kd_inv', TRUE),
         'color' => $this->input->post('color', TRUE),
         'tgl_jd_selesai' => $this->input->post('end', TRUE),
-        'kd_ruang' => $this->input->post('kd_ruang', TRUE)
+        'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+        'kd_jd' => $this->kode()
         );
 
         $this->m_jadwal->insert($data);
@@ -94,16 +95,33 @@ class jadwal extends CI_Controller{
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
-        $inv = $this->m_mutasi->get_inv($id_ruang);
-        $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td><td>Action</td></tr>";     
+        $inv = $this->m_jadwal->get_inv($id_ruang);
+        $lists = "<tr>
+                    <td><b>Kode Inventaris</b></td>
+                    <td><b>Nama Barang</b></td>
+                    <td><b>Nama Pengguna</b></td>
+                    <td><b>Ruang</b></td>
+                    <td><b>Action</b></td></tr>";     
         foreach ($inv as $row){
-            //echo
-            $lists .= '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
+            $lists .= '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_nm_pengguna.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
             }
 
             $callback = array('list_inv'=>$lists); 
             echo json_encode($callback); 
     }
     
+    function kode(){
+        $kode = $this->m_jadwal->get_kode();
+        foreach($kode as $row){
+            $data = $row->maxkode;
+        }
+
+        $kodejadwal = $data;
+        $noUrut = (int) substr($kodejadwal, 2, 6);
+        $noUrut++;
+        $char = "JD";
+        $kodebaru = $char.sprintf("%06s", $noUrut);
+        return $kodebaru;
+    }
 }
 ?>

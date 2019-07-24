@@ -10,10 +10,13 @@
 	<table style="margin:20px auto;" border="1">
 		<tr>
 			<th>No</th>
-			<th>Awal Pengerjaan</th>
-			<th>Selesai Pengerjaan</th>
+			<th>Tanggal Perawatan</th>
+			<th>Perkiraan Tanggal Selesai</th>
+			<th>Nama Jadwal</th>
 			<th>Kode Inventaris</th>
-            <th>Tindakan</th>
+			<th>Nama Barang</th>
+            <th>Ruang</th>
+            <th>Status Pengerjaan</th>
             <th>Action</th>
 		</tr>
 		<?php 
@@ -23,13 +26,20 @@
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
-            <td><?php echo date('d-M-Y', strtotime($ib->dt_mulai));?></td>
-            <td><?php echo date('d-M-Y', strtotime($ib->dt_selesai));?></td>
-			<td><?php echo $ib->vc_no_inv ?></td>
-			<td><?php echo $ib->vc_nm_tindakan ?></td>
+            <td><?php echo date('d-M-Y', strtotime($ib->tgl_jd));?></td>
+            <td><?php echo date('d-M-Y', strtotime($ib->tgl_jd_selesai));?></td>
+			<td><?php echo $ib->nm_jd ?></td>
+			<td><?php echo $ib->kd_inv ?></td>
+			<td><?php echo $ib->nm_inv ?></td>
+			<td><?php echo $ib->vc_n_gugus ?></td>
+			<td><?php $data = $ib->status_p;
+					if($data=='1'){echo "Belum Dikerjakan";
+					}else if($data=='2'){echo "Sedang Dikerjakan";
+					}else{echo "Sudah Selesai Dikerjakan";}
+			?></td>
 			<td>
-			      <?php echo anchor('perawatan/update/'.$ib->vc_kd_trans,'Edit'); ?>
-                  <?php echo anchor('perawatan/delete/'.$ib->vc_kd_trans,'Hapus'); ?>
+			      <?php echo anchor('perawatan/update/'.$ib->kd_jd,'Edit'); ?>
+                  <?php echo anchor('perawatan/delete/'.$ib->kd_jd,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>

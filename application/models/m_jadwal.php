@@ -14,10 +14,6 @@ class m_jadwal extends CI_Model{
     function get_data(){
         return $this->db->get('inv_jadwal')->result();
     }
-    function get_ruang(){
-        $query = $this->db->query('SELECT * FROM inv_pubgugus');
-		return $query->result();
-    }
     function insert($data){
         $this->db->insert($this->table, $data);
     }
@@ -40,9 +36,19 @@ class m_jadwal extends CI_Model{
     }
     function get_inv($id_ruang){
         $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
         $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
         $this->db->where("inv_barang.kd_aset != ' '");
         return $this->db->get('inv_barang')->result();
+    }
+    function get_ruang(){
+        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
+        return $query->result();
+    }
+    
+    function get_kode(){
+        $query = $this->db->query('SELECT MAX(kd_jd) AS maxkode FROM inv_jadwal');
+        return $query->result();
     }
 }
 ?>

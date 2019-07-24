@@ -11,19 +11,23 @@
 
     <title>Jadwal Perawatan Inventaris</title>
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
 	<!-- FullCalendar -->
 	<link rel='stylesheet' href="<?php echo base_url('assets/bootstrap/css/fullcalendar.css')?>"/>
     <!-- Custom CSS -->
     <!-- jQuery Version 1.11.1 -->
-    <script type='text/javascript' src="<?php echo base_url('assets/js/jquery.js'); ?> "></script>
+	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.js'); ?> "></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>" ></script>
     <!-- Bootstrap Core JavaScript -->
     <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
     <!-- FullCalendar -->
     <script type='text/javascript' src="<?php echo base_url('assets/js/moment.min.js'); ?> "></script>
     <script type='text/javascript' src="<?php echo base_url('assets/js/fullcalendar.min.js'); ?> "></script>
-    <style>
+	<script src="<?php echo base_url('assets/js/my_js.js')?>" type="text/javascript"></script>
+	
+	<style>
     body {
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
@@ -92,9 +96,12 @@
                   <div class="form-group">
                     <label for="kd_inv" class="col-sm-2 control-label">Kode Inventaris</label>
                     <div class="col-sm-10">
-                        <input type="text" name="kd_inv" class="form-control" id="kd_inv" placeholder="Kode Inventaris">
-                    </div>
-                  </div>
+                        <input type="text" name="kd_inv" class="form-control" id="vc_no_inv" placeholder="Kode Inventaris " onclick="div_show()">
+					</div>
+					</div>
+
+				  
+
 				  <div class="form-group">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
@@ -129,6 +136,44 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Save</button>
 			  </div>
+			  <div id="abc">
+					<div id="popupContact">
+					<img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
+					<h5>Daftar Inventaris</h5>
+					<table id="pop" border="1">
+						<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+					
+					</table>
+					</div>
+					</div>
+					<script>
+
+					$(document).ready(function(){ 
+						$("#kd_ruang").change(function(){ // Ketika user mengganti atau memilih data provinsi
+
+						$.ajax({
+							type: "POST", // Method pengiriman data bisa dengan GET atau POST
+							url: "<?php echo base_url("jadwal/list_inv"); ?>", // Isi dengan url/path file php yang dituju
+							data: {id_ruang : $("#kd_ruang").val()}, // data yang akan dikirim ke file yang dituju
+							dataType: "json",
+							beforeSend: function(e) {
+							if(e && e.overrideMimeType) {
+								e.overrideMimeType("application/json;charset=UTF-8");
+							}
+							},
+							success: function(response){ // Ketika proses pengiriman berhasil
+							$("#loading").hide(); 
+
+							$("#pop").html(response.list_inv).show();
+							},
+							error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+							alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+							}
+						});
+						});
+					});
+					</script>
+
 			</form>
 			</div>
 		  </div>
@@ -205,7 +250,7 @@
 							  
 			<form method="post" action="<?php echo base_url().'perawatan/updateperawatan'?>">
 			<div class="modal-footer">
-			<input type="hidden" name="id_jd" class="form-control" id="id_jd">
+			<input type="hidden" name="kd_jd" class="form-control" id="kd_jd">
 			<button type="submit" class="btn btn-primary" >Data Perawatan</button>
 			</div>
 			</form>
@@ -244,6 +289,7 @@
                     $('#ModalEdit #color').val(event.color);
                     $('#ModalEdit #kd_ruang').val(event.kd_ruang);
                     $('#ModalEdit #kd_inv').val(event.kd_inv);
+					$('#ModalEdit #kd_jd').val(event.kd_jd);
 					$('#ModalEdit').modal('show');
 				});
 			},
@@ -276,6 +322,7 @@
 				{
 					title: '<?php echo $event->nm_jd?>',
 					id_jd: '<?php echo $event->id_jd ?>',
+					kd_jd: '<?php echo $event->kd_jd?>',
                     nm_jd: '<?php echo $event->nm_jd ?>',
                     kd_inv: '<?php echo $event->kd_inv ?>',
                     kd_ruang: '<?php echo $event->kd_ruang ?>',
@@ -317,8 +364,6 @@
 		}
 		
 	});
-
-	
 </script>
 
 </body>
