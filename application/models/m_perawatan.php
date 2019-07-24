@@ -23,6 +23,7 @@ class m_perawatan extends CI_Model{
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->where("inv_barang.kd_aset != ' '");
         return $this->db->get('inv_jadwal')->result();
     }
     function update($id, $data){
