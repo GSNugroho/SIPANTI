@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" />
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>"/>
         <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>" ></script>
+        
         <style>
             body{
                 padding: 15px;
