@@ -24,6 +24,7 @@ class m_monitor extends CI_Model{
 		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis', 'left');
 		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
 		$this->db->where('inv_barang.kd_aset IS NOT NULL');
+		$this->db->where('inv_barang.aktif = 1');
 		return $this->db->get('inv_barang')->result();
 	}
 
@@ -83,6 +84,10 @@ class m_monitor extends CI_Model{
 	}
 	function get_golongan(){
 		$query = $this->db->query('SELECT * FROM inv_golongan');
+		return $query->result();
+	}
+	function get_kode(){
+		$query = $this->db->query('SELECT MAX(kd_inv) AS maxkode FROM inv_jadwal');
 		return $query->result();
 	}
 }

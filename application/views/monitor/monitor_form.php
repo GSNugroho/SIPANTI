@@ -104,14 +104,14 @@
 		</td>
         </tr>
 
-        <tr>
+        <!-- <tr>
         <td>
 		<div class="form-group">
             <label for="no_aset">Nomor Aset <?php //echo form_error('no_aset') ?></label>
             <input class="form-control" type="text" name="no_aset" id="no_aset" placeholder="Nomor Aset">
 		</div>
 		</td>
-        </tr>	
+        </tr>	 -->
 
         <tr>
         <td>
@@ -139,14 +139,14 @@
 		</td>
         </tr>
 
-        <tr>
+        <!-- <tr>
         <td>
 		<div class="form-group">
             <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
 			<input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="upload gambarqr"/>
         </div>
 		</td>
-        </tr>
+        </tr> -->
 
         <tr>
         <td>
@@ -161,7 +161,12 @@
         <td>        
 		<div class="form-group">
             <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
-            <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif">
+            <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
+            <select class="form-control" name="aktif" class="form-control" id="aktif">
+                <option value="">--Status Aktif--</option>
+                <option value="0">Tidak Aktif</option>
+                <option value="1">Aktif</option>
+            </select>
 		</div>
 		</td>
         </tr>
@@ -182,23 +187,23 @@
 		</td>
 		</tr>
 
-        <tr>
+        <!-- <tr>
 		<td>
 		<div class="form-group">
             <label for="cetak">Cetak <?php //echo form_error('cetak') ?></label>
             <input class="form-control" type="text" name="cetak" id="cetak" placeholder="Cetak">
 		</div>
         </td>
-        </tr>
+        </tr> -->
 		
-        <tr>
+        <!-- <tr>
         <td>
 		<div class="form-group">
             <label for="kd_aset">Kode Aset <?php //echo form_error('kd_aset') ?></label>
             <input class="form-control" type="text" name="kd_aset" id="kd_aset" placeholder="Kode Aset">
 		</div>
         </td>
-        </tr>	
+        </tr>	 -->
         
         <tr>
         <td>

@@ -87,7 +87,8 @@ class monitor extends CI_Controller {
 			'aktif' => $this->input->post('aktif', TRUE),
 			'jns_brg' => $this->input->post('jns', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
-			'kd_aset' => $this->input->post('kd_aset', TRUE)
+			'kd_aset' => $this->input->post('kd_aset', TRUE),
+			'kd_inv' => $this->kode()
 						
 			);
 			
@@ -188,6 +189,20 @@ class monitor extends CI_Controller {
 
 	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }*/
+	}*/
+	
+	function kode(){
+        $kode = $this->m_monitor->get_kode();
+        foreach($kode as $row){
+            $data = $row->maxkode;
+        }
+
+        $kodeinv = $data;
+        $noUrut = (int) substr($kodeinv, 3, 6);
+        $noUrut++;
+        $char = "INV";
+        $kodebaru = $char.sprintf("%06s", $noUrut);
+        return $kodebaru;
+    }
 }
 ?>

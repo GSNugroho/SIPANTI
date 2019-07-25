@@ -136,7 +136,12 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Save</button>
 			  </div>
-			  <div id="abc">
+			  
+
+			</form>
+			</div>
+		  </div>
+		  <div id="abc">
 					<div id="popupContact">
 					<img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
 					<h5>Daftar Inventaris</h5>
@@ -173,10 +178,6 @@
 						});
 					});
 					</script>
-
-			</form>
-			</div>
-		  </div>
 		</div>
 		
 		

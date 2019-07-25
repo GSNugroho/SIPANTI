@@ -167,7 +167,11 @@
         <td>        
 		<div class="form-group">
             <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
-            <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif" value="<?php echo $aktif; ?>">
+            <select class="form-control" name="aktif" class="form-control" id="aktif">
+                <option value="">--Status Aktif--</option>
+                <option value="0" <?php echo ($aktif == '0')?'selected':''?>>Tidak Aktif</option>
+                <option value="1" <?php echo ($aktif == '1')?'selected':''?>>Aktif</option>
+            </select>
 		</div>
 		</td>
         </tr>
@@ -192,7 +196,7 @@
 
         <tr>
 		<td>
-		<div class="form-group">
+		<!-- <div class="form-group">
             <label for="cetak">Cetak <?php //echo form_error('cetak') ?></label>
             <input class="form-control" type="text" name="cetak" id="cetak" placeholder="Cetak" value="<?php echo $cetak; ?>">
 		</div>
@@ -209,7 +213,7 @@
         </tr>	
         
         <tr>
-        <td>
+        <td> -->
 	    
         <button type="submit" class="btn btn-primary">Save</button> 
         </td>
