@@ -87,7 +87,7 @@ class m_monitor extends CI_Model{
 		return $query->result();
 	}
 	function get_kode(){
-		$query = $this->db->query('SELECT MAX(kd_inv) AS maxkode FROM inv_jadwal');
+		$query = $this->db->query('SELECT MAX(kd_inv) AS maxkode FROM inv_barang');
 		return $query->result();
 	}
 }

@@ -11,7 +11,7 @@
 
     <title>Jadwal Perawatan Inventaris</title>
     <!-- Bootstrap Core CSS -->
-	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
 	<!-- FullCalendar -->
 	<link rel='stylesheet' href="<?php echo base_url('assets/bootstrap/css/fullcalendar.css')?>"/>
