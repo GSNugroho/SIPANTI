@@ -46,7 +46,7 @@
 			Data Inventaris
 			</div>
 			<!-- Barang -->
-			<li class="nav-item active">
+			<li class="nav-item">
 			<a class="nav-link" href="<?php echo base_url('monitor')?>">
 			<i class="fas fa-boxes"></i>
 			<span>Barang</span></a>
@@ -79,7 +79,7 @@
 			</li>
 		
 			<!-- Perbaikan -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link" href="<?php echo base_url('perbaikan')?>">
 				<i class="fas fa-fw fa-wrench"></i>
 				<span>Perbaikan</span></a>
@@ -291,15 +291,66 @@
             <!-- Begin Page Content -->
         <div class="container-fluid">
 
-<!-- 404 Error Text -->
-<div class="text-center">
-  <div class="error mx-auto" data-text="404">404</div>
-  <p class="lead text-gray-800 mb-5">Page Not Found</p>
-  <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-  <a href="<?php echo base_url('dashboard');?>">&larr; Back to Dashboard</a>
-</div>
-
-</div>
+		<div class="card shadow mb-4">
+					<div class="card-header py-3">
+              			<h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
+					</div>
+					<div class="card-body">
+					<a href="<?php echo base_url('perbaikan/create')?>" class="btn btn-primary btn-icon-split">
+                    		<span class="text">Tambah Data</span>
+					</a>	  
+						<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Tanggal Perbaikan</th>
+								<th>Kode Inventaris</th>
+								<th>Nama Barang</th>
+								<th>Ruang</th>
+								<th>Jenis Kerusakan</th>
+								<th>Jenis Perbaikan</th>
+								<th>Sparepart</th>
+								<th>Biaya</th>
+								<th>Keterangan</th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php 
+								$no = 1;
+								//$no = $this->uri->segment('3') + 1;
+								foreach($inv_perbaikan as $ib){ 
+								?>
+								<tr>
+									<td><?php echo $no++ ?></td>
+									<td><?php echo date('d-M-Y', strtotime($ib->tgl_inv_pr));?></td>
+									<td><?php echo $ib->kd_inv ?></td>
+									<td><?php echo $ib->nm_inv ?></td>
+									<td><?php echo $ib->vc_n_gugus ?></td>
+									<td><?php $data = $ib->jns_kr;
+											if($data=='1'){echo "Ringan";
+											}else{echo "Parah";}
+									 ?></td>
+									<td><?php $data = $ib->jns_pr; 
+											if($data=='1'){echo "Pengecekan";
+											}else if($data=='2'){echo "Ganti Sparepart";
+											}else{echo "Service";}
+									?></td>
+									<td><?php echo $ib->sp_gt ?></td>
+									<td><?php echo $ib->sp_by ?></td>
+									<td><?php echo $ib->ket_pr ?></td>
+									<td>
+										<?php echo anchor('perbaikan/update/'.$ib->kd_pr,'Edit'); ?>
+										<?php echo anchor('perbaikan/delete/'.$ib->kd_pr,'Hapus'); ?>
+									</td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
 <!-- /.container-fluid -->
 
 </div>

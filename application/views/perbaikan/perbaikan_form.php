@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" />
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>"/>
         <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
+        <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>" ></script>
         
         <style>
@@ -21,20 +22,16 @@
         <div id="abc">
             <div id="popupContact">
                 <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
-                <h3>Daftar Inventaris</h3>
+                <h5>Daftar Inventaris</h5>
                 <table id="pop" border="1">
-                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Ruang</b></td></tr>
-                    <?php 
-                    foreach ($gki as $row){
-                    echo '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
-                    }
-                    ?>
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                
                 </table>
             </div>
         </div>
         <div class="form-group">
             <label for="kd_inv_pr">Kode Inventaris <?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="text" name="kd_inv_pr" id="vc_no_pr" placeholder="Kode Inventaris" onclick="div_show()">
+			<input class="form-control" type="text" name="kd_inv_pr" id="vc_no_inv" placeholder="Kode Inventaris" onclick="div_show()">
         </div>
         </td>
         </tr>
@@ -64,6 +61,43 @@
         <tr>
         <td>
         <div class="form-group">
+            <label for="jns_kr">Jenis Kerusakan</label>
+            <select name="jns_kr" class="form-control" id="jns_kr">
+                <option value="">--Pilih Kerusakan--</option>
+                <option value="1">Ringan</option>
+                <option value="2">Parah</option>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="form-group">
+            <label for="jns_pr">Jenis Perbaikan</label>
+            <select name="jns_pr" class="form-control" id="jns_pr">
+                <option value="">--Pilih Perbaikan--</option>
+                <option value="1">Pengecekan</option>
+                <option value="2">Ganti Sparepart</option>
+                <option value="3">Service</option>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="form-group">
+            <label for="sp_gt">Sparepart</label>
+            <input class="form-control" type="text" name="sp_gt" id="sp_gt" placeholder="Sparepart">
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="form-group">
+            <label for="sp_by">Biaya</label>
+            <input class="form-control" type="number" name="sp_by" id="sp_by" pattern="[0-9]*"placeholder="Biaya">
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div class="form-group">
             <label for="ket">Keterangan</label>
             <input class="form-control" type="text" name="ket" id="ket" placeholder="Keterangan">
         </div>
@@ -77,5 +111,38 @@
             <a href="<?php echo site_url('perbaikan')?>" class="btn btn-default">Cancel</a>
         </td>
         </tr>
+        </table>
+        </form>
+        <script>
+            $(document).ready(function(){
+                $("#loading").hide();
+                $("#id_ruang").change(function(){
+                $("#kd_inv_pr").hide();
+                $("#loading").show();
 
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url("perbaikan/list_inv");?>",
+                    data: {id_ruang : $("#id_ruang").val()},
+                    dataType: "json",
+                    beforeSend: function(e){
+                        if(e && e.overrideMimeType) {
+                            e.overrideMimeType("application/json;charset=UTF-8");
+                        }
+                    },
+                    success: function(response){
+                        $("#loading").hide();
+                        $("#pop").html(response.list_inv).show();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { 
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+                });
+            });
+
+            
+        </script>
+    
+    </body>
 </html>

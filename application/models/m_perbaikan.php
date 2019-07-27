@@ -2,7 +2,7 @@
 class m_perbaikan extends CI_Model{
     
     public $table = 'inv_perbaikan';
-    public $id = 'id_perbaikan';
+    public $id = 'kd_pr';
     public $order = 'DESC';
 
     public function __construct()
@@ -12,13 +12,20 @@ class m_perbaikan extends CI_Model{
     }
 
     function get_data(){
-        $this->db->order_by('tgl_perbaikan', 'desc');
+        $this->db->order_by('tgl_inv_pr', 'desc');
+        $this->db->join('inv_pubgugus', 'inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('inv_barang', 'inv_perbaikan.kd_inv_pr = inv_barang.kd_inv');
+        $this->db->where("inv_barang.aktif = '1'");
         return $this->db->get('inv_perbaikan')->result();
     }
 
     function get_by_id($id){
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    function insert($data){
+        $this->db->insert($this->table, $data);
     }
 
     function get_kdinv(){
@@ -29,6 +36,19 @@ class m_perbaikan extends CI_Model{
     }
     function get_ruang(){
         $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus');
+        return $query->result();
+    }
+
+    function get_inv($id_ruang){
+        $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
+        $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
+        $this->db->where("inv_barang.kd_aset != ' '");
+        return $this->db->get('inv_barang')->result();
+    }
+
+    function get_kode(){
+        $query = $this->db->query('SELECT MAX(kd_pr) AS maxkode FROM inv_perbaikan');
         return $query->result();
     }
 }

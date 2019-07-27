@@ -309,7 +309,7 @@
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
                                 <th>Tanggal Terima Mutasi</th>
-                                <th>Ruang Mutasi</th>
+                                <th>Mutasi</th>
                                 <th>Status</th>
                                 <th>Kondisi</th>
                                 <th>Alasan</th>
