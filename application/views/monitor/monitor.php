@@ -25,7 +25,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 		<!-- Isi -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
 			<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-warehouse"></i>
 			</div>
@@ -312,7 +312,7 @@
 								<th>Jenis Barang</th>
 								<th>Golongan Barang</th>
 								<th>Ruang</th>
-								<th>Lokasi</th>
+								<!-- <th>Lokasi</th> -->
 								<th>Action</th>
 							</tr>
 							</thead>
@@ -331,7 +331,7 @@
 									<td><?php echo $ib->vc_nm_jenis ?></td>
 									<td><?php echo $ib->nm_gol ?></td>
 									<td><?php echo $ib->vc_n_gugus ?></td>
-									<td><?php echo $ib->vc_lokasi ?></td>
+									<!-- <td><?php //echo $ib->vc_lokasi ?></td> -->
 									<td>
 										<?php echo anchor('monitor/update/'.$ib->kd_inv,'Edit'); ?>
 										<?php echo anchor('monitor/delete/'.$ib->kd_inv,'Hapus'); ?>

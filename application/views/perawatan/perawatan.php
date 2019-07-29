@@ -25,7 +25,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 		<!-- Isi -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
 			<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-warehouse"></i>
 			</div>
@@ -297,9 +297,9 @@
               			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
 					<div class="card-body">
-					<a href="<?php echo base_url('perawatan/create')?>" class="btn btn-primary btn-icon-split">
+					<!-- <a href="<?php //echo base_url('perawatan/create')?>" class="btn btn-primary btn-icon-split">
                     		<span class="text">Tambah Data</span>
-					</a>	  
+					</a>	   -->
 						<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>

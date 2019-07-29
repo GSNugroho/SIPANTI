@@ -11,7 +11,7 @@
     </head>
     <body>
         <h2 style="margin-top:0px">Inventaris <?php //echo $button ?></h2>
-        <form action="<?php echo base_url(). 'monitor/create_action';?>" method="post">
+        <form action="<?php echo base_url(). 'monitor/update_action';?>" method="post">
 	    <table>
         <tr>
         <td>
@@ -214,7 +214,7 @@
         
         <tr>
         <td> -->
-	    
+	    <input type="hidden" name="kd_inv" class="form-control" id="kd_inv" value="<?php echo $kd_inv;?>">
         <button type="submit" class="btn btn-primary">Save</button> 
         </td>
         <td>

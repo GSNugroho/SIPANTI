@@ -17,11 +17,10 @@
 	<link rel='stylesheet' href="<?php echo base_url('assets/bootstrap/css/fullcalendar.css')?>"/>
     <!-- Custom CSS -->
     <!-- jQuery Version 1.11.1 -->
-	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.js'); ?> "></script>
-	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>" ></script>
-	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+	<!-- <script type='text/javascript' src="<?php //echo base_url('assets/js/jquery.js'); ?> "></script> -->
+	<!-- <script type="text/javascript" src="<?php //echo base_url("assets/js/jquery.min.js"); ?>" ></script> -->
     <!-- Bootstrap Core JavaScript -->
-    <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
+    <!-- <script type='text/javascript' src="<?php //echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script> -->
 
     <!-- FullCalendar -->
     <script type='text/javascript' src="<?php echo base_url('assets/js/moment.min.js'); ?> "></script>
@@ -67,7 +66,7 @@
 	<hr class="sidebar-divider my-0">
 
 	<!-- Nav Item - Dashboard -->
-	<li class="nav-item">
+	<li class="nav-item active">
 	<a class="nav-link" href="<?php echo base_url('dashboard');?>">
 	  <i class="fas fa-fw fa-tachometer-alt"></i>
 		  <span>Dashboard</span></a>
@@ -104,7 +103,7 @@
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 		<div class="bg-white py-2 collapse-inner rounded">
 			<h6 class="collapse-header">Perawatan Inventaris:</h6>
-			<a class="collapse-item active" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
+			<a class="collapse-item" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
 			<a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Riwayat Perawatan</a>
 		</div>
 		</div>
@@ -329,9 +328,6 @@
 
 	<!-- Page Content -->
 	<div class="container-fluid">
-	<?php 
-	// echo anchor(base_url('jadwal/create'),'Tambah Jadwal', 'class="btn btn-primary"');
-	?>	
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -650,13 +646,21 @@
 	});
 </script>
 
-<footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
+	<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+
+	<!-- Page level plugins -->
+	<script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
 
 </body>
 

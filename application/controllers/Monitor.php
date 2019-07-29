@@ -85,7 +85,7 @@ class monitor extends CI_Controller {
 			'foto_qr' => $this->input->post('foto_qr', TRUE),
 			'id_urut' => $this->input->post('id_urut', TRUE),
 			'aktif' => $this->input->post('aktif', TRUE),
-			'jns_brg' => $this->input->post('jns', TRUE),
+			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
 			'kd_aset' => $this->input->post('kd_aset', TRUE),
 			'kd_inv' => $this->kode()
@@ -159,12 +159,13 @@ class monitor extends CI_Controller {
 			'foto_qr' => $this->input->post('foto_qr', TRUE),
 			'id_urut' => $this->input->post('id_urut', TRUE),
 			'aktif' => $this->input->post('aktif', TRUE),
-			'jns_brg' => $this->input->post('jns', TRUE),
+			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
-			'kd_aset' => $this->input->post('kd_aset', TRUE)		
+			'kd_aset' => $this->input->post('kd_aset', TRUE),
+			'dt_tgl_update' => date('Y-m-d h:i:s')
 			);
 
-			$this->m_monitor->update($this->input->post('id', TRUE), $data);
+			$this->m_monitor->update($this->input->post('kd_inv', TRUE), $data);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
 			redirect(base_url('monitor'));
 	}
