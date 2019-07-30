@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -91,7 +91,23 @@
 	  	<hr class="sidebar-divider">
 	  	<div class="sidebar-heading">
 		Report
-		</div>
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('report/report_perawatan')?>">
+          <i class="fas fa-clipboard"></i>
+          <span>Laporan Perawatan</span></a>
+        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('report/report_perbaikan')?>">
+          <i class="fas fa-clipboard"></i>
+          <span>Laporan Perbaikan</span></a>
+      	</li>
+    <li class="nav-item ">
+        <a class="nav-link" href="<?php echo base_url('report/report_mutasi')?>">
+          <i class="fas fa-clipboard"></i>
+          <span>Laporan Mutasi</span></a>
+      	</li>
+   
 
 
       <!-- Divider -->

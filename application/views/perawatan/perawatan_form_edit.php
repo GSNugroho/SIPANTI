@@ -761,23 +761,7 @@
                 <textarea name="ket" style="width: 674.5px; height: 80px;" ><?php echo $ket;?></textarea>
             </td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                Status Pengerjaan
-            </td>
-            <td colspan="2">
-                <input type="radio" name="status" value="1" <?php echo ($status =='1')?'checked':'' ?>>Belum Dikerjakan
-            </td>
-            <td >
-                <input type="radio" name="status" value="2" <?php echo ($status =='2')?'checked':'' ?>>Sedang Dikerjakan
-            </td>
-            <td colspan="4">
-                <input type="radio" name="status" value="3" <?php echo ($status =='3')?'checked':'' ?>>Sudah Selesai Dikerjakan
-            </td>
-        </tr>
+       
     </table>
     <table align="center">
         <tr>

@@ -257,6 +257,7 @@ class perawatan extends CI_Controller{
     }
 
     function update_action_perawatan(){
+        $status=3;
         $data = array(
             'cs_cs' => $this->input->post('kcasing', TRUE),
             'cs_ba' => $this->input->post('kbaut', TRUE),
@@ -348,7 +349,8 @@ class perawatan extends CI_Controller{
             'hw_lis_cpsata' => $this->input->post('kkpwrsata', TRUE),
             'hw_lis_cmp' => $this->input->post('kkmolpwr', TRUE),
             'ket' => $this->input->post('ket', TRUE),
-            'status_p' => $this->input->post('status', TRUE),
+            //'status_p' => $this->input->post('status', TRUE),
+            'status_p' => $status,
             'tgl_trs' => date('Y-m-d h:i:s')
         );
         $this->m_perawatan->update_perawatan($this->input->post('kd_jd', TRUE), $data);

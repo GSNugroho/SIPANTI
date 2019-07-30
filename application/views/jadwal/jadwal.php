@@ -121,11 +121,21 @@
 	  <div class="sidebar-heading">
 	Report
 	</div>
-<li class="nav-item">
-		<a class="nav-link" href="<?php echo base_url('jadwal/test')?>">
-		<i class="fas fa-fw fa-wrench"></i>
-		<span>Test</span></a>
-	</li>
+	<li class="nav-item ">
+				<a class="nav-link" href="<?php echo base_url('report/report_perawatan')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Perawatan</span></a>
+				</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="<?php echo base_url('report/report_perbaikan')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Perbaikan</span></a>
+				</li>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('report/report_mutasi')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Mutasi</span></a>
+				</li>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
@@ -384,7 +394,7 @@
 
 				  
 
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control1" id="color">
@@ -399,7 +409,7 @@
 						  
 						</select>
 					</div>
-				  </div>
+				  </div> -->
 				  <div class="form-group1">
 					<label for="start" class="col-sm-2 control-label">Tanggal Perawatan</label>
 					<div class="col-sm-10">
@@ -501,7 +511,7 @@
                         <input type="text" name="kd_inv" class="form-control1" id="kd_inv" placeholder="Kode Inventaris">
                     </div>
                   </div>  
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control1" id="color">
@@ -516,7 +526,7 @@
 						  
 						</select>
 					</div>
-				  </div>			
+				  </div>			 -->
 				    <div class="form-group1"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">

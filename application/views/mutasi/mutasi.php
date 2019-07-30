@@ -89,6 +89,21 @@
 			<div class="sidebar-heading">
 			Report
 			</div>
+			<li class="nav-item ">
+				<a class="nav-link" href="<?php echo base_url('report/report_perawatan')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Perawatan</span></a>
+				</li>
+			<li class="nav-item ">
+				<a class="nav-link" href="<?php echo base_url('report/report_perbaikan')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Perbaikan</span></a>
+				</li>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('report/report_mutasi')?>">
+				<i class="fas fa-clipboard"></i>
+				<span>Laporan Mutasi</span></a>
+				</li>
 
 		<!-- Divider -->
 		<hr class="sidebar-divider d-none d-md-block">
@@ -308,7 +323,7 @@
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
-                                <th>Tanggal Terima Mutasi</th>
+                                <th>Tanggal Mutasi</th>
                                 <th>Mutasi</th>
                                 <th>Status</th>
                                 <th>Kondisi</th>

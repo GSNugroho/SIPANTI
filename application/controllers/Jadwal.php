@@ -23,11 +23,13 @@ class jadwal extends CI_Controller{
     }
 
     public function create_action(){
+        $warna = '#40E0D0';
         $data = array(
         'tgl_jd' => $this->input->post('start', TRUE),
         'nm_jd' => $this->input->post('nm_jd', TRUE),
         'kd_inv' => $this->input->post('kd_inv', TRUE),
-        'color' => $this->input->post('color', TRUE),
+        //'color' => $this->input->post('color', TRUE),
+        'color' => $warna,
         'tgl_jd_selesai' => $this->input->post('end', TRUE),
         'kd_ruang' => $this->input->post('kd_ruang', TRUE),
         'kd_jd' => $this->kode()
