@@ -28,7 +28,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Isi -->
-		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
         <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-warehouse"></i>
         </div>
@@ -90,25 +90,22 @@
 	  
 	  	<hr class="sidebar-divider">
 	  	<div class="sidebar-heading">
-		Report
+		Laporan
     </div>
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('report/report_perawatan')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Perawatan</span></a>
-        </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('report/report_perbaikan')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Perbaikan</span></a>
-      	</li>
-    <li class="nav-item ">
-        <a class="nav-link" href="<?php echo base_url('report/report_mutasi')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Mutasi</span></a>
-      	</li>
-   
-
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			<i class="fas fa-clipboard"></i>
+			<span>Laporan</span>
+			</a>
+			<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Laporan</h6>
+				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+			</div>
+			</div>
+		</li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -328,8 +325,15 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Kosong</div>
-                      <!-- <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> -->
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jadwal Perawatan Hari Ini</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <?php 
+                      foreach($jadwal_t as $ib){
+                        if($ib->total ==''){echo '0';}else
+                        {echo $ib->total;}
+                      }
+                      ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -345,11 +349,17 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Kosong</div>
-                      <!-- <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div> -->
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Perbaikan Bulan Ini</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                        foreach($perbaikan_t as $ib){
+                          echo $ib->total;
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-wrench fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -481,29 +491,50 @@
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Kosong </h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Jadwal Perawatan Hari Ini </h6>
                 </div>
                 <div class="card-body">
-                  <!-- <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4> -->
-                  <div class="progress mb-4">
-                    <!-- <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div> -->
-                  </div>
-                  <!-- <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4> -->
-                  <div class="progress mb-4">
-                    <!-- <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div> -->
-                  </div>
-                  <!-- <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4> -->
-                  <div class="progress mb-4">
-                    <!-- <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div> -->
-                  </div>
-                  <!-- <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4> -->
-                  <div class="progress mb-4">
-                    <!-- <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div> -->
-                  </div>
-                  <!-- <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4> -->
-                  <div class="progress">
-                    <!-- <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> -->
-                  </div>
+                <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal Perawatan</th>
+                    <th>Nama Jadwal</th>
+                    <th>Kode Inventaris</th>
+                    <th>Nama Barang</th>
+                    <th>Ruang</th>
+                    <th>Status Pengerjaan</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                    $no = 1;
+                    //$no = $this->uri->segment('3') + 1;
+                    foreach($jadwal_dt as $ib){ 
+                    ?>
+                    <tr>
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo date('d-M-Y', strtotime($ib->tgl_jd));?></td>
+                      <td><?php echo $ib->nm_jd ?></td>
+                      <td><?php echo $ib->kd_inv ?></td>
+                      <td><?php echo $ib->nm_inv ?></td>
+                      <td><?php echo $ib->vc_n_gugus ?></td>
+                      <td><?php $data = $ib->status_p;
+                          if($data=='1'){echo "Belum Dikerjakan";
+                          }else if($data=='2'){echo "Sedang Dikerjakan";
+                          }else{echo "Sudah Selesai Dikerjakan";}
+                      ?></td>
+                      <td>
+                        <?php echo anchor('perawatan/update/'.$ib->kd_jd,'Edit'); ?>
+                        <?php echo anchor('perawatan/delete/'.$ib->kd_jd,'Hapus'); ?>
+                      </td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+                </div>
                 </div>
               </div>
 

@@ -23,7 +23,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Isi -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
     <div class="sidebar-brand-icon rotate-n-15">
     <i class="fas fa-warehouse"></i>
     </div>
@@ -85,23 +85,22 @@
 
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-    Report
+    Laporan
     </div>
-    <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url('report/report_perawatan')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Perawatan</span></a>
-      	</li>
-    <li class="nav-item ">
-        <a class="nav-link" href="<?php echo base_url('report/report_perbaikan')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Perbaikan</span></a>
-          </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('report/report_mutasi')?>">
-          <i class="fas fa-clipboard"></i>
-          <span>Laporan Mutasi</span></a>
-      	</li>
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			<i class="fas fa-clipboard"></i>
+			<span>Laporan</span>
+			</a>
+			<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Laporan</h6>
+				<a class="collapse-item active" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+			</div>
+			</div>
+		</li>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 

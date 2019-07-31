@@ -23,7 +23,7 @@ class jadwal extends CI_Controller{
     }
 
     public function create_action(){
-        $warna = '#40E0D0';
+        $warna = '#03e3fc';
         $data = array(
         'tgl_jd' => $this->input->post('start', TRUE),
         'nm_jd' => $this->input->post('nm_jd', TRUE),
