@@ -36,5 +36,25 @@ class m_dashboard extends CI_Model{
         $this->db->where('DAY(inv_jadwal.tgl_jd) = DAY(GETDATE())');
         return $this->db->get('inv_jadwal')->result();
     }
+
+    function get_jadwal_totalb(){
+        $this->db->select('COUNT(status_p) as total');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where("inv_jadwal_perawatan.status_p = '1'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
+        $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
+        $this->db->group_by('inv_jadwal_perawatan.status_p');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_jadwal_telat(){
+         $this->db->select('COUNT(status_p) as total');
+         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+         $this->db->where("inv_jadwal_perawatan.status_p = '1'");
+         $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
+        $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
+        $this->db->group_by('inv_jadwal_perawatan.status_p');
+        return $this->db->get('inv_jadwal')->result();
+    }
 }
 ?>

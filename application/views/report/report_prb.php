@@ -8,9 +8,20 @@ class MYPDF extends TCPDF {
         $this->Image($image_file, 10, 10, 15, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // Set font
         $this->SetFont('times', 'B', 20);
-        // Title
-        $this->Cell(0, 15, 'Rumah Sakit', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-        // $this->Cell(0, 15, 'Panti Waluyo', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        // // Title
+        // $this->Cell(0, 15, 'Rumah Sakit', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        // // $this->Cell(0, 15, 'Panti Waluyo', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+
+        $this->SetY(10);
+        $isi_header="<table align=\"center\">
+              <tr>
+                <td>Rumah Sakit Panti Waluyo</td>
+              </tr>
+              <tr>
+                <td>____________________________________________</td>
+              </tr>
+            </table>";
+        $this->writeHTML($isi_header, true, false, false, false, '');
     }
 
     // Page footer
@@ -18,7 +29,7 @@ class MYPDF extends TCPDF {
         // Position at 15 mm from bottom
         $this->SetY(-15);
         // Set font
-        $this->SetFont('helvetica', 'I', 8);
+        $this->SetFont('times', 'I', 8);
         // Page number
         $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
@@ -54,7 +65,8 @@ $i=0;
 // add a page
 $pdf->AddPage();
 
-$html = '<h4 align="center">Laporan Perbaikan Inventaris</h4><br><p></p>
+$html = '<br>
+            <h4 align="center">Laporan Perbaikan Inventaris</h4><br><p></p>
 			<table border="1">
 						
 							<tr>

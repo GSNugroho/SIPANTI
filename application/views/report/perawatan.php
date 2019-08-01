@@ -97,7 +97,7 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item active" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
 			</div>
 			</div>
 		</li>
@@ -309,6 +309,31 @@
                 <form action="<?php echo base_url().'report/get_report_perawatan'?>" method="post">
                 <input type="date" name="tgl_jd">Tanggal Awal
                 <input type="date" name="tgl_jd_s">Tanggal Akhir
+                <button type="submit" class="btn btn-primary">Cetak</button>
+                </form>
+            </div>
+    </div>
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Grafik Perawatan</h6>
+            </div>
+            <div class="card-body">
+                <form action="<?php echo base_url().'report/get_report_gperawatan'?>" method="post">
+                <select name="bulan_jd">Bulan
+                    <option value="">--Pilih Bulan--</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
                 <button type="submit" class="btn btn-primary">Cetak</button>
                 </form>
             </div>

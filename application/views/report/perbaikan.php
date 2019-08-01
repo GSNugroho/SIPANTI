@@ -97,7 +97,7 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item active" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
 			</div>
 			</div>
 		</li>

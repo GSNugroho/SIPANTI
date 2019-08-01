@@ -14,19 +14,30 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
 	<!-- FullCalendar -->
-	<link rel='stylesheet' href="<?php echo base_url('assets/bootstrap/css/fullcalendar.css')?>"/>
+	
+	<link href='<?php echo base_url('assets/packages/core/main.css')?>' rel='stylesheet' />
+	<link href='<?php echo base_url('assets/packages/daygrid/main.css')?>' rel='stylesheet' />
+	<link href='<?php echo base_url('assets/packages/timegrid/main.css')?>' rel='stylesheet' />
     <!-- Custom CSS -->
     <!-- jQuery Version 1.11.1 -->
-	<!-- <script type='text/javascript' src="<?php //echo base_url('assets/js/jquery.js'); ?> "></script> -->
-	<!-- <script type="text/javascript" src="<?php //echo base_url("assets/js/jquery.min.js"); ?>" ></script> -->
+	<script type='text/javascript' src="<?php echo base_url('assets/js/jquery.js'); ?> "></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery.min.js"); ?>" ></script>
+	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
     <!-- Bootstrap Core JavaScript -->
-    <!-- <script type='text/javascript' src="<?php //echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script> -->
+    <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
     <!-- FullCalendar -->
     <script type='text/javascript' src="<?php echo base_url('assets/js/moment.min.js'); ?> "></script>
-    <script type='text/javascript' src="<?php echo base_url('assets/js/fullcalendar.min.js'); ?> "></script>
+
 	<script src="<?php echo base_url('assets/js/my_js.js')?>" type="text/javascript"></script>
-	
+	<script type="text/javascript" src="<?php echo base_url('assets/js/locales-all.js');?>"></script>
+	<script src='<?php echo base_url('assets/packages/core/main.js')?>' type="text/javascript"></script>
+	<script src='<?php echo base_url('assets/packages/interaction/main.js')?>' type="text/javascript"></script>
+	<script src='<?php echo base_url('assets/packages/daygrid/main.js')?>' type="text/javascript"></script>
+	<script src='<?php echo base_url('assets/packages/timegrid/main.js')?>' type="text/javascript"></script>
+	<script src='<?php echo base_url('assets/packages/core/locales-all.js')?>' type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/my_js.js')?>" type="text/javascript"></script>
+
 
 	<!-- Untuk Font-->
 	<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
@@ -56,7 +67,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Isi -->
-	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
 	<div class="sidebar-brand-icon rotate-n-15">
 	<i class="fas fa-warehouse"></i>
 	</div>
@@ -66,7 +77,7 @@
 	<hr class="sidebar-divider my-0">
 
 	<!-- Nav Item - Dashboard -->
-	<li class="nav-item active">
+	<li class="nav-item">
 	<a class="nav-link" href="<?php echo base_url('dashboard');?>">
 	  <i class="fas fa-fw fa-tachometer-alt"></i>
 		  <span>Dashboard</span></a>
@@ -103,7 +114,7 @@
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 		<div class="bg-white py-2 collapse-inner rounded">
 			<h6 class="collapse-header">Perawatan Inventaris:</h6>
-			<a class="collapse-item" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
+			<a class="collapse-item active" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
 			<a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Riwayat Perawatan</a>
 		</div>
 		</div>
@@ -118,13 +129,22 @@
   
 	  <hr class="sidebar-divider">
 	  <div class="sidebar-heading">
-	Report
+	Laporan
 	</div>
-<li class="nav-item">
-		<a class="nav-link" href="<?php echo base_url('jadwal/test')?>">
-		<i class="fas fa-fw fa-wrench"></i>
-		<span>Test</span></a>
-	</li>
+    <li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+			<i class="fas fa-clipboard"></i>
+			<span>Laporan</span>
+			</a>
+			<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Laporan</h6>
+				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+			</div>
+			</div>
+		</li>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
@@ -328,6 +348,9 @@
 
 	<!-- Page Content -->
 	<div class="container-fluid">
+	<?php 
+	// echo anchor(base_url('jadwal/create'),'Tambah Jadwal', 'class="btn btn-primary"');
+	?>	
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -380,7 +403,7 @@
 
 				  
 
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control1" id="color">
@@ -395,7 +418,7 @@
 						  
 						</select>
 					</div>
-				  </div>
+				  </div> -->
 				  <div class="form-group1">
 					<label for="start" class="col-sm-2 control-label">Tanggal Perawatan</label>
 					<div class="col-sm-10">
@@ -497,7 +520,7 @@
                         <input type="text" name="kd_inv" class="form-control1" id="kd_inv" placeholder="Kode Inventaris">
                     </div>
                   </div>  
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control1" id="color">
@@ -512,7 +535,7 @@
 						  
 						</select>
 					</div>
-				  </div>			
+				  </div>			 -->
 				    <div class="form-group1"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
@@ -544,14 +567,18 @@
 	<script>
 
 	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
+		var initialLocaleCode = 'id';
+		var localeSelectorEl = document.getElementById('locale-selector');
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+		plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,basicWeek,basicDay'
+				right: 'dayGridMonth,timeGridWeek,timeGridDay'
 			},
 			defaultDate: Date(),
+			locale: initialLocaleCode,
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			selectable: true,
@@ -646,21 +673,13 @@
 	});
 </script>
 
-	<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
-
-	<!-- Page level plugins -->
-	<script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+<footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
 
 </body>
 

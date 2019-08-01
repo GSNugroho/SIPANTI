@@ -102,9 +102,14 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
 			</div>
 			</div>
+    </li>
+    <li class="nav-item">
+			<a class="nav-link" href="<?php echo base_url('jadwal/coba')?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Test Jadwal</span></a>
 		</li>
 
       <!-- Divider -->
@@ -336,7 +341,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -349,7 +354,30 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Perbaikan Bulan Ini</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Jadwal Perawatan Bulan Ini</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                        foreach($jadwal_tb as $ib){
+                          echo $ib->total;
+                        }
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Perbaikan Bulan Ini</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                         <?php
                         foreach($perbaikan_t as $ib){
@@ -366,43 +394,23 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kosong</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <!-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div> -->
-                        </div>
-                        <div class="col">
-                          <!-- <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div> -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <!-- <div class="h5 mb-0 font-weight-bold text-gray-800">18</div> -->
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Keterlambatan Perawatan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                        foreach($jadwal_tlt as $ib){
+                          echo $ib->total;
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="fas fa-clock fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>

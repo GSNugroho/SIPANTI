@@ -97,7 +97,7 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item active" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+				<a class="collapse-item active" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
 			</div>
 			</div>
 		</li>
@@ -303,10 +303,10 @@
     <div class="container-fluid">
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Laporan Mutasi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Keterlambatan Perawatan</h6>
             </div>
             <div class="card-body">
-                <form action="<?php echo base_url().'report/get_report_mutasi'?>" method="post">
+                <form action="<?php echo base_url().'report/get_report_telat'?>" method="post">
                 <input type="date" name="tgl_jd">Tanggal Awal
                 <input type="date" name="tgl_jd_s">Tanggal Akhir
                 <button type="submit" class="btn btn-primary">Cetak</button>

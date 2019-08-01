@@ -8,10 +8,21 @@ class MYPDF extends TCPDF {
         $image_file = K_PATH_IMAGES.'logo_example.jpg';
         $this->Image($image_file, 10, 10, 15, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // Set font
-        $this->SetFont('helvetica', 'B', 20);
-        // Title
-        $this->Cell(0, 15, 'Rumah Sakit', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-        // $this->Cell(0, 15, 'Panti Waluyo', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->SetFont('times', 'B', 20);
+        // // Title
+        // $this->Cell(0, 15, 'Rumah Sakit', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        // // $this->Cell(0, 15, 'Panti Waluyo', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+
+        $this->SetY(10);
+        $isi_header="<table align=\"center\">
+              <tr>
+                <td>Rumah Sakit Panti Waluyo</td>
+              </tr>
+              <tr>
+                <td>____________________________________________</td>
+              </tr>
+            </table>";
+        $this->writeHTML($isi_header, true, false, false, false, '');
     }
 
     // Page footer
@@ -19,7 +30,7 @@ class MYPDF extends TCPDF {
         // Position at 15 mm from bottom
         $this->SetY(-15);
         // Set font
-        $this->SetFont('helvetica', 'I', 8);
+        $this->SetFont('times', 'I', 8);
         // Page number
         $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
@@ -57,19 +68,17 @@ $i=0;
 // add a page
 $pdf->AddPage();
 
-$html = '<h4 align="center">Laporan Mutasi Inventaris</h4><br><p></p>
-			<table border="1">
+$html = '<br>
+            <h4 align="center">Laporan Keterlambatan Perawatan</h4><br><p></p>
+			<table align="center" border="1">
 						
 							<tr>
                             <th align="center" width="5%">No</th>
-                            <th align="center">Tanggal Mutasi</th>
+                            <th align="center">Tanggal Jadwal</th>
                             <th align="center" width="13%">Kode Inventaris</th>
+                            <th align="center">Jadwal</th>
                             <th align="center">Nama Barang</th>
-                            <th align="center">Jumlah Barang</th>
                             <th align="center">Ruang</th>
-                            <th align="center">Status</th>
-                            <th align="center">Kondisi</th>
-                            <th align="center" width="13%">Alasan</th>
 							</tr>
 							
 ';
@@ -78,14 +87,11 @@ foreach ($report_p as $row)
                     $i++;
                     $html.='<tr >
                             <td align="center">'.$i.'</td>
-                            <td>'.date('d-M-Y', strtotime($row->tgl_terima_mts)).'</td>
+                            <td>'.date('d-M-Y', strtotime($row->tgl_jd)).'</td>
                             <td>'.$row->kd_inv.'</td>
+                            <td>'.$row->nm_jd.'</td>
                             <td>'.$row->nm_inv.'</td>
-                            <td>'.$row->jmlh_mts.'</td>
-                            <td>'.$row->vc_n_gugus.'</td>
-                            <td>'.$row->status_mts.'</td>
-                            <td>'.$row->kondisi_mts.'</td>
-                            <td>'.$row->alasan_mts.'</td></tr>';
+                            <td>'.$row->vc_n_gugus.'</td></tr>';
                 
                 }
                 $html.='</table>';

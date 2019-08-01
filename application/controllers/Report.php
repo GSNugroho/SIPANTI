@@ -22,6 +22,12 @@ class report extends CI_Controller{
         $this->load->view('report/report_pr', $data);
     }
 
+    function get_report_gperawatan(){
+        $bulan_jd = $this->input->post('bulan_jd', TRUE);
+        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd);
+        $this->load->view('report/report_gpr', $data);
+    }
+
     function report_perbaikan(){
         $this->load->view('report/perbaikan');
     }
@@ -33,15 +39,15 @@ class report extends CI_Controller{
         $this->load->view('report/report_prb', $data);
     }
 
-    function report_mutasi(){
-        $this->load->view('report/mutasi');
+    function report_telat(){
+        $this->load->view('report/telat');
     }
 
-    function get_report_mutasi(){
+    function get_report_telat(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_mutasi($tgl_a, $tgl_s);
-        $this->load->view('report/report_mt', $data);
+        $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
+        $this->load->view('report/report_tlt', $data);
     }
 }
 ?>

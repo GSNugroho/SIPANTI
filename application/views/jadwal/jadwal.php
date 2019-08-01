@@ -25,9 +25,9 @@
 
     <!-- FullCalendar -->
     <script type='text/javascript' src="<?php echo base_url('assets/js/moment.min.js'); ?> "></script>
-    <script type='text/javascript' src="<?php echo base_url('assets/js/fullcalendar.min.js'); ?> "></script>
+	<script type='text/javascript' src="<?php echo base_url('assets/js/fullcalendar.min.js'); ?> "></script>
 	<script src="<?php echo base_url('assets/js/my_js.js')?>" type="text/javascript"></script>
-	
+	<script type="text/javascript" src="<?php echo base_url('assets/js/locales-all.js');?>"></script>
 
 	<!-- Untuk Font-->
 	<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
@@ -131,7 +131,7 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item" href="<?php echo base_url('report/report_mutasi')?>">Laporan Mutasi</a>
+				<a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
 			</div>
 			</div>
 		</li>
@@ -557,7 +557,6 @@
 	<script>
 
 	$(document).ready(function() {
-		
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
