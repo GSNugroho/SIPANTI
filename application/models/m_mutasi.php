@@ -23,15 +23,28 @@ class m_mutasi extends CI_Model{
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
     function get_kdinv(){
         $query = $this->db->query("SELECT * FROM inv_barang
                                     JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
                                     WHERE inv_barang.kd_aset != ' ' ");
         return $query->result();
     }
+
     function insert($data){
         $this->db->insert($this->table, $data);
     }
+
+    function update($id, $data){
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    function delete($id){
+        $this->db->where($this->id, $id);
+        $this->db->delete($this->table);
+    }
+
     public function get_inv($id_ruang){
         $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
         $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');

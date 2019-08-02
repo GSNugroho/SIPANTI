@@ -51,5 +51,10 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('SELECT MAX(kd_pr) AS maxkode FROM inv_perbaikan');
         return $query->result();
     }
+
+    function delete($id){
+        $this->db->where($this->id, $id);
+        $this->db->delete($this->table);
+    }
 }
 ?>

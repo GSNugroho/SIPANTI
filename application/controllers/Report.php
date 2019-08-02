@@ -24,7 +24,8 @@ class report extends CI_Controller{
 
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
-        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd);
+        $tahun_jd = $this->input->post('tahun_jd', TRUE);
+        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gpr', $data);
     }
 
@@ -39,6 +40,13 @@ class report extends CI_Controller{
         $this->load->view('report/report_prb', $data);
     }
 
+    function get_report_gperbaikan(){
+        $bulan_jd = $this->input->post('bulan_jd', TRUE);
+        $tahun_jd = $this->input->post('tahun_jd', TRUE);
+        $data['report_g'] = $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
+        $this->load->view('report/report_gprb', $data);
+    }
+
     function report_telat(){
         $this->load->view('report/telat');
     }
@@ -48,6 +56,13 @@ class report extends CI_Controller{
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
         $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
         $this->load->view('report/report_tlt', $data);
+    }
+
+    function get_report_gtelat(){
+        $bulan_jd = $this->input->post('bulan_jd', TRUE);
+        $tahun_jd = $this->input->post('tahun_jd', TRUE);
+        $data['report_g'] = $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd);
+        $this->load->view('report/report_gtlt', $data);
     }
 }
 ?>

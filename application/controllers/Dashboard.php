@@ -16,7 +16,11 @@ class dashboard extends CI_Controller {
 			'jadwal_tb' => $this->m_dashboard->get_jadwal_totalb(),
 			'perbaikan_t' => $this->m_dashboard->get_perbaikan_total(),
 			'jadwal_dt' => $this->m_dashboard->get_jadwal_data(),
-			'jadwal_tlt' => $this->m_dashboard->get_jadwal_telat()
+			'jadwal_tlt' => $this->m_dashboard->get_jadwal_telat(),
+			'grafik_pr' => $this->m_dashboard->get_total_perawatanth(),
+			'grafik_cpr' => $this->m_dashboard->get_capaian_perawatanth(),
+			'grafik_prb' => $this->m_dashboard->get_total_perbaikanth(),
+			'grafik_tlt' => $this->m_dashboard->get_total_telatth()
 		);
 		$this->load->view('dashboard', $data);
 	}

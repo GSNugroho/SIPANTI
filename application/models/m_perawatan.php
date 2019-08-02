@@ -41,7 +41,7 @@ class m_perawatan extends CI_Model{
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    function inset($data){
+    function insert($data){
         $this->db->insert($this->table, $data);
     }
     function get_kdinv(){
@@ -60,5 +60,10 @@ class m_perawatan extends CI_Model{
         $this->db->where($this->idjd, $id);
         $this->db->update($this->tablejd, $data);
     }
+
+    function delete($id){
+		$this->db->where($this->id, $id);
+		$this->db->delete($this->table);
+	}
 }
 ?>

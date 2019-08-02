@@ -80,6 +80,7 @@ class mutasi extends CI_Controller{
         if($row){
             $this->m_mutasi->delete($id);
             $this->session->set_flashdata('message','Hapus Data Berhasil');
+            redirect(base_url('mutasi'));
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
             redirect(base_url('mutasi'));

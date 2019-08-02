@@ -38,6 +38,26 @@ class perbaikan extends CI_Controller{
         redirect(site_url('perbaikan'));
     }
 
+    function update($id){
+        $row = $this->m_perbaikan->get_by_id($id);
+
+        if($row){
+            $data = array(
+                'id_ruang' => set_value('id_ruang', $row->kd_ruang),
+                'tgl_inv_pr' => set_value('tgl_inv_pr', $row->tgl_inv_pr),
+                'jns_kr' => set_value('jns_kr', $row->jns_kr),
+                'jns_pr' => set_value('jns_pr', $row->jns_pr),
+                'sp_gt' => set_value('sp_gt', $row->sp_gt),
+                'sp_by' => set_value('sp_by', $row->sp_by),
+                'ket' => set_value('ket', $row->ket_pr),
+            );
+            $this->load->view('perbaikan/perbaikan_form_edit', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(base_url('perbaikan'));
+        }
+    }
+
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
@@ -63,7 +83,19 @@ class perbaikan extends CI_Controller{
         $char = "PRW";
         $kodebaru = $char.sprintf("%05s", $noUrut);
         return $kodebaru;
-        
+    }
+
+    function delete($id){
+        $row = $this->m_perbaikan->get_by_id($id);
+
+		if($row){
+			$this->m_perbaikan->delete($id);
+            $this->session->set_flashdata('message','Hapus Data Berhasil');
+            redirect(base_url('perbaikan'));
+		}else {
+			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			redirect(base_url('perbaikan'));
+		}
     }
 }
 ?>

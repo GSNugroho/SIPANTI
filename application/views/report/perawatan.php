@@ -334,6 +334,7 @@
                     <option value="11">November</option>
                     <option value="12">Desember</option>
                 </select>
+                <input type="text" name="tahun_jd" placeholder="Tahun">
                 <button type="submit" class="btn btn-primary">Cetak</button>
                 </form>
             </div>

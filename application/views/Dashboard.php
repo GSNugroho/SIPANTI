@@ -427,7 +427,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Kosong Line</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Grafik Perawatan Inventaris</h6>
                   <div class="dropdown no-arrow">
                     <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -455,7 +455,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Kosong Pie</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Capaian Perawatan</h6>
                   <div class="dropdown no-arrow">
                     <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -475,26 +475,95 @@
                     <canvas id="myPieChart"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <!-- <i class="fas fa-circle text-primary"></i> Direct -->
-                    </span>
-                    <span class="mr-2">
-                      <!-- <i class="fas fa-circle text-success"></i> Social -->
-                    </span>
-                    <span class="mr-2">
-                      <!-- <i class="fas fa-circle text-info"></i> Referral -->
-                    </span>
+                  <?php 
+                    foreach($grafik_cpr as $ib){
+                      switch ($ib->status_p){
+                        case 1: 
+                          echo '<span class="mr-2">
+                                <i class="fas fa-circle text-primary"></i> Belum Dikerjakan
+                                </span>';
+                          break;
+                        case 2:
+                          echo '<span class="mr-2">
+                                <i class="fas fa-circle text-success"></i> Sedang Dikerjakan
+                                </span>';
+                          break;
+                        case 3:
+                          echo '<span class="mr-2">
+                                <i class="fas fa-circle text-info"></i> Selesai Dikerjakan
+                                </span>';
+                          break;
+                      }
+                    }?>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Grafik Perbaikan Inventaris</h6>
+                  <div class="dropdown no-arrow">
+                    <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div> -->
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart2"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Grafik Keterlambatan Perawatan Inventaris</h6>
+                  <div class="dropdown no-arrow">
+                    <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div> -->
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart3"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
           <!-- Content Row -->
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-7 mb-4">
 
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
@@ -607,8 +676,351 @@
 <script src="<?php echo base_url('assets/vendor/chart.js/Chart.min.js')?>"></script>
 
 <!-- Page level custom scripts -->
-<script src="<?php echo base_url('assets/js/demo/chart-area-demo.js')?>"></script>
-<script src="<?php echo base_url('js/demo/chart-pie-demo.js')?>"></script>
+<!-- <script src="<?php //echo base_url('assets/js/demo/chart-area-demo.js')?>"></script> -->
+<!-- <script src="<?php //echo base_url('assets/js/demo/chart-pie-demo.js')?>"></script> -->
+
+<script>
+  // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+// Pie Chart Capaian Perawatan
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: [<?php 
+    foreach($grafik_cpr as $ib){
+      switch ($ib->status_p){
+        case 1: 
+          echo '"Belum Dikerjakan",';
+          break;
+        case 2:
+          echo '"Sedang Dikerjakan",';
+          break;
+        case 3:
+          echo '"Selesai Dikerjakan",';
+          break;
+      }
+    }?>],
+    datasets: [{
+      data: [<?php 
+      foreach($grafik_cpr as $ib){ echo '"' . $ib->total . '",';} ?>],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+
+// Area Chart Perawatan
+var ctx = document.getElementById("myAreaChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [
+    <?php 
+    foreach($grafik_pr as $ib){
+      switch ($ib->bulan){
+        case 1: 
+          echo '"Jan",';
+          break;
+        case 2:
+          echo '"Feb",';
+          break;
+        case 3:
+          echo '"Mar",';
+          break;
+        case 4:
+          echo '"Apr",';
+          break;
+        case 5:
+          echo '"Mei",';
+          break;
+        case 6:
+          echo '"Jun",';
+          break;
+        case 7:
+          echo '"Jul",';
+          break;
+        case 8:
+          echo '"Agu",';
+          break;
+        case 9:
+          echo '"Sep",';
+          break;
+        case 10:
+          echo '"Okt",';
+          break;
+        case 11:
+          echo '"Nov",';
+          break;
+        case 12:
+          echo '"Des",';
+          break;
+      }
+    }
+    ?>
+    ],
+    datasets: [{
+      label: "Perawatan",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [<?php 
+      foreach($grafik_pr as $ib){ echo '"' . $ib->total . '",';} ?>],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+    }
+  }
+});
+
+var ctx = document.getElementById("myAreaChart2");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [
+    <?php 
+    foreach($grafik_prb as $ib){
+      switch ($ib->bulan){
+        case 1: 
+          echo '"Jan",';
+          break;
+        case 2:
+          echo '"Feb",';
+          break;
+        case 3:
+          echo '"Mar",';
+          break;
+        case 4:
+          echo '"Apr",';
+          break;
+        case 5:
+          echo '"Mei",';
+          break;
+        case 6:
+          echo '"Jun",';
+          break;
+        case 7:
+          echo '"Jul",';
+          break;
+        case 8:
+          echo '"Agu",';
+          break;
+        case 9:
+          echo '"Sep",';
+          break;
+        case 10:
+          echo '"Okt",';
+          break;
+        case 11:
+          echo '"Nov",';
+          break;
+        case 12:
+          echo '"Des",';
+          break;
+      }
+    }
+    ?>
+    ],
+    datasets: [{
+      label: "Perbaikan",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [<?php 
+      foreach($grafik_prb as $ib){ echo '"' . $ib->total . '",';} ?>],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+    }
+  }
+});
+
+var ctx = document.getElementById("myAreaChart3");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [
+    <?php 
+    foreach($grafik_tlt as $ib){
+      switch ($ib->bulan){
+        case 1: 
+          echo '"Jan",';
+          break;
+        case 2:
+          echo '"Feb",';
+          break;
+        case 3:
+          echo '"Mar",';
+          break;
+        case 4:
+          echo '"Apr",';
+          break;
+        case 5:
+          echo '"Mei",';
+          break;
+        case 6:
+          echo '"Jun",';
+          break;
+        case 7:
+          echo '"Jul",';
+          break;
+        case 8:
+          echo '"Agu",';
+          break;
+        case 9:
+          echo '"Sep",';
+          break;
+        case 10:
+          echo '"Okt",';
+          break;
+        case 11:
+          echo '"Nov",';
+          break;
+        case 12:
+          echo '"Des",';
+          break;
+      }
+    }
+    ?>
+    ],
+    datasets: [{
+      label: "Keterlambatan",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [<?php 
+      foreach($grafik_tlt as $ib){ echo '"' . $ib->total . '",';} ?>],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      intersect: false,
+      mode: 'index',
+      caretPadding: 10,
+    }
+  }
+});
+
+</script>
 
 </body>
 

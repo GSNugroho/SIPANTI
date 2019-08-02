@@ -138,6 +138,7 @@ class perawatan extends CI_Controller{
         if($row){
             $this->m_perawatan->delete($id);
             $this->session->set_flashdata('message', 'Hapus Data Berhasil');
+            redirect(base_url('perawatan'));
         }else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
             redirect(base_url('perawatan'));

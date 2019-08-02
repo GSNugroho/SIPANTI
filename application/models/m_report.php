@@ -37,10 +37,29 @@ class m_report extends CI_Model{
         return $this->db->get('inv_jadwal')->result();
     }
 
-    function get_data_gperawatan($bulan_jd){
+    function get_data_gperawatan($bulan_jd, $tahun_jd){
         $this->db->select('inv_jadwal_perawatan.status_p, COUNT(*) as total');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
+        $this->db->group_by('inv_jadwal_perawatan.status_p');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_data_gperbaikan($bulan_jd, $tahun_jd){
+        $this->db->select('tgl_inv_pr, COUNT(*) as total');
+        $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
+        $this->db->group_by('tgl_inv_pr');
+        return $this->db->get('inv_perawatan')->result();
+    }
+
+    function get_data_gtelat($bulan_jd, $tahun_jd){
+        $this->db->select('inv_jadwal.tgl_jd, COUNT(status_p) as total');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where("inv_jadwal_perawatan.status_p = '1'");
+        $this->db->where("MONTH(inv_jadwal.tgl_jd) = '$bulan_jd'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd) = '$tahun_jd'");
         $this->db->group_by('inv_jadwal_perawatan.status_p');
         return $this->db->get('inv_jadwal')->result();
     }

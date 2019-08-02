@@ -52,8 +52,40 @@ class m_dashboard extends CI_Model{
          $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
          $this->db->where("inv_jadwal_perawatan.status_p = '1'");
          $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
-        $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
+         $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
+         $this->db->group_by('inv_jadwal_perawatan.status_p');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_total_perawatanth(){
+        $this->db->select('MONTH(inv_jadwal.tgl_jd) as bulan, COUNT(*) as total');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())');
+        $this->db->group_by('MONTH(inv_jadwal.tgl_jd)');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_capaian_perawatanth(){
+        $this->db->select('inv_jadwal_perawatan.status_p, COUNT(*) as total');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())');
         $this->db->group_by('inv_jadwal_perawatan.status_p');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_total_perbaikanth(){
+        $this->db->select('MONTH(inv_perbaikan.tgl_inv_pr) as bulan, COUNT(*) as total');
+        $this->db->where('YEAR(inv_perbaikan.tgl_inv_pr) = YEAR(GETDATE())');
+        $this->db->group_by('MONTH(inv_perbaikan.tgl_inv_pr)');
+        return $this->db->get('inv_perbaikan')->result();
+    }
+
+    function get_total_telatth(){
+        $this->db->select('MONTH(inv_jadwal.tgl_jd) as bulan, COUNT(status_p) as total');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where("inv_jadwal_perawatan.status_p = '1'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
+        $this->db->group_by('MONTH(inv_jadwal.tgl_jd)');
         return $this->db->get('inv_jadwal')->result();
     }
 }
