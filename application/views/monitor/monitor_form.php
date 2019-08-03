@@ -1,220 +1,542 @@
 <!doctype html>
 <html>
     <head>
-        <title>Tambah Data</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-        <style>
-            body{
-                padding: 15px;
-            }
-        </style>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title> Tambah Data </title>
+	<!-- Untuk Font-->
+	<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+	<!-- Template e -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>
+
     </head>
-    <body>
-        <h2 style="margin-top:0px">Inventaris <?php //echo $button ?></h2>
-        <form action="<?php echo base_url().'monitor/create_action';?>" method="post">
-	    <table>
-        <tr>
-        <td>
-        <div class="form-group">
-            <label for="nm_inv">Nama Barang <?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="text" name="nm_inv" id="nm_inv" placeholder="Nama Barang">
+    <body id="page-top">
+
+        <!-- Page Wrapper -->
+	  <div id="wrapper">
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Isi -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('dashboard');?>">
+    <div class="sidebar-brand-icon rotate-n-15">
+    <i class="fas fa-warehouse"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Inventaris</div>
+    </a>
+    
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url('dashboard');?>">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+    
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+    Data Inventaris
+    </div>
+    <!-- Barang -->
+    <li class="nav-item active">
+    <a class="nav-link" href="<?php echo base_url('monitor')?>">
+    <i class="fas fa-boxes"></i>
+    <span>Barang</span></a>
+    </li>
+    
+    <!-- Mutasi -->
+    <li class="nav-item">
+    <a class="nav-link" href="<?php echo base_url('mutasi')?>">
+    <i class="fas fa-dolly"></i>
+    <span>Mutasi</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+    Maintenance
+    </div>
+        <!-- Perawatan -->
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-broom"></i>
+        <span>Perawatan</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Perawatan Inventaris:</h6>
+            <a class="collapse-item" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
+            <a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Riwayat Perawatan</a>
         </div>
-        </td>
-        <td></td>
-        <td>
-		<div class="form-group">
-            <label for="merk">Merk <?php //echo form_error('merk') ?></label>
-            <select require name="merk" class="form-control" id="merk">
-                <option value="">--Pilih Merk--</option>
-                <?php
-                    foreach ($dd_gm as $row) {  
-                        echo "<option value='".$row->vc_kd_merk."'>".$row->vc_nm_merk."</option>";
-                        }
-                        echo"
-                      </select>"
-                ?>
         </div>
-        </td>
-        </tr>
-        
-        <tr>
-        <td>        
-		<div class="form-group">
-            <label for="satuan">Satuan <?php //echo form_error('satuan') ?></label>
-            <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan">
-		</div>
-        </td>	
-        <td></td>
-        <td>        
-		<div class="form-group">
-            <label for="jmlh">Jumlah <?php //echo form_error('jumlah') ?></label>
-            <input class="form-control" type="text" name="jmlh" id="jmlh" placeholder="Jumlah">
-		</div>
-        </td>
-        </tr>
+    </li>
 
-        <tr>
-        <td>	        
-		<div class="form-group">
-            <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima">
-		</div>
-        </td>
-        <td></td>
-        <td>	        
-		<div class="form-group">
-            <label for="status">Status <?php //echo form_error('status') ?></label>
-            <input class="form-control" type="text" name="status" id="status" placeholder="Status">
-		</div>
-		</tr>
-        </td>
+    <!-- Perbaikan -->
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('perbaikan')?>">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Perbaikan</span></a>
+    </li>
 
-        <tr>
-        <td>	
-		<div class="form-group">
-            <label for="kondisi">Kondisi <?php //echo form_error('kondisi') ?></label>
-            <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi">
-		</div>
-		</td>
-        </tr>	
-        
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="ket">Keterangan <?php //echo form_error('ket') ?></label>
-            <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"></textarea>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+    Laporan
+    </div>
+    <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <i class="fas fa-clipboard"></i>
+    <span>Laporan</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Laporan</h6>
+        <a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+    </div>
+    </div>
+    </li>
+      
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+<!-- Main Content -->
+<div id="content">
+
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button> -->
+
+    <!-- Topbar Search -->
+    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+            <i class="fas fa-search fa-sm"></i>
+            </button>
         </div>
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="kd_bantu">Jenis Barang<?php //echo form_error('kd_bantu') ?></label>
-            <select require name="kd_bantu" class="form-control" id="kd_bantu">
-                <option value="">--Pilih Jenis--</option>
-                <?php
-                    foreach ($dd_gg as $row) {  
-                        echo "<option value='".$row->kd_gol."'>".$row->nm_gol."</option>";
-                        }
-                        echo"
-                      </select>"
-                ?>
-		</div>
-		</td>
-        </tr>
-
-        <!-- <tr>
-        <td>
-		<div class="form-group">
-            <label for="no_aset">Nomor Aset <?php //echo form_error('no_aset') ?></label>
-            <input class="form-control" type="text" name="no_aset" id="no_aset" placeholder="Nomor Aset">
-		</div>
-		</td>
-        </tr>	 -->
-
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="id_ruang">Ruang <?php //echo form_error('id_ruang') ?></label>
-            <select require name="id_ruang" class="form-control" id="id_ruang">
-                <option value="">--Pilih Ruang--</option>
-                <?php
-                    foreach ($dd_gr as $row) {  
-                        echo "<option value='".$row->vc_k_gugus."'>".$row->vc_n_gugus."</option>";
-                        }
-                        echo"
-                      </select>"
-                ?>
-		</div>
-		</td>
-        </tr>	
-
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
-            <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="upload gambar" enctype="multipart/form-data"/>
         </div>
-		</td>
-        </tr>
+    </form> -->
 
-        <!-- <tr>
-        <td>
-		<div class="form-group">
-            <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
-			<input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="upload gambarqr"/>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-search fa-fw"></i>
+        </a> -->
+        <!-- Dropdown - Messages -->
+        <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+            <form class="form-inline mr-auto w-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+                </div>
+            </div>
+            </form>
         </div>
-		</td>
-        </tr> -->
+        </li> -->
 
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
-            <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut">
-		</div>
-		</td>
-        </tr>
+        <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <!-- Counter - Alerts -->
+            <!-- <span class="badge badge-danger badge-counter">3+</span> -->
+        </a>
+        <!-- Dropdown - Alerts -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+            Alerts Center
+            </h6>
+            <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+                <div class="icon-circle bg-primary">
+                <i class="fas fa-file-alt text-white"></i>
+                </div>
+            </div>
+            <div>
+                <div class="small text-gray-500">December 12, 2019</div>
+                <span class="font-weight-bold">A new monthly report is ready to download!</span>
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+                <div class="icon-circle bg-success">
+                <i class="fas fa-donate text-white"></i>
+                </div>
+            </div>
+            <div>
+                <div class="small text-gray-500">December 7, 2019</div>
+                $290.29 has been deposited into your account!
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+                <div class="icon-circle bg-warning">
+                <i class="fas fa-exclamation-triangle text-white"></i>
+                </div>
+            </div>
+            <div>
+                <div class="small text-gray-500">December 2, 2019</div>
+                Spending Alert: We've noticed unusually high spending for your account.
+            </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
+        </div>
+        </li>
 
-        <tr>
-        <td>        
-		<div class="form-group">
-            <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
-            <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
-            <select class="form-control" name="aktif" class="form-control" id="aktif">
-                <option value="">--Status Aktif--</option>
-                <option value="0">Tidak Aktif</option>
-                <option value="1">Aktif</option>
-            </select>
-		</div>
-		</td>
-        </tr>
-		<tr>
-		<td>
-		<div class="form-group">
-            <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
-            <select require name="jns_brg" class="form-control" id="jns_brg">
-                <option value="">--Pilih Jenis--</option>
-                <?php
-                    foreach ($dd_gj as $row) {  
-                        echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
-                        }
-                        echo"
-                      </select>"
-                ?>
-		</div>
-		</td>
-		</tr>
+        <!-- Nav Item - Messages -->
+        <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <!-- Counter - Messages -->
+            <!-- <span class="badge badge-danger badge-counter">7</span> -->
+        </a>
+        <!-- Dropdown - Messages -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">
+            Message Center
+            </h6>
+            <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+                <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                <div class="status-indicator bg-success"></div>
+            </div>
+            <div class="font-weight-bold">
+                <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                <div class="small text-gray-500">Emily Fowler · 58m</div>
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+                <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                <div class="status-indicator"></div>
+            </div>
+            <div>
+                <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                <div class="small text-gray-500">Jae Chun · 1d</div>
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+                <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                <div class="status-indicator bg-warning"></div>
+            </div>
+            <div>
+                <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+            </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image mr-3">
+                <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                <div class="status-indicator bg-success"></div>
+            </div>
+            <div>
+                <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                <div class="small text-gray-500">Chicken the Dog · 2w</div>
+            </div>
+            </a> -->
+            <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> -->
+        </div>
+        </li>
 
-        <!-- <tr>
-		<td>
-		<div class="form-group">
-            <label for="cetak">Cetak <?php //echo form_error('cetak') ?></label>
-            <input class="form-control" type="text" name="cetak" id="cetak" placeholder="Cetak">
-		</div>
-        </td>
-        </tr> -->
-		
-        <!-- <tr>
-        <td>
-		<div class="form-group">
-            <label for="kd_aset">Kode Aset <?php //echo form_error('kd_aset') ?></label>
-            <input class="form-control" type="text" name="kd_aset" id="kd_aset" placeholder="Kode Aset">
-		</div>
-        </td>
-        </tr>	 -->
-        
-        <tr>
-        <td>
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-        <button type="submit" class="btn btn-primary">Save</button> 
-        </td>
-        <td>
-        <a href="<?php echo site_url('monitor') ?>" class="btn btn-default">Cancel</a>
-        </td>
-        </tr>
-	</form>
-    </table>
-    </body>
+        <!-- Nav Item - User Information -->
+        <!-- <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+        </a> -->
+        <!-- Dropdown - User Information -->
+        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Profile
+            </a>
+            <a class="dropdown-item" href="#">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            Settings
+            </a>
+            <a class="dropdown-item" href="#">
+            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+            Activity Log
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
+            </a>
+        </div>
+        </li> -->
+
+    </ul>
+
+    </nav>
+    <!-- End of Topbar -->
+    <!-- Begin Page Content -->
+			<div class="container-fluid">
+				<!-- DataTales Example -->
+				<div class="card shadow mb-4">
+				<div class="card-header py-3">
+            	<h6 class="m-0 font-weight-bold text-primary">Data Inventaris</h6>
+			</div>
+            <div class="card-body">
+            <form action="<?php echo base_url().'monitor/create_action';?>" method="post">
+            <table>
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="nm_inv">Nama Barang <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="nm_inv" id="nm_inv" placeholder="Nama Barang">
+            </div>
+            </td>
+            <td></td>
+            <td>
+            <div class="form-group">
+                <label for="merk">Merk <?php //echo form_error('merk') ?></label>
+                <select require name="merk" class="form-control" id="merk">
+                    <option value="">--Pilih Merk--</option>
+                    <?php
+                        foreach ($dd_gm as $row) {  
+                            echo "<option value='".$row->vc_kd_merk."'>".$row->vc_nm_merk."</option>";
+                            }
+                            echo"
+                        </select>"
+                    ?>
+            </div>
+            </td>
+            </tr>
+            
+            <tr>
+            <td>        
+            <div class="form-group">
+                <label for="satuan">Satuan <?php //echo form_error('satuan') ?></label>
+                <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan">
+            </div>
+            </td>	
+            <td></td>
+            <td>        
+            <div class="form-group">
+                <label for="jmlh">Jumlah <?php //echo form_error('jumlah') ?></label>
+                <input class="form-control" type="text" name="jmlh" id="jmlh" placeholder="Jumlah">
+            </div>
+            </td>
+            </tr>
+
+            <tr>
+            <td>	        
+            <div class="form-group">
+                <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
+                <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima">
+            </div>
+            </td>
+            <td></td>
+            <td>	        
+            <div class="form-group">
+                <label for="status">Status <?php //echo form_error('status') ?></label>
+                <input class="form-control" type="text" name="status" id="status" placeholder="Status">
+            </div>
+            </tr>
+            </td>
+
+            <tr>
+            <td>	
+            <div class="form-group">
+                <label for="kondisi">Kondisi <?php //echo form_error('kondisi') ?></label>
+                <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi">
+            </div>
+            </td>
+            </tr>	
+            
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="ket">Keterangan <?php //echo form_error('ket') ?></label>
+                <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"></textarea>
+            </div>
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="kd_bantu">Jenis Barang<?php //echo form_error('kd_bantu') ?></label>
+                <select require name="kd_bantu" class="form-control" id="kd_bantu">
+                    <option value="">--Pilih Jenis--</option>
+                    <?php
+                        foreach ($dd_gg as $row) {  
+                            echo "<option value='".$row->kd_gol."'>".$row->nm_gol."</option>";
+                            }
+                            echo"
+                        </select>"
+                    ?>
+            </div>
+            </td>
+            </tr>
+
+            <!-- <tr>
+            <td>
+            <div class="form-group">
+                <label for="no_aset">Nomor Aset <?php //echo form_error('no_aset') ?></label>
+                <input class="form-control" type="text" name="no_aset" id="no_aset" placeholder="Nomor Aset">
+            </div>
+            </td>
+            </tr>	 -->
+
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="id_ruang">Ruang <?php //echo form_error('id_ruang') ?></label>
+                <select require name="id_ruang" class="form-control" id="id_ruang">
+                    <option value="">--Pilih Ruang--</option>
+                    <?php
+                        foreach ($dd_gr as $row) {  
+                            echo "<option value='".$row->vc_k_gugus."'>".$row->vc_n_gugus."</option>";
+                            }
+                            echo"
+                        </select>"
+                    ?>
+            </div>
+            </td>
+            </tr>	
+
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
+                <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="upload gambar" enctype="multipart/form-data"/>
+            </div>
+            </td>
+            </tr>
+
+            <!-- <tr>
+            <td>
+            <div class="form-group">
+                <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
+                <input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="upload gambarqr"/>
+            </div>
+            </td>
+            </tr> -->
+
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
+                <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut">
+            </div>
+            </td>
+            </tr>
+
+            <tr>
+            <td>        
+            <div class="form-group">
+                <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
+                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
+                <select class="form-control" name="aktif" class="form-control" id="aktif">
+                    <option value="">--Status Aktif--</option>
+                    <option value="0">Tidak Aktif</option>
+                    <option value="1">Aktif</option>
+                </select>
+            </div>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <div class="form-group">
+                <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
+                <select require name="jns_brg" class="form-control" id="jns_brg">
+                    <option value="">--Pilih Jenis--</option>
+                    <?php
+                        foreach ($dd_gj as $row) {  
+                            echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
+                            }
+                            echo"
+                        </select>"
+                    ?>
+            </div>
+            </td>
+            </tr>
+
+            <!-- <tr>
+            <td>
+            <div class="form-group">
+                <label for="cetak">Cetak <?php //echo form_error('cetak') ?></label>
+                <input class="form-control" type="text" name="cetak" id="cetak" placeholder="Cetak">
+            </div>
+            </td>
+            </tr> -->
+            
+            <!-- <tr>
+            <td>
+            <div class="form-group">
+                <label for="kd_aset">Kode Aset <?php //echo form_error('kd_aset') ?></label>
+                <input class="form-control" type="text" name="kd_aset" id="kd_aset" placeholder="Kode Aset">
+            </div>
+            </td>
+            </tr>	 -->
+            
+            <tr>
+            <td>
+
+            <button type="submit" class="btn btn-primary">Save</button> 
+            </td>
+            <td>
+            <a href="<?php echo site_url('monitor') ?>" class="btn btn-default">Cancel</a>
+            </td>
+            </tr>
+        </form>
+        </table>
+        </div>
+
+        <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+	  <!-- End of Footer -->
+		</div>
+      </div>
+      
+        <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+        <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+        </body>
 </html>

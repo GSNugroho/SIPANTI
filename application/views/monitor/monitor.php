@@ -315,10 +315,10 @@
                     		<span class="text">Tambah Data</span>
 					</a>	  
 						<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>No</th>
+								<!-- <th>No</th> -->
 								<th>Tanggal Terima Barang</th>
 								<th>Kode Inventaris</th>
 								<th>Nama Barang</th>
@@ -330,29 +330,7 @@
 								<th>Action</th>
 							</tr>
 							</thead>
-							<tbody>
-								<?php 
-								//$no = 1;
-								$no = $this->uri->segment('3') + 1;
-								foreach($inv_barang as $ib){ 
-								?>
-								<tr>
-									<td><?php echo $no++ ?></td>
-									<td><?php echo date('d-M-Y', strtotime($ib->tgl_terima));?></td>
-									<td><?php echo $ib->kd_inv ?></td>
-									<td><?php echo $ib->nm_inv ?></td>
-									<td><?php echo $ib->vc_nm_merk ?></td>
-									<td><?php echo $ib->vc_nm_jenis ?></td>
-									<td><?php echo $ib->nm_gol ?></td>
-									<td><?php echo $ib->vc_n_gugus ?></td>
-									<!-- <td><?php //echo $ib->vc_lokasi ?></td> -->
-									<td>
-										<?php echo anchor('monitor/update/'.$ib->kd_inv,'Edit'); ?>
-										<?php echo anchor('monitor/delete/'.$ib->kd_inv,'Hapus'); ?>
-									</td>
-								</tr>
-								<?php } ?>
-							</tbody>
+
 						</table>
 						</div>
 					</div>
@@ -385,7 +363,31 @@
 	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+	<!-- <script src="<?php //echo base_url('assets/js/datatables-demo.js')?>"></script> -->
+
+	<script>
+	$(document).ready(function(){
+   $('#dataBrg').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      'ajax': {
+          'url':'<?php echo base_url().'monitor/dt_tbl'?>'
+      },
+      'columns': [
+         //{ data: 'no' },
+         { data: 'tgl_terima' },
+         { data: 'kd_inv' },
+         { data: 'nm_inv' },
+         { data: 'vc_nm_merk' },
+         { data: 'vc_nm_jenis' },
+         { data: 'nm_gol' },
+         { data: 'vc_n_gugus' },
+		 { data: 'action'}
+      ]
+	});
+	});
+	</script>
 
 	</body>
 </html>

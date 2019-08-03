@@ -204,6 +204,72 @@ class monitor extends CI_Controller {
         $char = "INV";
         $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
-    }
+	}
+	
+	function dt_tbl(){
+		## Read value
+		$draw = $_POST['draw'];
+		$row = $_POST['start'];
+		$rowperpage = $_POST['length']; // Rows display per page
+		$columnIndex = $_POST['order'][0]['column']; // Column index
+		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+		$searchValue = $_POST['search']['value']; // Search value
+
+		## Search 
+		$searchQuery = " ";
+		if($searchValue != ''){
+		$searchQuery = " and (nm_inv like '%".$searchValue."%' or 
+		vc_nm_merk like '%".$searchValue."%' or 
+		vc_nm_jenis like'%".$searchValue."%' or
+		nm_gol like'%".$searchValue."%' or
+		vc_n_gugus like'%".$searchValue."%' ) ";
+		}
+
+		## Total number of records without filtering
+		$sel = $this->m_monitor->get_total_dt();
+		// $records = sqlsrv_fetch_array($sel);
+		foreach($sel as $row){
+			$totalRecords = $row->allcount;
+		}
+		
+
+		## Total number of record with filtering
+		$sel = $this->m_monitor->get_total_fl($searchQuery);
+		// $records = sqlsrv_fetch_assoc($sel);
+		foreach($sel as $row){
+			$totalRecordwithFilter = $row->allcount;
+		}
+		
+
+		## Fetch records
+		$empQuery = $this->m_monitor->get_total_ft($searchQuery, $columnName, $columnSortOrder, $row, $rowperpage);
+		$empRecords = $empQuery;
+		$data = array();
+
+		foreach($empRecords as $row){
+		$data[] = array( 
+			"tgl_terima"=>date('d-M-Y', strtotime($row->tgl_terima)),
+			"kd_inv"=>$row->kd_inv,
+			"nm_inv"=>$row->nm_inv,
+			"vc_nm_merk"=>$row->vc_nm_merk,
+			"vc_nm_jenis"=>$row->vc_nm_jenis,
+			"nm_gol"=>$row->nm_gol,
+			"vc_n_gugus"=>$row->vc_n_gugus,
+			"action"=>anchor('mutasi/update/'.$row->kd_inv,'Edit'),
+				 	anchor('mutasi/delete/'.$row->kd_inv,'Hapus')
+		);
+		}
+
+		## Response
+		$response = array(
+		"draw" => intval($draw),
+		"iTotalRecords" => $totalRecordwithFilter,
+		"iTotalDisplayRecords" => $totalRecords,
+		"aaData" => $data
+		);
+
+		echo json_encode($response);
+	}
 }
 ?>
