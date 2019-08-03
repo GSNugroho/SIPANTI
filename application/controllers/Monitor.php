@@ -209,7 +209,7 @@ class monitor extends CI_Controller {
 	function dt_tbl(){
 		## Read value
 		$draw = $_POST['draw'];
-		$row = $_POST['start'];
+		$baris = $_POST['start'];
 		$rowperpage = $_POST['length']; // Rows display per page
 		$columnIndex = $_POST['order'][0]['column']; // Column index
 		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
@@ -243,7 +243,7 @@ class monitor extends CI_Controller {
 		
 
 		## Fetch records
-		$empQuery = $this->m_monitor->get_total_ft($searchQuery, $columnName, $columnSortOrder, $row, $rowperpage);
+		$empQuery = $this->m_monitor->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
 		$empRecords = $empQuery;
 		$data = array();
 
