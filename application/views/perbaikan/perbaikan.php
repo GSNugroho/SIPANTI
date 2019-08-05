@@ -314,10 +314,10 @@
                     		<span class="text">Tambah Data</span>
 					</a>	  
 						<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>No</th>
+								<!-- <th>No</th> -->
 								<th>Tanggal Perbaikan</th>
 								<th>Kode Inventaris</th>
 								<th>Nama Barang</th>
@@ -328,39 +328,9 @@
 								<th>Biaya</th>
 								<th>Keterangan</th>
 								<th>Action</th>
+								<th>Action</th>
 							</tr>
 							</thead>
-							<tbody>
-							<?php 
-								$no = 1;
-								//$no = $this->uri->segment('3') + 1;
-								foreach($inv_perbaikan as $ib){ 
-								?>
-								<tr>
-									<td><?php echo $no++ ?></td>
-									<td><?php echo date('d-M-Y', strtotime($ib->tgl_inv_pr));?></td>
-									<td><?php echo $ib->kd_inv ?></td>
-									<td><?php echo $ib->nm_inv ?></td>
-									<td><?php echo $ib->vc_n_gugus ?></td>
-									<td><?php $data = $ib->jns_kr;
-											if($data=='1'){echo "Ringan";
-											}else{echo "Parah";}
-									 ?></td>
-									<td><?php $data = $ib->jns_pr; 
-											if($data=='1'){echo "Pengecekan";
-											}else if($data=='2'){echo "Ganti Sparepart";
-											}else{echo "Service";}
-									?></td>
-									<td><?php echo $ib->sp_gt ?></td>
-									<td><?php echo $ib->sp_by ?></td>
-									<td><?php echo $ib->ket_pr ?></td>
-									<td>
-										<?php echo anchor('perbaikan/update/'.$ib->kd_pr,'Edit'); ?>
-										<?php echo anchor('perbaikan/delete/'.$ib->kd_pr,'Hapus'); ?>
-									</td>
-								</tr>
-								<?php } ?>
-							</tbody>
 						</table>
 						</div>
 					</div>
@@ -424,6 +394,32 @@
 
 	<!-- Page level custom scripts -->
 	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+
+	<script>
+	$(document).ready(function(){
+	   $('#dataBrg').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      'ajax': {
+          'url':'<?php echo base_url().'perbaikan/dt_tbl'?>'
+      },
+      'columns': [
+         //{ data: 'no' },
+         { data: 'tgl_inv_pr' },
+         { data: 'kd_inv' },
+         { data: 'nm_inv' },
+         { data: 'vc_n_gugus' },
+         { data: 'jns_kr' },
+         { data: 'jns_pr' },
+		 { data: 'sp_gt' },
+		 { data: 'sp_by' },
+		 { data: 'action'},
+		 { data: 'action2'}
+      ]
+	});
+	});
+	</script>
 
 	</body>
 </html>

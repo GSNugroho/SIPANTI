@@ -315,46 +315,21 @@
                     		<span class="text">Tambah Data</span>
 					</a>	   -->
 						<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>No</th>
+								<!-- <th>No</th> -->
 								<th>Tanggal Perawatan</th>
-								<th>Perkiraan Tanggal Selesai</th>
+								<!-- <th>Perkiraan Tanggal Selesai</th> -->
 								<th>Nama Jadwal</th>
 								<th>Kode Inventaris</th>
 								<th>Nama Barang</th>
 								<th>Ruang</th>
 								<th>Status Pengerjaan</th>
 								<th>Action</th>
+								<th>Action</th>
 							</tr>
 							</thead>
-							<tbody>
-							<?php 
-								$no = 1;
-								//$no = $this->uri->segment('3') + 1;
-								foreach($inv_perawatan as $ib){ 
-								?>
-								<tr>
-									<td><?php echo $no++ ?></td>
-									<td><?php echo date('d-M-Y', strtotime($ib->tgl_jd));?></td>
-									<td><?php echo date('d-M-Y', strtotime($ib->tgl_jd_selesai));?></td>
-									<td><?php echo $ib->nm_jd ?></td>
-									<td><?php echo $ib->kd_inv ?></td>
-									<td><?php echo $ib->nm_inv ?></td>
-									<td><?php echo $ib->vc_n_gugus ?></td>
-									<td><?php $data = $ib->status_p;
-											if($data=='1'){echo "Belum Dikerjakan";
-											}else if($data=='2'){echo "Sedang Dikerjakan";
-											}else{echo "Sudah Selesai Dikerjakan";}
-									?></td>
-									<td>
-										<?php echo anchor('perawatan/update/'.$ib->kd_jd,'Edit'); ?>
-										<?php echo anchor('perawatan/delete/'.$ib->kd_jd,'Hapus'); ?>
-									</td>
-								</tr>
-								<?php } ?>
-							</tbody>
 						</table>
 						</div>
 					</div>
@@ -389,5 +364,29 @@
 	<!-- Page level custom scripts -->
 	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
 
+	<script>
+	$(document).ready(function(){
+	   $('#dataBrg').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      'ajax': {
+          'url':'<?php echo base_url().'perawatan/dt_tbl'?>'
+      },
+      'columns': [
+        //  { data: 'no' },
+         { data: 'tgl_jd' },
+        //  { data: 'tgl_jd_selesai' },
+         { data: 'nm_jd' },
+         { data: 'kd_inv' },
+         { data: 'nm_inv' },
+         { data: 'vc_n_gugus' },
+         { data: 'status_p' },
+		 { data: 'action'},
+		 { data: 'action2'}
+      ]
+	});
+	});
+	</script>
 	</body>
 </html>

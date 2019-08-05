@@ -100,5 +100,75 @@ class mutasi extends CI_Controller{
             $callback = array('list_inv'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota    
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
+
+    function dt_tbl(){
+        ## Read value
+		$draw = $_POST['draw'];
+		$baris = $_POST['start'];
+		$rowperpage = $_POST['length']; // Rows display per page
+		$columnIndex = $_POST['order'][0]['column']; // Column index
+		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+		$searchValue = $_POST['search']['value']; // Search value
+
+		## Search 
+		$searchQuery = " ";
+		if($searchValue != ''){
+		$searchQuery = " and (kd_inv_mts like '%".$searchValue."%' or 
+		nm_inv like '%".$searchValue."%' or 
+		tgl_terima_mts like '%".$searchValue."%' or 
+		jmlh_mts like'%".$searchValue."%' or
+		status_mts like'%".$searchValue."%' or
+		kondisi_mts like'%".$searchValue."%' or
+		alasan_mts like'%".$searchValue."%' or
+		vc_n_gugus like'%".$searchValue."%' ) ";
+		}
+
+		## Total number of records without filtering
+		$sel = $this->m_mutasi->get_total_dt();
+		// $records = sqlsrv_fetch_array($sel);
+		foreach($sel as $row){
+			$totalRecords = $row->allcount;
+		}
+		
+
+		## Total number of record with filtering
+		$sel = $this->m_mutasi->get_total_fl($searchQuery);
+		// $records = sqlsrv_fetch_assoc($sel);
+		foreach($sel as $row){
+			$totalRecordwithFilter = $row->allcount;
+		}
+		
+
+		## Fetch records
+		$empQuery = $this->m_mutasi->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empRecords = $empQuery;
+		$data = array();
+
+		foreach($empRecords as $row){
+		$data[] = array( 
+			"tgl_terima_mts"=>date('d-M-Y', strtotime($row->tgl_terima_mts)),
+			"kd_inv_mts"=>$row->kd_inv_mts,
+			"nm_inv"=>$row->nm_inv,
+			"jmlh_mts"=>$row->jmlh_mts,
+			"vc_n_gugus"=>$row->vc_n_gugus,
+			"status_mts"=>$row->status_mts,
+            "kondisi_mts"=>$row->kondisi_mts,
+            "alasan_mts"=>$row->alasan_mts,
+			"action"=>anchor('mutasi/update/'.$row->kd_inv_mts,'Edit'),
+			"action2"=>anchor('mutasi/delete/'.$row->kd_inv_mts,'Hapus')
+		);
+		}
+
+		## Response
+		$response = array(
+		"draw" => intval($draw),
+		"iTotalRecords" => $totalRecordwithFilter,
+		"iTotalDisplayRecords" => $totalRecords,
+		"aaData" => $data
+		);
+
+		echo json_encode($response);
+    }
 }
 ?>

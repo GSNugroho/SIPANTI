@@ -57,5 +57,26 @@ class m_mutasi extends CI_Model{
         $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
         return $query->result();
     }
+
+    function get_total_dt(){
+        $query = $this->db->query('select count(*) as allcount from inv_mutasi');
+        return $query->result();
+    }
+
+    function get_total_fl($searchQuery){
+        $query = $this->db->query('select count(*) as allcount from inv_mutasi 
+        left join inv_barang on inv_mutasi.kd_inv_mts = inv_barang.kd_inv
+        join inv_pubgugus on inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus
+        WHERE 1=1'.$searchQuery);
+        return $query->result();
+    }
+
+    function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
+        $query = $this->db->query('select TOP '.$rowperpage.'* from inv_mutasi 
+        left join inv_barang ON inv_mutasi.kd_inv_mts = inv_barang.kd_inv
+        join inv_pubgugus ON inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus
+        WHERE 1=1 '.$searchQuery.' and '.$columnName.' NOT IN (SELECT TOP '.$baris.' '.$columnName.' FROM inv_mutasi) order by '.$columnName.' '.$columnSortOrder);
+        return $query->result();
+    }
 }
 ?>

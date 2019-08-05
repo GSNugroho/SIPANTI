@@ -358,5 +358,79 @@ class perawatan extends CI_Controller{
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
         redirect(base_url('perawatan'));
     }
+
+    function dt_tbl(){
+        ## Read value
+		$draw = $_POST['draw'];
+		$baris = $_POST['start'];
+		$rowperpage = $_POST['length']; // Rows display per page
+		$columnIndex = $_POST['order'][0]['column']; // Column index
+		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+		$searchValue = $_POST['search']['value']; // Search value
+
+		## Search 
+		$searchQuery = " ";
+		if($searchValue != ''){
+		$searchQuery = " and (inv_jadwal.tgl_jd like '%".$searchValue."%' or 
+		inv_jadwal.tgl_jd_selesai like '%".$searchValue."%' or 
+		inv_jadwal.nm_jd like'%".$searchValue."%' or
+		inv_jadwal.kd_inv like'%".$searchValue."%' or
+		inv_barang.nm_inv like'%".$searchValue."%' or
+		inv_pubgugus.vc_n_gugus like'%".$searchValue."%' or
+		inv_jadwal_perawatan.status_p like'%".$searchValue."%' ) ";
+		}
+
+		## Total number of records without filtering
+		$sel = $this->m_perawatan->get_total_dt();
+		// $records = sqlsrv_fetch_array($sel);
+		foreach($sel as $row){
+			$totalRecords = $row->allcount;
+		}
+		
+
+		## Total number of record with filtering
+		$sel = $this->m_perawatan->get_total_fl($searchQuery);
+		// $records = sqlsrv_fetch_assoc($sel);
+		foreach($sel as $row){
+			$totalRecordwithFilter = $row->allcount;
+		}
+		
+
+		## Fetch records
+		$empQuery = $this->m_perawatan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empRecords = $empQuery;
+		$data = array();
+
+		foreach($empRecords as $row){
+        $st = $row->status_p;
+        if($st=='1'){$sts = "Belum Dikerjakan";
+        }else if($st=='2'){$sts = "Sedang Dikerjakan";
+        }else{$sts = "Sudah Selesai Dikerjakan";}
+
+        $data[] = array( 
+            // "no"=>$baris+1,
+			"tgl_jd"=>date('d-M-Y', strtotime($row->tgl_jd)),
+			// "tgl_jd_selesai"=>date('d-M-Y', strtotime($row->tgl_jd_selesai)),
+			"nm_jd"=>$row->nm_jd,
+			"kd_inv"=>$row->kd_inv,
+			"nm_inv"=>$row->nm_inv,
+			"vc_n_gugus"=>$row->vc_n_gugus,
+            "status_p"=> $sts ,
+			"action"=>anchor('perawatan/update/'.$row->kd_jd,'Edit'),
+			"action2"=>anchor('perawatan/delete/'.$row->kd_jd,'Hapus')
+		);
+		}
+
+		## Response
+		$response = array(
+		"draw" => intval($draw),
+		"iTotalRecords" => $totalRecordwithFilter,
+		"iTotalDisplayRecords" => $totalRecords,
+		"aaData" => $data
+		);
+
+		echo json_encode($response);
+    }
 }
 ?>

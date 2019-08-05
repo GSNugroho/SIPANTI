@@ -97,5 +97,84 @@ class perbaikan extends CI_Controller{
 			redirect(base_url('perbaikan'));
 		}
     }
+
+    function dt_tbl(){
+        ## Read value
+		$draw = $_POST['draw'];
+		$baris = $_POST['start'];
+		$rowperpage = $_POST['length']; // Rows display per page
+		$columnIndex = $_POST['order'][0]['column']; // Column index
+		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
+		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
+		$searchValue = $_POST['search']['value']; // Search value
+
+		## Search 
+		$searchQuery = " ";
+		if($searchValue != ''){
+		$searchQuery = " and (tgl_inv_pr like '%".$searchValue."%' or 
+		kd_inv like '%".$searchValue."%' or 
+		nm_inv like'%".$searchValue."%' or
+		vc_n_gugus like'%".$searchValue."%' or
+		jns_kr like'%".$searchValue."%' or
+		jns_pr like'%".$searchValue."%' or
+		sp_gt like'%".$searchValue."%' or
+		sp_by like'%".$searchValue."%' ) ";
+		}
+
+		## Total number of records without filtering
+		$sel = $this->m_perbaikan->get_total_dt();
+		// $records = sqlsrv_fetch_array($sel);
+		foreach($sel as $row){
+			$totalRecords = $row->allcount;
+		}
+		
+
+		## Total number of record with filtering
+		$sel = $this->m_perbaikan->get_total_fl($searchQuery);
+		// $records = sqlsrv_fetch_assoc($sel);
+		foreach($sel as $row){
+			$totalRecordwithFilter = $row->allcount;
+		}
+		
+
+		## Fetch records
+		$empQuery = $this->m_perbaikan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empRecords = $empQuery;
+		$data = array();
+
+		foreach($empRecords as $row){
+            $jkr = $row->jns_kr;
+            if($jkr=='1'){$jns_kr = "Ringan";
+            }else{$jns_kr = "Parah";}
+            
+            $jpr = $row->jns_pr;
+            if($jpr=='1'){$jns_pr = "Pengecekan";
+            }else if($jpr=='2'){$jns_pr = "Ganti Sparepart";}
+            else{$jns_pr = "Service";}
+        
+            $data[] = array( 
+			"tgl_inv_pr"=>date('d-M-Y', strtotime($row->tgl_inv_pr)),
+			"kd_inv"=>$row->kd_inv,
+			"nm_inv"=>$row->nm_inv,
+			"vc_n_gugus"=>$row->vc_n_gugus,
+            "jns_kr"=> $jns_kr,
+            "jns_pr"=> $jns_pr,
+            "sp_gt"=> $row->sp_gt,
+            "sp_by"=> $row->sp_by,
+			"action"=>anchor('perawatan/update/'.$row->kd_pr,'Edit'),
+			"action2"=>anchor('perawatan/delete/'.$row->kd_pr,'Hapus')
+		);
+		}
+
+		## Response
+		$response = array(
+		"draw" => intval($draw),
+		"iTotalRecords" => $totalRecordwithFilter,
+		"iTotalDisplayRecords" => $totalRecords,
+		"aaData" => $data
+		);
+
+		echo json_encode($response);
+    }
 }
 ?>

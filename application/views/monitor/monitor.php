@@ -319,14 +319,15 @@
 						<thead>
 							<tr>
 								<!-- <th>No</th> -->
-								<th>Tanggal Terima Barang</th>
 								<th>Kode Inventaris</th>
+								<th>Tanggal Terima Barang</th>
 								<th>Nama Barang</th>
 								<th>Merk</th>
 								<th>Jenis Barang</th>
 								<th>Golongan Barang</th>
 								<th>Ruang</th>
 								<!-- <th>Lokasi</th> -->
+								<th>Action</th>
 								<th>Action</th>
 							</tr>
 							</thead>
@@ -376,14 +377,15 @@
       },
       'columns': [
          //{ data: 'no' },
-         { data: 'tgl_terima' },
          { data: 'kd_inv' },
+         { data: 'tgl_terima' },
          { data: 'nm_inv' },
          { data: 'vc_nm_merk' },
          { data: 'vc_nm_jenis' },
          { data: 'nm_gol' },
          { data: 'vc_n_gugus' },
-		 { data: 'action'}
+		 { data: 'action'},
+		 { data: 'action2'}
       ]
 	});
 	});

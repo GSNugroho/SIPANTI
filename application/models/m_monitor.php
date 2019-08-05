@@ -95,7 +95,12 @@ class m_monitor extends CI_Model{
 		return $query->result();
 	}
 	function get_total_fl($searchQuery){
-		$query = $this->db->query('select count(*) as allcount from inv_barang WHERE 1=1'.$searchQuery);
+		$query = $this->db->query('select count(*) as allcount from inv_barang 
+		left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
+		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
+		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
+		WHERE 1=1'.$searchQuery);
 		return $query->result();
 	}
 	function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
@@ -104,7 +109,7 @@ class m_monitor extends CI_Model{
 		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE 1=1 '.$searchQuery.'and inv_barang.aktif = 1 and kd_inv NOT IN (SELECT TOP '.$baris.' kd_inv FROM inv_barang) order by '.$columnName.' '.$columnSortOrder);
+		WHERE 1=1 and inv_barang.aktif = 1 '.$searchQuery.' and kd_inv NOT IN (SELECT TOP '.$baris.' kd_inv FROM inv_barang) order by '.$columnName.' '.$columnSortOrder);
 		return $query->result();
 	}
 }

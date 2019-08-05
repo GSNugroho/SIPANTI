@@ -315,43 +315,22 @@
                     		<span class="text">Tambah Data</span>
 					</a>	  
 						<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-                                <th>No</th>
-                                <th>Kode Barang</th>
+                                <!-- <th>No</th> -->
+                                <th>Tanggal Mutasi</th>
+                                <th>Kode Inventaris</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
-                                <th>Tanggal Mutasi</th>
                                 <th>Mutasi</th>
                                 <th>Status</th>
                                 <th>Kondisi</th>
                                 <th>Alasan</th>
                                 <th>Action</th>
+                                <th>Action</th>
 							</tr>
 							</thead>
-							<tbody>
-                            <?php
-                            $no = 1;
-                            foreach($inv_mutasi as $ib){ 
-                                ?>
-                                <tr>
-                                    <td><?php echo $no++ ?></td>
-                                    <td><?php echo $ib->kd_aset ?></td>
-                                    <td><?php echo $ib->nm_inv ?></td>
-                                    <td><?php echo $ib->jmlh_mts ?></td>
-                                    <td><?php echo date('d-M-Y', strtotime($ib->tgl_terima_mts)); ?></td>
-                                    <td><?php echo $ib->vc_n_gugus ?></td>
-                                    <td><?php echo $ib->status_mts ?></td>
-                                    <td><?php echo $ib->kondisi_mts ?></td>
-                                    <td><?php echo $ib->alasan_mts ?></td>
-                                    <td>
-                                        <?php echo anchor('mutasi/update/'.$ib->kd_inv_mts,'Edit'); ?>
-                                        <?php echo anchor('mutasi/delete/'.$ib->kd_inv_mts,'Hapus'); ?>
-                                    </td>
-                                </tr>
-                                <?php } ?>
-                            </tbody>
 						</table>
 						</div>
 					</div>
@@ -385,6 +364,32 @@
 
 	<!-- Page level custom scripts -->
 	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+
+	<script>
+	$(document).ready(function(){
+	   $('#dataBrg').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'serverMethod': 'post',
+      'ajax': {
+          'url':'<?php echo base_url().'mutasi/dt_tbl'?>'
+      },
+      'columns': [
+         //{ data: 'no' },
+         { data: 'tgl_terima_mts' },
+         { data: 'kd_inv_mts' },
+         { data: 'nm_inv' },
+         { data: 'jmlh_mts' },
+         { data: 'vc_n_gugus' },
+         { data: 'status_mts' },
+         { data: 'kondisi_mts' },
+		 { data: 'alasan_mts'},
+		 { data: 'action'},
+		 { data: 'action2'}
+      ]
+	});
+	});
+	</script>
 
 	</body>
 </html>

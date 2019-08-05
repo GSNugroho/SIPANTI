@@ -5,6 +5,7 @@ class report extends CI_Controller{
         parent::__construct();
         $this->load->model('m_report');
         $this->load->library('tcpdf');
+        // $this->load->library('m_pdf');
     }
 
     public function index(){
@@ -21,6 +22,15 @@ class report extends CI_Controller{
         $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
         $this->load->view('report/report_pr', $data);
     }
+
+    // function get_report_perawatanm(){
+    //     $tgl_a = $this->input->post('tgl_jd', TRUE);
+    //     $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+    //     $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
+        
+    //     $mpdf = new Mpdf();
+    //     $html=$this->load->view('report_pr1', $data, true);
+    // }
 
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);

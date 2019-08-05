@@ -220,6 +220,7 @@ class monitor extends CI_Controller {
 		$searchQuery = " ";
 		if($searchValue != ''){
 		$searchQuery = " and (nm_inv like '%".$searchValue."%' or 
+		tgl_terima like '%".$searchValue."%' or 
 		vc_nm_merk like '%".$searchValue."%' or 
 		vc_nm_jenis like'%".$searchValue."%' or
 		nm_gol like'%".$searchValue."%' or
@@ -249,15 +250,15 @@ class monitor extends CI_Controller {
 
 		foreach($empRecords as $row){
 		$data[] = array( 
-			"tgl_terima"=>date('d-M-Y', strtotime($row->tgl_terima)),
 			"kd_inv"=>$row->kd_inv,
+			"tgl_terima"=>date('d-M-Y', strtotime($row->tgl_terima)),
 			"nm_inv"=>$row->nm_inv,
 			"vc_nm_merk"=>$row->vc_nm_merk,
 			"vc_nm_jenis"=>$row->vc_nm_jenis,
 			"nm_gol"=>$row->nm_gol,
 			"vc_n_gugus"=>$row->vc_n_gugus,
 			"action"=>anchor('mutasi/update/'.$row->kd_inv,'Edit'),
-				 	anchor('mutasi/delete/'.$row->kd_inv,'Hapus')
+			"action2"=>anchor('mutasi/delete/'.$row->kd_inv,'Hapus')
 		);
 		}
 

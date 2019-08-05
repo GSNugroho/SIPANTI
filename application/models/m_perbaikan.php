@@ -56,5 +56,30 @@ class m_perbaikan extends CI_Model{
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+
+    function get_total_dt(){
+        $query = $this->db->query('select count(*) as allcount from inv_perbaikan
+        join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        where inv_barang.aktif = 1');
+        return $query->result();
+    }
+
+    function get_total_fl($searchQuery){
+        $query = $this->db->query('select count(*) as allcount from inv_perbaikan
+        join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        where inv_barang.aktif = 1'.$searchQuery);
+        return $query->result();
+    }
+
+    function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
+        $query = $this->db->query('select TOP '.$rowperpage.' * from inv_perbaikan
+        join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        where inv_barang.aktif = 1'.$searchQuery.' and '.$columnName.' NOT IN (SELECT TOP '.$baris.' '.$columnName.' from inv_perbaikan order by '.$columnName.' '.$columnSortOrder.')
+        order by '.$columnName.' '.$columnSortOrder);
+        return $query->result();
+    }
 }
 ?>
