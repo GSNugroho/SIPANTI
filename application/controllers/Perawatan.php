@@ -4,6 +4,7 @@ class perawatan extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('m_perawatan');
+        $this->load->model('m_jadwal');
     }
 
     public function index(){
@@ -24,7 +25,7 @@ class perawatan extends CI_Controller{
 
         $this->m_perawatan->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-        redirect(site_url(perawatan));
+        redirect(site_url('perawatan'));
     }
 
     function update($id){
@@ -354,6 +355,11 @@ class perawatan extends CI_Controller{
             'status_p' => $status,
             'tgl_trs' => date('Y-m-d h:i:s')
         );
+        $color = '#00ff88';
+        $datawarna = array(
+            'color' => $color
+        );
+        $this->m_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $datawarna);
         $this->m_perawatan->update_perawatan($this->input->post('kd_jd', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
         redirect(base_url('perawatan'));
@@ -410,6 +416,7 @@ class perawatan extends CI_Controller{
 
         $data[] = array( 
             // "no"=>$baris+1,
+            "kd_jd" =>$row->kd_jd,
 			"tgl_jd"=>date('d-M-Y', strtotime($row->tgl_jd)),
 			// "tgl_jd_selesai"=>date('d-M-Y', strtotime($row->tgl_jd_selesai)),
 			"nm_jd"=>$row->nm_jd,
@@ -425,8 +432,8 @@ class perawatan extends CI_Controller{
 		## Response
 		$response = array(
 		"draw" => intval($draw),
-		"iTotalRecords" => $totalRecordwithFilter,
-		"iTotalDisplayRecords" => $totalRecords,
+		"iTotalRecords" => $totalRecords,
+		"iTotalDisplayRecords" => $totalRecordwithFilter,
 		"aaData" => $data
 		);
 

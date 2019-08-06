@@ -409,6 +409,7 @@
 						</select>
 					</div>
 				  </div> -->
+
 				  <div class="form-group1">
 					<label for="start" class="col-sm-2 control-label">Tanggal Perawatan</label>
 					<div class="col-sm-10">
@@ -416,9 +417,9 @@
 					</div>
 				  </div>
 				  <div class="form-group1">
-					<label for="end" class="col-sm-2 control-label">Tanggal Selesai</label>
+					<!-- <label for="end" class="col-sm-2 control-label">Tanggal Selesai</label> -->
 					<div class="col-sm-10">
-					  <input type="text" name="end" class="form-control1" id="end" readonly>
+					  <input type="hidden" name="end" class="form-control1" id="end" readonly>
 					</div>
 				  </div>
 				
@@ -558,6 +559,10 @@
 
 	$(document).ready(function() {
 		$('#calendar').fullCalendar({
+			monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
+    		monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],
+		    dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
+    		dayNamesShort: ['Mgg','Sen','Sel','Rab','Kam','Jum','Sab'],
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -582,6 +587,7 @@
                     $('#ModalEdit #kd_ruang').val(event.kd_ruang);
                     $('#ModalEdit #kd_inv').val(event.kd_inv);
 					$('#ModalEdit #kd_jd').val(event.kd_jd);
+					$('#ModalEdit #dt_sts').val(event.dt_sts);
 					$('#ModalEdit').modal('show');
 				});
 			},
@@ -618,6 +624,7 @@
                     nm_jd: '<?php echo $event->nm_jd ?>',
                     kd_inv: '<?php echo $event->kd_inv ?>',
                     kd_ruang: '<?php echo $event->kd_ruang ?>',
+					dt_sts: '<?php echo $event->dt_sts?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event->color ?>',

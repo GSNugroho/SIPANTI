@@ -7,7 +7,20 @@ class jadwal extends CI_Controller{
     }
 
     public function index(){
-        //$data['inv_jadwal'] = $this->m_jadwal->get_data();
+        //Merubah Jadwal Yg Belum Dikerjakan
+        $row = $this->m_jadwal->data_tlt();
+        $warna = '#ff0000';
+        if($row){
+        $dt_tlt = $this->m_jadwal->get_data_telat();
+        foreach($dt_tlt as $row) {
+            $kd_jd = $row->kd_jd;
+        
+        $jd_wr_tlt = array(
+            'color' => $warna
+        );
+        $this->m_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
+        }
+        }
         $data = array(
             'dd_gr' => $this->m_jadwal->get_ruang(),
             'inv_jadwal' => $this->m_jadwal->get_data()
@@ -32,6 +45,7 @@ class jadwal extends CI_Controller{
 
     public function create_action(){
         $warna = '#03e3fc';
+        $dt_sts =1;
         $data = array(
         'tgl_jd' => $this->input->post('start', TRUE),
         'nm_jd' => $this->input->post('nm_jd', TRUE),
@@ -40,7 +54,8 @@ class jadwal extends CI_Controller{
         'color' => $warna,
         'tgl_jd_selesai' => $this->input->post('end', TRUE),
         'kd_ruang' => $this->input->post('kd_ruang', TRUE),
-        'kd_jd' => $this->kode()
+        'kd_jd' => $this->kode(),
+        'dt_sts' => $dt_sts
         );
 
         $this->m_jadwal->insert($data);

@@ -2,7 +2,7 @@
 class m_jadwal extends CI_Model{
 
     public $table = 'inv_jadwal';
-    public $id = 'id_jd';
+    public $id = 'kd_jd';
     public $order = 'DESC';
 
     function __construct()
@@ -18,7 +18,7 @@ class m_jadwal extends CI_Model{
         $this->db->insert($this->table, $data);
     }
     function updatekonten($id, $data){
-        $this->db->where('id_jd', $id);
+        $this->db->where('kd_jd', $id);
         $this->db->update('inv_jadwal', $data);
     }
     function updatetgl($id, $data){
@@ -49,6 +49,24 @@ class m_jadwal extends CI_Model{
     function get_kode(){
         $query = $this->db->query('SELECT MAX(kd_jd) AS maxkode FROM inv_jadwal');
         return $query->result();
+    }
+
+    function get_data_telat(){
+        $query = $this->db->query("SELECT * FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()-1)
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()-1) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+        ");
+        return $query->result();
+    }
+
+    function data_tlt(){
+        $query = $this->db->query("SELECT * FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()-1)
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()-1) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+        ");
+        return $query->row();
     }
 }
 ?>

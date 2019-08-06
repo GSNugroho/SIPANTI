@@ -67,17 +67,20 @@ class m_perawatan extends CI_Model{
     }
     
     function get_total_dt(){
-        $query = $this->db->query('select count(*) as allcount from inv_jadwal
-        join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $query = $this->db->query("select count(*) as allcount from inv_jadwal
+        join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
+        join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
+        WHERE 1=1 and inv_barang.aktif=1 and inv_jadwal.dt_sts = 1 and inv_barang.kd_aset != ''");
         return $query->result();
     }
 
     function get_total_fl($searchQuery){
-        $query = $this->db->query('select count(*) as allcount from inv_jadwal
+        $query = $this->db->query("select count(*) as allcount from inv_jadwal
         join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
-        WHERE 1=1 and inv_barang.aktif=1 '.$searchQuery);
+        WHERE 1=1 and inv_barang.aktif=1 and inv_jadwal.dt_sts = 1 and inv_barang.kd_aset != '' ".$searchQuery);
         return $query->result();
     }
 
@@ -86,7 +89,7 @@ class m_perawatan extends CI_Model{
         join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
-        where 1=1 and inv_barang.aktif = 1 and inv_barang.kd_aset != '' ".$searchQuery." and ".$columnName." NOT IN (SELECT TOP ".$baris." ".$columnName." FROM inv_jadwal order by ".$columnName." ".$columnSortOrder.") 
+        where 1=1 and inv_barang.aktif = 1 and inv_jadwal.dt_sts =1 and inv_barang.kd_aset != '' ".$searchQuery." and ".$columnName." NOT IN (SELECT TOP ".$baris." ".$columnName." FROM inv_jadwal WHERE dt_sts =1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
         order by ".$columnName." ".$columnSortOrder);
         return $query->result();
     }

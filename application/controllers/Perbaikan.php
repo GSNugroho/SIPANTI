@@ -169,8 +169,8 @@ class perbaikan extends CI_Controller{
 		## Response
 		$response = array(
 		"draw" => intval($draw),
-		"iTotalRecords" => $totalRecordwithFilter,
-		"iTotalDisplayRecords" => $totalRecords,
+		"iTotalRecords" => $totalRecords,
+		"iTotalDisplayRecords" => $totalRecordwithFilter,
 		"aaData" => $data
 		);
 

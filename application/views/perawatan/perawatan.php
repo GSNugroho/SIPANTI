@@ -319,10 +319,11 @@
 						<thead>
 							<tr>
 								<!-- <th>No</th> -->
+								<th>Kode Jadwal</th>
 								<th>Tanggal Perawatan</th>
 								<!-- <th>Perkiraan Tanggal Selesai</th> -->
-								<th>Nama Jadwal</th>
 								<th>Kode Inventaris</th>
+								<th>Nama Jadwal</th>
 								<th>Nama Barang</th>
 								<th>Ruang</th>
 								<th>Status Pengerjaan</th>
@@ -375,10 +376,11 @@
       },
       'columns': [
         //  { data: 'no' },
+		 { data: 'kd_jd' },
          { data: 'tgl_jd' },
         //  { data: 'tgl_jd_selesai' },
-         { data: 'nm_jd' },
          { data: 'kd_inv' },
+         { data: 'nm_jd' },
          { data: 'nm_inv' },
          { data: 'vc_n_gugus' },
          { data: 'status_p' },

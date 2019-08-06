@@ -319,8 +319,8 @@
 						<thead>
 							<tr>
                                 <!-- <th>No</th> -->
-                                <th>Tanggal Mutasi</th>
                                 <th>Kode Inventaris</th>
+                                <th>Tanggal Mutasi</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
                                 <th>Mutasi</th>
@@ -376,8 +376,8 @@
       },
       'columns': [
          //{ data: 'no' },
-         { data: 'tgl_terima_mts' },
          { data: 'kd_inv_mts' },
+         { data: 'tgl_terima_mts' },
          { data: 'nm_inv' },
          { data: 'jmlh_mts' },
          { data: 'vc_n_gugus' },
