@@ -161,6 +161,7 @@ class perbaikan extends CI_Controller{
             "jns_pr"=> $jns_pr,
             "sp_gt"=> $row->sp_gt,
             "sp_by"=> $row->sp_by,
+            "ket_pr"=> $row->ket_pr,
 			"action"=>anchor('perawatan/update/'.$row->kd_pr,'Edit'),
 			"action2"=>anchor('perawatan/delete/'.$row->kd_pr,'Hapus')
 		);

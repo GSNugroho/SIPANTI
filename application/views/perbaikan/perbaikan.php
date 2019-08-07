@@ -414,6 +414,7 @@
          { data: 'jns_pr' },
 		 { data: 'sp_gt' },
 		 { data: 'sp_by' },
+		 { data: 'ket_pr'},
 		 { data: 'action'},
 		 { data: 'action2'}
       ]

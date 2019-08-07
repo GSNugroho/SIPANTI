@@ -5,7 +5,6 @@ class report extends CI_Controller{
         parent::__construct();
         $this->load->model('m_report');
         $this->load->library('tcpdf');
-        // $this->load->library('m_pdf');
     }
 
     public function index(){
@@ -23,14 +22,24 @@ class report extends CI_Controller{
         $this->load->view('report/report_pr', $data);
     }
 
-    // function get_report_perawatanm(){
-    //     $tgl_a = $this->input->post('tgl_jd', TRUE);
-    //     $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-    //     $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
-        
-    //     $mpdf = new Mpdf();
-    //     $html=$this->load->view('report_pr1', $data, true);
-    // }
+    function get_report_perawatanm(){
+        $tgl_a = $this->input->post('tgl_jd', TRUE);
+        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
+        $filename = time()."_order.pdf";
+ 
+$html = $this->load->view('report/report_pr1',$data,true);
+ 
+// unpaid_voucher is unpaid_voucher.php file in view directory and $data variable has infor mation that you want to render on view.
+ 
+
+ 
+$this->m_pdf->pdf->WriteHTML($html);
+ 
+//download it D save F.
+ 
+$this->m_pdf->pdf->Output("./uploads/".$filename, "F");
+    }
 
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);

@@ -106,11 +106,6 @@
 			</div>
 			</div>
     </li>
-    <li class="nav-item">
-			<a class="nav-link" href="<?php echo base_url('jadwal/coba')?>">
-			<i class="fas fa-fw fa-wrench"></i>
-			<span>Test Jadwal</span></a>
-		</li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -455,7 +450,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Capaian Perawatan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Capaian Perawatan Tahun</h6>
                   <div class="dropdown no-arrow">
                     <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -475,26 +470,15 @@
                     <canvas id="myPieChart"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
-                  <?php 
-                    foreach($grafik_cpr as $ib){
-                      switch ($ib->status_p){
-                        case 1: 
-                          echo '<span class="mr-2">
-                                <i class="fas fa-circle text-primary"></i> Belum Dikerjakan
-                                </span>';
-                          break;
-                        case 2:
-                          echo '<span class="mr-2">
-                                <i class="fas fa-circle text-success"></i> Sedang Dikerjakan
-                                </span>';
-                          break;
-                        case 3:
-                          echo '<span class="mr-2">
-                                <i class="fas fa-circle text-info"></i> Selesai Dikerjakan
-                                </span>';
-                          break;
-                      }
-                    }?>
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> Selesai Dikerjakan
+                  </span>
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-warning"></i> Telat Dikerjakan
+                  </span>
+                  <span class="mr-2">
+                    <i class="fas fa-circle text-danger"></i> Belum Dikerjakan
+                  </span>
                   </div>
                 </div>
               </div>
@@ -689,25 +673,14 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: [<?php 
-    foreach($grafik_cpr as $ib){
-      switch ($ib->status_p){
-        case 1: 
-          echo '"Belum Dikerjakan",';
-          break;
-        case 2:
-          echo '"Sedang Dikerjakan",';
-          break;
-        case 3:
-          echo '"Selesai Dikerjakan",';
-          break;
-      }
-    }?>],
+    labels: ['Selesai Dikerjakan', 'Telat Dikerjakan', 'Belum Dikerjakan'],
     datasets: [{
-      data: [<?php 
-      foreach($grafik_cpr as $ib){ echo '"' . $ib->total . '",';} ?>],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [
+      <?php foreach($grafik_cpr_ss as $ib){ echo '"' . $ib->total . '",';} ?>
+      <?php foreach($grafik_cpr_tlt as $ib){ echo '"'. $ib->total. '",';}?>
+      <?php foreach($grafik_cpr_bs as $ib){ echo '"'. $ib->total. '",';}?>],
+      backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b'],
+      hoverBackgroundColor: ['#13855c', '#dda20a', '#be2617'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

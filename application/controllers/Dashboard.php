@@ -18,7 +18,9 @@ class dashboard extends CI_Controller {
 			'jadwal_dt' => $this->m_dashboard->get_jadwal_data(),
 			'jadwal_tlt' => $this->m_dashboard->get_jadwal_telat(),
 			'grafik_pr' => $this->m_dashboard->get_total_perawatanth(),
-			'grafik_cpr' => $this->m_dashboard->get_capaian_perawatanth(),
+			'grafik_cpr_ss' => $this->m_dashboard->get_capaian_perawatanth_ss(),
+			'grafik_cpr_tlt' => $this->m_dashboard->get_capaian_perawatanth_tlt(),
+			'grafik_cpr_bs' => $this->m_dashboard->get_capaian_perawatanth_bs(),
 			'grafik_prb' => $this->m_dashboard->get_total_perbaikanth(),
 			'grafik_tlt' => $this->m_dashboard->get_total_telatth()
 		);
