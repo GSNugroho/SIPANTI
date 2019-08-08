@@ -18,4 +18,11 @@ class pdf{
 		return new mPDF($param);
 	}
 }
+
+class mpdf{
+	
+	function __construct(){
+		
+	}
+}
 ?>

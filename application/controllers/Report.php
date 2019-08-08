@@ -23,22 +23,26 @@ class report extends CI_Controller{
     }
 
     function get_report_perawatanm(){
+        $this->load->library('m_pdf');
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
         $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
-        $filename = time()."_order.pdf";
- 
-$html = $this->load->view('report/report_pr1',$data,true);
- 
-// unpaid_voucher is unpaid_voucher.php file in view directory and $data variable has infor mation that you want to render on view.
- 
+        
+		$data = [];
+		//load the view and saved it into $html variable
+		$html=$this->load->view('welcome_message', $data, true);
 
- 
-$this->m_pdf->pdf->WriteHTML($html);
- 
-//download it D save F.
- 
-$this->m_pdf->pdf->Output("./uploads/".$filename, "F");
+        //this the the PDF filename that user will get to download
+		$pdfFilePath = "output_pdf_name.pdf";
+
+        //load mPDF library
+		$this->load->library('m_pdf');
+
+       //generate the PDF from the given html
+		$this->m_pdf->pdf->WriteHTML($html);
+
+        //download it.
+		$this->m_pdf->pdf->Output();	
     }
 
     function get_report_gperawatan(){
