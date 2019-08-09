@@ -39,10 +39,11 @@ class MYPDF extends TCPDF {
 
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+$pdf->SetFont('times', 11);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Author');
-$pdf->SetTitle('Laporan Mutasi Inventaris');
+$pdf->SetTitle('Laporan Keterlambatan Perawatan');
 
 // set default header data
 //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);

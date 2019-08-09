@@ -36,7 +36,7 @@ class MYPDF extends TCPDF {
 }
 
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
+$pdf->SetFont('times', 11);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Author');

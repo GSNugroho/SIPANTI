@@ -26,6 +26,7 @@
 	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
 	<!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-ui.min.js')?>"></script>
         
 
     </head>
@@ -451,7 +452,24 @@
                 });
                 });
             });
-
+            
+            $(document).ready(function () {
+            $(function () {
+            $( "#sp_gt" ).autocomplete({
+                source: function(request, response) {
+                    $.ajax({ 
+                        url: "<?php echo site_url('perbaikan/autocomplete'); ?>",
+                        data: { kode: $("#sp_gt").val()},
+                        dataType: "json",
+                        type: "POST",
+                        success: function(komponen){
+                            response(komponen);
+                        }    
+                    });
+                },
+                    });
+                });
+            });
             
         </script>
     </div>

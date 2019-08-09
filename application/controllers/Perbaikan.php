@@ -16,7 +16,8 @@ class perbaikan extends CI_Controller{
     public function create(){
         $data = array(
             'dd_gr' => $this->m_perbaikan->get_ruang(),
-            'gki' => $this->m_perbaikan->get_kdinv()
+            'gki' => $this->m_perbaikan->get_kdinv(),
+            
         );
         $this->load->view('perbaikan/perbaikan_form', $data);
     }
@@ -70,6 +71,23 @@ class perbaikan extends CI_Controller{
 
             $callback = array('list_inv'=>$lists);
             echo json_encode($callback);
+    }
+
+    function autocomplete(){
+        $vc_nm_komponen = $this->input->post('sp_gt', TRUE);
+
+        $auto = $this->m_perbaikan->get_sparepart($vc_nm_komponen);
+        foreach($auto as $ib) {
+            $data = array (
+                'komponen' => $ib->vc_nm_komponen
+            ) ;
+        }
+        
+        if (! empty($data)) {
+            // Encode ke format JSON.
+            echo json_encode($data);
+        }
+
     }
 
     function kode(){

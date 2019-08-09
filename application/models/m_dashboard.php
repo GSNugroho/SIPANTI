@@ -49,10 +49,7 @@ class m_dashboard extends CI_Model{
          $this->db->select('COUNT(*) as total');
          $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
          $this->db->where('inv_jadwal.dt_sts = 1');
-         $this->db->where('inv_jadwal_perawatan.tgl_trs IS NULL');
-         $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
-         $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
-         $this->db->where('inv_jadwal_perawatan.tgl_trs IS NULL or DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+         $this->db->where('DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
          and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
          and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
          and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())');
@@ -99,8 +96,6 @@ class m_dashboard extends CI_Model{
         return $query->result();
     }
 
-
-
     function get_total_perbaikanth(){
         $this->db->select('MONTH(inv_perbaikan.tgl_inv_pr) as bulan, COUNT(*) as total');
         $this->db->where('YEAR(inv_perbaikan.tgl_inv_pr) = YEAR(GETDATE())');
@@ -112,7 +107,7 @@ class m_dashboard extends CI_Model{
         $this->db->select('MONTH(inv_jadwal.tgl_jd) as bulan, COUNT(*) as total');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->where('inv_jadwal.dt_sts = 1');
-        $this->db->where('inv_jadwal_perawatan.tgl_trs IS NULL or DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+        $this->db->where('DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
         and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
         and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)');
         $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");

@@ -38,6 +38,11 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus');
         return $query->result();
     }
+    function get_sparepart($vc_nm_komponen){
+        $query = $this->db->query("SELECT DISTINCT vc_nm_komponen FROM aset_komponen
+        WHERE vc_nm_komponen like '%".$vc_nm_komponen."%'");
+        return $query->result();
+    }
 
     function get_inv($id_ruang){
         $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');

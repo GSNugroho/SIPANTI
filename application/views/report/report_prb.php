@@ -35,7 +35,7 @@ class MYPDF extends TCPDF {
     }
 }
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
+$pdf->SetFont('times', 11);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Author');
@@ -71,13 +71,13 @@ $html = '<br>
 						
 							<tr>
                             <th align="center" width="5%">No</th>
-                            <th align="center">Tanggal Perbaikan</th>
+                            <th align="center" width="14%">Tanggal Perbaikan</th>
                             <th align="center" width="13%">Kode Inventaris</th>
-                            <th align="center">Nama Barang</th>
-                            <th align="center">Ruang</th>
-                            <th align="center">Jenis Perbaikan</th>
+                            <th align="center" width="14%">Nama Barang</th>
+                            <th align="center" width="12%">Ruang</th>
+                            <th align="center" width="12%">Jenis Perbaikan</th>
                             <th align="center">Sparepart</th>
-                            <th align="center" width="13%">Biaya</th>
+                            <th align="center" >Biaya</th>
                             <th align="center">Keterangan</th>
 							</tr>
 							
@@ -101,7 +101,7 @@ foreach ($report_p as $row)
                             <td>'.$row->ket_pr.'</td></tr>';
                 }
                 $html.='</table>';
- 
+
 $pdf->writeHTML($html, true, false, true, false, '');
 
 // reset pointer to the last page

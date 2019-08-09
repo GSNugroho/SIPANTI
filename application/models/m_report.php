@@ -44,7 +44,7 @@ class m_report extends CI_Model{
         JOIN inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         JOIN inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
         WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 and
-        DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+        DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
         and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
         and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
         and inv_jadwal.tgl_jd BETWEEN '".$tgl_a."' and '".$tgl_s."'");

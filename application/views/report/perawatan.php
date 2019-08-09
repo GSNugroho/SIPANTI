@@ -306,7 +306,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
             </div>
             <div class="card-body">
-                <form action="<?php echo base_url().'report/get_report_perawatan'?>" method="post">
+                <form action="<?php echo base_url().'report/get_report_perawatanm'?>" method="post">
                 <input type="date" name="tgl_jd">Tanggal Awal
                 <input type="date" name="tgl_jd_s">Tanggal Akhir
                 <button type="submit" class="btn btn-primary">Cetak</button>
