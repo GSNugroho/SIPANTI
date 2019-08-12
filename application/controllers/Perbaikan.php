@@ -74,20 +74,17 @@ class perbaikan extends CI_Controller{
     }
 
     function autocomplete(){
-        $vc_nm_komponen = $this->input->post('sp_gt', TRUE);
+            $kode = $this->input->get('term', TRUE); 
 
-        $auto = $this->m_perbaikan->get_sparepart($vc_nm_komponen);
-        foreach($auto as $ib) {
-            $data = array (
-                'komponen' => $ib->vc_nm_komponen
-            ) ;
-        }
-        
-        if (! empty($data)) {
-            // Encode ke format JSON.
-            echo json_encode($data);
-        }
-
+            if (isset($_GET['term'])) {
+                $result = $this->m_perbaikan->get_sparepart($kode);
+                if (count($result) > 0) {
+                foreach ($result as $row)
+                    $arr_result[] = $row->vc_nm_komponen;
+                    echo json_encode($arr_result);
+                }
+            }
+            
     }
 
     function kode(){

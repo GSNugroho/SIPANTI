@@ -14,20 +14,22 @@
             <th align="center">Status Pengerjaan</th>
 			</tr>
             <?php
+            $i=0;
             foreach ($report_p as $row) 
                 {
-                    $i++;
-                    '<tr >
-                     <td align="center">'.$i.'</td>
-                     <td>'.date('d-M-Y', strtotime($row->tgl_jd)).'</td>
-                     <td>'.$row->nm_jd.'</td>
-                     <td>'.$row->kd_inv.'</td>
-                     <td>'.$row->nm_inv.'</td>
-                     <td>'.$row->vc_n_gugus.'</td>';
+                    $i++;?>
+                    <tr >
+                     <td align="center"><?php echo $i?></td>
+                     <td><?php echo date('d-M-Y', strtotime($row->tgl_jd))?></td>
+                     <td><?php echo $row->nm_jd?></td>
+                     <td><?php echo $row->kd_inv?></td>
+                     <td><?php echo $row->nm_inv?></td>
+                     <td><?php echo $row->vc_n_gugus?></td>
+                     <?php
                      $data = $row->status_p;
-                     if($data=='1'){$html.= '<td>Belum Dikerjakan</td></tr>';
-                     }else if($data=='2'){$html.= '<td>Sedang Dikerjakan</td></tr>';
-                     }else{$html.= '<td>Selesai Dikerjakan</td></tr>';}                            
+                     if($data=='1'){ echo '<td>Belum Dikerjakan</td></tr>';
+                     }else if($data=='2'){ echo '<td>Sedang Dikerjakan</td></tr>';
+                     }else{ echo '<td>Selesai Dikerjakan</td></tr>';}                            
                      
                 }
             ?>

@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
 
-	<link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap/css/jquery-ui.css')?>" rel="stylesheet">
 
     <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
     <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>" type="text/javascript"></script>
@@ -453,23 +454,16 @@
                 });
             });
             
-            $(document).ready(function () {
-            $(function () {
-            $( "#sp_gt" ).autocomplete({
-                source: function(request, response) {
-                    $.ajax({ 
-                        url: "<?php echo site_url('perbaikan/autocomplete'); ?>",
-                        data: { kode: $("#sp_gt").val()},
-                        dataType: "json",
-                        type: "POST",
-                        success: function(komponen){
-                            response(komponen);
-                        }    
-                    });
-                },
-                    });
-                });
-            });
+        $(function () {
+        $("#sp_gt").autocomplete({  
+        minLength:0,
+        delay:0,
+        source:'<?php echo site_url('perbaikan/autocomplete/?'); ?>', 
+        select:function(event, ui){
+            $('#sparepart').val(ui.item.sp_gt);
+            }
+        });
+    });
             
         </script>
     </div>

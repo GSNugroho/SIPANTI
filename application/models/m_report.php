@@ -52,29 +52,30 @@ class m_report extends CI_Model{
     }
 
     function get_data_gperawatan($bulan_jd, $tahun_jd){
-        $this->db->select('inv_jadwal_perawatan.status_p, COUNT(*) as total');
+        $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(*) as total');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
         $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
-        $this->db->group_by('inv_jadwal_perawatan.status_p');
+        $this->db->group_by('DAY(inv_jadwal.tgl_jd)');
         return $this->db->get('inv_jadwal')->result();
     }
 
     function get_data_gperbaikan($bulan_jd, $tahun_jd){
-        $this->db->select('tgl_inv_pr, COUNT(*) as total');
-        $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
-        $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
-        $this->db->group_by('tgl_inv_pr');
+        $this->db->select('DAY(tgl_inv_pr) as tanggal, COUNT(*) as total');
+        $this->db->where("MONTH(tgl_inv_pr)= '$bulan_jd'");
+        $this->db->where("YEAR(tgl_inv_pr)= '$tahun_jd'");
+        $this->db->group_by('DAY(tgl_inv_pr)');
         return $this->db->get('inv_perawatan')->result();
     }
 
     function get_data_gtelat($bulan_jd, $tahun_jd){
-        $this->db->select('inv_jadwal.tgl_jd, COUNT(status_p) as total');
+        $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(status_p) as total');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->where("inv_jadwal_perawatan.status_p = '1'");
         $this->db->where("MONTH(inv_jadwal.tgl_jd) = '$bulan_jd'");
         $this->db->where("YEAR(inv_jadwal.tgl_jd) = '$tahun_jd'");
-        $this->db->group_by('inv_jadwal_perawatan.status_p');
+        $this->db->where("DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs");
+        $this->db->group_by('DAY(inv_jadwal.tgl_jd)');
         return $this->db->get('inv_jadwal')->result();
     }
 }

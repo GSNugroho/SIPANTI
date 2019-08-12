@@ -5,6 +5,7 @@ class report extends CI_Controller{
         parent::__construct();
         $this->load->model('m_report');
         $this->load->library('tcpdf');
+        // $this->load->library('pdf');
     }
 
     public function index(){
@@ -23,26 +24,15 @@ class report extends CI_Controller{
     }
 
     function get_report_perawatanm(){
-        $this->load->library('m_pdf');
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
-        
-		$data = [];
-		//load the view and saved it into $html variable
-		$html=$this->load->view('welcome_message', $data, true);
+        $data['report_p']= $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
 
-        //this the the PDF filename that user will get to download
-		$pdfFilePath = "output_pdf_name.pdf";
-
-        //load mPDF library
-		$this->load->library('m_pdf');
-
-       //generate the PDF from the given html
-		$this->m_pdf->pdf->WriteHTML($html);
-
-        //download it.
-		$this->m_pdf->pdf->Output();	
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_pr1',$data,true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    
     }
 
     function get_report_gperawatan(){
@@ -50,6 +40,11 @@ class report extends CI_Controller{
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gpr', $data);
+
+        // $mpdf = new \Mpdf\Mpdf();
+        // $html = $this->load->view('report/report_gpr', $data, true);
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output();
     }
 
     function report_perbaikan(){
@@ -63,11 +58,28 @@ class report extends CI_Controller{
         $this->load->view('report/report_prb', $data);
     }
 
+    function get_report_perbaikanm(){
+        $tgl_a = $this->input->post('tgl_jd', TRUE);
+        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $data['report_p'] = $this->m_report->get_data_perbaikan($tgl_a, $tgl_s);
+        
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_prb1', $data, true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+
+    }
+
     function get_report_gperbaikan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         $data['report_g'] = $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gprb', $data);
+
+        // $mpdf = new \Mpdf\Mpdf();
+        // $html = $this->load->view('report/report_gprb', $data, true);
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output();
     }
 
     function report_telat(){
@@ -81,11 +93,27 @@ class report extends CI_Controller{
         $this->load->view('report/report_tlt', $data);
     }
 
+    function get_report_telatm(){
+        $tgl_a = $this->input->post('tgl_jd', TRUE);
+        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
+        
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_tlt1', $data, true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
     function get_report_gtelat(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         $data['report_g'] = $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gtlt', $data);
+
+        // $mpdf = new \Mpdf\Mpdf();
+        // $html = $this->load->view('report/report_gtlt', $data, true);
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output();
     }
 }
 ?>
