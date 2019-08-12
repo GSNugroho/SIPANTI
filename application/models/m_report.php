@@ -65,7 +65,7 @@ class m_report extends CI_Model{
         $this->db->where("MONTH(tgl_inv_pr)= '$bulan_jd'");
         $this->db->where("YEAR(tgl_inv_pr)= '$tahun_jd'");
         $this->db->group_by('DAY(tgl_inv_pr)');
-        return $this->db->get('inv_perawatan')->result();
+        return $this->db->get('inv_perbaikan')->result();
     }
 
     function get_data_gtelat($bulan_jd, $tahun_jd){
