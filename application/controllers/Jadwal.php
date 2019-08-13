@@ -15,18 +15,35 @@ class jadwal extends CI_Controller{
         foreach($dt_tlt as $row) {
             $kd_jd = $row->kd_jd;
         
-        $jd_wr_tlt = array(
-            'color' => $warna
-        );
+            $jd_wr_tlt = array(
+                'color' => $warna
+            );
         $this->m_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
         }
+    }
+
+        //Merubah Jadwal Yg Harus Dikerjakan Hari ini
+        $row = $this->m_jadwal->data_hr();
+        $warna = '#FFD700';
+        if($row){
+        $dt_hr = $this->m_jadwal->get_data_hr();
+        foreach($dt_hr as $row){
+            $kd_jd = $row->kd_jd;
+
+            $jd_wr_hr = array(
+                'color' => $warna
+            );
+        $this->m_jadwal->updatekonten($kd_jd, $jd_wr_hr);
         }
+        }
+        
         $data = array(
             'dd_gr' => $this->m_jadwal->get_ruang(),
             'inv_jadwal' => $this->m_jadwal->get_data()
         );
         $this->load->view('jadwal/jadwal', $data);
     }
+    
 
     public function coba(){
         $data = array(

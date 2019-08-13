@@ -11,6 +11,20 @@ class dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$target = $this->m_dashboard->get_total_target();
+		$capaian = $this->m_dashboard->get_total_targetc();
+
+		foreach($target as $ib){
+			$t = (float)$ib->total;
+		}
+
+		foreach($capaian as $ib){
+			$c = (float)$ib->total;
+		}
+
+		$tc = ($c/$t) *100;
+		$tvc = number_format((float)$tc, 2, '.','');
+
 		$data = array(
 			'jadwal_t' => $this->m_dashboard->get_jadwal_total(),
 			'jadwal_tb' => $this->m_dashboard->get_jadwal_totalb(),
@@ -22,7 +36,8 @@ class dashboard extends CI_Controller {
 			'grafik_cpr_tlt' => $this->m_dashboard->get_capaian_perawatanth_tlt(),
 			'grafik_cpr_bs' => $this->m_dashboard->get_capaian_perawatanth_bs(),
 			'grafik_prb' => $this->m_dashboard->get_total_perbaikanth(),
-			'grafik_tlt' => $this->m_dashboard->get_total_telatth()
+			'grafik_tlt' => $this->m_dashboard->get_total_telatth(),
+			'progres_tvc' => $tvc
 		);
 		$this->load->view('dashboard', $data);
 	}

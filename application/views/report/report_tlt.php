@@ -81,6 +81,7 @@ $html = '<br>
                             <th align="center">Nama Barang</th>
                             <th align="center" width="20%">Ruang</th>
                             <th align="center">Tanggal Pengerjaan</th>
+                            <th align="center">Selisih Hari</th>
 							</tr>
 							
 ';
@@ -94,7 +95,8 @@ foreach ($report_p as $row)
                             <td>'.$row->nm_jd.'</td>
                             <td>'.$row->nm_inv.'</td>
                             <td>'.$row->vc_n_gugus.'</td>
-                            <td>'.date('d-M-Y', strtotime($row->tgl_trs)).'</td></tr>';
+                            <td>'.date('d-M-Y', strtotime($row->tgl_trs)).'</td>
+                            <td>'.(date('d-M-Y', strtotime($row->tgl_trs)))-(date('d-M-Y', strtotime($row->tgl_jd))).'</td></tr>';
                 
                 }
                 $html.='</table>';

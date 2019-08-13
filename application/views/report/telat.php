@@ -97,7 +97,8 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item active" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+                <a class="collapse-item active" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+                <a class="collapse-item" href="<?php echo base_url('report/report_sparepart')?>">Laporan Sparepart</a>
 			</div>
 			</div>
 		</li>
@@ -315,10 +316,10 @@
     </div>
     <div class="card shadow mb-4">
     <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Laporan Grafik Perbaikan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Grafik Keterlambatan Perawatan</h6>
             </div>
             <div class="card-body">
-                <form action="<?php echo base_url().'report/get_report_gperbaikan'?>" method="post">
+                <form action="<?php echo base_url().'report/get_report_gtelat'?>" method="post">
                 <select name="bulan_jd">Bulan
                     <option value="">--Pilih Bulan--</option>
                     <option value="1">Januari</option>

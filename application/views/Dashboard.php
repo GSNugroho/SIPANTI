@@ -102,7 +102,8 @@
 				<h6 class="collapse-header">Laporan</h6>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
-				<a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/report_sparepart')?>">Laporan Sparepart</a>
 			</div>
 			</div>
     </li>
@@ -601,6 +602,21 @@
 
           </div>
 
+          <!-- Content Column -->
+          <div class="col-lg-5 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Target Perawatan Bulanan</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small font-weight-bold">Target Perawatan vs Capaian Perawatan<span class="float-right"><?php echo $progres_tvc.'%'?></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $progres_tvc?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
         <!-- /.container-fluid -->
 

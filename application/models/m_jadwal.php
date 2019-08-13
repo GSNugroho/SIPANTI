@@ -68,5 +68,21 @@ class m_jadwal extends CI_Model{
         ");
         return $query->row();
     }
+
+    function data_hr(){
+        $query = $this->db->query("SELECT * FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE())");
+        return $query->row();
+    }
+
+    function get_data_hr(){
+        $query = $this->db->query("SELECT * FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE())");
+        return $query->result();
+    }
 }
 ?>

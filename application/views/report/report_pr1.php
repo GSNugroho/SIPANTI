@@ -1,8 +1,17 @@
 <html>
     <head>
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            table, th, td{
+                border: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h4 align="center">Laporan Perawatan Inventaris</h4><br><p></p>
+        <p>Tanggal :<?php echo date('d-m-Y', strtotime($tgl_jd))?> sampai <?php echo date('d-m-Y', strtotime($tgl_jd_s))?></p>
 		<table border="1">				
 		<tr>
             <th align="center" width="5%">No</th>

@@ -114,5 +114,25 @@ class m_dashboard extends CI_Model{
         $this->db->group_by('MONTH(inv_jadwal.tgl_jd)');
         return $this->db->get('inv_jadwal')->result();
     }
+
+    function get_total_target(){
+        $query = $this->db->query('SELECT MONTH(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
+                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+                 WHERE MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())
+                 GROUP BY MONTH(inv_jadwal.tgl_jd)');
+        return $query->result();
+    }
+
+    function get_total_targetc(){
+        $query = $this->db->query('SELECT MONTH(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
+                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+                 WHERE inv_jadwal.dt_sts = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
+                 and DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+                 and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
+                 and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
+                 and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())
+                 GROUP BY MONTH(inv_jadwal.tgl_jd)');
+        return $query->result();
+    }
 }
 ?>

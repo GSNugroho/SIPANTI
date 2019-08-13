@@ -1,14 +1,23 @@
 <html>
     <head>
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            table, th, td{
+                border: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h4 align="center">Laporan Perbaikan Inventaris</h4><br><p></p>
-		<table border="1">				
+        <p>Tanggal :<?php echo date('d-m-Y', strtotime($tgl_jd))?> sampai <?php echo date('d-m-Y', strtotime($tgl_jd_s))?></p>
+        <table border="1">				
 		<tr>
             <th align="center" width="5%">No</th>
             <th align="center">Tanggal Perbaikan</th>
             <th align="center" width="13%">Kode Inventaris</th>
-            <th align="center" width="25%">Nama Barang</th>
+            <th align="center">Nama Barang</th>
             <th align="center">Ruang</th>
             <th align="center">Jenis Perbaikan</th>
             <th align="center">Sparepart</th>
@@ -32,8 +41,8 @@
                     }else if($data=='2'){echo '<td>Ganti Sparepart</td>';
                     }else{echo '<td>Service</td>';}   ?>
                     <td><?php echo $row->sp_gt?></td>
-                    <td><?php $row->sp_by?></td>
-                    <td><?php $row->ket_pr?></td></tr>
+                    <td><?php echo $row->sp_by?></td>
+                    <td><?php echo $row->ket_pr?></td></tr>
                      <?php
                 }
             ?>

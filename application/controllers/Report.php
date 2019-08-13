@@ -28,6 +28,12 @@ class report extends CI_Controller{
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
         $data['report_p']= $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
 
+        $data = array(
+            'report_p' => $this->m_report->get_data_perawatan($tgl_a, $tgl_s),
+            'tgl_jd' => $tgl_a,
+            'tgl_jd_s' => $tgl_s
+        );
+
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('report/report_pr1',$data,true);
         $mpdf->WriteHTML($html);
@@ -61,8 +67,14 @@ class report extends CI_Controller{
     function get_report_perbaikanm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_perbaikan($tgl_a, $tgl_s);
+        // $data['report_p'] = $this->m_report->get_data_perbaikan($tgl_a, $tgl_s);
         
+        $data = array(
+            'report_p' => $this->m_report->get_data_perbaikan($tgl_a, $tgl_s),
+            'tgl_jd' => $tgl_a,
+            'tgl_jd_s' => $tgl_s
+        );
+
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('report/report_prb1', $data, true);
         $mpdf->WriteHTML($html);
@@ -96,10 +108,17 @@ class report extends CI_Controller{
     function get_report_telatm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
+        // $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
         
+        $data = array(
+            'report_p' => $this->m_report->get_data_telat($tgl_a, $tgl_s),
+            'tgl_jd' => $tgl_a,
+            'tgl_jd_s' => $tgl_s
+        );
+
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('report/report_tlt1', $data, true);
+        $mpdf->SetFontSize('12');
         $mpdf->WriteHTML($html);
         $mpdf->Output();
     }
@@ -114,6 +133,27 @@ class report extends CI_Controller{
         // $html = $this->load->view('report/report_gtlt', $data, true);
         // $mpdf->WriteHTML($html);
         // $mpdf->Output();
+    }
+
+    function report_sparepart(){
+        $this->load->view('report/sparepart');
+    }
+
+    function get_report_sparepartm(){
+        $tgl_a = $this->input->post('tgl_jd', TRUE);
+        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+
+        $data = array(
+            'report_p' => $this->m_report->get_data_sparepart($tgl_a, $tgl_s),
+            'tgl_jd' => $tgl_a,
+            'tgl_jd_s' => $tgl_s
+        );
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_sp1', $data, true);
+        $mpdf->SetFontSize('12');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
     }
 }
 ?>
