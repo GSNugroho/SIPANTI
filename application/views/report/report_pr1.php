@@ -37,7 +37,7 @@
                      <?php
                      $data = $row->status_p;
                      if($data=='1'){ echo '<td>Belum Dikerjakan</td></tr>';
-                     }else if($data=='2'){ echo '<td>Sedang Dikerjakan</td></tr>';
+                     }else if($data=='2'){ echo '<td>Sedang Dikerjakan Hari ini</td></tr>';
                      }else{ echo '<td>Selesai Dikerjakan</td></tr>';}                            
                      
                 }

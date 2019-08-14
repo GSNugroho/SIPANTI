@@ -74,6 +74,37 @@ class m_report extends CI_Model{
         return $query->result();
     }
 
+    function get_riwayat_dperawatan($kd_inv){
+        $query = $this->db->query("SELECT inv_jadwal.tgl_jd, inv_jadwal_perawatan.tgl_trs, inv_jadwal_perawatan.ket, inv_jadwal_perawatan.status_p FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        JOIN inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
+        JOIN inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
+        WHERE inv_barang.aktif = '1' AND inv_barang.kd_aset != ' ' AND inv_jadwal.dt_sts = 1
+        AND inv_jadwal.kd_inv = '".$kd_inv."'");
+        return $query->result();
+    }
+
+    function get_riwayat_dperbaikan($kd_inv){
+        $query = $this->db->query("SELECT * FROM inv_perbaikan
+        JOIN inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        WHERE inv_barang.aktif = '1' AND inv_barang.kd_aset != ' '
+        AND inv_perbaikan.kd_inv_pr = '".$kd_inv."'");
+        return $query->result();
+    }
+
+    function get_ruang(){
+        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
+        return $query->result();
+    }
+
+    function get_inv($id_ruang){
+        $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
+        $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
+        $this->db->where("inv_barang.kd_aset != ' '");
+        return $this->db->get('inv_barang')->result();
+    }
+
     
 }
 ?>

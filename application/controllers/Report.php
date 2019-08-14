@@ -44,8 +44,17 @@ class report extends CI_Controller{
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
-        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
-        $this->load->view('report/report_gpr', $data);
+        //$data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        
+        $dataPoints = array();
+        $data = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        foreach($data as $row){
+            // $dataPoints = array("x"=> $row->tanggal, "y"=> $row->total);
+            array_push($dataPoints, array("x"=> $row->tanggal, "y"=> $row->total));
+            // echo $row->tanggal.'tgl'; echo $row->total.'</br>';
+          }
+
+        $this->load->view('report/report_gpr', $dataPoints);
 
         // $mpdf = new \Mpdf\Mpdf();
         // $html = $this->load->view('report/report_gpr', $data, true);
@@ -154,6 +163,66 @@ class report extends CI_Controller{
         $mpdf->SetFontSize('12');
         $mpdf->WriteHTML($html);
         $mpdf->Output();
+    }
+
+    function riwayat_perawatan(){
+        $data = array(
+            'dd_gr' => $this->m_report->get_ruang()
+        );
+        $this->load->view('report/riwayat_perawatan', $data);
+    }
+
+    function get_riwayat_perawatan(){
+        $kd_inv = $this->input->post('kd_inv', TRUE);
+        $tgl = date('Y-m-d h:i:s');
+        $data = array(
+            'report_p' => $this->m_report->get_riwayat_dperawatan($kd_inv),
+            'tgl_hr' => $tgl,
+            'kd_inv' => $kd_inv
+        );
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_riwayat_pr', $data, true);
+        $mpdf->SetFontSize('12');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
+    function riwayat_perbaikan(){
+        $data = array(
+            'dd_gr' => $this->m_report->get_ruang()
+        );
+        $this->load->view('report/riwayat_perbaikan', $data);
+    }
+
+    function get_riwayat_perbaikan(){
+        $kd_inv = $this->input->post('kd_inv', TRUE);
+        $tgl = date('Y-m-d h:i:s');
+        $data = array(
+            'report_p' => $this->m_report->get_riwayat_dperbaikan($kd_inv),
+            'tgl_hr' => $tgl,
+            'kd_inv' => $kd_inv
+        );
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('report/report_riwayat_prb', $data, true);
+        $mpdf->SetFontSize('12');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
+    function list_inv(){
+        $id_ruang = $this->input->post('id_ruang', TRUE);
+
+        $inv = $this->m_report->get_inv($id_ruang);
+        $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
+
+        foreach ($inv as $row){
+            $lists = '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_nm_pengguna.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
+        }
+
+        $callback = array('list_inv'=>$lists); 
+        echo json_encode($callback); 
     }
 }
 ?>

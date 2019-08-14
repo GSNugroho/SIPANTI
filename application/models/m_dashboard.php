@@ -124,7 +124,7 @@ class m_dashboard extends CI_Model{
     }
 
     function get_total_targetc(){
-        $query = $this->db->query('SELECT MONTH(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
+        $query = $this->db->query('SELECT MONTH(inv_jadwal.tgl_jd) as bulan, COUNT(*) as total from inv_jadwal
                  JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
                  WHERE inv_jadwal.dt_sts = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
                  and DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
