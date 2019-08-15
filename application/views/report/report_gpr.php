@@ -1,7 +1,10 @@
 <?php
-  // foreach($report_g as $row){
-  //   $dataPoints = array("x"=> $row->tanggal, "y"=> $row->total);
-  // }
+  $dataPoints = array();
+  $datarata = array();
+  foreach($report_g as $row){
+    array_push($dataPoints, array("x"=> $row->tanggal, "y"=> $row->total));
+    $datarata[] = $row->total;
+  }
 ?>
 
 <html>
@@ -27,75 +30,66 @@
   <script src="<?php echo base_url('assets/vendor/chart.js/Chart.min.js')?>"></script>
   <script src="<?php echo base_url('assets/js/jspdf.min.js')?>"></script>
   <script src="<?php echo base_url('assets/js/html2canvas.js')?>"></script>
+  <script src="<?php echo base_url('assets/js/canvasjs.min.js')?>"></script>
 
   <button id="exportButton" type="button">Download PDF</button>
+  <button id="back" type="button" onclick="history.back(-1)">Back</button>
   <div id="chartsContainer">
   <div class="chart-area">
     <!-- <canvas id="myAreaChart"></canvas> -->
     <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
   </div>
+  <div>
+    <table>
+      <tr>
+        <td>
+        Mean :
+        </td>
+        <td>
+          <?php $t= count($datarata);
+                print_r(array_sum($datarata)/$t);
+          ?>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <p>Median :</p>
+        </td>
+        <td>
+          <?php sort($datarata);
+                $m=$t/2;
+                if(gettype($m)=='double'){
+                    $te=floor($m);
+                    $med=$datarata[$m];
+                }else{
+                    $m=floor($m);
+                    $m1=round($m);
+                    $med=($datarata[$m]+$datarata[$m1])/2;
+                }
+                echo $med;
+          ?>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <p>Modus:</p>
+        </td>
+        <td>
+          <?php $mo=array_count_values($datarata);
+                foreach ($mo as $key => $val) {
+                if($val==max($mo)){
+                  echo "$key banyak data $val<br/>";
+                }
+              }
+          ?>
+        </td>
+      </tr>
+    </table>
+  </div>
   </div>
 
   <script>
-//   var ctx = document.getElementById("myAreaChart");
-//   var myLineChart = new Chart(ctx, {
-//   type: 'line',
-//   data: {
-//     labels: [
-//     <?php 
-//     foreach($report_g as $ib){
-//       echo '"' . $ib->tanggal . '",';
-//     }
-//     ?>
-//     ],
-//     datasets: [{
-//       label: "Perawatan",
-//       lineTension: 0.3,
-//       backgroundColor: "rgba(78, 115, 223, 0.05)",
-//       borderColor: "rgba(78, 115, 223, 1)",
-//       pointRadius: 3,
-//       pointBackgroundColor: "rgba(78, 115, 223, 1)",
-//       pointBorderColor: "rgba(78, 115, 223, 1)",
-//       pointHoverRadius: 3,
-//       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-//       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-//       pointHitRadius: 10,
-//       pointBorderWidth: 2,
-//       data: [<?php 
-//       foreach($report_g as $ib){ echo '"' . $ib->total . '",';} ?>],
-//     }],
-//   },
-//   options: {
-//     maintainAspectRatio: false,
-//     layout: {
-//       padding: {
-//         left: 10,
-//         right: 25,
-//         top: 25,
-//         bottom: 0
-//       }
-//     },
-//     legend: {
-//       display: false
-//     },
-//     tooltips: {
-//       backgroundColor: "rgb(255,255,255)",
-//       bodyFontColor: "#858796",
-//       titleMarginBottom: 10,
-//       titleFontColor: '#6e707e',
-//       titleFontSize: 14,
-//       borderColor: '#dddfeb',
-//       borderWidth: 1,
-//       xPadding: 15,
-//       yPadding: 15,
-//       displayColors: false,
-//       intersect: false,
-//       mode: 'index',
-//       caretPadding: 10,
-//     }
-//   }
-// });
-
+window.onload = function () {
 var chart1 = new CanvasJS.Chart("chartContainer1", {
 	title: {
   	text: "Grafik Perawatan"
@@ -103,9 +97,7 @@ var chart1 = new CanvasJS.Chart("chartContainer1", {
   data: [
     {
       type: "spline",
-      dataPoints: [
-        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-      ]
+      dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
     }					
   ]
 });
@@ -116,11 +108,11 @@ $("#exportButton").click(function(){
   html2canvas(document.querySelector("#chartsContainer"), { height: 1800, width: window.innerWidth * 2, scale: 1 }).then(canvas => {  	
     var dataURL = canvas.toDataURL();    
     var pdf = new jsPDF();
-    pdf.addImage(dataURL, 'JPEG', 20, 20, 170, 120); //addImage(image, format, x-coordinate, y-coordinate, width, height)
+    pdf.addImage(dataURL, 'JPEG', 20, 20, 352, 240); //addImage(image, format, x-coordinate, y-coordinate, width, height)
     pdf.save("Grafik Perawatan.pdf");
   });
 });
-
+}
   </script>
 
 </html>

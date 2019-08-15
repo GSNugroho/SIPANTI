@@ -4,7 +4,7 @@ class report extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('m_report');
-        $this->load->library('tcpdf');
+        // $this->load->library('tcpdf');
         // $this->load->library('pdf');
     }
 
@@ -44,22 +44,8 @@ class report extends CI_Controller{
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
-        //$data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
-        
-        $dataPoints = array();
-        $data = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
-        foreach($data as $row){
-            // $dataPoints = array("x"=> $row->tanggal, "y"=> $row->total);
-            array_push($dataPoints, array("x"=> $row->tanggal, "y"=> $row->total));
-            // echo $row->tanggal.'tgl'; echo $row->total.'</br>';
-          }
-
-        $this->load->view('report/report_gpr', $dataPoints);
-
-        // $mpdf = new \Mpdf\Mpdf();
-        // $html = $this->load->view('report/report_gpr', $data, true);
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output();
+        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        $this->load->view('report/report_gpr', $data);
     }
 
     function report_perbaikan(){
@@ -96,11 +82,6 @@ class report extends CI_Controller{
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         $data['report_g'] = $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gprb', $data);
-
-        // $mpdf = new \Mpdf\Mpdf();
-        // $html = $this->load->view('report/report_gprb', $data, true);
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output();
     }
 
     function report_telat(){
@@ -137,11 +118,6 @@ class report extends CI_Controller{
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         $data['report_g'] = $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd);
         $this->load->view('report/report_gtlt', $data);
-
-        // $mpdf = new \Mpdf\Mpdf();
-        // $html = $this->load->view('report/report_gtlt', $data, true);
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output();
     }
 
     function report_sparepart(){
