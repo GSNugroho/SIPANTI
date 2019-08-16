@@ -1,7 +1,11 @@
 <?php
   $dataPoints = array();
   $datarata = array();
+  $wperawatan = array();
   foreach($report_g as $row){
+    $wperawatan[] = $row->selisih;
+  }
+  foreach($report_l as $row){
     array_push($dataPoints, array("x"=> $row->tanggal, "y"=> $row->total));
     $datarata[] = $row->total;
   }
@@ -14,6 +18,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
   <meta name="author" content="">
+
+  <style>
+      table{
+        border-collapse: collapse;
+      }
+      table, th, td{
+        border: 1px solid black;
+      }
+  </style>
 </head>
   
   
@@ -40,11 +53,32 @@
     <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
   </div>
   <div>
+    Data Perawatan
+    <table border="1">
+      <tr>
+      <th>
+        Tanggal
+      </th>
+      <th>
+        Jumlah Perawatan
+      </th>
+      </tr>
+      <tr>
+        <?php 
+          foreach($report_l as $row){
+            echo '<td>'.$row->tanggal.'</td><td>'.$row->total.'</td></tr>';
+          }
+        ?>
+      </tr>
+
+    </table>
+        </br>
     <table>
       <tr>
         <td>
-        Mean :
+        Mean 
         </td>
+        <td>:</td>
         <td>
           <?php $t= count($datarata);
                 print_r(array_sum($datarata)/$t);
@@ -53,8 +87,9 @@
       </tr>
       <tr>
         <td>
-        <p>Median :</p>
+        Median
         </td>
+        <td>:</td>
         <td>
           <?php sort($datarata);
                 $m=$t/2;
@@ -72,8 +107,9 @@
       </tr>
       <tr>
         <td>
-        <p>Modus:</p>
+        Modus
         </td>
+        <td>:</td>
         <td>
           <?php $mo=array_count_values($datarata);
                 foreach ($mo as $key => $val) {
@@ -81,6 +117,20 @@
                   echo "$key banyak data $val<br/>";
                 }
               }
+          ?>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Rata-Rata Waktu Perawatan
+        </td>
+        <td>:</td>
+        <td>
+          <?php $ts = count($wperawatan);
+                $rdetik = array_sum($wperawatan)/$ts;
+                $menit = floor($rdetik/60);
+                $detik = floor($rdetik-($menit*60));
+                echo $menit.'menit '.$detik.'detik';
           ?>
         </td>
       </tr>
@@ -109,6 +159,9 @@ $("#exportButton").click(function(){
     var dataURL = canvas.toDataURL();    
     var pdf = new jsPDF();
     pdf.addImage(dataURL, 'JPEG', 20, 20, 352, 240); //addImage(image, format, x-coordinate, y-coordinate, width, height)
+    pdf.setFont("helvetica");
+    pdf.setFontType("bold");
+    pdf.setFontSize(20);
     pdf.save("Grafik Perawatan.pdf");
   });
 });

@@ -313,6 +313,16 @@
 		</div>
     <div class="card-body">
     <form action="<?php echo base_url().'perawatan/update_action_perawatan';?>" method="post">
+    <table>
+        <tr>
+            <td>Waktu Mulai</td>
+            <td><input class="time" type="text" value="00:00" name="wtm"></td>
+        </tr>
+        <tr>
+            <td>Waktu Selesai</td>
+            <td><input class="time" type="text" value="00:00" name="wts"></td>
+        </tr>
+    </table>
     <table border="1" align="center">
         <tr>
             <td rowspan="2">No</td>
@@ -1097,6 +1107,12 @@
 	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-clock-timepicker.min.js')?>"></script>
+    <script>
+    $(document).ready(function() {
+	  $('.time').clockTimePicker({});
+	});
+    </script>
     </body>
 </html>

@@ -44,7 +44,11 @@ class report extends CI_Controller{
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
-        $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        // $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        $data = array(
+            'report_g' => $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd),
+            'report_l' => $this->m_report->get_data_glperawatan($bulan_jd, $tahun_jd)
+        );
         $this->load->view('report/report_gpr', $data);
     }
 

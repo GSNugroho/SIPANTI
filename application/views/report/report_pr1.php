@@ -20,7 +20,7 @@
             <th align="center" width="13%">Kode Inventaris</th>
             <th align="center">Nama Barang</th>
             <th align="center">Ruang</th>
-            <th align="center">Status Pengerjaan</th>
+            <th align="center">Lama Pengerjaan</th>
 			</tr>
             <?php
             $i=0;
@@ -35,11 +35,13 @@
                      <td><?php echo $row->nm_inv?></td>
                      <td><?php echo $row->vc_n_gugus?></td>
                      <?php
-                     $data = $row->status_p;
-                     if($data=='1'){ echo '<td>Belum Dikerjakan</td></tr>';
-                     }else if($data=='2'){ echo '<td>Sedang Dikerjakan Hari ini</td></tr>';
-                     }else{ echo '<td>Selesai Dikerjakan</td></tr>';}                            
-                     
+                     $awal = strtotime($row->wtm);
+                     $akhir = strtotime($row->wts);
+                     $diff = $akhir-$awal;
+                    
+                     $jam   = floor($diff / (60 * 60));
+                     $menit = ($diff - $jam * (60 * 60))/60;
+                     echo '<td>'.$jam.'jam'.$menit.'menit</td></tr>';
                 }
             ?>
                 </table>

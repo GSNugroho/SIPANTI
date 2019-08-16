@@ -44,8 +44,19 @@ class m_report extends CI_Model{
     }
 
     function get_data_gperawatan($bulan_jd, $tahun_jd){
+        $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(*) as total, DATEDIFF(SECOND, inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts) as selisih');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('inv_jadwal.dt_sts =1');
+        $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
+        $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
+        $this->db->group_by('DAY(inv_jadwal.tgl_jd), inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts');
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_data_glperawatan($bulan_jd, $tahun_jd){
         $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(*) as total');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('inv_jadwal.dt_sts =1');
         $this->db->where("MONTH(inv_jadwal.tgl_jd)= '$bulan_jd'");
         $this->db->where("YEAR(inv_jadwal.tgl_jd)= '$tahun_jd'");
         $this->db->group_by('DAY(inv_jadwal.tgl_jd)');

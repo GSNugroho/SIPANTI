@@ -124,7 +124,9 @@ class perawatan extends CI_Controller{
                 'kkmolpwr' => set_value('kkmolpwr', $row->hw_lis_cmp),
                 'ket' => set_value('ket', $row->ket),
                 'status' => set_value('status', $row->status_p),
-                'kd_jd' => set_value('kd_jd', $row->kd_jadwal)
+                'kd_jd' => set_value('kd_jd', $row->kd_jadwal),
+                'wtm' => set_value('wtm', $row->wtm),
+                'wts' => set_value('wts', $row->wts)
             );
             $this->load->view('perawatan/perawatan_form_edit', $data);
         } else {
@@ -248,6 +250,8 @@ class perawatan extends CI_Controller{
                 'kkpwrsata' => set_value('kkpwrsata', $row->hw_lis_cpsata),
                 'kkmolpwr' => set_value('kkmolpwr', $row->hw_lis_cmp),
                 'ket' => set_value('ket', $row->ket),
+                'wtm' => set_value('wtm', $row->wtm),
+                'wts' => set_value('wts', $row->wts)
               );
             $this->load->view('perawatan/perawatan_form_edit1',$data);
          }else {
@@ -353,7 +357,9 @@ class perawatan extends CI_Controller{
             'ket' => $this->input->post('ket', TRUE),
             //'status_p' => $this->input->post('status', TRUE),
             'status_p' => $status,
-            'tgl_trs' => date('Y-m-d h:i:s')
+            'tgl_trs' => date('Y-m-d h:i:s'),
+            'wtm' => $this->input->post('wtm', TRUE),
+            'wts' => $this->input->post('wts', TRUE)
         );
         $color = '#00ff88';
         $datawarna = array(
