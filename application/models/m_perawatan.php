@@ -5,6 +5,7 @@ class m_perawatan extends CI_Model{
     public $order = 'DESC';
     public $idjd = 'inv_jadwal_perawatan.kd_jadwal';
     public $tablejd = 'inv_jadwal_perawatan';
+    public $tabelkomp = 'inv_komponen';
 
     function __construct()
     {
@@ -32,7 +33,14 @@ class m_perawatan extends CI_Model{
         $this->db->join('inv_perawatan_h', 'inv_perawatan_d.vc_kd_trans = inv_perawatan_h.vc_kd_trans');
         $this->db->join('inv_perawatan_tindakan', 'inv_perawatan_d.vc_kd_tindakan = inv_perawatan_tindakan.vc_kd_tindakan');
         $this->db->update($this->table, $data);
-
+    }
+    function update_komponen($id, $data){
+        $this->db->where('kd_jd_ko', $id);
+        $this->db->update($this->tabelkomp, $data);
+    }
+    function get_by_id_komp($id){
+        $this->db->where('kd_jd_ko', $id);
+        return $this->db->get($this->tabelkomp)->row();
     }
     function get_by_id($id){
         $this->db->order_by('inv_perawatan_h.dt_mulai','asc');

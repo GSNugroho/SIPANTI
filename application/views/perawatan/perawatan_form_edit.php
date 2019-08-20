@@ -975,8 +975,8 @@
             <td></td>
             <td></td>
             <td><input type="radio" name="klanc" value="1" <?php echo ($klanc =='1')?'checked':'' ?>></td>
-            <td><input type="radio" name="klan" value="2" <?php echo ($klanc =='2')?'checked':'' ?>></td>
-            <td><input type="radio" name="klan" value="3" <?php echo ($klanc =='3')?'checked':'' ?>></td>
+            <td><input type="radio" name="klanc" value="2" <?php echo ($klanc =='2')?'checked':'' ?>></td>
+            <td><input type="radio" name="klanc" value="3" <?php echo ($klanc =='3')?'checked':'' ?>></td>
         </tr>
         <tr>
             <td>2</td>

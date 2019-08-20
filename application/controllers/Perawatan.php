@@ -29,7 +29,25 @@ class perawatan extends CI_Controller{
     }
 
     function komponen(){
-        $this->load->view('perawatan/perawatan_form_pilih');
+
+        $id = $this->input->post('kd_jd', TRUE);
+        $s = $this->m_perawatan->get_by_id_komp($id);
+        if($s->cek==1){
+            $this->update_komponen($id);
+        }else{
+         if($id==NULL){ 
+             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             redirect(base_url('jadwal'));
+        }else{
+        $row = $this->m_perawatan->get_by_id_komp($id);
+        if($row) {
+            $data = array(
+                'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko)
+            );
+        $this->load->view('perawatan/perawatan_form_pilih', $data);
+        }
+        }
+    }
     }
 
     function set_data_komponen(){
@@ -104,11 +122,103 @@ class perawatan extends CI_Controller{
             'm_cpusysfail' => $this->input->post('m_cpusysfail', TRUE),
             'm_cpufansp' => $this->input->post('m_cpufansp', TRUE),
             'm_bios' => $this->input->post('m_bios', TRUE),
+            'cek'=> 1
         );
         $this->m_perawatan->update_komponen($this->input->post('kd_jd_ko', TRUE), $data);
-        $this->session->set_flashdata('message', 'Simpan Data Berhasil');
-        redirect(base_url('perawatan'));
+        $id = $this->input->post('kd_jd_ko', TRUE);
+        $this->update_komponen($id);
+        // redirect(base_url('perawatan/update_komponen', $id));
     }
+
+    function update_komponen($id){
+        // $id = $this->input->post('kd_jd', TRUE);
+        //  if($id==NULL){ 
+        //      $this->session->set_flashdata('message', 'Data Tidak Ada');
+        //      redirect(base_url('jadwal'));
+        // }else{
+        $row = $this->m_perawatan->get_by_id_komp($id);
+
+        if($row){
+            $data = array(
+            'c_casing' => set_value('c_casing', $row->c_casing),
+            'm_cpu' => set_value('m_cpu', $row->m_cpu),
+            'h_ata' => set_value('h_ata', $row->h_ata),
+            'r_ddr1' => set_value('r_ddr1', $row->r_ddr1),
+            'p_cdrw' => set_value('p_cdrw', $row->p_cdrw),
+            'cr_lancard' => set_value('cr_lancard', $row->cr_lancard),
+            'l_powersupply' => set_value('l_powersupply', $row->l_powersupply),
+            'c_sekrup' => set_value('c_sekrup', $row->c_sekrup),
+            'm_fsb' => set_value('m_fsb', $row->m_fsb),
+            'h_satah' => set_value('h_satah', $row->h_satah),
+            'r_ddr2' => set_value('r_ddr2', $row->r_ddr2),
+            'p_dvdrw' => set_value('p_dvdrw', $row->p_dvdrw),
+            'cr_vgacard' => set_value('cr_vgacard', $row->cr_vgacard),
+            'l_kabelpower' => set_value('l_kabelpower', $row->l_kabelpower),
+            'c_ksakelar' => set_value('c_ksakelar', $row->c_ksakelar),
+            'm_chipset' => set_value('m_chipset', $row->m_chipset),
+            'h_satas' => set_value('h_satas', $row->h_satas),
+            'r_ddr3' => set_value('r_ddr3', $row->r_ddr3),
+            'p_atakabel' => set_value('p_atakabel', $row->p_atakabel),
+            'cr_firecard' => set_value('cr_firecard', $row->cr_firecard),
+            'l_kabelpowermon' => set_value('l_kabelpowermon', $row->l_kabelpowermon),
+            'c_kusb' => set_value('c_kusb', $row->c_kusb),
+            'm_memory' => set_value('m_memory', $row->m_memory),
+            'h_nvm' => set_value('h_nvm', $row->h_nvm),
+            'r_ddr4' => set_value('r_ddr4', $row->r_ddr4),
+            'p_satakabel' => set_value('p_satakabel', $row->p_satakabel),
+            'cr_lptcard' => set_value('cr_lptcard', $row->cr_lptcard),
+            'l_kabelpowersata' => set_value('l_kabelpowersata', $row->l_kabelpowersata),
+            'c_ksound' => set_value('c_ksound', $row->c_ksound),
+            'm_onboardg' => set_value('m_onboardg', $row->m_onboardg),
+            'p_keyboard' => set_value('p_keyboard', $row->p_keyboard),
+            'cr_rs232card' => set_value('cr_rs232card', $row->cr_rs232card),
+            'l_kabelmolexpow' => set_value('l_kabelmolexpow', $row->l_kabelmolexpow),
+            'c_klampu' => set_value('c_klampu', $row->c_klampu),
+            'm_audio' => set_value('m_audio', $row->m_audio),
+            'p_mouse' => set_value('p_mouse', $row->p_mouse),
+            'm_lan' => set_value('m_lan', $row->m_lan),
+            'p_speaker' => set_value('p_speaker', $row->p_speaker),
+            'm_pcie16' => set_value('m_pcie16', $row->m_pcie16),
+            'p_monitorcrt' => set_value('p_monitorcrt', $row->p_monitorcrt),
+            'm_pcie1' => set_value('m_pcie1', $row->m_pcie1),
+            'p_monitorlcd' => set_value('p_monitorlcd', $row->p_monitorlcd),
+            'm_agp' => set_value('m_agp', $row->m_agp),
+            'p_vgakabel' => set_value('p_vgakabel', $row->p_vgakabel),
+            'm_ide' => set_value('m_ide', $row->m_ide),
+            'm_sata' => set_value('m_sata', $row->m_sata),
+            'm_usb' => set_value('m_usb', $row->m_usb),
+            'm_12pmain' => set_value('m_12pmain', $row->m_12pmain),
+            'm_4p12v' => set_value('m_4p12v', $row->m_4p12v),
+            'm_idekonek' => set_value('m_idekonek', $row->m_idekonek),
+            'm_cpufan' => set_value('m_cpufan', $row->m_cpufan),
+            'm_sysfan' => set_value('m_sysfan', $row->m_sysfan),
+            'm_fpanelh' => set_value('m_fpanelh', $row->m_fpanelh),
+            'm_fpanelah' => set_value('m_fpanelah', $row->m_fpanelah),
+            'm_cdinkonek' => set_value('m_cdinkonek', $row->m_cdinkonek),
+            'm_spdif' => set_value('m_spdif', $row->m_spdif),
+            'm_usb2' => set_value('m_usb2', $row->m_usb2),
+            'm_chassisin' => set_value('m_chassisin', $row->m_chassisin),
+            'm_powerled' => set_value('m_powerled', $row->m_powerled),
+            'm_ps2key' => set_value('m_ps2key', $row->m_ps2key),
+            'm_ps2mou' => set_value('m_ps2mou', $row->m_ps2mou),
+            'm_paraport' => set_value('m_paraport', $row->m_paraport),
+            'm_seriport' => set_value('m_seriport', $row->m_seriport),
+            'm_displayport' => set_value('m_displayport', $row->m_displayport),
+            'm_busb2' => set_value('m_busb2', $row->m_busb2),
+            'm_sysvoltdetec' => set_value('m_sysvoltdetec', $row->m_sysvoltdetec),
+            'm_cputempdetec' => set_value('m_cputempdetec', $row->m_cputempdetec),
+            'm_cpusysfail' => set_value('m_cpusysfail', $row->m_cpusysfail),
+            'm_cpufansp' => set_value('m_cpufansp', $row->m_cpufansp),
+            'm_bios' => set_value('m_bios', $row->m_bios),
+            'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko),
+            );
+            $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			redirect(base_url('perawatan'));
+        }
+    }
+    // }
 
     function update($id){
         $row = $this->m_perawatan->get_by_id_jd($id);

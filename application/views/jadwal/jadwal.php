@@ -551,7 +551,7 @@
 			  </div>
 			</form>
 							  
-			<form method="post" action="<?php echo base_url().'perawatan/updateperawatan'?>">
+			<form method="post" action="<?php echo base_url().'perawatan/komponen'?>">
 			<div class="modal-footer">
 			<input type="hidden" name="kd_jd" class="form-control" id="kd_jd">
 			<button type="submit" class="btn btn-primary" >Data Perawatan</button>

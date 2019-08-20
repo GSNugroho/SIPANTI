@@ -545,7 +545,7 @@
                 Kabel Ke Lampu Indikator
             </td>
             <td>
-                <input type="checkbox" name="c_ksound" value="1" class="casing">
+                <input type="checkbox" name="c_klampu" value="1" class="casing">
             </td>
             <td>
                 Audio
@@ -944,7 +944,7 @@
     <table align="center">
         <tr>
             <td>
-            <!-- <input type="hidden" name="kd_jd" class="form-control" id="kd_jd" value="<?php echo $kd_jd;?>"> -->
+            <input type="hidden" name="kd_jd_ko" class="form-control" id="kd_jd_ko" value="<?php echo $kd_jd_ko;?>">
             <button type="submit" class="btn btn-primary">Pilih Komponen</button>
             </td>
             <td>
