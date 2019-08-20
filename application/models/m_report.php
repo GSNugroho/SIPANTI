@@ -14,7 +14,18 @@ class m_report extends CI_Model{
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
         $this->db->where("inv_barang.aktif = '1'");
         $this->db->where("inv_barang.kd_aset != ' '");
+        $this->db->where("inv_jadwal.dt_sts = 1");
+        // $this->db->where('DAY(inv_jadwal.tgl_jd) <= DAY(inv_jadwal_perawatan.tgl_trs)');
         $this->db->where("tgl_jd BETWEEN '$tgl_a' AND '$tgl_s'");
+        return $this->db->get('inv_jadwal')->result();
+    }
+
+    function get_data_wperawatan($tgl_a, $tgl_s){
+        $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(*) as total, DATEDIFF(SECOND, inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts) as selisih');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('inv_jadwal.dt_sts = 1');
+        $this->db->where("tgl_jd BETWEEN '$tgl_a' AND '$tgl_s'");
+        $this->db->group_by('DAY(inv_jadwal.tgl_jd), inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts');
         return $this->db->get('inv_jadwal')->result();
     }
     function get_data_perbaikan($tgl_a, $tgl_s){
@@ -36,6 +47,14 @@ class m_report extends CI_Model{
         and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
         and inv_jadwal.tgl_jd BETWEEN '".$tgl_a."' and '".$tgl_s."'");
         return $query->result();
+    }
+    function get_data_wtelat($tgl_a, $tgl_s){
+        $this->db->select('DAY(inv_jadwal.tgl_jd) as tanggal, COUNT(*) as total, DATEDIFF(SECOND, inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts) as selisih');
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->where('inv_jadwal.dt_sts = 1');
+        $this->db->where("tgl_jd BETWEEN '$tgl_a' AND '$tgl_s'");
+        $this->db->group_by('DAY(inv_jadwal.tgl_jd), inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts');
+        return $this->db->get('inv_jadwal')->result();
     }
     function get_data_sparepart($tgl_a, $tgl_s){
         $query = $this->db->query("SELECT DISTINCT vc_nm_komponen, COUNT(vc_nm_komponen) as total FROM aset_komponen

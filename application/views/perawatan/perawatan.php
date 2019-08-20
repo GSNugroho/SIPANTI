@@ -321,9 +321,9 @@
               			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
 					<div class="card-body">
-					<!-- <a href="<?php //echo base_url('perawatan/create')?>" class="btn btn-primary btn-icon-split">
-                    		<span class="text">Tambah Data</span>
-					</a>	   -->
+					<a href="<?php echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
+                    		<span class="text">Komponen</span>
+					</a>	  
 						<div class="table-responsive">
 						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>

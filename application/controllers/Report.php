@@ -26,10 +26,11 @@ class report extends CI_Controller{
     function get_report_perawatanm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p']= $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
+        // $data['report_p']= $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
 
         $data = array(
             'report_p' => $this->m_report->get_data_perawatan($tgl_a, $tgl_s),
+            'report_l' => $this->m_report->get_data_wperawatan($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
@@ -106,6 +107,7 @@ class report extends CI_Controller{
         
         $data = array(
             'report_p' => $this->m_report->get_data_telat($tgl_a, $tgl_s),
+            'report_l' => $this->m_report->get_data_wtelat($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );

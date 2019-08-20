@@ -45,5 +45,20 @@
                 }
             ?>
                 </table>
+            Rata - rata waktu pengerjaan : 
+            <?php
+                $datarata = array();
+                foreach($report_l as $row){
+                    if($row->selisih != NULL){
+                    $wperawatan[] = $row->selisih;
+                    }
+                }
+
+                $ts = count($wperawatan);
+                $rdetik = array_sum($wperawatan)/$ts;
+                $menit = floor($rdetik/60);
+                $detik = floor($rdetik-($menit*60));
+                echo $menit.' menit '.$detik.' detik';
+            ?>
     </body>
 </html>

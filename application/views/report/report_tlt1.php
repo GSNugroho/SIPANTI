@@ -47,5 +47,18 @@
                 }
             ?>
                 </table>
+                <!-- Rata - Rata waktu perawatan :-->
+                <?php 
+                    // $datarata = array();
+                    // foreach($report_l as $row){
+                    //     $wtelat[] = $row->selisih;
+                    // }
+
+                    // $ts = count($wtelat);
+                    // $rdetik = array_sum($wtelat)/$ts;
+                    // $menit = floor($rdetik/60);
+                    // $detik = floor($rdetik-($menit*60));
+                    // echo $menit.'menit '.$detik.'detik';
+                ?>
     </body>
 </html>
