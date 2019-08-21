@@ -17,6 +17,20 @@
 
     <link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/bootstrap/css/timepicker.min.css')?>" rel="stylesheet">
+    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+    <style>
+    table {
+            table-layout: fixed;
+        }
+        textarea{
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    </style>
     </head>
     <body style="overflow:auto" id="page-top">
 
@@ -324,22 +338,23 @@
             <td><input class="time" type="text" value="00:00" name="wts"></td>
         </tr>
     </table>
-    <table border="1">
+    <table border="1" width="55%">
         <tr>
-            <th rowspan="2" align="center">Golongan</th>
-            <th rowspan="2" align="center">Spesifikasi</th>
-            <th colspan="3" align="center">Kondisi</th>
+            <th rowspan="2" align="center" width="10%">Golongan</th>
+            <th rowspan="2" align="center" width="25%">Spesifikasi</th>
+            <th colspan="3" align="center" width="15%">Kondisi</th>
         </tr>
         <tr>
-            <td>&nbsp;B&nbsp;</td>
-            <td>K.B</td>
-            <td>&nbsp;R&nbsp;</td>
+            <td width="5%">&nbsp;B&nbsp;</td>
+            <td width="5%">K.B</td>
+            <td width="5%">&nbsp;R&nbsp;</td>
         </tr>
         <tr>
             <td>Casing</td>
-        
+        </tr>
         <?php
-            if(!empty($c_casing)){echo '
+            if(!empty($c_casing)){echo '<tr>
+                                        <td></td>
                                         <td>Casing</td>
                                         <td><input type="radio" name="kcasing" value="1"></td>
                                         <td><input type="radio" name="kcasing" value="2"></td>
@@ -381,14 +396,22 @@
                                         <td><input type="radio" name="kklamp" value="3"></td>
                                         </tr>';}
         ?>
+        </table>
+        <table border="1" id="dynamic_field1" width="55%">
         <tr>
-            <td>Mainboard</td>
+            <td width="20%">Mainboard</td>
+            <td width="50%"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
         <?php 
-            if(!empty($m_cpu)){echo '
-                                    <td>CPU</td>
-                                    <td><input type="radio" name="kcpu" value="1"></td>
-                                    <td><input type="radio" name="kcpu" value="2"></td>
-                                    <td><input type="radio" name="kcpu" value="3"></td>
+            if(!empty($m_cpu)){echo '<tr>
+                                    <td ></td>
+                                    <td >CPU</td>
+                                    <td ><input type="radio" name="kcpu" value="1"></td>
+                                    <td ><input type="radio" name="kcpu" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kcpu" value="3"></td>
                                     </tr>';}
             if(!empty($m_fsb)){echo '<tr>
                                     <td></td>
@@ -406,17 +429,20 @@
                                     </tr>';}
             if(!empty($m_memory)){echo '<tr>
                                     <td></td>
-                                    <td>Memory</td>
+                                    <td>Memory<button type="button" name="addmem" id="addmem" class="btn btn-success">+</button></td>
                                     <td><input type="radio" name="kmc1" value="1"></td>
                                     <td><input type="radio" name="kmc1" value="2"></td>
                                     <td><input type="radio" name="kmc1" value="3"></td>
                                     </tr>';}
+        ?>
+        </table><table border="1" id="dynamic_field2" width="55%">
+        <?php
             if(!empty($m_onboardg)){echo '<tr>
-                                    <td></td>
-                                    <td>On Board Graphics</td>
-                                    <td><input type="radio" name="konboard" value="1"></td>
-                                    <td><input type="radio" name="konboard" value="2"></td>
-                                    <td><input type="radio" name="konboard" value="3"></td>
+                                    <td width="10%"></td>
+                                    <td width="25%">On Board Graphics</td>
+                                    <td width="5%"><input type="radio" name="konboard" value="1"></td>
+                                    <td width="5%"><input type="radio" name="konboard" value="2"></td>
+                                    <td width="5%"><input type="radio" name="konboard" value="3"></td>
                                     </tr>';}
             if(!empty($m_audio)){echo '<tr>
                                     <td></td>
@@ -439,17 +465,20 @@
                                     </tr>';}
             if(!empty($m_pcie16)){echo '<tr>
                                     <td></td>
-                                    <td>PCI Express 16 Slot</td>
+                                    <td>PCI Express 16 Slot <button type="button" name="addex" id="addex" class="btn btn-success">+</button></td>
                                     <td><input type="radio" name="kepcie1" value="1"></td>
                                     <td><input type="radio" name="kepcie1" value="2"></td>
                                     <td><input type="radio" name="kepcie1" value="3"></td>
                                     </tr>';}
+        ?>
+        </table><table border="1" id="dynamic_field3" width="55%">
+        <?php
             if(!empty($m_pcie1)){echo '<tr>
-                                    <td></td>
-                                    <td>PCI Express 1 Slot</td>
-                                    <td><input type="radio" name="kepci1" value="1"></td>
-                                    <td><input type="radio" name="kepci1" value="2"></td>
-                                    <td><input type="radio" name="kepci1" value="3"></td>
+                                    <td width="10%"></td>
+                                    <td width="25%">PCI Express 1 Slot</td>
+                                    <td width="5%"><input type="radio" name="kepci1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kepci1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kepci1" value="3"></td>
                                     </tr>';}
             if(!empty($m_agp)){echo '<tr>
                                     <td></td>
@@ -467,24 +496,30 @@
                                     </tr>';}
             if(!empty($m_sata)){echo '<tr>
                                     <td></td>
-                                    <td>Sata</td>
+                                    <td>Sata<button type="button" name="addsa" id="addsa" class="btn btn-success">+</button></td>
                                     <td><input type="radio" name="ksatac1" value="1"></td>
                                     <td><input type="radio" name="ksatac1" value="2"></td>
                                     <td><input type="radio" name="ksatac1" value="3"></td>
                                     </tr>';}
+        ?>
+        </table><table border="1" id="dynamic_field4" width="55%">
+        <?php
             if(!empty($m_usb)){echo '<tr>
-                                    <td></td>
-                                    <td>USB</td>
-                                    <td><input type="radio" name="kusb1" value="1"></td>
-                                    <td><input type="radio" name="kusb1" value="2"></td>
-                                    <td><input type="radio" name="kusb1" value="3"></td>
+                                    <td width="10%"></td>
+                                    <td width="25%">USB<button type="button" name="addus" id="addus" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="kusb1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kusb1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kusb1" value="3"></td>
                                     </tr>';}
+        ?>
+        </table><table border="1" id="dynamic_field5" width="55%">
+        <?php
             if(!empty($m_12pmain)){echo '<tr>
-                                    <td></td>
-                                    <td>24 Pin ATX Main Power Connector</td>
-                                    <td><input type="radio" name="kic24" value="1"></td>
-                                    <td><input type="radio" name="kic24" value="2"></td>
-                                    <td><input type="radio" name="kic24" value="3"></td>
+                                    <td width="10%"></td>
+                                    <td width="25%">24 Pin ATX Main Power Connector</td>
+                                    <td width="5%"><input type="radio" name="kic24" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kic24" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kic24" value="3"></td>
                                     </tr>';}
             if(!empty($m_4p12v)){echo '<tr>
                                     <td></td>
@@ -600,17 +635,20 @@
                                     </tr>';}
             if(!empty($m_busb2)){echo '<tr>
                                     <td></td>
-                                    <td>USB 2.0</td>
+                                    <td>USB 2.0 <button type="button" name="addus2" id="addus2" class="btn btn-success">+</button></td>
                                     <td><input type="radio" name="kbpcusb2c1" value="1"></td>
                                     <td><input type="radio" name="kbpcusb2c1" value="2"></td>
                                     <td><input type="radio" name="kbpcusb2c1" value="3"></td>
                                     </tr>';}
+            ?>
+            </table><table border="1" width="55%">
+            <?php
             if(!empty($m_sysvoltdetec)){echo '<tr>
-                                    <td></td>
-                                    <td>System Voltage Dectection</td>
-                                    <td><input type="radio" name="khmsvd" value="1"></td>
-                                    <td><input type="radio" name="khmsvd" value="2"></td>
-                                    <td><input type="radio" name="khmsvd" value="3"></td>
+                                    <td width="10%"></td>
+                                    <td width="25%">System Voltage Dectection</td>
+                                    <td width="5%"><input type="radio" name="khmsvd" value="1"></td>
+                                    <td width="5%"><input type="radio" name="khmsvd" value="2"></td>
+                                    <td width="5%"><input type="radio" name="khmsvd" value="3"></td>
                                     </tr>';}
             if(!empty($m_cputempdetec)){echo '<tr>
                                     <td></td>
@@ -641,83 +679,121 @@
                                     <td><input type="radio" name="kbios" value="3"></td>
                                     </tr>';}
         ?>
+        </table>
+        <table border="1" id="dynamic_field6" width="55%">
         <tr>
-            <td>Hard Disk</td>
+            <td width="10%">Hard Disk</td>
+        </tr>
         <?php
-            if(!empty($h_ata)){echo '
-                                    <td>ATA</td>   
-                                    <td><input type="radio" name="katahdd1" value="1"></td>
-                                    <td><input type="radio" name="katahdd1" value="2"></td>
-                                    <td><input type="radio" name="katahdd1" value="3"></td>
-                                    </tr>';}
-            if(!empty($h_satah)){echo '<tr>
+            if(!empty($h_ata)){echo '<tr>
                                     <td></td>
-                                    <td>SATA HDD</td>
-                                    <td><input type="radio" name="ksatahdd1" value="1"></td>
-                                    <td><input type="radio" name="ksatahdd1" value="2"></td>
-                                    <td><input type="radio" name="ksatahdd1" value="3"></td>
-                                    </tr>';}
-            if(!empty($h_satas)){echo '<tr>
-                                    <td></td>
-                                    <td>SATA SSD</td>
-                                    <td><input type="radio" name="ksatassd1" value="1"></td>
-                                    <td><input type="radio" name="ksatassd1" value="2"></td>
-                                    <td><input type="radio" name="ksatassd1" value="3"></td>
-                                    </tr>';}
-            if(!empty($h_nvm)){echo '<tr>
-                                    <td></td>
-                                    <td>NVM</td>
-                                    <td><input type="radio" name="knvmssd1" value="1"></td>
-                                    <td><input type="radio" name="knvmssd1" value="2"></td>
-                                    <td><input type="radio" name="knvmssd1" value="3"></td>
+                                    <td width="25%">ATA <button type="button" name="addata" id="addata" class="btn btn-success">+</button></td>   
+                                    <td width="5%"><input type="radio" name="katahdd1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="katahdd1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="katahdd1" value="3"></td>
                                     </tr>';}
         ?>
+        </table>
+        <table border="1" id="dynamic_field7" width="55%">
+        <?php
+            if(!empty($h_satah)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">SATA HDD <button type="button" name="addsatah" id="addsatah" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="ksatahdd1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="ksatahdd1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="ksatahdd1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" id="dynamic_field8" width="55%">
+        <?php
+            if(!empty($h_satas)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">SATA SSD <button type="button" name="addsatas" id="addsatas" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="ksatassd1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="ksatassd1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="ksatassd1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" id="dynamic_field9" width="55%">
+        <?php
+            if(!empty($h_nvm)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">NVM <button type="button" name="addnvm" id="addnvm" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="knvmssd1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="knvmssd1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="knvmssd1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" id="dynamic_field10" width="55%">
         <tr>
-            <td>RAM</td>
+            <td width="10%">RAM</td>
         <?php
             if(!empty($r_ddr1)){echo '
-                                    <td>DDR 1</td>
-                                    <td><input type="radio" name="kramd1c1" value="1"></td>
-                                    <td><input type="radio" name="kramd1c1" value="2"></td>
-                                    <td><input type="radio" name="kramd1c1" value="3"></td>
-                                    </tr>';}
-            if(!empty($r_ddr2)){echo '<tr>
-                                    <td></td>
-                                    <td>DDR 2</td>
-                                    <td><input type="radio" name="kramd2c1" value="1"></td>
-                                    <td><input type="radio" name="kramd2c1" value="2"></td>
-                                    <td><input type="radio" name="kramd2c1" value="3"></td>
-                                    </tr>';}
-            if(!empty($r_ddr3)){echo '<tr>
-                                    <td></td>
-                                    <td>DDR 3</td>
-                                    <td><input type="radio" name="kramd3c1" value="1"></td>
-                                    <td><input type="radio" name="kramd3c1" value="2"></td>
-                                    <td><input type="radio" name="kramd3c1" value="3"></td>
-                                    </tr>';}
-            if(!empty($r_ddr4)){echo '<tr>
-                                    <td></td>
-                                    <td>DDR 4</td>
-                                    <td><input type="radio" name="kramd4c1" value="1"></td>
-                                    <td><input type="radio" name="kramd4c1" value="2"></td>
-                                    <td><input type="radio" name="kramd4c1" value="3"></td>
+                                    <td width="25%">DDR 1 <button type="button" name="addram1" id="addram1" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="kramd1c1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kramd1c1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kramd1c1" value="3"></td>
                                     </tr>';}
         ?>
-        <tr>
-            <td>Peripheral</td>
+        </table>
+        <table border="1" id="dynamic_field11" width="55%">
         <?php
-            if(!empty($p_cdrw)){echo '
-                                    <td>CD RW</td>
-                                    <td><input type="radio" name="kcdrw" value="1"></td>
-                                    <td><input type="radio" name="kcdrw" value="2"></td>
-                                    <td><input type="radio" name="kcdrw" value="3"></td>
+            if(!empty($r_ddr2)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">DDR 2 <button type="button" name="addram2" id="addram2" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="kramd2c1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kramd2c1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kramd2c1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" id="dynamic_field12" width="55%">
+        <?php
+            if(!empty($r_ddr3)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">DDR 3 <button type="button" name="addram3" id="addram3" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="kramd3c1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kramd3c1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kramd3c1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" id="dynamic_field13" width="55%">
+        <?php
+            if(!empty($r_ddr4)){echo '<tr>
+                                    <td width="10%"></td>
+                                    <td width="25%">DDR 4 <button type="button" name="addram4" id="addram4" class="btn btn-success">+</button></td>
+                                    <td width="5%"><input type="radio" name="kramd4c1" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kramd4c1" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kramd4c1" value="3"></td>
+                                    </tr>';}
+        ?>
+        </table>
+        <table border="1" width="55%">
+        <tr>
+            <td width="20%">Peripheral</td>
+            <td width="50%"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <?php
+            if(!empty($p_cdrw)){echo '<tr>
+                                    <td></td>
+                                    <td width="25%">CD RW</td>
+                                    <td width="5%"><input type="radio" name="kcdrw" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kcdrw" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kcdrw" value="3"></td>
                                     </tr>';}
             if(!empty($p_dvdrw)){echo '<tr>
                                     <td></td>
-                                    <td>DVD RW</td>
-                                    <td><input type="radio" name="kdvdrw" value="1"></td>
-                                    <td><input type="radio" name="kdvdrw" value="2"></td>
-                                    <td><input type="radio" name="kdvdrw" value="3"></td>
+                                    <td width="25%">DVD RW</td>
+                                    <td width="5%"><input type="radio" name="kdvdrw" value="1"></td>
+                                    <td width="5%"><input type="radio" name="kdvdrw" value="2"></td>
+                                    <td width="5%"><input type="radio" name="kdvdrw" value="3"></td>
                                     </tr>';}
             if(!empty($p_atakabel)){echo '<tr>
                                     <td></td>
@@ -778,8 +854,10 @@
         ?>
         <tr>
             <td>Card</td>
+        </tr>
         <?php 
-            if(!empty($cr_lancard)){echo '
+            if(!empty($cr_lancard)){echo '<tr>
+                                    <td></td>
                                     <td>LAN Card</td>
                                     <td><input type="radio" name="klanc" value="1"></td>
                                     <td><input type="radio" name="klanc" value="2"></td>
@@ -816,8 +894,10 @@
         ?>
         <tr>
             <td>Kelistrikan</td>
+        </tr>
         <?php
-            if(!empty($l_powersupply)){echo '
+            if(!empty($l_powersupply)){echo '<tr>
+                                    <td></td>
                                     <td>Power Supply</td>
                                     <td><input type="radio" name="kpwrs" value="1"></td>
                                     <td><input type="radio" name="kpwrs" value="2"></td>
@@ -857,7 +937,7 @@
             Keterangan
             </td>
             <td colspan="4">
-                <textarea name="ket" style="width: 674.5px; height: 80px;" ><?php //echo $ket;?></textarea>
+                <textarea name="ket" ><?php //echo $ket;?></textarea>
             </td>
         </tr>
     </table>
@@ -887,8 +967,8 @@
 
     <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-    </a>
-    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+    </a>    
+    
 	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -897,10 +977,168 @@
 	<!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-clock-timepicker.min.js')?>"></script>
-    <script>
+    <script type="text/javascript">
     $(document).ready(function() {
 	  $('.time').clockTimePicker({});
 	});
+
+    $(document).ready(function(){      
+    var i=1;  
+    $('#addmem').click(function(){  
+        i++;  
+        $('#dynamic_field1').append('<tr id="rowm'+i+'" class="dynamic-added"><td></td><td>Memory <button type="button" name="remove1" id="'+i+'" class="btn btn-danger btn_remove1">X</button></td><td><input type="radio" name="kmc'+i+'" value="1"></td><td><input type="radio" name="kmc'+i+'" value="2" ></td><td><input type="radio" name="kmc'+i+'" value="3" ></td></tr>');  
+    });
+    $(document).on('click', '.btn_remove1', function(){  
+        var button_id = $(this).attr("id");   
+    $('#rowm'+button_id+'').remove();  
+    });  
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addex').click(function(){
+            i++;
+            $('#dynamic_field2').append('<tr id="rowex'+i+'" class="dynamic-added"><td></td><td>PCI Express 16 Slot <button type="button2" name="remove2" id="'+i+'" class="btn btn-danger btn_remove2">X</button></td><td><input type="radio" name="kepcie'+i+'" value="1"></td><td><input type="radio" name="kepcie'+i+'" value="2"></td><td><input type="radio" name="kepcie'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove2', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowex'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addsa').click(function(){
+            i++;
+            $('#dynamic_field3').append('<tr id="rowsa'+i+'" class="dynamic-added"><td></td><td>Sata <button type="button" name="remove3" id="'+i+'" class="btn btn-danger btn_remove3">X</button></td><td><input type="radio" name="ksatac'+i+'" value="1"></td><td><input type="radio" name="ksatac'+i+'" value="2"></td><td><input type="radio" name="ksatac'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove3', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowsa'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addus').click(function(){
+            i++;
+            $('#dynamic_field4').append('<tr id="rowus'+i+'" class="dynamic-added"><td></td><td>USB <button type="button" name="remove4" id="'+i+'" class="btn btn-danger btn_remove4">X</button></td><td><input type="radio" name="kusb'+i+'" value="1"></td><td><input type="radio" name="kusb'+i+'" value="2"></td><td><input type="radio" name="kusb'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove4', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowus'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addus2').click(function(){
+            i++;
+            $('#dynamic_field5').append('<tr id="rowus2'+i+'" class="dynamic-added"><td></td><td>USB 2.0 <button type="button" name="remove5" id="'+i+'" class="btn btn-danger btn_remove5">X</button></td><td><input type="radio" name="kbpcusb2c'+i+'" value="1"></td><td><input type="radio" name="kbpcusb2c'+i+'" value="2"></td><td><input type="radio" name="kbpcusb2c'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove5', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowus2'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addata').click(function(){
+            i++;
+            $('#dynamic_field6').append('<tr id="rowata'+i+'" class="dynamic-added"><td></td><td>ATA <button type="button" name="remove6" id="'+i+'" class="btn btn-danger btn_remove6">X</button></td><td><input type="radio" name="katahdd'+i+'" value="1"></td><td><input type="radio" name="katahdd'+i+'" value="2"></td><td><input type="radio" name="katahdd'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove6', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowata'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addsatah').click(function(){
+            i++;
+            $('#dynamic_field7').append('<tr id="rowsatah'+i+'" class="dynamic-added"><td></td><td>SATA HDD <button type="button" name="remove7" id="'+i+'" class="btn btn-danger btn_remove7">X</button></td><td><input type="radio" name="ksatahdd'+i+'" value="1"></td><td><input type="radio" name="ksatahdd'+i+'" value="2"></td><td><input type="radio" name="ksatahdd'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove7', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowsatah'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addsatas').click(function(){
+            i++;
+            $('#dynamic_field8').append('<tr id="rowsatas'+i+'" class="dynamic-added"><td></td><td>SATA SSD <button type="button" name="remove8" id="'+i+'" class="btn btn-danger btn_remove8">X</button></td><td><input type="radio" name="ksatassd'+i+'" value="1"></td><td><input type="radio" name="ksatassd'+i+'" value="2"></td><td><input type="radio" name="ksatassd'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove8', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowsatas'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addnvm').click(function(){
+            i++;
+            $('#dynamic_field9').append('<tr id="rownvm'+i+'" class="dynamic-added"><td></td><td>NVM <button type="button" name="remove9" id="'+i+'" class="btn btn-danger btn_remove9">X</button></td><td><input type="radio" name="knvmssd'+i+'" value="1"></td><td><input type="radio" name="knvmssd'+i+'" value="2"></td><td><input type="radio" name="knvmssd'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove9', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rownvm'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addram1').click(function(){
+            i++;
+            $('#dynamic_field10').append('<tr id="rowram1'+i+'" class="dynamic-added"><td></td><td>DDR 1 <button type="button" name="remove10" id="'+i+'" class="btn btn-danger btn_remove10">X</button></td><td><input type="radio" name="kramd1c'+i+'" value="1"></td><td><input type="radio" name="kramd1c'+i+'" value="2"></td><td><input type="radio" name="kramd1c'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove10', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowram1'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addram2').click(function(){
+            i++;
+            $('#dynamic_field11').append('<tr id="rowram2'+i+'" class="dynamic-added"><td></td><td>DDR 2 <button type="button" name="remove11" id="'+i+'" class="btn btn-danger btn_remove11">X</button></td><td><input type="radio" name="kramd2c'+i+'" value="1"></td><td><input type="radio" name="kramd2c'+i+'" value="2"></td><td><input type="radio" name="kramd2c'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove11', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowram2'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addram3').click(function(){
+            i++;
+            $('#dynamic_field12').append('<tr id="rowram3'+i+'" class="dynamic-added"><td></td><td>DDR 3 <button type="button" name="remove12" id="'+i+'" class="btn btn-danger btn_remove12">X</button></td><td><input type="radio" name="kramd3c'+i+'" value="1"></td><td><input type="radio" name="kramd3c'+i+'" value="2"></td><td><input type="radio" name="kramd3c'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove12', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowram3'+button_id+'').remove();  
+    });
+    });
+
+    $(document).ready(function(){
+        var i=1;
+        $('#addram4').click(function(){
+            i++;
+            $('#dynamic_field13').append('<tr id="rowram4'+i+'" class="dynamic-added"><td></td><td>DDR 4 <button type="button" name="remove13" id="'+i+'" class="btn btn-danger btn_remove13">X</button></td><td><input type="radio" name="kramd4c'+i+'" value="1"></td><td><input type="radio" name="kramd4c'+i+'" value="2"></td><td><input type="radio" name="kramd4c'+i+'" value="3"></td></tr>')
+        });
+        $(document).on('click', '.btn_remove13', function(){  
+            var button_id = $(this).attr("id");   
+            $('#rowram4'+button_id+'').remove();  
+    });
+    });
+
+
     </script>
     </body>
 </html>

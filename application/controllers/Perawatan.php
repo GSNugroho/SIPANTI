@@ -557,8 +557,8 @@ class perawatan extends CI_Controller{
         $datawarna = array(
             'color' => $color
         );
-        $this->m_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $datawarna);
-        $this->m_perawatan->update_perawatan($this->input->post('kd_jd', TRUE), $data);
+        $this->m_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
+        $this->m_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
         redirect(base_url('perawatan'));
     }

@@ -482,7 +482,7 @@
                   </div>
                   <div class="mt-4 text-center small">
                   <span class="mr-2">
-                    <i class="fas fa-circle text-success"></i> Selesai Dikerjakan
+                    <i class="fas fa-circle text-success"></i> Tepat Dikerjakan
                   </span>
                   <span class="mr-2">
                     <i class="fas fa-circle text-warning"></i> Telat Dikerjakan
@@ -699,7 +699,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ['Selesai Dikerjakan', 'Telat Dikerjakan', 'Belum Dikerjakan'],
+    labels: ['Tepat Dikerjakan', 'Telat Dikerjakan', 'Belum Dikerjakan'],
     datasets: [{
       data: [
       <?php foreach($grafik_cpr_ss as $ib){ echo '"' . $ib->total . '",';} ?>
