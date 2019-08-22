@@ -28,6 +28,10 @@ class m_report extends CI_Model{
         $this->db->group_by('DAY(inv_jadwal.tgl_jd), inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts');
         return $this->db->get('inv_jadwal')->result();
     }
+
+    function get_data_pperawatan(){
+
+    }
     function get_data_perbaikan($tgl_a, $tgl_s){
         $this->db->order_by('tgl_inv_pr', 'desc');
         $this->db->join('inv_pubgugus', 'inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus');
