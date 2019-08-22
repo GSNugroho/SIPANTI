@@ -482,7 +482,7 @@
                                     </tr>';}
             if(!empty($m_agp)){echo '<tr>
                                     <td></td>
-                                    <td>AGP<td>
+                                    <td>AGP</td>
                                     <td><input type="radio" name="keagp" value="1"></td>
                                     <td><input type="radio" name="keagp" value="2"></td>
                                     <td><input type="radio" name="keagp" value="3"></td>

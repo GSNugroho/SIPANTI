@@ -21,6 +21,7 @@
             <th align="center">Nama Barang</th>
             <th align="center">Ruang</th>
             <th align="center">Lama Pengerjaan</th>
+            <th align="center">Kondisi</th>
 			</tr>
             <?php
             $i=0;
@@ -309,52 +310,281 @@
                                 {$kondisi = $kondisi+5; $total = $total+10;}else
                                     if(!empty($row->mobo_bp_display)&&($row->mobo_bp_display)==3)
                                         {$kondisi = $kondisi+0; $total = $total+10;}
-                     if(!empty($row->mobo_bp_usb2_c1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_bp_usb2_c2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_bp_usb2_c3)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_bp_usb2_c4)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_hm_svd)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_hm_cpu_temp)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_hm_fail)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_hm_fan)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_bios)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_ata_hdd1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_ata_hdd2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_sata_hdd1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_sata_hdd2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_sata_ssd1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_sata_ssd2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_nvm_ssd1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->mobo_nvm_ssd2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr1_c1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr1_c2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr2_c1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr2_c2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr3_c1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr3_c2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr4_c1)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_ram_ddr4_c2)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_cd)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_dvd)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_aic)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_satac)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_key)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_mo)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_sp)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_mn)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_lcd)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_pp_vgac)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_card_lan)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_card_vga)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_card_firewire)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_card_lpt)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_card_rs)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_lis_ps)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_lis_cps)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_lis_cpm)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_lis_cpsata)){$kondisi = $kondisi+1;}
-                     if(!empty($row->hw_lis_cmp)){$kondisi = $kondisi+1;}
-                     echo '<td>'.$kondisi.' '.$total.'</td></tr>';
+                     if(!empty($row->mobo_bp_usb2_c1)&&($row->mobo_bp_usb2_c1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_bp_usb2_c1)&&($row->mobo_bp_usb2_c1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_bp_usb2_c1)&&($row->mobo_bp_usb2_c1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_bp_usb2_c2)&&($row->mobo_bp_usb2_c2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_bp_usb2_c2)&&($row->mobo_bp_usb2_c2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_bp_usb2_c2)&&($row->mobo_bp_usb2_c2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_bp_usb2_c3)&&($row->mobo_bp_usb2_c3)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_bp_usb2_c3)&&($row->mobo_bp_usb2_c3)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_bp_usb2_c3)&&($row->mobo_bp_usb2_c3)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_bp_usb2_c4)&&($row->mobo_bp_usb2_c4)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_bp_usb2_c4)&&($row->mobo_bp_usb2_c4)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_bp_usb2_c4)&&($row->mobo_bp_usb2_c4)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_hm_svd)&&($row->mobo_hm_svd)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_hm_svd)&&($row->mobo_hm_svd)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_hm_svd)&&($row->mobo_hm_svd)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_hm_cpu_temp&&($row->mobo_hm_cpu_temp)==1))
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_hm_cpu_temp)&&($row->mobo_hm_cpu_temp)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_hm_cpu_temp)&&($row->mobo_hm_cpu_temp)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_hm_fail)&&($row->mobo_hm_fail)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_hm_fail)&&($row->mobo_hm_fail)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_hm_fail)&&($row->mobo_hm_fail)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_hm_fan)&&($row->mobo_hm_fan)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_hm_fan)&&($row->mobo_hm_fan)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_hm_fan)&&($row->mobo_hm_fan)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_bios)&&($row->mobo_bios)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_bios)&&($row->mobo_bios)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_bios)&&($row->mobo_bios)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_ata_hdd1)&&($row->mobo_ata_hdd1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_ata_hdd1)&&($row->mobo_ata_hdd1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_ata_hdd1)&&($row->mobo_ata_hdd1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_ata_hdd2)&&($row->mobo_ata_hdd2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_ata_hdd2)&&($row->mobo_ata_hdd2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_ata_hdd2)&&($row->mobo_ata_hdd2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_sata_hdd1)&&($row->mobo_sata_hdd1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_sata_hdd1)&&($row->mobo_sata_hdd1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_sata_hdd1)&&($row->mobo_sata_hdd1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_sata_hdd2)&&($row->mobo_sata_hdd2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_sata_hdd2)&&($row->mobo_sata_hdd2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_sata_hdd2)&&($row->mobo_sata_hdd2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_sata_ssd1)&&($row->mobo_sata_ssd1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_sata_ssd1)&&($row->mobo_sata_ssd1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_sata_ssd1)&&($row->mobo_sata_ssd1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_sata_ssd2)&&($row->mobo_sata_ssd2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_sata_ssd2)&&($row->mobo_sata_ssd2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_sata_ssd2)&&($row->mobo_sata_ssd2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_nvm_ssd1)&&($row->mobo_nvm_ssd1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_nvm_ssd1)&&($row->mobo_nvm_ssd1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_nvm_ssd1)&&($row->mobo_nvm_ssd1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->mobo_nvm_ssd2)&&($row->mobo_nvm_ssd2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->mobo_nvm_ssd2)&&($row->mobo_nvm_ssd2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->mobo_nvm_ssd2)&&($row->mobo_nvm_ssd2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr1_c1)&&($row->hw_ram_ddr1_c1)==1)
+                        {$kondisi = $kondisi+10; $total = $total;}else
+                            if(!empty($row->hw_ram_ddr1_c1)&&($row->hw_ram_ddr1_c1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr1_c1)&&($row->hw_ram_ddr1_c1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr1_c2)&&($row->hw_ram_ddr1_c2))
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr1_c2)&&($row->hw_ram_ddr1_c2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr1_c2)&&($row->hw_ram_ddr1_c2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr2_c1)&&($row->hw_ram_ddr2_c1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr2_c1)&&($row->hw_ram_ddr2_c1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr2_c1)&&($row->hw_ram_ddr2_c1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr2_c2)&&($row->hw_ram_ddr2_c2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr2_c2)&&($row->hw_ram_ddr2_c2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr2_c2)&&($row->hw_ram_ddr2_c2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr3_c1)&&($row->hw_ram_ddr3_c1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr3_c1)&&($row->hw_ram_ddr3_c1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr3_c1)&&($row->hw_ram_ddr3_c1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr3_c2)&&($row->hw_ram_ddr3_c2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr3_c2)&&($row->hw_ram_ddr3_c2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr3_c2)&&($row->hw_ram_ddr3_c2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr4_c1)&&($row->hw_ram_ddr4_c1)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr4_c1)&&($row->hw_ram_ddr4_c1)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr4_c1)&&($row->hw_ram_ddr4_c1)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_ram_ddr4_c2)&&($row->hw_ram_ddr4_c2)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_ram_ddr4_c2)&&($row->hw_ram_ddr4_c2)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_ram_ddr4_c2)&&($row->hw_ram_ddr4_c2)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_cd)&&($row->hw_pp_cd)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_cd)&&($row->hw_pp_cd)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_cd)&&($row->hw_pp_cd)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_dvd)&&($row->hw_pp_dvd)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_dvd)&&($row->hw_pp_dvd)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_dvd)&&($row->hw_pp_dvd)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_aic)&&($row->hw_pp_aic)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_aic)&&($row->hw_pp_aic)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_aic)&&($row->hw_pp_aic)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_satac)&&($row->hw_pp_satac)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_satac)&&($row->hw_pp_satac)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_satac)&&($row->hw_pp_satac)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_key)&&($row->hw_pp_key)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_key)&&($row->hw_pp_key)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_key)&&($row->hw_pp_key)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_mo)&&($row->hw_pp_mo)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_mo)&&($row->hw_pp_mo)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_mo)&&($row->hw_pp_mo)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_sp)&&($row->hw_pp_sp)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_sp)&&($row->hw_pp_sp)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_sp)&&($row->hw_pp_sp)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_mn)&&($row->hw_pp_mn)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_mn)&&($row->hw_pp_mn)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_mn)&&($row->hw_pp_mn)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_lcd)&&($row->hw_pp_lcd)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_lcd)&&($row->hw_pp_lcd)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_lcd)&&($row->hw_pp_lcd)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_pp_vgac)&&($row->hw_pp_vgac)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_pp_vgac)&&($row->hw_pp_vgac)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_pp_vgac)&&($row->hw_pp_vgac)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_card_lan)&&($row->hw_card_lan)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_card_lan)&&($row->hw_card_lan)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_card_lan)&&($row->hw_card_lan)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_card_vga)&&($row->hw_card_vga)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_card_vga)&&($row->hw_card_vga)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_card_vga)&&($row->hw_card_vga)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_card_firewire)&&($row->hw_card_firewire)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_card_firewire)&&($row->hw_card_firewire)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_card_firewire)&&($row->hw_card_firewire)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_card_lpt)&&($row->hw_card_lpt)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_card_lpt)&&($row->hw_card_lpt)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_card_lpt)&&($row->hw_card_lpt)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_card_rs)&&($row->hw_card_rs)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_card_rs)&&($row->hw_card_rs)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_card_rs)&&($row->hw_card_rs)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_lis_ps)&&($row->hw_lis_ps)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else  
+                            if(!empty($row->hw_lis_ps)&&($row->hw_lis_ps)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_lis_ps)&&($row->hw_lis_ps)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_lis_cps)&&($row->hw_lis_cps)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_lis_cps)&&($row->hw_lis_cps)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_lis_cps)&&($row->hw_lis_cps)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_lis_cpm)&&($row->hw_lis_cpm)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_lis_cpm)&&($row->hw_lis_cpm)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_lis_cpm)&&($row->hw_lis_cpm)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_lis_cpsata)&&($row->hw_lis_cpsata)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_lis_cpsata)&&($row->hw_lis_cpsata)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_lis_cpsata)&&($row->hw_lis_cpsata)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                     if(!empty($row->hw_lis_cmp)&&($row->hw_lis_cmp)==1)
+                        {$kondisi = $kondisi+10; $total = $total+10;}else
+                            if(!empty($row->hw_lis_cmp)&&($row->hw_lis_cmp)==2)
+                                {$kondisi = $kondisi+5; $total = $total+10;}else
+                                    if(!empty($row->hw_lis_cmp)&&($row->hw_lis_cmp)==3)
+                                        {$kondisi = $kondisi+0; $total = $total+10;}
+                    if($total!=0){
+                    $persentase = ($kondisi/$total)*100;
+                     echo '<td>'.floor($persentase).'%</td></tr>';}else {
+                        echo '<td>0%</td></tr>';
+                     }
                 }
             ?>
                 </table>
