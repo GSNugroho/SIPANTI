@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Report Riwayat Perbaikan</title>
         <style>
             table{
                 border-collapse: collapse;
@@ -17,7 +18,7 @@
 		<tr>
             <th align="center" width="5%">No</th>
             <th align="center">Tanggal Perbaikan</th>
-            <th align="center" width="25%">Perbaikan</th>
+            <th align="center" width="20%">Perbaikan</th>
             <th align="center" width="15%">Sparepart Ganti</th>
             <th align="center" >Biaya</th>
             <th align="center" width="25%">Keterangan</th>
@@ -36,7 +37,10 @@
                      else if($data=='2'){echo '<td>Penggantian Sparepart</td>';}
                      else{echo '<td>Service</td>';}?>
                      <td><?php echo $row->sp_gt?></td>
-                     <td><?php echo $row->sp_by?></td>
+                     <td><?php $uang = $row->sp_by;
+                        $hasil_rupiah = "Rp " . number_format($uang,2,',','.');
+                        echo $hasil_rupiah;
+                     ?></td>
                      <td><?php echo $row->ket_pr?></td></tr>
                     <?php
                     }

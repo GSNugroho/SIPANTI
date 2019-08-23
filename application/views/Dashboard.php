@@ -823,7 +823,18 @@ var myLineChart = new Chart(ctx, {
       intersect: false,
       mode: 'index',
       caretPadding: 10,
-    }
+    },
+    scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            beginAtZero: true,
+            steps: 10,
+            stepValue: 5,
+            max: 100
+          }
+        }]
+    },
   }
 });
 
@@ -919,7 +930,18 @@ var myLineChart = new Chart(ctx, {
       intersect: false,
       mode: 'index',
       caretPadding: 10,
-    }
+    },
+    scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            beginAtZero: true,
+            steps: 10,
+            stepValue: 5,
+            max: 100
+          }
+        }]
+    },
   }
 });
 
@@ -1015,7 +1037,18 @@ var myLineChart = new Chart(ctx, {
       intersect: false,
       mode: 'index',
       caretPadding: 10,
-    }
+    },
+    scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            beginAtZero: true,
+            steps: 10,
+            stepValue: 5,
+            max: 100
+          }
+        }]
+    },
   }
 });
 

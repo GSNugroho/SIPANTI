@@ -945,6 +945,8 @@
         <tr>
             <td>
             <input type="hidden" name="kd_jd_ko" class="form-control" id="kd_jd_ko" value="<?php echo $kd_jd_ko;?>">
+            <input type="hidden" name="kd_inv" class="form-control" id="kd_inv" value="<?php echo $kd_inv;?>">
+            <input type="hidden" name="kd_ruang" class="form-control" id="kd_ruang" value="<?php echo $kd_ruang;?>">
             <button type="submit" class="btn btn-primary">Simpan Data</button>
             </td>
             <td>

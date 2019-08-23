@@ -4,6 +4,7 @@ class perawatan extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('m_perawatan');
+        $this->load->model('m_perbaikan');
         $this->load->model('m_jadwal');
     }
 
@@ -210,7 +211,9 @@ class perawatan extends CI_Controller{
             'm_cpusysfail' => set_value('m_cpusysfail', $row->m_cpusysfail),
             'm_cpufansp' => set_value('m_cpufansp', $row->m_cpufansp),
             'm_bios' => set_value('m_bios', $row->m_bios),
-            'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko),
+            'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd),
+            'kd_inv' => set_value('kd_inv', $row->kd_inv),
+            'kd_ruang' => set_value('kd_ruang', $row->kd_ruang)
             );
             $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
         } else {
@@ -557,6 +560,1239 @@ class perawatan extends CI_Controller{
         $datawarna = array(
             'color' => $color
         );
+        if($this->input->post('kcasing')==3){
+            $sparepart = 'Casing';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbaut')==3){
+            $sparepart = 'Baut';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kksakelar')==3){
+            $sparepart = 'Kabel Sakelar';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkusb')==3){
+            $sparepart = 'Kabel ke USB';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kksound')==3){
+            $sparepart = 'Kabel ke Sound';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kklamp')==3){
+            $sparepart = 'Kabel ke Lampu Indikator';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kcpu')==3){
+            $sparepart = 'CPU';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kfsb')==3){
+            $sparepart = 'FSB';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kchip')==3){
+            $sparepart = 'Chipset';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kmc1')==3){
+            $sparepart = 'Memory Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kmc2')==3){
+            $sparepart = 'Memory Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('konboard')==3){
+            $sparepart = 'On Board Graphics';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kain')==3){
+            $sparepart = 'Audio In';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kaout')==3){
+            $sparepart = 'Audio Out';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('klan')==3){
+            $sparepart = 'LAN';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kepcie1')==3){
+            $sparepart = 'PCI Express 16 Slot Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kepcie2')==3){
+            $sparepart = 'PCI Express 16 Slot Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kepci1')==3){
+            $sparepart = 'PCI Express 1 Slot';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('keagp')==3){
+            $sparepart = 'AGP';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksiide')==3){
+            $sparepart = 'IDE';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatac1')==3){
+            $sparepart = 'Sata Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatac2')==3){
+            $sparepart = 'Sata Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatac3')==3){
+            $sparepart = 'Sata Channel 3';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatac4')==3){
+            $sparepart = 'Sata Channel 4';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kusb1')==3){
+            $sparepart = 'USB Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kusb2')==3){
+            $sparepart = 'USB Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kic24')==3){
+            $sparepart = '24 pin ATX Main Power Connector';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kic4')==3){
+            $sparepart = '4 pin ATX 12V Power Connector';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicide')==3){
+            $sparepart = 'IDE Connector';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicfan')==3){
+            $sparepart = 'CPU Fan Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicsysfan')==3){
+            $sparepart ='System Fan Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicfpanhead')==3){
+            $sparepart = 'Front Panel Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kiccdcon')==3){
+            $sparepart = 'CD In Connector';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicspdif')==3){
+            $sparepart = 'S/PDIF Out Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicusb2c1')==3){
+            $sparepart = 'USB 2.0 Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicusb2c2')==3){
+            $sparepart = 'USB 2.0 Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kiccih')==3){
+            $sparepart = 'Chassis Intrusion Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kicled')==3){
+            $sparepart = 'Power LED Header';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcps2k')==3){
+            $sparepart = 'PS/ 2 Keyboard Port';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcps2m')==3){
+            $sparepart = 'PS/ 2 Mouse Port';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcplp')==3){
+            $sparepart = 'Parrallel Port';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcsp')==3){
+            $sparepart = 'Serial Port';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcdp')==3){
+            $sparepart = 'Display Port';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcusb2c1')==3){
+            $sparepart = 'USB 2.0 Channel 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcusb2c2')==3){
+            $sparepart = 'USB 2.0 Channel 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcusb2c3')==3){
+            $sparepart = 'USB 2.0 Channel 3';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbpcusb2c4')==3){
+            $sparepart = 'USB 2.0 Channel 4';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('khmsvd')==3){
+            $sparepart = 'System Voltage Detection';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('khmctd')==3){
+            $sparepart = 'CPU Temperature Detection';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('khmffw')==3){
+            $sparepart = 'CPU/ System Fail Warning';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('khmfsc')==3){
+            $sparepart = 'CPU Fan Speed Control';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kbios')==3){
+            $sparepart = 'BIOS';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('katahdd1')==3){
+            $sparepart = 'ATA HDD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('katahdd2')==3){
+            $sparepart = 'ATA HDD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatahdd1')==3){
+            $sparepart = 'SATA HDD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatahdd2')==3){
+            $sparepart = 'SATA HDD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatassd1')==3){
+            $sparepart ='SATA SSD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatassd2')==3){
+            $sparepart = 'SATA SSD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('knvmssd1')==3){
+            $sparepart = 'NVM SSD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('knvmssd2')==3){
+            $sparepart = 'NVM SSD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd1c1')==3){
+            $sparepart = 'RAM DDR 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd1c2')==3){
+            $sparepart = 'RAM DDR 1';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd2c1')==3){
+            $sparepart = 'RAM DDR 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd2c2')==3){
+            $sparepart = 'RAM DDR 2';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd3c1')==3){
+            $sparepart = 'RAM DDR 3';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd3c2')==3){
+            $sparepart = 'RAM DDR 3';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd4c1')==3){
+            $sparepart = 'RAM DDR 4';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kramd4c2')==3){
+            $sparepart = 'RAM DDR 4';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kcdrw')==3){
+            $sparepart = 'CD RW';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kdvdrw')==3){
+            $sparepart = 'DVD RW';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kaic')==3){
+            $sparepart = 'ATA/ IDE Cable';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('ksatac')==3){
+            $sparepart = 'SATA Cable';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkey')==3){
+            $sparepart = 'Keyboard';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kmou')==3){
+            $sparepart = 'Mouse';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kspea')==3){
+            $sparepart = 'Speaker';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kmoncrt')==3){
+            $sparepart = 'Monitor CRT';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kmonlcd')==3){
+            $sparepart = 'Monitor LCD';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kvgac')==3){
+            $sparepart = 'VGA Cable';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('klanc')==3){
+            $sparepart = 'LAN Card';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kvgacrd')==3){
+            $sparepart = 'VGA Card';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kfirec')==3){
+            $sparepart = 'Firewire Card';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('klptc')==3){
+            $sparepart = 'LPT Card';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('krsc')==3){
+            $sparepart = 'RS 232 Card';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kpwrs')==3){
+            $sparepart = 'Power Supply';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkpwr')==3){
+            $sparepart = 'Kabel Power';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkpwrmon')==3){
+            $sparepart = 'Kabel Power Monitor';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkpwrsata')==3){
+            $sparepart = 'Kabel Power SATA';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        if($this->input->post('kkmolpwr')==3){
+            $sparepart = 'Kabel Molex Power';
+            $dataperbaikan = array(
+                'kd_inv_pr' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+                'tgl_inv_pr' => date('Y-m-d h:i:s'),
+                //'jns_kr' => $this->input->post('jns_kr', TRUE),
+                //'jns_pr' => $this->input->post('jns_pr', TRUE),
+                'sp_gt' => $sparepart,
+                //'sp_by' => $this->input->post('sp_by', TRUE),
+                'kd_pr' => $this->kode()
+            );
+            $this->m_perbaikan->insert($dataperbaikan);
+        }
+        
         $this->m_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
         $this->m_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
@@ -636,6 +1872,19 @@ class perawatan extends CI_Controller{
 		);
 
 		echo json_encode($response);
+    }
+
+    function kode(){
+        $kode = $this->m_perbaikan->get_kode();
+        foreach($kode as $row){
+            $data = $row->maxkode;
+        }
+        $kodepr = $data;
+        $noUrut = (int) substr($kodepr, 3, 5);
+        $noUrut++;
+        $char = "PRW";
+        $kodebaru = $char.sprintf("%05s", $noUrut);
+        return $kodebaru;
     }
 }
 ?>

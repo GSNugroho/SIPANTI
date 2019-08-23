@@ -39,8 +39,9 @@ class m_perawatan extends CI_Model{
         $this->db->update($this->tabelkomp, $data);
     }
     function get_by_id_komp($id){
-        $this->db->where('kd_jd_ko', $id);
-        return $this->db->get($this->tabelkomp)->row();
+        $this->db->join('inv_komponen', 'inv_jadwal.kd_jd = inv_komponen.kd_jd_ko');
+        $this->db->where('kd_jd', $id);
+        return $this->db->get('inv_jadwal')->row();
     }
     function get_by_id($id){
         $this->db->order_by('inv_perawatan_h.dt_mulai','asc');

@@ -57,6 +57,11 @@ class m_perbaikan extends CI_Model{
         return $query->result();
     }
 
+    function update($id, $data){
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
+
     function delete($id){
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);

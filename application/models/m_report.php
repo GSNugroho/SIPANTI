@@ -109,7 +109,7 @@ class m_report extends CI_Model{
     }
 
     function get_riwayat_dperawatan($kd_inv){
-        $query = $this->db->query("SELECT inv_jadwal.tgl_jd, inv_jadwal_perawatan.tgl_trs, inv_jadwal_perawatan.ket, inv_jadwal_perawatan.status_p FROM inv_jadwal 
+        $query = $this->db->query("SELECT * FROM inv_jadwal 
         JOIN inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         JOIN inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus

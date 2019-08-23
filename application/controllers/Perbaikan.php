@@ -59,6 +59,22 @@ class perbaikan extends CI_Controller{
         }
     }
 
+    function update_action(){
+        $data = array(
+            'kd_inv_pr' => $this->input->post('kd_inv_pr', TRUE),
+            'kd_ruang' => $this->input->post('id_ruang', TRUE),
+            'tgl_inv_pr' => $this->input->post('tgl_inv_pr', TRUE),
+            'jns_kr' => $this->input->post('jns_kr', TRUE),
+            'jns_pr' => $this->input->post('jns_pr', TRUE),
+            'sp_gt' => $this->input->post('sp_gt', TRUE),
+            'sp_by' => $this->input->post('sp_by', TRUE),
+            'ket_pr' => $this->input->post('ket_pr', TRUE)
+        );
+        $this->m_perbaikan->update($this->input->post('kd_pr', TRUE), $data);
+		$this->session->set_flashdata('message','Ubah Data Berhasil');
+		redirect(base_url('perbaikan'));
+    }
+
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
