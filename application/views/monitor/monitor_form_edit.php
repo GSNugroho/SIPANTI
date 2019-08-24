@@ -59,7 +59,7 @@
         <td>	        
 		<div class="form-group">
             <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php echo date('m-d-Y', strtotime($tgl_terima));; ?>">
+            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php echo date('m-d-Y', strtotime($tgl_terima)); ?>">
 		</div>
         </td>
         <td></td>

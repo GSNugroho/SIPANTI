@@ -88,13 +88,14 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Perawatan Inventaris:</h6>
             <a class="collapse-item" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
-            <a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Riwayat Perawatan</a>
+            <a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Perawatan</a>
+            <a class="collapse-item" href="<?php echo base_url('report/riwayat_perawatan')?>">Riwayat Perawatan</a>
         </div>
         </div>
     </li>
 
     <!-- Perbaikan -->
-    <li class="nav-item">
+        <li class="nav-item">
 			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true" aria-controls="collapsePage">
 			<i class="fas fa-wrench"></i>
 			<span>Perbaikan</span>
@@ -353,7 +354,7 @@
         </div>
         <div class="form-group">
             <label for="kd_inv_pr">Kode Inventaris <?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="text" name="kd_inv_pr" id="vc_no_inv" placeholder="Kode Inventaris" onclick="div_show()">
+			<input class="form-control" type="text" name="kd_inv_pr" id="vc_no_inv" placeholder="Kode Inventaris" value="<?php echo $kd_inv_pr;?>" readonly>
         </div>
         </td>
         </tr>
@@ -361,12 +362,16 @@
         <td>
         <div class="form-group">
             <label for="id_inv_ruang">Ruang </label>
-            <select name="id_ruang" class="form-control" id="id_ruang">
+            <select name="id_ruang" class="form-control" id="id_ruang" >
                 <option value="">--Pilih Ruang--</option>
                 <?php
                     foreach($dd_gr as $row){
-                        echo "<option value='".$row->vc_k_gugus."'>".$row->vc_n_gugus."</option>";
+                        if($id_ruang == $row->vc_k_gugus){
+                        echo '<option value="'.$row->vc_k_gugus.'" selected="selected">'.$row->vc_n_gugus.'</option>';
+                        }else{
+                            echo '<option value="'.$row->vc_k_gugus.'">'.$row->vc_n_gugus.'</option>';
                         }
+                    }
                         echo "</select>"
                 ?>
         </div>
@@ -376,7 +381,7 @@
         <td>
         <div class="form-group">
             <label for="tgl_inv_pr">Tanggal Perbaikan Inventaris</label>
-            <input class="form-control" type="date" name="tgl_inv_pr" id="tgl_inv_pr" placeholder="Tanggal Perbaikan">
+            <input class="form-control" type="date" name="tgl_inv_pr" id="tgl_inv_pr" placeholder="Tanggal Perbaikan" value="<?php echo date('m-d-Y', strtotime($tgl_inv_pr));?>">
         </div>
         </td>
         </tr>
@@ -385,9 +390,21 @@
         <div class="form-group">
             <label for="jns_kr">Jenis Kerusakan</label>
             <select name="jns_kr" class="form-control" id="jns_kr">
-                <option value="">--Pilih Kerusakan--</option>
-                <option value="1">Ringan</option>
-                <option value="2">Parah</option>
+                <?php 
+                    if($jns_kr == 1){
+                        echo '<option value="">--Pilih Kerusakan--</option>';
+                        echo '<option value="1" selected="selected">Ringan</option>';
+                        echo '<option value="2">Parah</option>';
+                    }else if($jns_kr == 2){
+                        echo '<option value="">--Pilih Kerusakan--</option>';
+                        echo '<option value="1">Ringan</option>';
+                        echo '<option value="2" selected="selected">Parah</option>';
+                    }else{
+                        echo '<option value="" selected="selected">--Pilih Kerusakan--</option>';
+                        echo '<option value="1">Ringan</option>';
+                        echo '<option value="2">Parah</option>';
+                    }
+                ?>
         </div>
         </td>
         </tr>
@@ -396,17 +413,36 @@
         <div class="form-group">
             <label for="jns_pr">Jenis Perbaikan</label>
             <select name="jns_pr" class="form-control" id="jns_pr">
-                <option value="">--Pilih Perbaikan--</option>
-                <option value="1">Pengecekan</option>
-                <option value="2">Ganti Sparepart</option>
-                <option value="3">Service</option>
+                <?php
+                    if($jns_pr == 1){
+                        echo '<option value="">--Pilih Perbaikan--</option>';
+                        echo '<option value="1" selected="selected">Pengecekan</option>';
+                        echo '<option value="2">Ganti Sparepart</option>';
+                        echo '<option value="3">Service</option>';
+                    }else if($jns_pr == 2){
+                        echo '<option value="">--Pilih Perbaikan--</option>';
+                        echo '<option value="1">Pengecekan</option>';
+                        echo '<option value="2" selected="selected">Ganti Sparepart</option>';
+                        echo '<option value="3">Service</option>';
+                    }else if($jns_pr == 3){
+                        echo '<option value="">--Pilih Perbaikan--</option>';
+                        echo '<option value="1">Pengecekan</option>';
+                        echo '<option value="2">Ganti Sparepart</option>';
+                        echo '<option value="3" selected="selected">Service</option>';
+                    }else{
+                        echo '<option value="" selected="selected">--Pilih Perbaikan--</option>';
+                        echo '<option value="1">Pengecekan</option>';
+                        echo '<option value="2">Ganti Sparepart</option>';
+                        echo '<option value="3">Service</option>';
+                    }
+                ?>
         </td>
         </tr>
         <tr>
         <td>
         <div class="form-group">
             <label for="sp_gt">Sparepart</label>
-            <input class="form-control" type="text" name="sp_gt" id="sp_gt" placeholder="Sparepart">
+            <input class="form-control" type="text" name="sp_gt" id="sp_gt" placeholder="Sparepart" value="<?php echo $sp_gt;?>">
         </div>
         </td>
         </tr>
@@ -414,14 +450,14 @@
         <td>
         <div class="form-group">
             <label for="sp_by">Biaya</label>
-            <input class="form-control" type="number" name="sp_by" id="sp_by" pattern="[0-9]*"placeholder="Biaya">
+            <input class="form-control" type="number" name="sp_by" id="sp_by" pattern="[0-9]*"placeholder="Biaya" value="<?php echo $sp_by;?>">
         </td>
         </tr>
         <tr>
         <td>
         <div class="form-group">
             <label for="ket">Keterangan</label>
-            <input class="form-control" type="text" name="ket" id="ket" placeholder="Keterangan">
+            <input class="form-control" type="text" name="ket" id="ket" placeholder="Keterangan" value="<?php echo $ket;?>">
         </div>
         </td>
         </tr>

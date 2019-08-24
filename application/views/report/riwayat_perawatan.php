@@ -104,7 +104,7 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Perbaikan Inventaris:</h6>
 				<a class="collapse-item" href="<?php echo base_url('perbaikan')?>">Daftar Perbaikan</a>
-        <a class="collapse-item" href="<?php echo base_url('report/riwayat_perbaikan')?>">Riwayat Perbaikan</a>
+                <a class="collapse-item" href="<?php echo base_url('report/riwayat_perbaikan')?>">Riwayat Perbaikan</a>
 			</div>
 			</div>
 		</li>

@@ -74,17 +74,26 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Perawatan Inventaris:</h6>
             <a class="collapse-item" href="<?php echo base_url('jadwal')?>">Jadwal Perawatan</a>
-            <a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Riwayat Perawatan</a>
+            <a class="collapse-item" href="<?php echo base_url('perawatan')?>">Daftar Perawatan</a>
+            <a class="collapse-item" href="<?php echo base_url('report/riwayat_perawatan')?>">Riwayat Perawatan</a>
         </div>
         </div>
     </li>
 
     <!-- Perbaikan -->
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('perbaikan')?>">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Perbaikan</span></a>
-    </li>
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true" aria-controls="collapsePage">
+			<i class="fas fa-wrench"></i>
+			<span>Perbaikan</span>
+			</a>
+			<div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Perbaikan Inventaris:</h6>
+				<a class="collapse-item" href="<?php echo base_url('perbaikan')?>">Daftar Perbaikan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/riwayat_perbaikan')?>">Riwayat Perbaikan</a>
+			</div>
+			</div>
+		</li>
 
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
@@ -101,6 +110,7 @@
         <a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
         <a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
         <a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
+        <a class="collapse-item" href="<?php echo base_url('report/report_sparepart')?>">Laporan Sparepart</a>
     </div>
     </div>
     </li>

@@ -44,6 +44,7 @@ class perbaikan extends CI_Controller{
 
         if($row){
             $data = array(
+                'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
                 'id_ruang' => set_value('id_ruang', $row->kd_ruang),
                 'tgl_inv_pr' => set_value('tgl_inv_pr', $row->tgl_inv_pr),
                 'jns_kr' => set_value('jns_kr', $row->jns_kr),
@@ -51,6 +52,7 @@ class perbaikan extends CI_Controller{
                 'sp_gt' => set_value('sp_gt', $row->sp_gt),
                 'sp_by' => set_value('sp_by', $row->sp_by),
                 'ket' => set_value('ket', $row->ket_pr),
+                'dd_gr' => $this->m_perbaikan->get_ruang()
             );
             $this->load->view('perbaikan/perbaikan_form_edit', $data);
         } else {
@@ -176,13 +178,18 @@ class perbaikan extends CI_Controller{
 		foreach($empRecords as $row){
             $jkr = $row->jns_kr;
             if($jkr=='1'){$jns_kr = "Ringan";
-            }else{$jns_kr = "Parah";}
+            }else if($jkr=='2'){$jns_kr = "Parah";}
+            else{$jns_kr = " ";}
             
             $jpr = $row->jns_pr;
             if($jpr=='1'){$jns_pr = "Pengecekan";
             }else if($jpr=='2'){$jns_pr = "Ganti Sparepart";}
-            else{$jns_pr = "Service";}
+            else if($jpr=='3'){$jns_pr = "Service";}
+            else{$jns_pr = " ";}
         
+            $uang = $row->sp_by;
+            $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
+
             $data[] = array( 
 			"tgl_inv_pr"=>date('d-M-Y', strtotime($row->tgl_inv_pr)),
 			"kd_inv"=>$row->kd_inv,
@@ -191,10 +198,10 @@ class perbaikan extends CI_Controller{
             "jns_kr"=> $jns_kr,
             "jns_pr"=> $jns_pr,
             "sp_gt"=> $row->sp_gt,
-            "sp_by"=> $row->sp_by,
+            "sp_by"=> $hasil_rupiah,
             "ket_pr"=> $row->ket_pr,
-			"action"=>anchor('perawatan/update/'.$row->kd_pr,'Edit'),
-			"action2"=>anchor('perawatan/delete/'.$row->kd_pr,'Hapus')
+			"action"=>anchor('perbaikan/update/'.$row->kd_pr,'Edit'),
+			"action2"=>anchor('perbaikan/delete/'.$row->kd_pr,'Hapus')
 		);
 		}
 
