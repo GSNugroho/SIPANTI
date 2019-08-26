@@ -54,8 +54,11 @@ class m_jadwal extends CI_Model{
     function get_data_telat(){
         $query = $this->db->query("SELECT * FROM inv_jadwal 
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
-        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()-1)
-        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()-1) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+        WHERE inv_jadwal_perawatan.status_p = '1' 
+		and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()) 
+		and (DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+		or DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-2))
         ");
         return $query->result();
     }
@@ -63,8 +66,11 @@ class m_jadwal extends CI_Model{
     function data_tlt(){
         $query = $this->db->query("SELECT * FROM inv_jadwal 
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
-        WHERE inv_jadwal_perawatan.status_p = '1' and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()-1)
-        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()-1) and DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+        WHERE inv_jadwal_perawatan.status_p = '1' 
+		and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())
+        and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE()) 
+		and (DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-1)
+		or DAY(inv_jadwal.tgl_jd) = DAY(GETDATE()-2))
         ");
         return $query->row();
     }

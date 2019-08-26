@@ -182,15 +182,6 @@ class monitor extends CI_Controller {
 		}
 	}
 	
-	/*public function _rules() 
-    {
-	$this->form_validation->set_rules('nm_inv', 'nm inv', 'trim|required');
-	$this->form_validation->set_rules('jml_brg', 'jml brg', 'trim|required');
-	$this->form_validation->set_rules('ket_brg', 'ket brg', 'trim|required');
-
-	$this->form_validation->set_rules('id', 'id', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-	}*/
 	
 	function kode(){
         $kode = $this->m_monitor->get_kode();
@@ -219,7 +210,9 @@ class monitor extends CI_Controller {
 		## Search 
 		$searchQuery = " ";
 		if($searchValue != ''){
-		$searchQuery = " and (nm_inv like '%".$searchValue."%' or 
+		$searchQuery = " and (
+		kd_inv like '%".$searchValue."%' or 
+		nm_inv like '%".$searchValue."%' or 
 		tgl_terima like '%".$searchValue."%' or 
 		vc_nm_merk like '%".$searchValue."%' or 
 		vc_nm_jenis like'%".$searchValue."%' or
@@ -249,6 +242,21 @@ class monitor extends CI_Controller {
 		$data = array();
 
 		foreach($empRecords as $row){
+
+		$button = '<a href="perawatan/cek/'.$row->kd_inv.'" class="btn btn-success btn-circle">
+		<i class="fas fa-check"></i>
+		</a>
+		<a href="perawatan/update/'.$row->kd_inv.'" class="btn btn-info btn-circle">
+		<i class="fas fa-info-circle"></i>
+		</a>
+		<a href="perawatan/update/'.$row->kd_inv.'" class="btn btn-warning btn-circle">
+        <i class="fas fa-edit"></i>
+        </a>
+		<a href="perawatan/delete/'.$row->kd_inv.'" class="btn btn-danger btn-circle">
+		<i class="fas fa-trash"></i>
+		</a>
+		';
+
 		$data[] = array( 
 			"kd_inv"=>$row->kd_inv,
 			"tgl_terima"=>date('d-M-Y', strtotime($row->tgl_terima)),
@@ -257,8 +265,7 @@ class monitor extends CI_Controller {
 			"vc_nm_jenis"=>$row->vc_nm_jenis,
 			"nm_gol"=>$row->nm_gol,
 			"vc_n_gugus"=>$row->vc_n_gugus,
-			"action"=>anchor('mutasi/update/'.$row->kd_inv,'Edit'),
-			"action2"=>anchor('mutasi/delete/'.$row->kd_inv,'Hapus')
+			"action"=>$button
 		);
 		}
 

@@ -88,7 +88,7 @@
 			<div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Perbaikan Inventaris:</h6>
-				<a class="collapse-item" href="<?php echo base_url('perbaikan')?>">Daftar Perbaikan</a>
+				<a class="collapse-item active" href="<?php echo base_url('perbaikan')?>">Daftar Perbaikan</a>
         		<a class="collapse-item" href="<?php echo base_url('report/riwayat_perbaikan')?>">Riwayat Perbaikan</a>
 			</div>
 			</div>
@@ -338,7 +338,6 @@
 								<th>Biaya</th>
 								<th>Keterangan</th>
 								<th>Action</th>
-								<th>Action</th>
 							</tr>
 							</thead>
 						</table>
@@ -425,8 +424,7 @@
 		 { data: 'sp_gt' },
 		 { data: 'sp_by' },
 		 { data: 'ket_pr'},
-		 { data: 'action'},
-		 { data: 'action2'}
+		 { data: 'action'}
       ]
 	});
 	});

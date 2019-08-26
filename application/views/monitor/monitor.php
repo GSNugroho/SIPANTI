@@ -338,7 +338,6 @@
 								<th>Ruang</th>
 								<!-- <th>Lokasi</th> -->
 								<th>Action</th>
-								<th>Action</th>
 							</tr>
 							</thead>
 
@@ -394,8 +393,7 @@
          { data: 'vc_nm_jenis' },
          { data: 'nm_gol' },
          { data: 'vc_n_gugus' },
-		 { data: 'action'},
-		 { data: 'action2'}
+		 { data: 'action'}
       ]
 	});
 	});

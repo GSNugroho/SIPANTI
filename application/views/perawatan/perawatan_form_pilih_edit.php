@@ -342,11 +342,11 @@
     <table>
         <tr>
             <td>Waktu Mulai</td>
-            <td><input class="time" type="text" value="00:00" name="wtm"></td>
+            <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wtm))?>" name="wtm"></td>
         </tr>
         <tr>
             <td>Waktu Selesai</td>
-            <td><input class="time" type="text" value="00:00" name="wts"></td>
+            <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wts))?>" name="wts"></td>
         </tr>
     </table>
     <table border="1" width="55%">
@@ -1741,32 +1741,68 @@
                                 echo'</tr>';}
             if(!empty($l_kabelpowermon)){echo '<tr>
                                     <td></td>
-                                    <td>Kabel Power Monitor</td>
-                                    <td><input type="radio" name="kkpwrmon" value="1"></td>
-                                    <td><input type="radio" name="kkpwrmon" value="2"></td>
-                                    <td><input type="radio" name="kkpwrmon" value="3"></td>
-                                    </tr>';}
+                                    <td>Kabel Power Monitor</td>';
+                                    if($kkpwrmon == '1'){
+                                        echo '<td><input type="radio" name="kkpwrmon" value="1" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrmon" value="1"></td>';
+                                    }
+                                    if($kkpwrmon == '2'){
+                                        echo '<td><input type="radio" name="kkpwrmon" value="2" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrmon" value="2"></td>';
+                                    }
+                                    if($kkpwrmon == '3'){
+                                        echo '<td><input type="radio" name="kkpwrmon" value="3" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrmon" value="3"></td>';
+                                    }
+                                echo'</tr>';}
             if(!empty($l_kabelpowersata)){echo '<tr>
                                     <td></td>
-                                    <td>Kabel Power SATA</td>
-                                    <td><input type="radio" name="kkpwrsata" value="1"></td>
-                                    <td><input type="radio" name="kkpwrsata" value="2"></td>
-                                    <td><input type="radio" name="kkpwrsata" value="3"></td>
-                                    </tr>';}
+                                    <td>Kabel Power SATA</td>';
+                                    if($kkpwrsata == '1'){
+                                        echo '<td><input type="radio" name="kkpwrsata" value="1" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrsata" value="1"></td>';
+                                    }
+                                    if($kkpwrsata == '2'){
+                                        echo '<td><input type="radio" name="kkpwrsata" value="2" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrsata" value="2"></td>';
+                                    }
+                                    if($kkpwrsata == '3'){
+                                        echo '<td><input type="radio" name="kkpwrsata" value="3" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkpwrsata" value="3"></td>';
+                                    }
+                                echo'</tr>';}
             if(!empty($l_kabelmolexpow)){echo '<tr>
                                     <td></td>
-                                    <td>Kabel Molex Power</td>
-                                    <td><input type="radio" name="kkmolpwr" value="1"></td>
-                                    <td><input type="radio" name="kkmolpwr" value="2"></td>
-                                    <td><input type="radio" name="kkmolpwr" value="3"></td>
-                                    </tr>';}
+                                    <td>Kabel Molex Power</td>';
+                                    if($kkmolpwr == '1'){
+                                        echo '<td><input type="radio" name="kkmolpwr" value="1" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkmolpwr" value="1"></td>';
+                                    }
+                                    if($kkmolpwr == '2'){
+                                        echo '<td><input type="radio" name="kkmolpwr" value="2" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkmolpwr" value="2"></td>';
+                                    }
+                                    if($kkmolpwr == '3'){
+                                        echo '<td><input type="radio" name="kkmolpwr" value="3" checked></td>';
+                                    }else{
+                                        echo '<td><input type="radio" name="kkmolpwr" value="3"></td>';
+                                    }
+                                echo'</tr>';}
         ?>
         <tr>
         <td>
             Keterangan
             </td>
             <td colspan="4">
-                <textarea name="ket" ><?php //echo $ket;?></textarea>
+                <textarea name="ket" ><?php echo $ket;?></textarea>
             </td>
         </tr>
     </table>

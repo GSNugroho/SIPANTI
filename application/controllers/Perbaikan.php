@@ -190,6 +190,19 @@ class perbaikan extends CI_Controller{
             $uang = $row->sp_by;
             $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
 
+            $button = '<a href="perawatan/cek/'.$row->kd_pr.'" class="btn btn-success btn-circle">
+                        <i class="fas fa-check"></i>
+                        </a>
+                        <a href="perawatan/update/'.$row->kd_pr.'" class="btn btn-info btn-circle">
+                        <i class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="perawatan/update/'.$row->kd_pr.'" class="btn btn-warning btn-circle">
+                        <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="perawatan/delete/'.$row->kd_pr.'" class="btn btn-danger btn-circle">
+                        <i class="fas fa-trash"></i>
+                        </a>
+                        ';
             $data[] = array( 
 			"tgl_inv_pr"=>date('d-M-Y', strtotime($row->tgl_inv_pr)),
 			"kd_inv"=>$row->kd_inv,
@@ -200,8 +213,7 @@ class perbaikan extends CI_Controller{
             "sp_gt"=> $row->sp_gt,
             "sp_by"=> $hasil_rupiah,
             "ket_pr"=> $row->ket_pr,
-			"action"=>anchor('perbaikan/update/'.$row->kd_pr,'Edit'),
-			"action2"=>anchor('perbaikan/delete/'.$row->kd_pr,'Hapus')
+			"action"=>$button
 		);
 		}
 

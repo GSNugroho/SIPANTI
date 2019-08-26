@@ -321,9 +321,9 @@
               			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
 					<div class="card-body">
-					<a href="<?php echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
+					<!-- <a href="<?php //echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
                     		<span class="text">Komponen</span>
-					</a>	  
+					</a>	   -->
 						<div class="table-responsive">
 						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>
@@ -337,7 +337,6 @@
 								<th>Nama Barang</th>
 								<th>Ruang</th>
 								<th>Status Pengerjaan</th>
-								<th>Action</th>
 								<th>Action</th>
 							</tr>
 							</thead>
@@ -394,8 +393,7 @@
          { data: 'nm_inv' },
          { data: 'vc_n_gugus' },
          { data: 'status_p' },
-		 { data: 'action'},
-		 { data: 'action2'}
+		 { data: 'action'}
       ]
 	});
 	});

@@ -338,7 +338,6 @@
                                 <th>Kondisi</th>
                                 <th>Alasan</th>
                                 <th>Action</th>
-                                <th>Action</th>
 							</tr>
 							</thead>
 						</table>
@@ -394,8 +393,7 @@
          { data: 'status_mts' },
          { data: 'kondisi_mts' },
 		 { data: 'alasan_mts'},
-		 { data: 'action'},
-		 { data: 'action2'}
+		 { data: 'action'}
       ]
 	});
 	});

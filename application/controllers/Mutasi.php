@@ -146,6 +146,19 @@ class mutasi extends CI_Controller{
 		$data = array();
 
 		foreach($empRecords as $row){
+        $button = '<a href="perawatan/cek/'.$row->kd_inv_mts.'" class="btn btn-success btn-circle">
+                <i class="fas fa-check"></i>
+                </a>
+                <a href="perawatan/update/'.$row->kd_inv_mts.'" class="btn btn-info btn-circle">
+                <i class="fas fa-info-circle"></i>
+                </a>
+                <a href="perawatan/update/'.$row->kd_inv_mts.'" class="btn btn-warning btn-circle">
+                <i class="fas fa-edit"></i>
+                </a>
+                <a href="perawatan/delete/'.$row->kd_inv_mts.'" class="btn btn-danger btn-circle">
+                <i class="fas fa-trash"></i>
+                </a>
+                ';
 		$data[] = array( 
 			"tgl_terima_mts"=>date('d-M-Y', strtotime($row->tgl_terima_mts)),
 			"kd_inv_mts"=>$row->kd_inv_mts,
@@ -155,8 +168,7 @@ class mutasi extends CI_Controller{
 			"status_mts"=>$row->status_mts,
             "kondisi_mts"=>$row->kondisi_mts,
             "alasan_mts"=>$row->alasan_mts,
-			"action"=>anchor('mutasi/update/'.$row->kd_inv_mts,'Edit'),
-			"action2"=>anchor('mutasi/delete/'.$row->kd_inv_mts,'Hapus')
+			"action"=>$button
 		);
 		}
 
