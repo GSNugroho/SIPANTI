@@ -77,6 +77,27 @@ class perbaikan extends CI_Controller{
 		redirect(base_url('perbaikan'));
     }
 
+    function read($id){
+        $row = $this->m_perbaikan->get_r_id($id);
+        if($row){
+            $data = array(
+                'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
+                'nm_inv' => set_value('nm_inv', $row->nm_inv),
+                'vc_n_gugus' => set_value('vc_n_gugus', $row->vc_n_gugus),
+                'tgl_inv_pr' => set_value('tgl_inv_pr', $row->tgl_inv_pr),
+                'jns_kr' => set_value('jns_kr', $row->jns_kr),
+                'jns_pr' => set_value('jns_pr', $row->jns_pr),
+                'sp_gt' => set_value('sp_gt', $row->sp_gt),
+                'sp_by' => set_value('sp_by', $row->sp_by),
+                'ket' => set_value('ket', $row->ket_pr),
+            );
+            $this->load->view('perbaikan/perbaikan_read', $data);
+        }else{
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(base_url('perbaikan'));
+        }
+    }
+
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
@@ -129,6 +150,18 @@ class perbaikan extends CI_Controller{
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
 			redirect(base_url('perbaikan'));
 		}
+    }
+
+    function cek($id){
+        $row = $this->m_perbaikan->get_by_id($id);
+        $prb_valid = '1';
+        if($row){
+            $data = array(
+                'prb_valid' => $prb_valid
+            );
+        }
+        $this->m_perbaikan->update_v($id, $data);
+        redirect(base_url('perbaiakn'));
     }
 
     function dt_tbl(){
@@ -190,16 +223,16 @@ class perbaikan extends CI_Controller{
             $uang = $row->sp_by;
             $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
 
-            $button = '<a href="perawatan/cek/'.$row->kd_pr.'" class="btn btn-success btn-circle">
+            $button = '<a href="perbaikan/cek/'.$row->kd_pr.'" class="btn btn-success btn-circle">
                         <i class="fas fa-check"></i>
                         </a>
-                        <a href="perawatan/update/'.$row->kd_pr.'" class="btn btn-info btn-circle">
+                        <a href="perbaikan/read/'.$row->kd_pr.'" class="btn btn-info btn-circle">
                         <i class="fas fa-info-circle"></i>
                         </a>
-                        <a href="perawatan/update/'.$row->kd_pr.'" class="btn btn-warning btn-circle">
+                        <a href="perbaikan/update/'.$row->kd_pr.'" class="btn btn-warning btn-circle">
                         <i class="fas fa-edit"></i>
                         </a>
-                        <a href="perawatan/delete/'.$row->kd_pr.'" class="btn btn-danger btn-circle">
+                        <a href="perbaikan/delete/'.$row->kd_pr.'" class="btn btn-danger btn-circle">
                         <i class="fas fa-trash"></i>
                         </a>
                         ';

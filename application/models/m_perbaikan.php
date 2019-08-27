@@ -24,10 +24,22 @@ class m_perbaikan extends CI_Model{
         return $this->db->get($this->table)->row();
     }
 
+    function get_r_id($id){
+        $this->db->join('inv_pubgugus','inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('inv_barang', 'inv_perbaikan.kd_inv_pr = inv_barang.kd_inv');
+        $this->db->where("inv_barang.aktif = '1'");
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
     function insert($data){
         $this->db->insert($this->table, $data);
     }
 
+    function update_v($id, $data){
+        $this->db->where('kd_pr', $id);
+        $this->db->update('inv_perbaikan', $data);
+    }
     function get_kdinv(){
         $query = $this->db->query("SELECT * FROM inv_barang
                                     JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus

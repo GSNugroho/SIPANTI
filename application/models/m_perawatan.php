@@ -48,6 +48,10 @@ class m_perawatan extends CI_Model{
         $this->db->where('kd_jd_ko', $id);
         $this->db->update($this->tabelkomp, $data);
     }
+    function update_v($id, $data){
+        $this->db->where('kd_jd', $id);
+        $this->db->update('inv_jadwal', $data);
+    }
     function get_by_id_komp($id){
         $this->db->join('inv_komponen', 'inv_jadwal.kd_jd = inv_komponen.kd_jd_ko');
         $this->db->where('kd_jd', $id);
@@ -72,7 +76,8 @@ class m_perawatan extends CI_Model{
     function get_by_id_jd($id){
         // $this->db->order_by('inv_jadwal_perawatan','asc');
         $this->db->where($this->idjd, $id);
-        return $this->db->get($this->tablejd)->row();
+        $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        return $this->db->get('inv_jadwal ')->row();
     }
     
     function update_perawatan($id, $data){

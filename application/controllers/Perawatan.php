@@ -315,6 +315,7 @@ class perawatan extends CI_Controller{
 
     function update($id){
         $row = $this->m_perawatan->get_by_id_jd($id);
+        if(($row->j_valid) == 0){
 
         if($row) {
             $data = array(
@@ -418,6 +419,7 @@ class perawatan extends CI_Controller{
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
 			redirect(base_url('perawatan'));
         }
+    }else{redirect(base_url('perawatan'));}
     }
 
     function delete($id){
@@ -1997,6 +1999,18 @@ class perawatan extends CI_Controller{
        }
     }
 
+    function cek($id){
+        $row = $this->m_perawatan->get_by_id_jd($id);
+        $j_valid = '1';
+        if($row){
+            $data = array(
+                'j_valid' => $j_valid
+            );
+        }
+        $this->m_perawatan->update_v($id, $data);
+        redirect(base_url('perawatan'));
+    }
+
     function dt_tbl(){
         ## Read value
 		$draw = $_POST['draw'];
@@ -2046,10 +2060,16 @@ class perawatan extends CI_Controller{
         }else if($st=='2'){$sts = "Sedang Dikerjakan";
         }else{$sts = "Sudah Selesai Dikerjakan";}
 
-        $button = '<a href="perawatan/cek/'.$row->kd_jd.'" class="btn btn-success btn-circle">
-                    <i class="fas fa-check"></i>
-                    </a>
-                    <a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle">
+        if(($row->j_valid) == 1){
+            $valid = '<a href="#" class="btn btn-secondary btn-circle">
+                      <i class="fas fa-check"></i>
+                      </a>';
+        }else{
+            $valid = '<a href="perawatan/cek/'.$row->kd_jd.'" class="btn btn-success btn-circle">
+                      <i class="fas fa-check"></i>
+                      </a>';
+        }
+        $button = $valid.'<a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle">
                     <i class="fas fa-info-circle"></i>
                     </a>
                     <a href="perawatan/update/'.$row->kd_jd.'" class="btn btn-warning btn-circle">

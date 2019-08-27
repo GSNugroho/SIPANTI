@@ -590,8 +590,543 @@
     if(!empty($kicide)){
         if($kicide == '1'){
             echo '<tr><td>4 pin ATX 12V Power Connector</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicide == '2'){
+            echo '<tr><td>4 pin ATX 12V Power Connector</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicide == '3'){
+            echo '<tr><td>4 pin ATX 12V Power Connector</td><td>:</td><td>Rusak</td></tr>';
         }
     }
+    if(!empty($kicfan)){
+        if($kicfan == '1'){
+            echo '<tr><td>CPU Fan Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicfan == '2'){
+            echo '<tr><td>CPU Fan Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicfan == '3'){
+            echo '<tr><td>CPU Fan Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicsysfan)){
+        if($kicsysfan == '1'){
+            echo '<tr><td>System Fan Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicsysfan == '2'){
+            echo '<tr><td>System Fan Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicsysfan == '3'){
+            echo '<tr><td>System Fan Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicfpanhead)){
+        if($kicfpanhead == '1'){
+            echo '<tr><td>Front Panel Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicfpanhead == '2'){
+            echo '<tr><td>Front Panel Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicfpanhead == '3'){
+            echo '<tr><td>Front Panel Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicfpanahead)){
+        if($kicfpanahead == '1'){
+            echo '<tr><td>Front Panel Audio Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicfpanahead == '2'){
+            echo '<tr><td>Front Panel Audio Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicfpanahead == '3'){
+            echo '<tr><td>Front Panel Audio Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kiccdcon)){
+        if($kiccdcon == '1'){
+            echo '<tr><td>CD In Connector</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kiccdcon =='2'){
+            echo '<tr><td>CD In Connector</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kiccdcon == '3'){
+            echo '<tr><td>CD In Connector</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicspdif)){
+        if($kicspdif == '1'){
+            echo '<tr><td>S/ PDIF Out Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicspdif == '2'){
+            echo '<tr><td>S/ PDIF Out Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicspdif == '3'){
+            echo '<tr><td>S/ PDIF Out Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicusb2c1)){
+        if($kicusb2c1 == '1'){
+            echo '<tr><td>USB 2.0</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicusb2c1 == '2'){
+            echo '<tr><td>USB 2.0</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicusb2c1 == '3'){
+            echo '<tr><td>USB 2.0</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kiccih)){
+        if($kiccih == '1'){
+            echo '<tr><td>Chassis Intrusion Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kiccih == '2'){
+            echo '<tr><td>Chassis Intrusion Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kiccih == '3'){
+            echo '<tr><td>Chassis Intrusion Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kicled)){
+        if($kicled == '1'){
+            echo '<tr><td>Power LED Header</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kicled == '2'){
+            echo '<tr><td>Power LED Header</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kicled == '3'){
+            echo '<tr><td>Power LED Header</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbpcps2k)){
+        if($kbpcps2k == '1'){
+            echo '<tr><td>PS/2 Keyboard Port</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcps2k == '2'){
+            echo '<tr><td>PS/2 Keyboard Port</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcps2k == '3'){
+            echo '<tr><td>PS/2 Keyboard Port</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbpcps2m)){
+        if($kbpcps2m == '1'){
+            echo '<tr><td>PS/2 Mouse Port</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcps2m == '2'){
+            echo '<tr><td>PS/2 Mouse Port</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcps2m == '3'){
+            echo '<tr><td>PS/2 Mouse Port</td><td>:</td><td>Baik</td></tr>';
+        }
+    }
+    if(!empty($kbpcplp)){
+        if($kbpcplp == '1'){
+            echo '<tr><td>Parallel Port</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcplp == '2'){
+            echo '<tr><td>Parallel Port</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcplp == '3'){
+            echo '<tr><td>Parallel Port</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbpcsp)){
+        if($kbpcsp == '1'){
+            echo '<tr><td>Serial Port</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcsp == '2'){
+            echo '<tr><td>Serial Port</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcsp == '3'){
+            echo '<tr><td>Serial Port</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbpcdp)){
+        if($kbpcdp == '1'){
+            echo '<tr><td>Display Port</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcdp == '2'){
+            echo '<tr><td>Display Port</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcdp == '3'){
+            echo '<tr><td>Display Port</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbpcusb2c1)){
+        if($kbpcusb2c1 == '1'){
+            echo '<tr><td>Back Panel USB 2.0</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbpcusb2c1 == '2'){
+            echo '<tr><td>Back Panel USB 2.0</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbpcusb2c1 == '3'){
+            echo '<tr><td>Back Panel USB 2.0</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($khmsvd)){
+        if($khmsvd == '1'){
+            echo '<tr><td>System Voltage Detection</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($khmsvd == '2'){
+            echo '<tr><td>System Voltage Detection</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($khmsvd == '3'){
+            echo '<tr><td>System Voltage Detection</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($khmctd)){
+        if($khmctd == '1'){
+            echo '<tr><td>CPU Temperature Detection</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($khmctd == '2'){
+            echo '<tr><td>CPU Temperature Detection</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($khmctd == '3'){
+            echo '<tr><td>CPU Temperature Detection</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($khmffw)){
+        if($khmffw == '1'){
+            echo '<tr><td>CPU/ System Fan Fail Warning</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($khmffw == '2'){
+            echo '<tr><td>CPU/ System Fan Fail Warning</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($khmffw == '3'){
+            echo '<tr><td>CPU/ System Fan Fail Warning</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($khmfsc)){
+        if($khmfsc == '1'){
+            echo '<tr><td>CPU Fan Speed Control</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($khmfsc == '2'){
+            echo '<tr><td>CPU Fan Speed Control</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($khmfsc == '3'){
+            echo '<tr><td>CPU Fan Speed Control</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kbios == '1')){
+        if($kbios == '1'){
+            echo '<tr><td>BIOS</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kbios == '2'){
+            echo '<tr><td>BIOS</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kbios == '3'){
+            echo '<tr><td>BIOS</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($katahdd1)){
+        if($katahdd1 == '1'){
+            echo '<tr><td>ATA</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($katahdd1 == '2'){
+            echo '<tr><td>ATA</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($katahdd1 == '3'){
+            echo '<tr><td>ATA</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($ksatahdd1)){
+        if($ksatahdd1 == '1'){
+            echo '<tr><td>SATA HDD</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($ksatahdd1 == '2'){
+            echo '<tr><td>SATA HDD</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($ksatahdd1 == '3'){
+            echo '<tr><td>SATA HDD</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($ksatassd1)){
+        if($ksatassd1 == '1'){
+            echo '<tr><td>SATA SSD</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($ksatassd1 == '2'){
+            echo '<tr><td>SATA SSD</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($ksatassd1 == '3'){
+            echo '<tr><td>SATA SSD</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($knvmssd1)){
+        if($knvmssd1 == '1'){
+            echo '<tr><td>NVM</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($knvmssd1 == '2'){
+            echo '<tr><td>NVM</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($knvmssd1 == '3'){
+            echo '<tr><td>NVM</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kramd1c1)){
+        if($kramd1c1 == '1'){
+            echo '<tr><td>RAM DDR 1</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kramd1c1 == '2'){
+            echo '<tr><td>RAM DDR 1</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kramd1c1 == '3'){
+            echo '<tr><td>RAM DDR 1</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kramd2c1)){
+        if($kramd2c1 == '1'){
+            echo '<tr><td>RAM DDR 2</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kramd2c1 == '2'){
+            echo '<tr><td>RAM DDR 2</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kramd2c1 == '3'){
+            echo '<tr><td>RAM DDR 2</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kramd3c1)){
+        if($kramd3c1 == '1'){
+            echo '<tr><td>RAM DDR 3</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kramd3c1 == '2'){
+            echo '<tr><td>RAM DDR 3</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kramd3c1 == '3'){
+            echo '<tr><td>RAM DDR 3</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kramd4c1)){
+        if($kramd4c1 == '1'){
+            echo '<tr><td>RAM DDR 4</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kramd4c1 == '2'){
+            echo '<tr><td>RAM DDR 4</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kramd4c1 == '3'){
+            echo '<tr><td>RAM DDR 4</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kcdrw)){
+        if($kcdrw == '1'){
+            echo '<tr><td>CD RW</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kcdrw == '2'){
+            echo '<tr><td>CD RW</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kcdrw == '3'){
+            echo '<tr><td>CD RW</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kdvdrw)){
+        if($kdvdrw == '1'){
+            echo '<tr><td>DVD RW</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kdvdrw == '2'){
+            echo '<tr><td>DVD RW</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kdvdrw == '3'){
+            echo '<tr><td>DVD RW</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kaic)){
+        if($kaic == '1'){
+            echo '<tr><td>ATA/ IDE Cable</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kaic == '2'){
+            echo '<tr><td>ATA/ IDE Cable</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kaic == '3'){
+            echo '<tr><td>ATA/ IDE Cable</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($ksatac)){
+        if($ksatac == '1'){
+            echo '<tr><td>SATA Cable</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kasatac == '2'){
+            echo '<tr><td>SATA Cable</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($ksatac == '3'){
+            echo '<tr><td>SATA Cable</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kkey)){
+        if($kkey == '1'){
+            echo '<tr><td>Keyboard</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kkey == '2'){
+            echo '<tr><td>Keyboard</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kkey == '3'){
+            echo '<tr><td>Keyboard</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kmou)){
+        if($kmou == '1'){
+            echo '<tr><td>Mouse</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kmou == '2'){
+            echo '<tr><td>Mouse</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kmou == '3'){
+            echo '<tr><td>Mouse</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kspea)){
+        if($kspea == '1'){
+            echo '<tr><td>Speaker</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kspea == '2'){
+            echo '<tr><td>Speaker</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kspea == '3'){
+            echo '<tr><td>Speaker</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kmoncrt)){
+        if($kmoncrt == '1'){
+            echo '<tr><td>Monitor CRT</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kmoncrt == '2'){
+            echo '<tr><td>Monitor CRT</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kmoncrt == '3'){
+            echo '<tr><td>Monitor CRT</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kmonlcd)){
+        if($kmonlcd == '1'){
+            echo '<tr><td>Monitor LCD</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kmonlcd == '2'){
+            echo '<tr><td>Monitor LCD</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kmonlcd == '3'){
+            echo '<tr><td>Monitor LCD</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kvgac)){
+        if($kvgac == '1'){
+            echo '<tr><td>VGA Kabel</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kvgac == '2'){
+            echo '<tr><td>VGA Kabel</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kvgac == '3'){
+            echo '<tr><td>VGA Kabel</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($klanc)){
+        if($klanc == '1'){
+            echo '<tr><td>LAN Card</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($klanc == '2'){
+            echo '<tr><td>LAN Card</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($klanc == '3'){
+            echo '<tr><td>LAN Card</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kvgacrd)){
+        if($kvgacrd == '1'){
+            echo '<tr><td>VGA Card</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kvgacrd == '2'){
+            echo '<tr><td>VGA Card</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kvgacrd == '3'){
+            echo '<tr><td>VGA Card</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kfirec)){
+        if($kfirec == '1'){
+            echo '<tr><td>Firewire Card</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kfirec == '2'){
+            echo '<tr><td>Firewire Card</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kfirec == '3'){
+            echo '<tr><td>Firewire Card</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($klptc)){
+        if($klptc == '1'){
+            echo '<tr><td>LPT Card</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($klptc == '2'){
+            echo '<tr><td>LPT Card</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($klptc == '3'){
+            echo '<tr><td>LPT Card</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($krsc)){
+        if($krsc == '1'){
+            echo '<tr><td>RS 232 Card</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($krsc == '2'){
+            echo '<tr><td>RS 232 Card</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($krsc == '3'){
+            echo '<tr><td>RS 232 Card</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kpwrs)){
+        if($kpwrs == '1'){
+            echo '<tr><td>Power Supply</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kpwrs == '2'){
+            echo '<tr><td>Power Supply</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kpwrs == '3'){
+            echo '<tr><td>Power Supply</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kkpwr)){
+        if($kkpwr == '1'){
+            echo '<tr><td>Kabel Power</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kkpwr == '2'){
+            echo '<tr><td>Kabel Power</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kkpwr == '3'){
+            echo '<tr><td>Kabel Power</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kkpwrmon)){
+        if($kkpwrmon == '1'){
+            echo '<tr><td>Kabel Power Monitor</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kkpwrmon == '2'){
+            echo '<tr><td>Kabel Power Monitor</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kkpwrmon == '3'){
+            echo '<tr><td>Kabel Power Monitor</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kkpwrsata)){
+        if($kkpwrsata == '1'){
+            echo '<tr><td>Kabel Power Sata</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kkpwrsata == '2'){
+            echo '<tr><td>Kabel Power Sata</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kkpwrsata == '3'){
+            echo '<tr><td>Kabel Power Sata</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+    if(!empty($kkmolpwr)){
+        if($kkmolpwr == '1'){
+            echo '<tr><td>Kabel Molex Power</td><td>:</td><td>Baik</td></tr>';
+        }else
+        if($kkmolpwr == '2'){
+            echo '<tr><td>Kabel Molex Power</td><td>:</td><td>Kurang Baik</td></tr>';
+        }else
+        if($kkmolpwr == '3'){
+            echo '<tr><td>Kabel Molex Power</td><td>:</td><td>Rusak</td></tr>';
+        }
+    }
+        // echo '<tr><td>Keterangan</td><td>:</td><td>'.$ket.'</td></tr>';
     ?>
     </table>
     
