@@ -466,7 +466,7 @@
             <button type="submit" class="btn btn-primary">Save</button>
         </td>
         <td>
-            <a href="<?php echo site_url('perbaikan')?>" class="btn btn-default">Cancel</a>
+            <a href="<?php echo site_url('perbaikan')?>" class="btn btn-warning">Cancel</a>
         </td>
         </tr>
         </table>

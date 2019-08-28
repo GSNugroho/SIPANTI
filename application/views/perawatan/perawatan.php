@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>
 
 		<link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/dist/sweetalert.css')?>" rel="stylesheet">
+		
 
 	</head>
 	<body id="page-top">
@@ -366,6 +368,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/dist/sweetalert.js')?>"></script>
 
 	<!-- Page level plugins -->
 	<script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
@@ -397,6 +400,29 @@
       ]
 	});
 	});
+
+	function confirmation(ev) {
+	ev.preventDefault();
+	var urlToRedirect = ev.currentTarget.getAttribute('href'); //use currentTarget because the click may be on the nested i tag and not a tag causing the href to be empty
+	console.log(urlToRedirect); // verify if this is the right URL
+	swal({
+	title: "Are you sure?",
+	text: "Once deleted, you will not be able to recover this imaginary file!",
+	icon: "warning",
+	buttons: true,
+	dangerMode: true,
+	})
+	.then((willDelete) => {
+	// redirect with javascript here as per your logic after showing the alert using the urlToRedirect value
+	if (willDelete) {
+		swal("Poof! Your imaginary file has been deleted!", {
+		icon: "success",
+		});
+	} else {
+		swal("Your imaginary file is safe!");
+	}
+	});
+	}
 	</script>
 	</body>
 </html>

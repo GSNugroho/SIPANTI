@@ -422,7 +422,7 @@ class perawatan extends CI_Controller{
     }else{redirect(base_url('perawatan'));}
     }
 
-    function delete($id){
+    function delete_row($id){
         $row = $this->m_perawatan->get_by_id_jd($id);
 
         if($row){
@@ -2011,6 +2011,18 @@ class perawatan extends CI_Controller{
         redirect(base_url('perawatan'));
     }
 
+    function delete($id){
+        $row = $this->m_perawatan->get_by_id_jd($id);
+        $dl_st = '0';
+        if($row){
+            $data = array(
+                'dt_sts' => $dl_st
+            );
+        }
+        $this->m_perawatan->update_delete($id, $data);
+        redirect(base_url('perawatan'));
+    }
+
     function dt_tbl(){
         ## Read value
 		$draw = $_POST['draw'];
@@ -2072,7 +2084,7 @@ class perawatan extends CI_Controller{
         $button = $valid.'<a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle">
                     <i class="fas fa-info-circle"></i>
                     </a>
-                    <a href="perawatan/update/'.$row->kd_jd.'" class="btn btn-warning btn-circle">
+                    <a href="perawatan/update/'.$row->kd_jd.'" onclick="confirmation(event)" class="btn btn-warning btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
                     <a href="perawatan/delete/'.$row->kd_jd.'" class="btn btn-danger btn-circle">

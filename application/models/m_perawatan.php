@@ -12,18 +12,13 @@ class m_perawatan extends CI_Model{
         parent::__construct();
         $this->load->database('default', TRUE);
     }
-    function get_data(){
-        $this->db->order_by('inv_perawatan_h.dt_mulai','asc');
-        $this->db->join('inv_perawatan_h', 'inv_perawatan_d.vc_kd_trans = inv_perawatan_h.vc_kd_trans');
-        $this->db->join('inv_perawatan_tindakan', 'inv_perawatan_d.vc_kd_tindakan = inv_perawatan_tindakan.vc_kd_tindakan');
-        $this->db->where('inv_perawatan_tindakan.vc_kd_tindakan = 001 OR inv_perawatan_tindakan.vc_kd_tindakan = 002 OR inv_perawatan_tindakan.vc_kd_tindakan = 003 ');
-        return $this->db->get('inv_perawatan_d')->result();
-    }
+    
     function get_data_jd(){
         $this->db->order_by('inv_jadwal.tgl_jd','desc');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->where("inv_jadwal.dt_sts = '1'");
         $this->db->where("inv_barang.aktif = '1'");
         $this->db->where("inv_barang.kd_aset != ' '");
         return $this->db->get('inv_jadwal')->result();
@@ -88,6 +83,11 @@ class m_perawatan extends CI_Model{
     function delete($id){
 		$this->db->where($this->id, $id);
 		$this->db->delete($this->table);
+    }
+
+    function update_delete($id, $data){
+        $this->db->where('kd_jd', $id);
+        $this->db->update('inv_jadwal', $data);
     }
     
     function get_total_dt(){

@@ -23,6 +23,7 @@ class perbaikan extends CI_Controller{
     }
 
     function create_action(){
+        $dl_sts = '1';
         $data = array(
             'kd_inv_pr' => $this->input->post('kd_inv_pr', TRUE),
             'kd_ruang' => $this->input->post('id_ruang', TRUE),
@@ -32,6 +33,7 @@ class perbaikan extends CI_Controller{
             'sp_gt' => $this->input->post('sp_gt', TRUE),
             'sp_by' => $this->input->post('sp_by', TRUE),
             'ket_pr' => $this->input->post('ket', TRUE),
+            'dl_sts' => $dl_sts,
             'kd_pr' => $this->kode()
         );
         $this->m_perbaikan->insert($data);
@@ -139,7 +141,7 @@ class perbaikan extends CI_Controller{
         return $kodebaru;
     }
 
-    function delete($id){
+    function delete_u($id){
         $row = $this->m_perbaikan->get_by_id($id);
 
 		if($row){
@@ -152,6 +154,18 @@ class perbaikan extends CI_Controller{
 		}
     }
 
+    function delete($id){
+        $row = $this->m_perbaikan->get_by_id($id);
+        $dl_st = '0';
+        if($row){
+            $data = array(
+                'dl_sts' => $dl_st
+            );
+        }
+        $this->m_perbaikan->update_delete($id, $data);
+        redirect(base_url('perbaikan'));
+    }
+
     function cek($id){
         $row = $this->m_perbaikan->get_by_id($id);
         $prb_valid = '1';
@@ -161,7 +175,7 @@ class perbaikan extends CI_Controller{
             );
         }
         $this->m_perbaikan->update_v($id, $data);
-        redirect(base_url('perbaiakn'));
+        redirect(base_url('perbaikan'));
     }
 
     function dt_tbl(){

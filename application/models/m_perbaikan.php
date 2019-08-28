@@ -16,6 +16,7 @@ class m_perbaikan extends CI_Model{
         $this->db->join('inv_pubgugus', 'inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus');
         $this->db->join('inv_barang', 'inv_perbaikan.kd_inv_pr = inv_barang.kd_inv');
         $this->db->where("inv_barang.aktif = '1'");
+        $this->db->where("inv_perbaikan.dl_sts = '1'");
         return $this->db->get('inv_perbaikan')->result();
     }
 
@@ -35,7 +36,10 @@ class m_perbaikan extends CI_Model{
     function insert($data){
         $this->db->insert($this->table, $data);
     }
-
+    function update_delete($id, $data){
+        $this->db->where('kd_pr', $id);
+        $this->db->update('inv_perbaikan', $data);
+    }
     function update_v($id, $data){
         $this->db->where('kd_pr', $id);
         $this->db->update('inv_perbaikan', $data);
@@ -83,7 +87,7 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('select count(*) as allcount from inv_perbaikan
         join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
         join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1');
+        where inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1');
         return $query->result();
     }
 
@@ -91,7 +95,7 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('select count(*) as allcount from inv_perbaikan
         join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
         join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1'.$searchQuery);
+        where inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1'.$searchQuery);
         return $query->result();
     }
 
@@ -99,7 +103,7 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('select TOP '.$rowperpage.' * from inv_perbaikan
         join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
         join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1'.$searchQuery.' and '.$columnName.' NOT IN (SELECT TOP '.$baris.' '.$columnName.' from inv_perbaikan where inv_barang.aktif = 1'.$searchQuery.' order by '.$columnName.' '.$columnSortOrder.')
+        where inv_barang.aktif = 1 and inv_perbaikan.dl_sts = 1'.$searchQuery.' and '.$columnName.' NOT IN (SELECT TOP '.$baris.' '.$columnName.' from inv_perbaikan where inv_barang.aktif = 1'.$searchQuery.' order by '.$columnName.' '.$columnSortOrder.')
         order by '.$columnName.' '.$columnSortOrder);
         return $query->result();
     }
