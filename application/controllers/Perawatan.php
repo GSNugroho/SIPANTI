@@ -30,8 +30,35 @@ class perawatan extends CI_Controller{
     }
 
     function komponen(){
-
+        
         $id = $this->input->post('kd_jd', TRUE);
+        $s = $this->m_perawatan->get_by_id_komp($id);
+        $row = $this->m_perawatan->get_by_id_jd($id);
+        if(($row->j_valid) == 0){
+        if($s->cek==1){
+            $this->update_komponen($id);
+        }else{
+         if($id==NULL){ 
+             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             redirect(base_url('jadwal'));
+        }else{
+        $row = $this->m_perawatan->get_by_id_komp($id);
+        if($row) {
+            $data = array(
+                'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko)
+            );
+        $this->load->view('perawatan/perawatan_form_pilih', $data);
+            }
+        }
+        }
+        }else{
+            redirect(base_url('jadwal'));
+        }
+    }
+
+    function update_k($id){
+        $row = $this->m_perawatan->get_by_id_jd($id);
+        if(($row->j_valid) == 0){
         $s = $this->m_perawatan->get_by_id_komp($id);
         if($s->cek==1){
             $this->update_komponen($id);
@@ -46,10 +73,12 @@ class perawatan extends CI_Controller{
                 'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko)
             );
         $this->load->view('perawatan/perawatan_form_pilih', $data);
+            }
         }
         }
+    }else{redirect(base_url('perawatan'));}
     }
-    }
+    
 
     function set_data_komponen(){
         $data = array(
@@ -2084,7 +2113,7 @@ class perawatan extends CI_Controller{
         $button = $valid.'<a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle">
                     <i class="fas fa-info-circle"></i>
                     </a>
-                    <a href="perawatan/update/'.$row->kd_jd.'" onclick="confirmation(event)" class="btn btn-warning btn-circle">
+                    <a href="perawatan/update_k/'.$row->kd_jd.'" class="btn btn-warning btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
                     <a href="perawatan/delete/'.$row->kd_jd.'" class="btn btn-danger btn-circle">

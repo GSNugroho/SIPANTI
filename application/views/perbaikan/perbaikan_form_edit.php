@@ -61,7 +61,7 @@
     Data Inventaris
     </div>
     <!-- Barang -->
-    <li class="nav-item active">
+    <li class="nav-item ">
     <a class="nav-link" href="<?php echo base_url('monitor')?>">
     <i class="fas fa-boxes"></i>
     <span>Barang</span></a>

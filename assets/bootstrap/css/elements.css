@@ -5,7 +5,7 @@ CSS settings for HTML div Exact Center
 #abc {
 width:100%;
 height:100%;
-opacity:.95;
+/*opacity:.95;*/
 top:0;
 left:0;
 display:none;
@@ -28,11 +28,17 @@ font-family:'Raleway',sans-serif
 }
 table#pop{
 max-width:800px;
-padding:10px 50px;
+padding:20px 50px;
 border:2px solid gray;
-border-radius:10px;
+border-radius:100px;
 font-family:raleway;
-background-color:#fff
+/*background-color:#00000*/
+}
+table#pop td{
+	padding:7px;
+	background-color: white;
+	margin:100px;
+	border:70px grey;
 }
 p {
 margin-top:30px

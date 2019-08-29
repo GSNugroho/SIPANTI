@@ -599,7 +599,7 @@
                           }else{echo "Sudah Selesai Dikerjakan";}
                       ?></td>
                       <td>
-                        <?php echo anchor('perawatan/update/'.$ib->kd_jd,'Edit'); ?>
+                        <?php echo anchor('perawatan/update_k/'.$ib->kd_jd,'Edit'); ?>
                         <?php echo anchor('perawatan/delete/'.$ib->kd_jd,'Hapus'); ?>
                       </td>
                     </tr>

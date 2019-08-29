@@ -606,6 +606,7 @@
                                         echo '<td><input type="radio" name="kain" value="3"></td>';
                                     }
                                 echo'</tr><tr>
+                                    <td></td>
                                     <td>Audio Out</td>';
                                     if($kaout == '1'){
                                         echo '<td><input type="radio" name="kaout" value="1" checked></td>';
@@ -704,7 +705,7 @@
                                 echo'</tr>';}
             if(!empty($m_ide)){echo '<tr>
                                     <td></td>
-                                    <td>IDE<td>';
+                                    <td>IDE</td>';
                                     if($ksiide == '1'){
                                         echo '<td><input type="radio" name="ksiide" value="1" checked></td>';
                                     }else{
@@ -1094,7 +1095,7 @@
                                     if($kbpcusb2c1 == '1'){
                                         echo '<td><input type="radio" name="kbpcusb2c1" value="1" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kbpcusb2c1" value="1"></td>;';
+                                        echo '<td><input type="radio" name="kbpcusb2c1" value="1"></td>';
                                     }
                                     if($kbpcusb2c1 == '2'){
                                         echo '<td><input type="radio" name="kbpcusb2c1" value="2" checked></td>';

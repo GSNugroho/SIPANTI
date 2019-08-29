@@ -364,7 +364,7 @@
     <tr><td>Keterangan</td><td>:</td><td><?php echo $ket; ?></td></tr>
     
     </table>
-    <a href="<?php echo site_url('perbaikan')?>" class="btn btn-default">Back</a>
+    <a href="<?php echo site_url('perbaikan')?>" class="btn btn-default">Kembali</a>
     </div>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">

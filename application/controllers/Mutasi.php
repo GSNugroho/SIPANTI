@@ -146,16 +146,17 @@ class mutasi extends CI_Controller{
 		$data = array();
 
 		foreach($empRecords as $row){
-        $button = '<a href="perawatan/cek/'.$row->kd_inv_mts.'" class="btn btn-success btn-circle">
-                <i class="fas fa-check"></i>
-                </a>
-                <a href="perawatan/update/'.$row->kd_inv_mts.'" class="btn btn-info btn-circle">
+        $cek = '<a href="mutasi/cek/'.$row->kd_inv_mts.'" class="btn btn-success btn-circle">
+        <i class="fas fa-check"></i>
+        </a>';
+        $button = '
+                <a href="mutasi/update/'.$row->kd_inv_mts.'" class="btn btn-info btn-circle">
                 <i class="fas fa-info-circle"></i>
                 </a>
-                <a href="perawatan/update/'.$row->kd_inv_mts.'" class="btn btn-warning btn-circle">
+                <a href="mutasi/update/'.$row->kd_inv_mts.'" class="btn btn-warning btn-circle">
                 <i class="fas fa-edit"></i>
                 </a>
-                <a href="perawatan/delete/'.$row->kd_inv_mts.'" class="btn btn-danger btn-circle">
+                <a href="mutasi/delete/'.$row->kd_inv_mts.'" class="btn btn-danger btn-circle">
                 <i class="fas fa-trash"></i>
                 </a>
                 ';

@@ -139,7 +139,7 @@ class jadwal extends CI_Controller{
 
         $inv = $this->m_jadwal->get_inv($id_ruang);
         $lists = "<tr>
-                    <td><b>Kode Inventaris</b></td>
+                    <td h><b>Kode Inventaris</b></td>
                     <td><b>Nama Barang</b></td>
                     <td><b>Nama Pengguna</b></td>
                     <td><b>Ruang</b></td>

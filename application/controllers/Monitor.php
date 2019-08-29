@@ -242,17 +242,18 @@ class monitor extends CI_Controller {
 		$data = array();
 
 		foreach($empRecords as $row){
-
-		$button = '<a href="perawatan/cek/'.$row->kd_inv.'" class="btn btn-success btn-circle">
+		$cek = '<a href="perawatan/cek/'.$row->kd_inv.'" class="btn btn-success btn-circle">
 		<i class="fas fa-check"></i>
-		</a>
-		<a href="perawatan/update/'.$row->kd_inv.'" class="btn btn-info btn-circle">
+		</a>';
+		
+		$button = '
+		<a href="monitor/update/'.$row->kd_inv.'" class="btn btn-info btn-circle">
 		<i class="fas fa-info-circle"></i>
 		</a>
-		<a href="perawatan/update/'.$row->kd_inv.'" class="btn btn-warning btn-circle">
+		<a href="monitor/update/'.$row->kd_inv.'" class="btn btn-warning btn-circle">
         <i class="fas fa-edit"></i>
         </a>
-		<a href="perawatan/delete/'.$row->kd_inv.'" class="btn btn-danger btn-circle">
+		<a href="monitor/delete/'.$row->kd_inv.'" class="btn btn-danger btn-circle">
 		<i class="fas fa-trash"></i>
 		</a>
 		';

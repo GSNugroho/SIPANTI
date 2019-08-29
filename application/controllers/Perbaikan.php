@@ -43,7 +43,7 @@ class perbaikan extends CI_Controller{
 
     function update($id){
         $row = $this->m_perbaikan->get_by_id($id);
-
+        if(($row->prb_valid) == NULL){
         if($row){
             $data = array(
                 'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
@@ -61,6 +61,9 @@ class perbaikan extends CI_Controller{
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
             redirect(base_url('perbaikan'));
         }
+    }else{
+        redirect(base_url('perbaikan'));
+    }
     }
 
     function update_action(){
@@ -237,9 +240,17 @@ class perbaikan extends CI_Controller{
             $uang = $row->sp_by;
             $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
 
-            $button = '<a href="perbaikan/cek/'.$row->kd_pr.'" class="btn btn-success btn-circle">
-                        <i class="fas fa-check"></i>
-                        </a>
+            if(($row->prb_valid) == 1){
+                $valid = '<a href="#" class="btn btn-secondary btn-circle">
+                <i class="fas fa-check"></i>
+                </a>';
+            }else{
+                $valid = '<a href="perbaikan/cek/'.$row->kd_pr.'" class="btn btn-success btn-circle">
+                <i class="fas fa-check"></i>
+                </a>';
+            }
+
+            $button = $valid.'
                         <a href="perbaikan/read/'.$row->kd_pr.'" class="btn btn-info btn-circle">
                         <i class="fas fa-info-circle"></i>
                         </a>

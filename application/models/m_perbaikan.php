@@ -103,7 +103,11 @@ class m_perbaikan extends CI_Model{
         $query = $this->db->query('select TOP '.$rowperpage.' * from inv_perbaikan
         join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
         join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1 and inv_perbaikan.dl_sts = 1'.$searchQuery.' and '.$columnName.' NOT IN (SELECT TOP '.$baris.' '.$columnName.' from inv_perbaikan where inv_barang.aktif = 1'.$searchQuery.' order by '.$columnName.' '.$columnSortOrder.')
+        where inv_barang.aktif = 1 and inv_perbaikan.dl_sts = 1'.$searchQuery.' and inv_perbaikan.kd_pr NOT IN (
+            SELECT TOP '.$baris.' inv_perbaikan.kd_pr from inv_perbaikan 
+            join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+            join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+            where inv_barang.aktif = 1 and inv_perbaikan.dl_sts = 1'.$searchQuery.' order by '.$columnName.' '.$columnSortOrder.')
         order by '.$columnName.' '.$columnSortOrder);
         return $query->result();
     }

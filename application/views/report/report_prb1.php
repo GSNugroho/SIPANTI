@@ -39,9 +39,15 @@
                     $data = $row->jns_pr;
                     if($data=='1'){echo '<td>Pengecekan</td>';
                     }else if($data=='2'){echo '<td>Ganti Sparepart</td>';
-                    }else{echo '<td>Service</td>';}   ?>
+                    }else if($data=='3'){echo '<td>Service</td>';
+                    }else{echo '<td></td> ';}   ?>
                     <td><?php echo $row->sp_gt?></td>
-                    <td><?php echo $row->sp_by?></td>
+                    <td><?php 
+                    if(($row->sp_by) != 0 or ($row->sp_by) != NULL){
+                    $uang = $row->sp_by;
+                    $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
+                    echo $hasil_rupiah;}else{echo ' ';}
+                    ?></td>
                     <td><?php echo $row->ket_pr?></td></tr>
                      <?php
                 }

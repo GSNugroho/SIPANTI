@@ -3,7 +3,9 @@
   $datarata = array();
   $wperawatan = array();
   foreach($report_g as $row){
-    $wperawatan[] = $row->selisih;
+    if($row->selisih != NULL){
+      $wperawatan[] = $row->selisih;
+    }
   }
   foreach($report_l as $row){
     array_push($dataPoints, array("x"=> $row->tanggal, "y"=> $row->total));

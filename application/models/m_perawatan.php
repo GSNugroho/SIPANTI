@@ -113,7 +113,12 @@ class m_perawatan extends CI_Model{
         join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
-        where 1=1 and inv_barang.aktif = 1 and inv_jadwal.dt_sts =1 and inv_barang.kd_aset != '' ".$searchQuery." and ".$columnName." NOT IN (SELECT TOP ".$baris." ".$columnName." FROM inv_jadwal WHERE dt_sts =1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
+        where 1=1 and inv_barang.aktif = 1 and inv_jadwal.dt_sts =1 and inv_barang.kd_aset != '' ".$searchQuery." and inv_jadwal.kd_jd NOT IN (
+            SELECT TOP ".$baris." inv_jadwal.kd_jd FROM inv_jadwal 
+            join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+            join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
+            join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
+            WHERE dt_sts =1 and inv_barang.aktif = 1".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
         order by ".$columnName." ".$columnSortOrder);
         return $query->result();
     }
