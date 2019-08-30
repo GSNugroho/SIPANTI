@@ -339,26 +339,25 @@
     <div class="card-body">
 
     <form action="<?php echo base_url().'perawatan/update_action_perawatan';?>" method="post">
-    <table>
+    <div class="table-responsive">
+    <table class="table table-bordered">
         <tr>
             <td>Waktu Mulai</td>
             <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wtm))?>" name="wtm"></td>
-        </tr>
-        <tr>
             <td>Waktu Selesai</td>
             <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wts))?>" name="wts"></td>
         </tr>
     </table>
-    <table border="1" width="55%">
+    <table border="1" width="55%" class="table table-bordered">
         <tr>
             <th rowspan="2" align="center" width="10%">Golongan</th>
             <th rowspan="2" align="center" width="25%">Spesifikasi</th>
             <th colspan="3" align="center" width="15%">Kondisi</th>
         </tr>
         <tr>
-            <td width="5%">&nbsp;B&nbsp;</td>
-            <td width="5%">K.B</td>
-            <td width="5%">&nbsp;R&nbsp;</td>
+            <td width="5%">Baik</td>
+            <td width="5%">Kurang Baik</td>
+            <td width="5%">Rusak</td>
         </tr>
         <tr>
             <td>Casing</td>
@@ -480,7 +479,7 @@
                                     echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field1" width="55%">
+        <table border="1" id="dynamic_field1" width="55%" class="table table-bordered">
         <tr>
             <td width="20%">Mainboard</td>
             <td width="50%"></td>
@@ -566,7 +565,7 @@
                                     }
                                 echo'</tr>';}
         ?>
-        </table><table border="1" id="dynamic_field2" width="55%">
+        </table><table border="1" id="dynamic_field2" width="55%" class="table table-bordered">
         <?php
             if(!empty($m_onboardg)){echo '<tr>
                                     <td width="10%"></td>
@@ -663,7 +662,7 @@
                                     }
                                 echo'</tr>';}
         ?>
-        </table><table border="1" id="dynamic_field3" width="55%">
+        </table><table border="1" id="dynamic_field3" width="55%" class="table table-bordered">
         <?php
             if(!empty($m_pcie1)){echo '<tr>
                                     <td width="10%"></td>
@@ -742,7 +741,7 @@
                                     }
                                 echo'</tr>';}
         ?>
-        </table><table border="1" id="dynamic_field4" width="55%">
+        </table><table border="1" id="dynamic_field4" width="55%" class="table table-bordered">
         <?php
             if(!empty($m_usb)){echo '<tr>
                                     <td width="10%"></td>
@@ -764,7 +763,7 @@
                                     }
                                 echo'</tr>';}
         ?>
-        </table><table border="1" id="dynamic_field5" width="55%">
+        </table><table border="1" id="dynamic_field5" width="55%" class="table table-bordered">
         <?php
             if(!empty($m_12pmain)){echo '<tr>
                                     <td width="10%"></td>
@@ -1109,7 +1108,7 @@
                                     }
                                 echo'</tr>';}
             ?>
-            </table><table border="1" width="55%">
+            </table><table border="1" width="55%" class="table table-bordered">
             <?php
             if(!empty($m_sysvoltdetec)){echo '<tr>
                                     <td width="10%"></td>
@@ -1208,7 +1207,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field6" width="55%">
+        <table border="1" id="dynamic_field6" width="55%" class="table table-bordered">
         <tr>
             <td width="10%">Hard Disk</td>
         </tr>
@@ -1234,7 +1233,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field7" width="55%">
+        <table border="1" id="dynamic_field7" width="55%" class="table table-bordered">
         <?php
             if(!empty($h_satah)){echo '<tr>
                                     <td width="10%"></td>
@@ -1257,7 +1256,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field8" width="55%">
+        <table border="1" id="dynamic_field8" width="55%" class="table table-bordered">
         <?php
             if(!empty($h_satas)){echo '<tr>
                                     <td width="10%"></td>
@@ -1280,7 +1279,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field9" width="55%">
+        <table border="1" id="dynamic_field9" width="55%" class="table table-bordered">
         <?php
             if(!empty($h_nvm)){echo '<tr>
                                     <td width="10%"></td>
@@ -1303,7 +1302,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field10" width="55%">
+        <table border="1" id="dynamic_field10" width="55%" class="table table-bordered">
         <tr>
             <td width="10%">RAM</td>
         </tr>
@@ -1329,7 +1328,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field11" width="55%">
+        <table border="1" id="dynamic_field11" width="55%" class="table table-bordered">
         <?php
             if(!empty($r_ddr2)){echo '<tr>
                                     <td width="10%"></td>
@@ -1352,7 +1351,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field12" width="55%">
+        <table border="1" id="dynamic_field12" width="55%" class="table table-bordered">
         <?php
             if(!empty($r_ddr3)){echo '<tr>
                                     <td width="10%"></td>
@@ -1375,7 +1374,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" id="dynamic_field13" width="55%">
+        <table border="1" id="dynamic_field13" width="55%" class="table table-bordered">
         <?php
             if(!empty($r_ddr4)){echo '<tr>
                                     <td width="10%"></td>
@@ -1398,7 +1397,7 @@
                                 echo'</tr>';}
         ?>
         </table>
-        <table border="1" width="55%">
+        <table border="1" width="55%" class="table table-bordered">
         <tr>
             <td width="20%">Peripheral</td>
             <td width="50%"></td>
@@ -1841,7 +1840,8 @@
 
 	<!-- Core plugin JavaScript-->
 	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
-
+    <script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
 	<!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-clock-timepicker.min.js')?>"></script>

@@ -92,20 +92,20 @@ class m_monitor extends CI_Model{
 	}
 	function get_total_dt(){
 		$query = $this->db->query("select count(*) as allcount from inv_barang
-		join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
-		join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
-		join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
-		join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE kd_inv != 'INV' ");
+		left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
+		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
+		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
+		WHERE kd_inv != 'INV' and inv_barang.aktif = 1 ");
 		return $query->result();
 	}
 	function get_total_fl($searchQuery){
 		$query = $this->db->query("select count(*) as allcount from inv_barang 
-		join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
-		join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
-		join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
-		join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE 1=1 and kd_inv != 'INV' ".$searchQuery);
+		left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
+		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
+		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
+		WHERE 1=1 and kd_inv != 'INV' and inv_barang.aktif = 1 ".$searchQuery);
 		return $query->result();
 	}
 	function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
@@ -114,7 +114,14 @@ class m_monitor extends CI_Model{
 		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE 1=1 and inv_barang.aktif = 1 and kd_inv != 'INV' ".$searchQuery." and kd_inv NOT IN (SELECT TOP ".$baris." kd_inv FROM inv_barang WHERE kd_inv != 'INV'".$searchQuery." order by ".$columnName." ".$columnSortOrder.") order by ".$columnName." ".$columnSortOrder);
+		WHERE 1=1 and inv_barang.aktif = 1 and inv_barang.kd_inv != 'INV' ".$searchQuery." and inv_barang.kd_inv NOT IN (
+			SELECT TOP ".$baris." inv_barang.kd_inv FROM inv_barang 
+			left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
+			left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+			left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
+			left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
+			WHERE inv_barang.kd_inv != 'INV' and inv_barang.aktif = 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
+		order by ".$columnName." ".$columnSortOrder);
 		return $query->result();
 	}
 }

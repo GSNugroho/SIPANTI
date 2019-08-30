@@ -322,9 +322,9 @@
            	<h6 class="m-0 font-weight-bold text-primary">Parameter Perawatan</h6>
 		</div>
     <div class="card-body">
-
-    <form action="<?php echo base_url().'perawatan/set_data_komponen';?>" method="post">
-    <table border="1" align="center">
+        <form action="<?php echo base_url().'perawatan/set_data_komponen';?>" method="post">
+    <div class="table-responsive">
+    <table border="1" align="center" class="table table-bordered">
         <tr>
         <th>Casing</th>
         <th><input type="checkbox" class="checkall" id="select_casing"></th>
@@ -983,7 +983,8 @@
 
 	<!-- Core plugin JavaScript-->
 	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
-
+    <script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
 	<!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-clock-timepicker.min.js')?>"></script>

@@ -46,9 +46,51 @@ class report extends CI_Controller{
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
         // $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+
+        switch($bulan_jd){
+            case 1:
+            $bln = "Januari ";
+            break;
+            case 2:
+            $bln = "Februari ";
+            break;
+            case 3:
+            $bln = "Maret ";
+            break;
+            case 4:
+            $bln = "April ";
+            break;
+            case 5:
+            $bln = "Mei ";
+            break;
+            case 6:
+            $bln = "Juni ";
+            break;
+            case 7:
+            $bln = "Juli ";
+            break;
+            case 8:
+            $bln = "Agustus ";
+            break;
+            case 9:
+            $bln = "September ";
+            break;
+            case 10:
+            $bln = "Oktober ";
+            break;
+            case 11:
+            $bln = "November ";
+            break;
+            case 12:
+            $bln = "Desember ";
+            break;
+        }
+
         $data = array(
             'report_g' => $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd),
-            'report_l' => $this->m_report->get_data_glperawatan($bulan_jd, $tahun_jd)
+            'report_l' => $this->m_report->get_data_glperawatan($bulan_jd, $tahun_jd),
+            'bulan' => $bln,
+            'tahun' => $tahun_jd
         );
         $this->load->view('report/report_gpr', $data);
     }
@@ -85,7 +127,52 @@ class report extends CI_Controller{
     function get_report_gperbaikan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
+
+        switch($bulan_jd){
+            case 1:
+            $bln = "Januari ";
+            break;
+            case 2:
+            $bln = "Februari ";
+            break;
+            case 3:
+            $bln = "Maret ";
+            break;
+            case 4:
+            $bln = "April ";
+            break;
+            case 5:
+            $bln = "Mei ";
+            break;
+            case 6:
+            $bln = "Juni ";
+            break;
+            case 7:
+            $bln = "Juli ";
+            break;
+            case 8:
+            $bln = "Agustus ";
+            break;
+            case 9:
+            $bln = "September ";
+            break;
+            case 10:
+            $bln = "Oktober ";
+            break;
+            case 11:
+            $bln = "November ";
+            break;
+            case 12:
+            $bln = "Desember ";
+            break;
+        }
+        
         $data['report_g'] = $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
+        $data = array(
+            'report_g' => $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd),
+            'bulan' => $bln,
+            'tahun' => $tahun_jd
+        );
         $this->load->view('report/report_gprb', $data);
     }
 
@@ -122,7 +209,51 @@ class report extends CI_Controller{
     function get_report_gtelat(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
-        $data['report_g'] = $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd);
+
+        switch($bulan_jd){
+            case 1:
+            $bln = "Januari ";
+            break;
+            case 2:
+            $bln = "Februari ";
+            break;
+            case 3:
+            $bln = "Maret ";
+            break;
+            case 4:
+            $bln = "April ";
+            break;
+            case 5:
+            $bln = "Mei ";
+            break;
+            case 6:
+            $bln = "Juni ";
+            break;
+            case 7:
+            $bln = "Juli ";
+            break;
+            case 8:
+            $bln = "Agustus ";
+            break;
+            case 9:
+            $bln = "September ";
+            break;
+            case 10:
+            $bln = "Oktober ";
+            break;
+            case 11:
+            $bln = "November ";
+            break;
+            case 12:
+            $bln = "Desember ";
+            break;
+        }
+
+        $data = array(
+            'report_g' => $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd),
+            'bulan' => $bln,
+            'tahun' => $tahun_jd
+        );
         $this->load->view('report/report_gtlt', $data);
     }
 
