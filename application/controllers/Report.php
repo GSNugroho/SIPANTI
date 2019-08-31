@@ -1,9 +1,9 @@
 <?php
-class report extends CI_Controller{
+class Report extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_report');
+        $this->load->model('M_report');
         // $this->load->library('tcpdf');
         // $this->load->library('pdf');
     }
@@ -19,18 +19,18 @@ class report extends CI_Controller{
     function get_report_perawatan(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
+        $data['report_p'] = $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
         $this->load->view('report/report_pr', $data);
     }
 
     function get_report_perawatanm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        // $data['report_p']= $this->m_report->get_data_perawatan($tgl_a, $tgl_s);
+        // $data['report_p']= $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
 
         $data = array(
-            'report_p' => $this->m_report->get_data_perawatan($tgl_a, $tgl_s),
-            'report_l' => $this->m_report->get_data_wperawatan($tgl_a, $tgl_s),
+            'report_p' => $this->M_report->get_data_perawatan($tgl_a, $tgl_s),
+            'report_l' => $this->M_report->get_data_wperawatan($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
@@ -45,7 +45,7 @@ class report extends CI_Controller{
     function get_report_gperawatan(){
         $bulan_jd = $this->input->post('bulan_jd', TRUE);
         $tahun_jd = $this->input->post('tahun_jd', TRUE);
-        // $data['report_g'] = $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd);
+        // $data['report_g'] = $this->M_report->get_data_gperawatan($bulan_jd, $tahun_jd);
 
         switch($bulan_jd){
             case 1:
@@ -87,8 +87,8 @@ class report extends CI_Controller{
         }
 
         $data = array(
-            'report_g' => $this->m_report->get_data_gperawatan($bulan_jd, $tahun_jd),
-            'report_l' => $this->m_report->get_data_glperawatan($bulan_jd, $tahun_jd),
+            'report_g' => $this->M_report->get_data_gperawatan($bulan_jd, $tahun_jd),
+            'report_l' => $this->M_report->get_data_glperawatan($bulan_jd, $tahun_jd),
             'bulan' => $bln,
             'tahun' => $tahun_jd
         );
@@ -102,17 +102,17 @@ class report extends CI_Controller{
     function get_report_perbaikan(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_perbaikan($tgl_a, $tgl_s);
+        $data['report_p'] = $this->M_report->get_data_perbaikan($tgl_a, $tgl_s);
         $this->load->view('report/report_prb', $data);
     }
 
     function get_report_perbaikanm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        // $data['report_p'] = $this->m_report->get_data_perbaikan($tgl_a, $tgl_s);
+        // $data['report_p'] = $this->M_report->get_data_perbaikan($tgl_a, $tgl_s);
         
         $data = array(
-            'report_p' => $this->m_report->get_data_perbaikan($tgl_a, $tgl_s),
+            'report_p' => $this->M_report->get_data_perbaikan($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
@@ -167,9 +167,9 @@ class report extends CI_Controller{
             break;
         }
         
-        $data['report_g'] = $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
+        $data['report_g'] = $this->M_report->get_data_gperbaikan($bulan_jd, $tahun_jd);
         $data = array(
-            'report_g' => $this->m_report->get_data_gperbaikan($bulan_jd, $tahun_jd),
+            'report_g' => $this->M_report->get_data_gperbaikan($bulan_jd, $tahun_jd),
             'bulan' => $bln,
             'tahun' => $tahun_jd
         );
@@ -183,18 +183,18 @@ class report extends CI_Controller{
     function get_report_telat(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
+        $data['report_p'] = $this->M_report->get_data_telat($tgl_a, $tgl_s);
         $this->load->view('report/report_tlt', $data);
     }
 
     function get_report_telatm(){
         $tgl_a = $this->input->post('tgl_jd', TRUE);
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
-        // $data['report_p'] = $this->m_report->get_data_telat($tgl_a, $tgl_s);
+        // $data['report_p'] = $this->M_report->get_data_telat($tgl_a, $tgl_s);
         
         $data = array(
-            'report_p' => $this->m_report->get_data_telat($tgl_a, $tgl_s),
-            'report_l' => $this->m_report->get_data_wtelat($tgl_a, $tgl_s),
+            'report_p' => $this->M_report->get_data_telat($tgl_a, $tgl_s),
+            'report_l' => $this->M_report->get_data_wtelat($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
@@ -250,7 +250,7 @@ class report extends CI_Controller{
         }
 
         $data = array(
-            'report_g' => $this->m_report->get_data_gtelat($bulan_jd, $tahun_jd),
+            'report_g' => $this->M_report->get_data_gtelat($bulan_jd, $tahun_jd),
             'bulan' => $bln,
             'tahun' => $tahun_jd
         );
@@ -266,7 +266,7 @@ class report extends CI_Controller{
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
 
         $data = array(
-            'report_p' => $this->m_report->get_data_sparepart($tgl_a, $tgl_s),
+            'report_p' => $this->M_report->get_data_sparepart($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
@@ -280,7 +280,7 @@ class report extends CI_Controller{
 
     function riwayat_perawatan(){
         $data = array(
-            'dd_gr' => $this->m_report->get_ruang()
+            'dd_gr' => $this->M_report->get_ruang()
         );
         $this->load->view('report/riwayat_perawatan', $data);
     }
@@ -289,7 +289,7 @@ class report extends CI_Controller{
         $kd_inv = $this->input->post('kd_inv', TRUE);
         $tgl = date('Y-m-d h:i:s');
         $data = array(
-            'report_p' => $this->m_report->get_riwayat_dperawatan($kd_inv),
+            'report_p' => $this->M_report->get_riwayat_dperawatan($kd_inv),
             'tgl_hr' => $tgl,
             'kd_inv' => $kd_inv
         );
@@ -303,7 +303,7 @@ class report extends CI_Controller{
 
     function riwayat_perbaikan(){
         $data = array(
-            'dd_gr' => $this->m_report->get_ruang()
+            'dd_gr' => $this->M_report->get_ruang()
         );
         $this->load->view('report/riwayat_perbaikan', $data);
     }
@@ -312,7 +312,7 @@ class report extends CI_Controller{
         $kd_inv = $this->input->post('kd_inv', TRUE);
         $tgl = date('Y-m-d h:i:s');
         $data = array(
-            'report_p' => $this->m_report->get_riwayat_dperbaikan($kd_inv),
+            'report_p' => $this->M_report->get_riwayat_dperbaikan($kd_inv),
             'tgl_hr' => $tgl,
             'kd_inv' => $kd_inv
         );
@@ -327,7 +327,7 @@ class report extends CI_Controller{
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
-        $inv = $this->m_report->get_inv($id_ruang);
+        $inv = $this->M_report->get_inv($id_ruang);
         $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
 
         foreach ($inv as $row){

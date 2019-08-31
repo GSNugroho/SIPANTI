@@ -1,45 +1,45 @@
 <?php
-class jadwal extends CI_Controller{
+class Jadwal extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_jadwal');
+        $this->load->model('M_jadwal');
     }
 
     public function index(){
         //Merubah Jadwal Yg Belum Dikerjakan
-        $row = $this->m_jadwal->data_tlt();
+        $row = $this->M_jadwal->data_tlt();
         $warna = '#ff0000';
         if($row){
-        $dt_tlt = $this->m_jadwal->get_data_telat();
+        $dt_tlt = $this->M_jadwal->get_data_telat();
         foreach($dt_tlt as $row) {
             $kd_jd = $row->kd_jd;
         
             $jd_wr_tlt = array(
                 'color' => $warna
             );
-        $this->m_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
+        $this->M_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
         }
     }
 
         //Merubah Jadwal Yg Harus Dikerjakan Hari ini
-        $row = $this->m_jadwal->data_hr();
+        $row = $this->M_jadwal->data_hr();
         $warna = '#FFD700';
         if($row){
-        $dt_hr = $this->m_jadwal->get_data_hr();
+        $dt_hr = $this->M_jadwal->get_data_hr();
         foreach($dt_hr as $row){
             $kd_jd = $row->kd_jd;
 
             $jd_wr_hr = array(
                 'color' => $warna
             );
-        $this->m_jadwal->updatekonten($kd_jd, $jd_wr_hr);
+        $this->M_jadwal->updatekonten($kd_jd, $jd_wr_hr);
         }
         }
         
         $data = array(
-            'dd_gr' => $this->m_jadwal->get_ruang(),
-            'inv_jadwal' => $this->m_jadwal->get_data()
+            'dd_gr' => $this->M_jadwal->get_ruang(),
+            'inv_jadwal' => $this->M_jadwal->get_data()
         );
         $this->load->view('jadwal/jadwal', $data);
     }
@@ -47,15 +47,15 @@ class jadwal extends CI_Controller{
 
     public function coba(){
         $data = array(
-            'dd_gr' => $this->m_jadwal->get_ruang(),
-            'inv_jadwal' => $this->m_jadwal->get_data()
+            'dd_gr' => $this->M_jadwal->get_ruang(),
+            'inv_jadwal' => $this->M_jadwal->get_data()
         );
         $this->load->view('jadwal/jadwal2', $data);
     }
 
     function create(){
         $data = array(
-            'dd_gr' => $this->m_jadwal->get_ruang()
+            'dd_gr' => $this->M_jadwal->get_ruang()
         );
         $this->load->view('jadwal/jadwal_form', $data);
     }
@@ -75,7 +75,7 @@ class jadwal extends CI_Controller{
         'dt_sts' => $dt_sts
         );
 
-        $this->m_jadwal->insert($data);
+        $this->M_jadwal->insert($data);
         $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
         redirect(site_url('jadwal'));
     }
@@ -88,7 +88,7 @@ class jadwal extends CI_Controller{
         'color' => $this->input->post('color', TRUE)
         );
 
-        $this->m_jadwal->updatekonten($this->input->post('id_jd', TRUE), $data);
+        $this->M_jadwal->updatekonten($this->input->post('id_jd', TRUE), $data);
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
         redirect(base_url('jadwal'));
     }
@@ -113,8 +113,8 @@ class jadwal extends CI_Controller{
 	        'tgl_jd_selesai' => $_POST['event'][2]
         );
 
-       $this->m_jadwal->updatetgl($id, $data);
-        // $this->m_jadwal->updatetgl($this->input->post(event[0], $data));
+       $this->M_jadwal->updatetgl($id, $data);
+        // $this->M_jadwal->updatetgl($this->input->post(event[0], $data));
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
         redirect(base_url('jadwal'));
         // }else {echo 'gagal';}
@@ -123,10 +123,10 @@ class jadwal extends CI_Controller{
 
     
     public function delete($id){
-        $row = $this->m_jadwal->get_by_id($id);
+        $row = $this->M_jadwal->get_by_id($id);
 
         if($row){
-            $this->m_monitor->delete($id);
+            $this->M_monitor->delete($id);
             $this->session_flashdata('message', 'Hapus Data Berhasil');
         }else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
@@ -137,7 +137,7 @@ class jadwal extends CI_Controller{
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
-        $inv = $this->m_jadwal->get_inv($id_ruang);
+        $inv = $this->M_jadwal->get_inv($id_ruang);
         $lists = "<tr>
                     <td h><b>Kode Inventaris</b></td>
                     <td><b>Nama Barang</b></td>
@@ -153,7 +153,7 @@ class jadwal extends CI_Controller{
     }
     
     function kode(){
-        $kode = $this->m_jadwal->get_kode();
+        $kode = $this->M_jadwal->get_kode();
         foreach($kode as $row){
             $data = $row->maxkode;
         }

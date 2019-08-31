@@ -1,20 +1,20 @@
 <?php
-class mutasi extends CI_Controller{
+class Mutasi extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_mutasi');
+        $this->load->model('M_mutasi');
     }
 
     public function index(){
-        $data['inv_mutasi'] = $this->m_mutasi->get_data();
+        $data['inv_mutasi'] = $this->M_mutasi->get_data();
         $this->load->view('mutasi/mutasi', $data);
     }
 
     function create(){
         $data = array(
-            'dd_gr' => $this->m_mutasi->get_ruang(),
-            'gki' => $this->m_mutasi->get_kdinv()
+            'dd_gr' => $this->M_mutasi->get_ruang(),
+            'gki' => $this->M_mutasi->get_kdinv()
         );
         $this->load->view('mutasi/mutasi_form',$data);
     }
@@ -31,13 +31,13 @@ class mutasi extends CI_Controller{
             'alasan_mts' => $this->input->post('alasan_mts', TRUE)
         );
 
-        $this->m_mutasi->insert($data);
+        $this->M_mutasi->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-        redirect(site_url(mutasi));
+        redirect(site_url('mutasi'));
     }
 
     function update($id){
-        $row = $this->m_mutasi->get_by_id($id);
+        $row = $this->M_mutasi->get_by_id($id);
 
         if($row) {
             $data = array(
@@ -49,7 +49,7 @@ class mutasi extends CI_Controller{
                 'kondisi_mts' => set_value('kondisi_mts', $row->kondisi_mts),
                 'ket_mts' => set_value('ket_mts', $row->ket_mts),
                 'alasan_mts' => set_value('alasan_mts', $row->alasan_mts),
-                'dd_gr' => $this->m_mutasi->get_ruang()
+                'dd_gr' => $this->M_mutasi->get_ruang()
             );
             $this->load->view('mutasi/mutasi_form_edit', $data);
         } else {
@@ -69,16 +69,16 @@ class mutasi extends CI_Controller{
             'ket_mts' => $this->input->post('ket_mts', TRUE),
             'alasan_mts' => $this->input->post('alasan_mts', TRUE)
         );
-        $this->m_mutasi->update($this->input->post('id', TRUE), $data);
+        $this->M_mutasi->update($this->input->post('id', TRUE), $data);
         $this->session->set_flashdata('message','Ubah Data Berhasil');
         redirect(base_url('mutasi'));
     }
 
     function delete($id){
-        $row = $this->m_mutasi->get_by_id($id);
+        $row = $this->M_mutasi->get_by_id($id);
 
         if($row){
-            $this->m_mutasi->delete($id);
+            $this->M_mutasi->delete($id);
             $this->session->set_flashdata('message','Hapus Data Berhasil');
             redirect(base_url('mutasi'));
         } else {
@@ -87,10 +87,31 @@ class mutasi extends CI_Controller{
         }
     }
 
+    function read($id){
+        $row = $this->M_mutasi->get_by_id($id);
+
+        if($row){
+            $data = array(
+                'kd_inv_mts' => set_value('kd_inv_mts', $row->kd_inv_mts),
+                'id_ruang_mts' => set_value('id_ruang_mts', $row->id_ruang_mts),
+                'jmlh_mts' => set_value('jmlh_mts', $row->jmlh_mts),
+                'tgl_terima_mts' => set_value('tgl_terima_mts', $row->tgl_terima_mts),
+                'status_mts' => set_value('status_mts', $row->status_mts),
+                'kondisi_mts' => set_value('kondisi_mts', $row->kondisi_mts),
+                'ket_mts' => set_value('ket_mts', $row->ket_mts),
+                'alasan_mts' => set_value('alasan_mts', $row->alasan_mts)
+            );
+            $this->load->view('mutasi/mutasi_read', $data);
+        }else{
+            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            redirect(base_url('mutasi'));
+        }
+    }
+
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
-        $inv = $this->m_mutasi->get_inv($id_ruang);
+        $inv = $this->M_mutasi->get_inv($id_ruang);
         $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
 
         foreach ($inv as $row){
@@ -125,7 +146,7 @@ class mutasi extends CI_Controller{
 		}
 
 		## Total number of records without filtering
-		$sel = $this->m_mutasi->get_total_dt();
+		$sel = $this->M_mutasi->get_total_dt();
 		// $records = sqlsrv_fetch_array($sel);
 		foreach($sel as $row){
 			$totalRecords = $row->allcount;
@@ -133,7 +154,7 @@ class mutasi extends CI_Controller{
 		
 
 		## Total number of record with filtering
-		$sel = $this->m_mutasi->get_total_fl($searchQuery);
+		$sel = $this->M_mutasi->get_total_fl($searchQuery);
 		// $records = sqlsrv_fetch_assoc($sel);
 		foreach($sel as $row){
 			$totalRecordwithFilter = $row->allcount;
@@ -141,7 +162,7 @@ class mutasi extends CI_Controller{
 		
 
 		## Fetch records
-		$empQuery = $this->m_mutasi->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empQuery = $this->M_mutasi->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
 		$empRecords = $empQuery;
 		$data = array();
 
@@ -150,7 +171,7 @@ class mutasi extends CI_Controller{
         <i class="fas fa-check"></i>
         </a>';
         $button = '
-                <a href="mutasi/update/'.$row->kd_inv_mts.'" class="btn btn-info btn-circle">
+                <a href="mutasi/read/'.$row->kd_inv_mts.'" class="btn btn-info btn-circle">
                 <i class="fas fa-info-circle"></i>
                 </a>
                 <a href="mutasi/update/'.$row->kd_inv_mts.'" class="btn btn-warning btn-circle">

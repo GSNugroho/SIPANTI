@@ -1,5 +1,5 @@
 <?php
-class m_monitor extends CI_Model{
+class M_monitor extends CI_Model{
 
 	public $table = 'inv_barang';
 	public $id = 'kd_inv';

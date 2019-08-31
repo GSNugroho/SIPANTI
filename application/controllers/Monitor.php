@@ -1,24 +1,24 @@
 <?php
-class monitor extends CI_Controller {
+class Monitor extends CI_Controller {
 	public function __construct()
 		{
 			parent::__construct();
-			$this->load->model('m_monitor');
+			$this->load->model('M_monitor');
 		}
  
 	public function index(){
 		/*$this->load->database();
-		$jumlah_data = $this->m_monitor->jumlah_data();
+		$jumlah_data = $this->M_monitor->jumlah_data();
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'monitor/';
 		$config['total_rows'] = $jumlah_data;
 		$config['per_page'] = 50;
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['inv_barang'] = $this->m_monitor->data($config['per_page'],$from);
+		$data['inv_barang'] = $this->M_monitor->data($config['per_page'],$from);
 		*/
 		
-		$data['inv_barang'] = $this->m_monitor->get_data();
+		$data['inv_barang'] = $this->M_monitor->get_data();
 		$this->load->view('monitor/monitor', $data);
 		}
 		
@@ -55,12 +55,12 @@ class monitor extends CI_Controller {
 		'vc_op' => set_value('vc_op')
 		);*/
 
-		$data['dd_gm'] = $this->m_monitor->get_merk();
+		$data['dd_gm'] = $this->M_monitor->get_merk();
 		$data = array(
-			'dd_gm' => $this->m_monitor->get_merk(),
-			'dd_gr' => $this->m_monitor->get_ruang(),
-			'dd_gj' => $this->m_monitor->get_jenis(),
-			'dd_gg' => $this->m_monitor->get_golongan()
+			'dd_gm' => $this->M_monitor->get_merk(),
+			'dd_gr' => $this->M_monitor->get_ruang(),
+			'dd_gj' => $this->M_monitor->get_jenis(),
+			'dd_gg' => $this->M_monitor->get_golongan()
 		);
 		 $this->load->view('monitor/monitor_form', $data);
 	}
@@ -92,14 +92,14 @@ class monitor extends CI_Controller {
 						
 			);
 			
-			$this->m_monitor->insert($data);
+			$this->M_monitor->insert($data);
 			$this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-			redirect(site_url(monitor));
+			redirect(site_url('monitor'));
 		//}
 	}
 	
 	function update($id){
-		$row = $this->m_monitor->get_by_id($id);
+		$row = $this->M_monitor->get_by_id($id);
 		
 		if ($row) {
 			$data = array (
@@ -130,10 +130,10 @@ class monitor extends CI_Controller {
 			'vc_op_update' => set_value('vc_op_update', $row->vc_op_update),
 			'dt_tgl_update' => set_value('dt_tgl_update', $row->dt_tgl_update),
 			'vc_op' => set_value('vc_op', $row->vc_op),
-			'dd_gm' => $this->m_monitor->get_merk(),
-			'dd_gr' => $this->m_monitor->get_ruang(),
-			'dd_gj' => $this->m_monitor->get_jenis(),
-			'dd_gg' => $this->m_monitor->get_golongan()
+			'dd_gm' => $this->M_monitor->get_merk(),
+			'dd_gr' => $this->M_monitor->get_ruang(),
+			'dd_gj' => $this->M_monitor->get_jenis(),
+			'dd_gg' => $this->M_monitor->get_golongan()
 			);
 				$this->load->view('monitor/monitor_form_edit', $data);
 		} else {
@@ -165,16 +165,16 @@ class monitor extends CI_Controller {
 			'dt_tgl_update' => date('Y-m-d h:i:s')
 			);
 
-			$this->m_monitor->update($this->input->post('kd_inv', TRUE), $data);
+			$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
 			redirect(base_url('monitor'));
 	}
 
 	function delete($id){
-		$row = $this->m_monitor->get_by_id($id);
+		$row = $this->M_monitor->get_by_id($id);
 
 		if($row){
-			$this->m_monitor->delete($id);
+			$this->M_monitor->delete($id);
 			$this->session->set_flashdata('message','Hapus Data Berhasil');
 		}else {
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
@@ -182,9 +182,47 @@ class monitor extends CI_Controller {
 		}
 	}
 	
-	
+	function read($id){
+		$row = $this->M_monitor->get_by_id($id);
+		if($row){
+			$data = array(
+			'kd_inv' => set_value('kd_inv', $row->kd_inv),
+			'nm_inv' => set_value('nm_inv', $row->nm_inv),
+			'merk' => set_value('merk', $row->merk),
+			'satuan' => set_value('satuan', $row->satuan),
+			'jmlh' => set_value('jmlh', $row->jmlh),
+			'tgl_terima' => set_value('tgl_terima', date('m/d/Y', strtotime($row->tgl_terima ))),
+			'status' => set_value('status', $row->status),
+			'kondisi' => set_value('kondisi', $row->kondisi),
+			'ket' => set_value('ket', $row->ket),
+			'kd_bantu' => set_value('kd_bantu', $row->kd_bantu),
+			'no_aset' => set_value('no_aset', $row->no_aset),
+			'id_ruang' => set_value('id_ruang', $row->id_ruang),
+			'kd_brg' => set_value('kd_brg', $row->kd_brg),
+			'foto_brg' => set_value('foto_brg', $row->foto_brg),
+			'foto_qr' => set_value('foto_qr', $row->foto_qr),
+			'id_urut' => set_value('id_urut', $row->id_urut),
+			'aktif' => set_value('aktif', $row->aktif),
+			'jns_brg' => set_value('jns_brg', $row->jns_brg),
+			'cetak' => set_value('cetak', $row->cetak),
+			'kd_aset' => set_value('kd_aset', $row->kd_aset),
+			'dt_create' => set_value('dt_create', $row->dt_create),
+			'bt_ti' => set_value('bt_ti', $row->bt_ti),
+			'fl_harga' => set_value('fl_harga', $row->fl_harga),
+			'vc_op_update' => set_value('vc_op_update', $row->vc_op_update),
+			'dt_tgl_update' => set_value('dt_tgl_update', $row->dt_tgl_update),
+			'vc_op' => set_value('vc_op', $row->vc_op),
+			);
+			$this->load->view('monitor/monitor_read', $data);
+		}else{
+			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			redirect(base_url('monitor'));
+		}
+	}
+
+
 	function kode(){
-        $kode = $this->m_monitor->get_kode();
+        $kode = $this->M_monitor->get_kode();
         foreach($kode as $row){
             $data = $row->maxkode;
         }
@@ -221,7 +259,7 @@ class monitor extends CI_Controller {
 		}
 
 		## Total number of records without filtering
-		$sel = $this->m_monitor->get_total_dt();
+		$sel = $this->M_monitor->get_total_dt();
 		// $records = sqlsrv_fetch_array($sel);
 		foreach($sel as $row){
 			$totalRecords = $row->allcount;
@@ -229,7 +267,7 @@ class monitor extends CI_Controller {
 		
 
 		## Total number of record with filtering
-		$sel = $this->m_monitor->get_total_fl($searchQuery);
+		$sel = $this->M_monitor->get_total_fl($searchQuery);
 		// $records = sqlsrv_fetch_assoc($sel);
 		foreach($sel as $row){
 			$totalRecordwithFilter = $row->allcount;
@@ -237,7 +275,7 @@ class monitor extends CI_Controller {
 		
 
 		## Fetch records
-		$empQuery = $this->m_monitor->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empQuery = $this->M_monitor->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
 		$empRecords = $empQuery;
 		$data = array();
 
@@ -247,7 +285,7 @@ class monitor extends CI_Controller {
 		</a>';
 		
 		$button = '
-		<a href="monitor/update/'.$row->kd_inv.'" class="btn btn-info btn-circle">
+		<a href="monitor/read/'.$row->kd_inv.'" class="btn btn-info btn-circle">
 		<i class="fas fa-info-circle"></i>
 		</a>
 		<a href="monitor/update/'.$row->kd_inv.'" class="btn btn-warning btn-circle">

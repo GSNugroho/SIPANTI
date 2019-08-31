@@ -1,22 +1,22 @@
 <?php
-class perbaikan extends CI_Controller{
+class Perbaikan extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_perbaikan');
+        $this->load->model('M_perbaikan');
     }
 
     public function index(){
         $data = array(
-            'inv_perbaikan' => $this->m_perbaikan->get_data()
+            'inv_perbaikan' => $this->M_perbaikan->get_data()
         );
         $this->load->view('perbaikan/perbaikan',$data);
     }
 
     public function create(){
         $data = array(
-            'dd_gr' => $this->m_perbaikan->get_ruang(),
-            'gki' => $this->m_perbaikan->get_kdinv(),
+            'dd_gr' => $this->M_perbaikan->get_ruang(),
+            'gki' => $this->M_perbaikan->get_kdinv(),
             
         );
         $this->load->view('perbaikan/perbaikan_form', $data);
@@ -36,13 +36,13 @@ class perbaikan extends CI_Controller{
             'dl_sts' => $dl_sts,
             'kd_pr' => $this->kode()
         );
-        $this->m_perbaikan->insert($data);
+        $this->M_perbaikan->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
         redirect(site_url('perbaikan'));
     }
 
     function update($id){
-        $row = $this->m_perbaikan->get_by_id($id);
+        $row = $this->M_perbaikan->get_by_id($id);
         if(($row->prb_valid) == NULL){
         if($row){
             $data = array(
@@ -54,7 +54,7 @@ class perbaikan extends CI_Controller{
                 'sp_gt' => set_value('sp_gt', $row->sp_gt),
                 'sp_by' => set_value('sp_by', $row->sp_by),
                 'ket' => set_value('ket', $row->ket_pr),
-                'dd_gr' => $this->m_perbaikan->get_ruang()
+                'dd_gr' => $this->M_perbaikan->get_ruang()
             );
             $this->load->view('perbaikan/perbaikan_form_edit', $data);
         } else {
@@ -77,13 +77,13 @@ class perbaikan extends CI_Controller{
             'sp_by' => $this->input->post('sp_by', TRUE),
             'ket_pr' => $this->input->post('ket_pr', TRUE)
         );
-        $this->m_perbaikan->update($this->input->post('kd_pr', TRUE), $data);
+        $this->M_perbaikan->update($this->input->post('kd_pr', TRUE), $data);
 		$this->session->set_flashdata('message','Ubah Data Berhasil');
 		redirect(base_url('perbaikan'));
     }
 
     function read($id){
-        $row = $this->m_perbaikan->get_r_id($id);
+        $row = $this->M_perbaikan->get_r_id($id);
         if($row){
             $data = array(
                 'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
@@ -106,7 +106,7 @@ class perbaikan extends CI_Controller{
     function list_inv(){
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
-        $inv = $this->m_perbaikan->get_inv($id_ruang);
+        $inv = $this->M_perbaikan->get_inv($id_ruang);
         $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
 
         foreach ($inv as $row){
@@ -121,7 +121,7 @@ class perbaikan extends CI_Controller{
             $kode = $this->input->get('term', TRUE); 
 
             if (isset($_GET['term'])) {
-                $result = $this->m_perbaikan->get_sparepart($kode);
+                $result = $this->M_perbaikan->get_sparepart($kode);
                 if (count($result) > 0) {
                 foreach ($result as $row)
                     $arr_result[] = $row->vc_nm_komponen;
@@ -132,7 +132,7 @@ class perbaikan extends CI_Controller{
     }
 
     function kode(){
-        $kode = $this->m_perbaikan->get_kode();
+        $kode = $this->M_perbaikan->get_kode();
         foreach($kode as $row){
             $data = $row->maxkode;
         }
@@ -145,10 +145,10 @@ class perbaikan extends CI_Controller{
     }
 
     function delete_u($id){
-        $row = $this->m_perbaikan->get_by_id($id);
+        $row = $this->M_perbaikan->get_by_id($id);
 
 		if($row){
-			$this->m_perbaikan->delete($id);
+			$this->M_perbaikan->delete($id);
             $this->session->set_flashdata('message','Hapus Data Berhasil');
             redirect(base_url('perbaikan'));
 		}else {
@@ -158,26 +158,26 @@ class perbaikan extends CI_Controller{
     }
 
     function delete($id){
-        $row = $this->m_perbaikan->get_by_id($id);
+        $row = $this->M_perbaikan->get_by_id($id);
         $dl_st = '0';
         if($row){
             $data = array(
                 'dl_sts' => $dl_st
             );
         }
-        $this->m_perbaikan->update_delete($id, $data);
+        $this->M_perbaikan->update_delete($id, $data);
         redirect(base_url('perbaikan'));
     }
 
     function cek($id){
-        $row = $this->m_perbaikan->get_by_id($id);
+        $row = $this->M_perbaikan->get_by_id($id);
         $prb_valid = '1';
         if($row){
             $data = array(
                 'prb_valid' => $prb_valid
             );
         }
-        $this->m_perbaikan->update_v($id, $data);
+        $this->M_perbaikan->update_v($id, $data);
         redirect(base_url('perbaikan'));
     }
 
@@ -205,7 +205,7 @@ class perbaikan extends CI_Controller{
 		}
 
 		## Total number of records without filtering
-		$sel = $this->m_perbaikan->get_total_dt();
+		$sel = $this->M_perbaikan->get_total_dt();
 		// $records = sqlsrv_fetch_array($sel);
 		foreach($sel as $row){
 			$totalRecords = $row->allcount;
@@ -213,7 +213,7 @@ class perbaikan extends CI_Controller{
 		
 
 		## Total number of record with filtering
-		$sel = $this->m_perbaikan->get_total_fl($searchQuery);
+		$sel = $this->M_perbaikan->get_total_fl($searchQuery);
 		// $records = sqlsrv_fetch_assoc($sel);
 		foreach($sel as $row){
 			$totalRecordwithFilter = $row->allcount;
@@ -221,7 +221,7 @@ class perbaikan extends CI_Controller{
 		
 
 		## Fetch records
-		$empQuery = $this->m_perbaikan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empQuery = $this->M_perbaikan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
 		$empRecords = $empQuery;
 		$data = array();
 

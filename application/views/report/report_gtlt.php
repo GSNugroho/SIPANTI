@@ -38,7 +38,7 @@
   <script src="<?php echo base_url('assets/js/canvasjs.min.js')?>"></script>
   <script src="<?php echo base_url('assets/vendor/highchart/highcharts.js')?>"></script>
   <script src="<?php echo base_url('assets/vendor/highchart/export-data.js')?>"></script>
-  <script src="<?php echo base_url('assets/vendor/highchart/exporting.js')?>"></script>
+  <!-- <script src="<?php //echo base_url('assets/vendor/highchart/exporting.js')?>"></script> -->
 </head>
 <body>
 <!-- Page Wrapper -->
@@ -337,63 +337,79 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
     <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Grafik Keterlambatan</h6>
+	</div>
 
-  <div id="chartsContainer">
+  <div id="chartsContainer" class="card-body">
+    <div id="printpdf">
   <div class="chart-area">
     <!-- <canvas id="myAreaChart"></canvas> -->
     <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
   </div>
-  <!-- <div>
-    <table>
-      <tr>
-        <td>
-        Mean :
-        </td>
-        <td>
-          <?php 
-                // $t= count($datarata);
-                // print_r(array_sum($datarata)/$t);
+        <?php 
+            $t= count($datarata);
+            
+            sort($datarata);
+            $m=$t/2;
+            if(gettype($m)=='double'){
+                $te=floor($m);
+                $med=$datarata[$m];
+            }else{
+                $m=floor($m);
+                $m1=round($m);
+                $med=($datarata[$m]+$datarata[$m1])/2;
+            }
+            
+
+            $mo=array_count_values($datarata);
+            
           ?>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        <p>Median :</p>
-        </td>
-        <td>
-          <?php 
-                // sort($datarata);
-                // $m=$t/2;
-                // if(gettype($m)=='double'){
-                //     $te=floor($m);
-                //     $med=$datarata[$m];
-                // }else{
-                //     $m=floor($m);
-                //     $m1=round($m);
-                //     $med=($datarata[$m]+$datarata[$m1])/2;
-                // }
-                // echo $med;
-          ?>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        <p>Modus:</p>
-        </td>
-        <td>
-          <?php 
-              //   $mo=array_count_values($datarata);
-              //   foreach ($mo as $key => $val) {
-              //   if($val==max($mo)){
-              //     echo "$key banyak data $val<br/>";
-              //   }
-              // }
-          ?>
-        </td>
-      </tr>
+
+    <div class="table-responsive">
+    <table border="1" class="table table-bordered">
+        <tr>
+            <td>Min</td>
+            <td>Rata - Rata</td>
+            <td>Median</td>
+            <td>Modus</td>
+            <td>Max</td>    
+        </tr>
+        <tr>
+            <td>
+                <?php echo min($datarata);?>
+            </td>
+            <td>
+                <?php 
+                $angka = array_sum($datarata)/$t;
+                $angka_format = number_format($angka,2,",",".");
+                echo $angka_format;
+                ?>
+            </td>
+            <td>
+                <?php echo $med;?>
+            </td>
+            <td>
+                <?php
+                foreach ($mo as $key => $val) {
+                    if($val==max($mo)){
+                    echo "$key banyak data $val<br/>";
+                    }
+                }
+                ?>
+            </td>
+            <td>
+                <?php echo max($datarata);?>
+            </td>
+        </tr>
     </table>
-  </div> -->
+    </div>
   </div>
+  <button id="exportButton" type="button" class="btn btn-primary">Download PDF</button>
+  </div>
+    </div>
+    </div>
+</div>
 
   <script>
 Highcharts.chart('chartContainer1', {
@@ -438,6 +454,23 @@ Highcharts.chart('chartContainer1', {
         ?>]
     }]
 });
+
+$("#exportButton").click(function(){
+    html2canvas(document.querySelector("#printpdf"), { height: 1800, width: window.innerWidth * 2, scale: 1 }).then(canvas => {  	
+    var dataURL = canvas.toDataURL();    
+    var pdf = new jsPDF();
+    // var docDefinition = {
+    //     pageSize: 'A4',
+    //     pageOrientation: 'landscape'
+    // }
+    pdf.addImage(dataURL, 'JPEG', 20, 20, 480, 320); //addImage(image, format, x-coordinate, y-coordinate, width, height)
+    pdf.setFont("helvetica");
+    pdf.setFontType("bold");
+    pdf.setFontSize(20);
+    pdf.save("Grafik Keterlambatan.pdf");
+    // pdf.createPdf(docDefinition).save("grafikperawatan.pdf");
+    });
+  });
   </script>
 </body>
 </html>

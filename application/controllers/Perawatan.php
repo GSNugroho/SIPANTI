@@ -1,19 +1,19 @@
 <?php
-class perawatan extends CI_Controller{
+class Perawatan extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_perawatan');
-        $this->load->model('m_perbaikan');
-        $this->load->model('m_jadwal');
+        $this->load->model('M_perawatan');
+        $this->load->model('M_perbaikan');
+        $this->load->model('M_jadwal');
     }
 
     public function index(){
-        $data['inv_perawatan'] = $this->m_perawatan->get_data_jd();
+        $data['inv_perawatan'] = $this->M_perawatan->get_data_jd();
         $this->load->view('perawatan/perawatan',$data);
     }
     function create(){
-        $data['gki'] = $this->m_perawatan->get_kdinv();
+        $data['gki'] = $this->M_perawatan->get_kdinv();
         $this->load->view('perawatan/perawatan_form', $data);
     }
     function create_action(){
@@ -24,7 +24,7 @@ class perawatan extends CI_Controller{
             'vc_nm_tindakan' => $this->input->post('vc_nm_tindakan', TRUE)
         );
 
-        $this->m_perawatan->insert($data);
+        $this->M_perawatan->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
         redirect(site_url('perawatan'));
     }
@@ -32,8 +32,8 @@ class perawatan extends CI_Controller{
     function komponen(){
         
         $id = $this->input->post('kd_jd', TRUE);
-        $s = $this->m_perawatan->get_by_id_komp($id);
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $s = $this->M_perawatan->get_by_id_komp($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
         if(($row->j_valid) == 0){
         if($s->cek==1){
             $this->update_komponen($id);
@@ -42,7 +42,7 @@ class perawatan extends CI_Controller{
              $this->session->set_flashdata('message', 'Data Tidak Ada');
              redirect(base_url('jadwal'));
         }else{
-        $row = $this->m_perawatan->get_by_id_komp($id);
+        $row = $this->M_perawatan->get_by_id_komp($id);
         if($row) {
             $data = array(
                 'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko)
@@ -57,9 +57,9 @@ class perawatan extends CI_Controller{
     }
 
     function update_k($id){
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
         if(($row->j_valid) == 0){
-        $s = $this->m_perawatan->get_by_id_komp($id);
+        $s = $this->M_perawatan->get_by_id_komp($id);
         if($s->cek==1){
             $this->update_komponen($id);
         }else{
@@ -67,7 +67,7 @@ class perawatan extends CI_Controller{
              $this->session->set_flashdata('message', 'Data Tidak Ada');
              redirect(base_url('jadwal'));
         }else{
-        $row = $this->m_perawatan->get_by_id_komp($id);
+        $row = $this->M_perawatan->get_by_id_komp($id);
         if($row) {
             $data = array(
                 'kd_jd_ko' => set_value('kd_jd_ko', $row->kd_jd_ko)
@@ -154,7 +154,7 @@ class perawatan extends CI_Controller{
             'm_bios' => $this->input->post('m_bios', TRUE),
             'cek'=> 1
         );
-        $this->m_perawatan->update_komponen($this->input->post('kd_jd_ko', TRUE), $data);
+        $this->M_perawatan->update_komponen($this->input->post('kd_jd_ko', TRUE), $data);
         $id = $this->input->post('kd_jd_ko', TRUE);
         $this->update_komponen($id);
         // redirect(base_url('perawatan/update_komponen', $id));
@@ -162,8 +162,8 @@ class perawatan extends CI_Controller{
 
     function update_komponen($id){
 
-        $row = $this->m_perawatan->get_by_id_komp($id);
-        $rows = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_komp($id);
+        $rows = $this->M_perawatan->get_by_id_jd($id);
 
         if($row){
             $data = array(
@@ -343,7 +343,7 @@ class perawatan extends CI_Controller{
     // }
 
     function update($id){
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
         if(($row->j_valid) == 0){
 
         if($row) {
@@ -452,10 +452,10 @@ class perawatan extends CI_Controller{
     }
 
     function delete_row($id){
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
 
         if($row){
-            $this->m_perawatan->delete($id);
+            $this->M_perawatan->delete($id);
             $this->session->set_flashdata('message', 'Hapus Data Berhasil');
             redirect(base_url('perawatan'));
         }else {
@@ -470,7 +470,7 @@ class perawatan extends CI_Controller{
              $this->session->set_flashdata('message', 'Data Tidak Ada');
              redirect(base_url('jadwal'));
         }else{
-         $row = $this->m_perawatan->get_by_id_jd($id);
+         $row = $this->M_perawatan->get_by_id_jd($id);
 
          if($row){
               $data = array(
@@ -693,7 +693,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbaut')==3){
             $sparepart = 'Baut';
@@ -707,7 +707,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kksakelar')==3){
             $sparepart = 'Kabel Sakelar';
@@ -721,7 +721,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkusb')==3){
             $sparepart = 'Kabel ke USB';
@@ -735,7 +735,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kksound')==3){
             $sparepart = 'Kabel ke Sound';
@@ -749,7 +749,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kklamp')==3){
             $sparepart = 'Kabel ke Lampu Indikator';
@@ -763,7 +763,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kcpu')==3){
             $sparepart = 'CPU';
@@ -777,7 +777,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kfsb')==3){
             $sparepart = 'FSB';
@@ -791,7 +791,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kchip')==3){
             $sparepart = 'Chipset';
@@ -805,7 +805,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kmc1')==3){
             $sparepart = 'Memory Channel 1';
@@ -819,7 +819,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kmc2')==3){
             $sparepart = 'Memory Channel 2';
@@ -833,7 +833,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('konboard')==3){
             $sparepart = 'On Board Graphics';
@@ -847,7 +847,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kain')==3){
             $sparepart = 'Audio In';
@@ -861,7 +861,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kaout')==3){
             $sparepart = 'Audio Out';
@@ -875,7 +875,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('klan')==3){
             $sparepart = 'LAN';
@@ -889,7 +889,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kepcie1')==3){
             $sparepart = 'PCI Express 16 Slot Channel 1';
@@ -903,7 +903,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kepcie2')==3){
             $sparepart = 'PCI Express 16 Slot Channel 2';
@@ -917,7 +917,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kepci1')==3){
             $sparepart = 'PCI Express 1 Slot';
@@ -931,7 +931,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('keagp')==3){
             $sparepart = 'AGP';
@@ -945,7 +945,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksiide')==3){
             $sparepart = 'IDE';
@@ -959,7 +959,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatac1')==3){
             $sparepart = 'Sata Channel 1';
@@ -973,7 +973,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatac2')==3){
             $sparepart = 'Sata Channel 2';
@@ -987,7 +987,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatac3')==3){
             $sparepart = 'Sata Channel 3';
@@ -1001,7 +1001,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatac4')==3){
             $sparepart = 'Sata Channel 4';
@@ -1015,7 +1015,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kusb1')==3){
             $sparepart = 'USB Channel 1';
@@ -1029,7 +1029,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kusb2')==3){
             $sparepart = 'USB Channel 2';
@@ -1043,7 +1043,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kic24')==3){
             $sparepart = '24 pin ATX Main Power Connector';
@@ -1057,7 +1057,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kic4')==3){
             $sparepart = '4 pin ATX 12V Power Connector';
@@ -1071,7 +1071,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicide')==3){
             $sparepart = 'IDE Connector';
@@ -1085,7 +1085,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicfan')==3){
             $sparepart = 'CPU Fan Header';
@@ -1099,7 +1099,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicsysfan')==3){
             $sparepart ='System Fan Header';
@@ -1113,7 +1113,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicfpanhead')==3){
             $sparepart = 'Front Panel Header';
@@ -1127,7 +1127,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kiccdcon')==3){
             $sparepart = 'CD In Connector';
@@ -1141,7 +1141,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicspdif')==3){
             $sparepart = 'S/PDIF Out Header';
@@ -1155,7 +1155,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicusb2c1')==3){
             $sparepart = 'USB 2.0 Channel 1';
@@ -1169,7 +1169,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicusb2c2')==3){
             $sparepart = 'USB 2.0 Channel 2';
@@ -1183,7 +1183,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kiccih')==3){
             $sparepart = 'Chassis Intrusion Header';
@@ -1197,7 +1197,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kicled')==3){
             $sparepart = 'Power LED Header';
@@ -1211,7 +1211,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcps2k')==3){
             $sparepart = 'PS/ 2 Keyboard Port';
@@ -1225,7 +1225,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcps2m')==3){
             $sparepart = 'PS/ 2 Mouse Port';
@@ -1239,7 +1239,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcplp')==3){
             $sparepart = 'Parrallel Port';
@@ -1253,7 +1253,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcsp')==3){
             $sparepart = 'Serial Port';
@@ -1267,7 +1267,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcdp')==3){
             $sparepart = 'Display Port';
@@ -1281,7 +1281,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcusb2c1')==3){
             $sparepart = 'USB 2.0 Channel 1';
@@ -1295,7 +1295,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcusb2c2')==3){
             $sparepart = 'USB 2.0 Channel 2';
@@ -1309,7 +1309,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcusb2c3')==3){
             $sparepart = 'USB 2.0 Channel 3';
@@ -1323,7 +1323,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbpcusb2c4')==3){
             $sparepart = 'USB 2.0 Channel 4';
@@ -1337,7 +1337,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('khmsvd')==3){
             $sparepart = 'System Voltage Detection';
@@ -1351,7 +1351,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('khmctd')==3){
             $sparepart = 'CPU Temperature Detection';
@@ -1365,7 +1365,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('khmffw')==3){
             $sparepart = 'CPU/ System Fail Warning';
@@ -1379,7 +1379,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('khmfsc')==3){
             $sparepart = 'CPU Fan Speed Control';
@@ -1393,7 +1393,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kbios')==3){
             $sparepart = 'BIOS';
@@ -1407,7 +1407,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('katahdd1')==3){
             $sparepart = 'ATA HDD';
@@ -1421,7 +1421,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('katahdd2')==3){
             $sparepart = 'ATA HDD';
@@ -1435,7 +1435,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatahdd1')==3){
             $sparepart = 'SATA HDD';
@@ -1449,7 +1449,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatahdd2')==3){
             $sparepart = 'SATA HDD';
@@ -1463,7 +1463,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatassd1')==3){
             $sparepart ='SATA SSD';
@@ -1477,7 +1477,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatassd2')==3){
             $sparepart = 'SATA SSD';
@@ -1491,7 +1491,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('knvmssd1')==3){
             $sparepart = 'NVM SSD';
@@ -1505,7 +1505,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('knvmssd2')==3){
             $sparepart = 'NVM SSD';
@@ -1519,7 +1519,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd1c1')==3){
             $sparepart = 'RAM DDR 1';
@@ -1533,7 +1533,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd1c2')==3){
             $sparepart = 'RAM DDR 1';
@@ -1547,7 +1547,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd2c1')==3){
             $sparepart = 'RAM DDR 2';
@@ -1561,7 +1561,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd2c2')==3){
             $sparepart = 'RAM DDR 2';
@@ -1575,7 +1575,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd3c1')==3){
             $sparepart = 'RAM DDR 3';
@@ -1589,7 +1589,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd3c2')==3){
             $sparepart = 'RAM DDR 3';
@@ -1603,7 +1603,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd4c1')==3){
             $sparepart = 'RAM DDR 4';
@@ -1617,7 +1617,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kramd4c2')==3){
             $sparepart = 'RAM DDR 4';
@@ -1631,7 +1631,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kcdrw')==3){
             $sparepart = 'CD RW';
@@ -1645,7 +1645,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kdvdrw')==3){
             $sparepart = 'DVD RW';
@@ -1659,7 +1659,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kaic')==3){
             $sparepart = 'ATA/ IDE Cable';
@@ -1673,7 +1673,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('ksatac')==3){
             $sparepart = 'SATA Cable';
@@ -1687,7 +1687,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkey')==3){
             $sparepart = 'Keyboard';
@@ -1701,7 +1701,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kmou')==3){
             $sparepart = 'Mouse';
@@ -1715,7 +1715,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kspea')==3){
             $sparepart = 'Speaker';
@@ -1729,7 +1729,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kmoncrt')==3){
             $sparepart = 'Monitor CRT';
@@ -1743,7 +1743,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kmonlcd')==3){
             $sparepart = 'Monitor LCD';
@@ -1757,7 +1757,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kvgac')==3){
             $sparepart = 'VGA Cable';
@@ -1771,7 +1771,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('klanc')==3){
             $sparepart = 'LAN Card';
@@ -1785,7 +1785,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kvgacrd')==3){
             $sparepart = 'VGA Card';
@@ -1799,7 +1799,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kfirec')==3){
             $sparepart = 'Firewire Card';
@@ -1813,7 +1813,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('klptc')==3){
             $sparepart = 'LPT Card';
@@ -1827,7 +1827,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('krsc')==3){
             $sparepart = 'RS 232 Card';
@@ -1841,7 +1841,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kpwrs')==3){
             $sparepart = 'Power Supply';
@@ -1855,7 +1855,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkpwr')==3){
             $sparepart = 'Kabel Power';
@@ -1869,7 +1869,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkpwrmon')==3){
             $sparepart = 'Kabel Power Monitor';
@@ -1883,7 +1883,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkpwrsata')==3){
             $sparepart = 'Kabel Power SATA';
@@ -1897,7 +1897,7 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         if($this->input->post('kkmolpwr')==3){
             $sparepart = 'Kabel Molex Power';
@@ -1911,17 +1911,17 @@ class perawatan extends CI_Controller{
                 //'sp_by' => $this->input->post('sp_by', TRUE),
                 'kd_pr' => $this->kode()
             );
-            $this->m_perbaikan->insert($dataperbaikan);
+            $this->M_perbaikan->insert($dataperbaikan);
         }
         
-        $this->m_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
-        $this->m_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
+        $this->M_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
+        $this->M_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
         redirect(base_url('perawatan'));
     }
 
     function read($id){
-        $rows = $this->m_perawatan->get_r_id($id);
+        $rows = $this->M_perawatan->get_r_id($id);
         if($rows){
             $data = array(
                 'kcasing' => set_value('kcasing', $rows->cs_cs),
@@ -2029,26 +2029,46 @@ class perawatan extends CI_Controller{
     }
 
     function cek($id){
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
         $j_valid = '1';
         if($row){
             $data = array(
                 'j_valid' => $j_valid
             );
         }
-        $this->m_perawatan->update_v($id, $data);
+        $stanggal = $row->tgl_jd;
+        $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
+        $nama = $row->nm_jd;
+        $kdinv = $row->kd_inv;
+        $warna = '#03e3fc';
+        $stanggals = $row->tgl_jd_selesai;
+        $tanggals = date('m-d-Y', strtotime('+3 month', strtotime($stanggals)));
+        $ruang = $row->kd_ruang;
+        $dt_sts = 1;
+        $data3 = array(
+            'tgl_jd' => $tanggal,
+            'nm_jd' => $nama,
+            'kd_inv' => $kdinv,
+            'color' => $warna,
+            'tgl_jd_selesai' => $tanggals,
+            'kd_ruang' => $ruang,
+            'kd_jd' => $this->kodejd(),
+            'dt_sts' => $dt_sts
+        );
+        $this->M_jadwal->insert($data3);
+        $this->M_perawatan->update_v($id, $data);
         redirect(base_url('perawatan'));
     }
 
     function delete($id){
-        $row = $this->m_perawatan->get_by_id_jd($id);
+        $row = $this->M_perawatan->get_by_id_jd($id);
         $dl_st = '0';
         if($row){
             $data = array(
                 'dt_sts' => $dl_st
             );
         }
-        $this->m_perawatan->update_delete($id, $data);
+        $this->M_perawatan->update_delete($id, $data);
         redirect(base_url('perawatan'));
     }
 
@@ -2075,7 +2095,7 @@ class perawatan extends CI_Controller{
 		}
 
 		## Total number of records without filtering
-		$sel = $this->m_perawatan->get_total_dt();
+		$sel = $this->M_perawatan->get_total_dt();
 		// $records = sqlsrv_fetch_array($sel);
 		foreach($sel as $row){
 			$totalRecords = $row->allcount;
@@ -2083,7 +2103,7 @@ class perawatan extends CI_Controller{
 		
 
 		## Total number of record with filtering
-		$sel = $this->m_perawatan->get_total_fl($searchQuery);
+		$sel = $this->M_perawatan->get_total_fl($searchQuery);
 		// $records = sqlsrv_fetch_assoc($sel);
 		foreach($sel as $row){
 			$totalRecordwithFilter = $row->allcount;
@@ -2091,7 +2111,7 @@ class perawatan extends CI_Controller{
 		
 
 		## Fetch records
-		$empQuery = $this->m_perawatan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
+		$empQuery = $this->M_perawatan->get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage);
 		$empRecords = $empQuery;
 		$data = array();
 
@@ -2147,7 +2167,7 @@ class perawatan extends CI_Controller{
     }
 
     function kode(){
-        $kode = $this->m_perbaikan->get_kode();
+        $kode = $this->M_perbaikan->get_kode();
         foreach($kode as $row){
             $data = $row->maxkode;
         }
@@ -2156,6 +2176,20 @@ class perawatan extends CI_Controller{
         $noUrut++;
         $char = "PRW";
         $kodebaru = $char.sprintf("%05s", $noUrut);
+        return $kodebaru;
+    }
+
+    function kodejd(){
+        $kode = $this->M_jadwal->get_kode();
+        foreach($kode as $row){
+            $data = $row->maxkode;
+        }
+
+        $kodejadwal = $data;
+        $noUrut = (int) substr($kodejadwal, 2, 6);
+        $noUrut++;
+        $char = "JD";
+        $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
     }
 }

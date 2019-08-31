@@ -1,5 +1,5 @@
 <?php
-class m_mutasi extends CI_Model{
+class M_mutasi extends CI_Model{
 
     public $table = 'inv_mutasi';
     public $id = 'kd_inv_mts';

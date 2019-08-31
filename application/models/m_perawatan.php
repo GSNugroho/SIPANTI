@@ -1,5 +1,5 @@
 <?php
-class m_perawatan extends CI_Model{
+class M_perawatan extends CI_Model{
     public $table = 'inv_perawatan_d';
     public $id = 'inv_perawatan_d.vc_kd_trans';
     public $order = 'DESC';
