@@ -33,7 +33,7 @@ class Mutasi extends CI_Controller{
 
         $this->M_mutasi->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-        redirect(site_url('mutasi'));
+        redirect(site_url('Mutasi'));
     }
 
     function update($id){
@@ -54,7 +54,7 @@ class Mutasi extends CI_Controller{
             $this->load->view('mutasi/mutasi_form_edit', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('mutasi'));
+            redirect(base_url('Mutasi'));
         }
     }
 
@@ -71,7 +71,7 @@ class Mutasi extends CI_Controller{
         );
         $this->M_mutasi->update($this->input->post('id', TRUE), $data);
         $this->session->set_flashdata('message','Ubah Data Berhasil');
-        redirect(base_url('mutasi'));
+        redirect(base_url('Mutasi'));
     }
 
     function delete($id){
@@ -80,10 +80,10 @@ class Mutasi extends CI_Controller{
         if($row){
             $this->M_mutasi->delete($id);
             $this->session->set_flashdata('message','Hapus Data Berhasil');
-            redirect(base_url('mutasi'));
+            redirect(base_url('Mutasi'));
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('mutasi'));
+            redirect(base_url('Mutasi'));
         }
     }
 
@@ -104,7 +104,7 @@ class Mutasi extends CI_Controller{
             $this->load->view('mutasi/mutasi_read', $data);
         }else{
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('mutasi'));
+            redirect(base_url('Mutasi'));
         }
     }
 

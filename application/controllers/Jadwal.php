@@ -77,7 +77,7 @@ class Jadwal extends CI_Controller{
 
         $this->M_jadwal->insert($data);
         $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
-        redirect(site_url('jadwal'));
+        redirect(site_url('Jadwal'));
     }
 
     public function update_action_konten(){        
@@ -90,7 +90,7 @@ class Jadwal extends CI_Controller{
 
         $this->M_jadwal->updatekonten($this->input->post('id_jd', TRUE), $data);
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
-        redirect(base_url('jadwal'));
+        redirect(base_url('Jadwal'));
     }
     
     public function update_action_tgl(){
@@ -116,7 +116,7 @@ class Jadwal extends CI_Controller{
        $this->M_jadwal->updatetgl($id, $data);
         // $this->M_jadwal->updatetgl($this->input->post(event[0], $data));
         $this->session->set_flashdata('message', 'Ubah Data Berhasil');
-        redirect(base_url('jadwal'));
+        redirect(base_url('Jadwal'));
         // }else {echo 'gagal';}
     }
 
@@ -130,7 +130,7 @@ class Jadwal extends CI_Controller{
             $this->session_flashdata('message', 'Hapus Data Berhasil');
         }else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('jadwal'));
+			redirect(base_url('Jadwal'));
         }
     }
 

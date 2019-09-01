@@ -26,7 +26,7 @@ class Perawatan extends CI_Controller{
 
         $this->M_perawatan->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-        redirect(site_url('perawatan'));
+        redirect(site_url('Perawatan'));
     }
 
     function komponen(){
@@ -40,7 +40,7 @@ class Perawatan extends CI_Controller{
         }else{
          if($id==NULL){ 
              $this->session->set_flashdata('message', 'Data Tidak Ada');
-             redirect(base_url('jadwal'));
+             redirect(base_url('Jadwal'));
         }else{
         $row = $this->M_perawatan->get_by_id_komp($id);
         if($row) {
@@ -52,7 +52,7 @@ class Perawatan extends CI_Controller{
         }
         }
         }else{
-            redirect(base_url('jadwal'));
+            redirect(base_url('Jadwal'));
         }
     }
 
@@ -65,7 +65,7 @@ class Perawatan extends CI_Controller{
         }else{
          if($id==NULL){ 
              $this->session->set_flashdata('message', 'Data Tidak Ada');
-             redirect(base_url('jadwal'));
+             redirect(base_url('Jadwal'));
         }else{
         $row = $this->M_perawatan->get_by_id_komp($id);
         if($row) {
@@ -76,7 +76,7 @@ class Perawatan extends CI_Controller{
             }
         }
         }
-    }else{redirect(base_url('perawatan'));}
+    }else{redirect(base_url('Perawatan'));}
     }
     
 
@@ -337,7 +337,7 @@ class Perawatan extends CI_Controller{
             $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('perawatan'));
+			redirect(base_url('Perawatan'));
         }
     }
     // }
@@ -446,9 +446,9 @@ class Perawatan extends CI_Controller{
             $this->load->view('perawatan/perawatan_form_edit', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('perawatan'));
+			redirect(base_url('Perawatan'));
         }
-    }else{redirect(base_url('perawatan'));}
+    }else{redirect(base_url('Perawatan'));}
     }
 
     function delete_row($id){
@@ -457,10 +457,10 @@ class Perawatan extends CI_Controller{
         if($row){
             $this->M_perawatan->delete($id);
             $this->session->set_flashdata('message', 'Hapus Data Berhasil');
-            redirect(base_url('perawatan'));
+            redirect(base_url('Perawatan'));
         }else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('perawatan'));
+            redirect(base_url('Perawatan'));
         }
     }
 
@@ -468,7 +468,7 @@ class Perawatan extends CI_Controller{
          $id = $this->input->post('kd_jd', TRUE);
          if($id==NULL){ 
              $this->session->set_flashdata('message', 'Data Tidak Ada');
-             redirect(base_url('jadwal'));
+             redirect(base_url('Jadwal'));
         }else{
          $row = $this->M_perawatan->get_by_id_jd($id);
 
@@ -573,7 +573,7 @@ class Perawatan extends CI_Controller{
          }else {
              $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
              echo 'Data tidak ditemukan';
-             redirect(base_url('jadwal'));
+             redirect(base_url('Jadwal'));
          };
         }
     }
@@ -1917,7 +1917,7 @@ class Perawatan extends CI_Controller{
         $this->M_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
         $this->M_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
         $this->session->set_flashdata('message', 'Simpan Data Berhasil');
-        redirect(base_url('perawatan'));
+        redirect(base_url('Perawatan'));
     }
 
     function read($id){
@@ -2024,7 +2024,7 @@ class Perawatan extends CI_Controller{
             $this->load->view('perawatan/perawatan_read', $data);
             }else{
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('perawatan'));
+			redirect(base_url('Perawatan'));
        }
     }
 
@@ -2057,7 +2057,7 @@ class Perawatan extends CI_Controller{
         );
         $this->M_jadwal->insert($data3);
         $this->M_perawatan->update_v($id, $data);
-        redirect(base_url('perawatan'));
+        redirect(base_url('Perawatan'));
     }
 
     function delete($id){
@@ -2069,7 +2069,7 @@ class Perawatan extends CI_Controller{
             );
         }
         $this->M_perawatan->update_delete($id, $data);
-        redirect(base_url('perawatan'));
+        redirect(base_url('Perawatan'));
     }
 
     function dt_tbl(){

@@ -13,7 +13,8 @@ class Dashboard extends CI_Controller {
 	{
 		$target = $this->M_dashboard->get_total_target();
 		$capaian = $this->M_dashboard->get_total_targetc();
-
+		$t=0;
+		$c=0;
 		foreach($target as $ib){
 			$t = (float)$ib->total;
 		}
@@ -21,8 +22,12 @@ class Dashboard extends CI_Controller {
 		foreach($capaian as $ib){
 			$c = (float)$ib->total;
 		}
-
-		$tc = ($c/$t) *100;
+		if(($t != 0) && ($c != 0)){
+			$tc = ($c/$t) *100;
+		}else{
+			$tc = 0;
+		}
+		
 		$tvc = number_format((float)$tc, 2, '.','');
 
 		$data = array(

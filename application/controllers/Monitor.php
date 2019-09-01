@@ -94,7 +94,7 @@ class Monitor extends CI_Controller {
 			
 			$this->M_monitor->insert($data);
 			$this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-			redirect(site_url('monitor'));
+			redirect(site_url('Monitor'));
 		//}
 	}
 	
@@ -138,7 +138,7 @@ class Monitor extends CI_Controller {
 				$this->load->view('monitor/monitor_form_edit', $data);
 		} else {
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('monitor'));
+			redirect(base_url('Monitor'));
 		}
 	}
 	
@@ -167,7 +167,7 @@ class Monitor extends CI_Controller {
 
 			$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
-			redirect(base_url('monitor'));
+			redirect(base_url('Monitor'));
 	}
 
 	function delete($id){
@@ -178,7 +178,7 @@ class Monitor extends CI_Controller {
 			$this->session->set_flashdata('message','Hapus Data Berhasil');
 		}else {
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('monitor'));
+			redirect(base_url('Monitor'));
 		}
 	}
 	
@@ -216,7 +216,7 @@ class Monitor extends CI_Controller {
 			$this->load->view('monitor/monitor_read', $data);
 		}else{
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('monitor'));
+			redirect(base_url('Monitor'));
 		}
 	}
 

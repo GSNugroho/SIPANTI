@@ -38,7 +38,7 @@ class Perbaikan extends CI_Controller{
         );
         $this->M_perbaikan->insert($data);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
-        redirect(site_url('perbaikan'));
+        redirect(site_url('Perbaikan'));
     }
 
     function update($id){
@@ -59,10 +59,10 @@ class Perbaikan extends CI_Controller{
             $this->load->view('perbaikan/perbaikan_form_edit', $data);
         } else {
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('perbaikan'));
+            redirect(base_url('Perbaikan'));
         }
     }else{
-        redirect(base_url('perbaikan'));
+        redirect(base_url('Perbaikan'));
     }
     }
 
@@ -79,7 +79,7 @@ class Perbaikan extends CI_Controller{
         );
         $this->M_perbaikan->update($this->input->post('kd_pr', TRUE), $data);
 		$this->session->set_flashdata('message','Ubah Data Berhasil');
-		redirect(base_url('perbaikan'));
+		redirect(base_url('Perbaikan'));
     }
 
     function read($id){
@@ -99,7 +99,7 @@ class Perbaikan extends CI_Controller{
             $this->load->view('perbaikan/perbaikan_read', $data);
         }else{
             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-            redirect(base_url('perbaikan'));
+            redirect(base_url('Perbaikan'));
         }
     }
 
@@ -150,10 +150,10 @@ class Perbaikan extends CI_Controller{
 		if($row){
 			$this->M_perbaikan->delete($id);
             $this->session->set_flashdata('message','Hapus Data Berhasil');
-            redirect(base_url('perbaikan'));
+            redirect(base_url('Perbaikan'));
 		}else {
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('perbaikan'));
+			redirect(base_url('Perbaikan'));
 		}
     }
 
@@ -166,7 +166,7 @@ class Perbaikan extends CI_Controller{
             );
         }
         $this->M_perbaikan->update_delete($id, $data);
-        redirect(base_url('perbaikan'));
+        redirect(base_url('Perbaikan'));
     }
 
     function cek($id){
@@ -178,7 +178,7 @@ class Perbaikan extends CI_Controller{
             );
         }
         $this->M_perbaikan->update_v($id, $data);
-        redirect(base_url('perbaikan'));
+        redirect(base_url('Perbaikan'));
     }
 
     function dt_tbl(){
