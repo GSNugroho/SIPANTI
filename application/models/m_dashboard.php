@@ -96,6 +96,11 @@ class M_dashboard extends CI_Model{
         return $query->result();
     }
 
+    function get_dt_login($data){
+        $query = $this->db->query('SELECT * FROM');
+        return $query->result();
+    }
+
     function get_total_perbaikanth(){
         $this->db->select('MONTH(inv_perbaikan.tgl_inv_pr) as bulan, COUNT(*) as total');
         $this->db->where('YEAR(inv_perbaikan.tgl_inv_pr) = YEAR(GETDATE())');

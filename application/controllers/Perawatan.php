@@ -2130,16 +2130,9 @@ class Perawatan extends CI_Controller{
                       <i class="fas fa-check"></i>
                       </a>';
         }
-        $button = $valid.'<a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle">
-                    <i class="fas fa-info-circle"></i>
-                    </a>
-                    <a href="perawatan/update_k/'.$row->kd_jd.'" class="btn btn-warning btn-circle">
-                    <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="perawatan/delete/'.$row->kd_jd.'" class="btn btn-danger btn-circle">
-                    <i class="fas fa-trash"></i>
-                    </a>
-                    ';
+        $button = $valid.' <a href="perawatan/read/'.$row->kd_jd.'" class="btn btn-info btn-circle"><i class="fas fa-info-circle"></i></a>
+                    <a href="perawatan/update_k/'.$row->kd_jd.'" class="btn btn-warning btn-circle"><i class="fas fa-edit"></i></a>
+                    <a href="perawatan/delete/'.$row->kd_jd.'" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></a>';
 
         $data[] = array( 
             // "no"=>$baris+1,
