@@ -36,7 +36,12 @@
             <td>        
             <div class="form-group">
                 <label for="satuan">Satuan <?php //echo form_error('satuan') ?></label>
-                <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan">
+                <!-- <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan"> -->
+                <select name="satuan" class="form-control" id="satuan">
+                    <option value="">--Pilih Satuan--</option>
+                    <option value="1">Buah</option>
+                    <option value="2">Set</option>
+                    <option value="3">Unit</option>
             </div>
             </td>	
             <td></td>
@@ -59,7 +64,15 @@
             <td>	        
             <div class="form-group">
                 <label for="status">Status <?php //echo form_error('status') ?></label>
-                <input class="form-control" type="text" name="status" id="status" placeholder="Status">
+                <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status"> -->
+                <select name="status" class="form-control" id="status">
+                    <option value="">--Pilih Status--</option>
+                    <option value="1">Beli</option>
+                    <option value="2">Beli Bekas</option>
+                    <option value="3">Mutasi</option>
+                    <option value="4">Pemberian</option>
+                    <option value="5">Pindahan</option>
+                    <option value="6">Rakitan</option>
             </div>
             </tr>
             </td>
@@ -68,7 +81,12 @@
             <td>	
             <div class="form-group">
                 <label for="kondisi">Kondisi <?php //echo form_error('kondisi') ?></label>
-                <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi">
+                <!-- <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi"> -->
+                <select name="kondisi" class="form-control" id="kondisi">
+                    <option value="">--Pilih Kondisi--</option>
+                    <option value="1">Baik</option>
+                    <option value="2">Kurang Baik</option>
+                    <option value="3">Rusak</option>
             </div>
             </td>
             </tr>	
@@ -125,14 +143,14 @@
             </td>
             </tr>	
 
-            <tr>
+            <!-- <tr>
             <td>
             <div class="form-group">
                 <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
                 <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="upload gambar" enctype="multipart/form-data"/>
             </div>
             </td>
-            </tr>
+            </tr> -->
 
             <!-- <tr>
             <td>
@@ -168,9 +186,23 @@
             <tr>
             <td>
             <div class="form-group">
+                <label for="tipeaset">Jenis Aset <?php //echo form_error('jns_brg') ?></label>
+                <select require name="tipe_aset" class="form-control" id="tipe_aset">
+                    <option value="">--Pilih Jenis--</option>
+                    <option value="1">PC Build Up</option>
+                    <option value="2">PC Rakitan</option>
+                    <option value="3">Printer Dot Matrix</option>
+                    <option value="4">Printer Infus</option>
+                    <option value="5">Printer Laser</option>
+                    <option value="6">Printer Thermal</option>
+                    <option value="7">LCD</option>
+                    <option value="8">UPS</option>
+            </div>
+            </td>
+            <td>
+            <div class="form-group">
                 <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
                 <select require name="jns_brg" class="form-control" id="jns_brg">
-                    <option value="">--Pilih Jenis--</option>
                     <?php
                         foreach ($dd_gj as $row) {  
                             echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
@@ -178,7 +210,6 @@
                             echo"
                         </select>"
                     ?>
-            </div>
             </td>
             </tr>
 

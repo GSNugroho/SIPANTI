@@ -69,33 +69,76 @@ class Monitor extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->create();
 		} else {*/
+			$type = "";
+			$j_type = $this->input->post('tipe_aset');
+			if($j_type == 1){$type = "PCB";}else
+			if($j_type == 2){$type = "PCR";}else
+			if($j_type == 3){$type = "PRD";}else
+			if($j_type == 4){$type = "PRF";}else
+			if($j_type == 5){$type = "PRL";}else
+			if($j_type == 6){$type = "PRT";}else
+			if($j_type == 7){$type = "LCD";}else
+			if($j_type == 8){$type = "UPS";}
+		
+			$kodeaset = $this->kode_aset($type);
+
+			$sts = "";
+			$status = $this->input->post('status');
+			if($status == 1){$sts = "Beli";}else
+			if($status == 2){$sts = "Beli Bekas";}else
+			if($status == 3){$sts = "Mutasi";}else
+			if($status == 4){$sts = "Pemberian";}else
+			if($status == 5){$sts = "Pindahan";}else
+			if($status == 6){$sts = "Rakitan";}
+
+			$satuan ="";
+			$dsatuan = $this->input->post('satuan');
+			if($dsatuan == 1){$satuan = "Buah";}else
+			if($dsatuan == 2){$satuan = "Set";}else
+			if($dsatuan == 3){$satuan = "Unit";}
+
+			$kondisi ="";
+			$dkon = $this->input->post('kondisi');
+			if($dkon == 1){$kondisi = "Baik";}else
+			if($dkon == 2){$kondisi = "Kurang Baik";}else
+			if($dkon ==3){$kondisi = "Rusak";}
+
+			$bt_ti = 0;
+			$vc_kd_inv = "-";
+
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
 			'merk' => $this->input->post('merk', TRUE),
-			'satuan' => $this->input->post('satuan', TRUE),
+			'satuan' => $satuan,
 			'jmlh' => $this->input->post('jmlh', TRUE),
 			'tgl_terima' => $this->input->post('tgl_terima', TRUE),
-			'status' => $this->input->post('status', TRUE),
-			'kondisi' => $this->input->post('kondisi', TRUE),
+			'status' => $sts,
+			'kondisi' => $kondisi,
 			'ket' => $this->input->post('ket', TRUE),
 			'kd_bantu' => $this->input->post('kd_bantu', TRUE),
 			'no_aset' => $this->input->post('no_aset', TRUE),
 			'id_ruang' => $this->input->post('id_ruang', TRUE),
-			'foto_brg' => $this->input->post('foto_brg', TRUE),
-			'foto_qr' => $this->input->post('foto_qr', TRUE),
+			// 'foto_brg' => $this->input->post('foto_brg', TRUE),
+			// 'foto_qr' => $this->input->post('foto_qr', TRUE),
 			'id_urut' => $this->input->post('id_urut', TRUE),
 			'aktif' => $this->input->post('aktif', TRUE),
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
-			'kd_aset' => $this->input->post('kd_aset', TRUE),
+			'kd_aset' => $kodeaset,
+			'dt_create' => $this->input->post('tgl_terima', TRUE),
+			'bt_ti' => $bt_ti,
 			'kd_inv' => $this->kode()
-						
 			);
 			
+			$dataaset = array(
+			'vc_nm_barang' => $kodeaset,
+			'vc_kd_inv' => $vc_kd_inv,
+			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE)
+			);
 			$this->M_monitor->insert($data);
 			$this->session->set_flashdata('message','Data Berhasil Ditambahkan');
 			redirect(site_url('Monitor'));
-		//}
+		
 	}
 	
 	function update($id){
@@ -234,6 +277,22 @@ class Monitor extends CI_Controller {
         $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
 	}
+
+	function kode_aset($id)
+	{
+		$th = date('Y');
+		$k_aset = $this->M_monitor->get_k_aset($id, $th);
+		foreach($k_aset as $row){
+			$data = $row->maxkode;
+		}
+		$kodeaset = $data;
+		$noUrut = (int) substr($kodeaset, 12, 3);
+		$noUrut++;
+		$char = $id;
+		$bl = date('m');
+		$kodebaru = $char.'-'.$th.'-'.$bl.'-'.$noUrut;
+		return $kodebaru;
+	}
 	
 	function dt_tbl(){
 		## Read value
@@ -318,5 +377,6 @@ class Monitor extends CI_Controller {
 
 		echo json_encode($response);
 	}
+	
 }
 ?>

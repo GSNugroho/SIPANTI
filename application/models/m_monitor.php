@@ -90,6 +90,10 @@ class M_monitor extends CI_Model{
 		$query = $this->db->query('SELECT MAX(kd_inv) AS maxkode FROM inv_barang');
 		return $query->result();
 	}
+	function get_k_aset($id, $th){
+		$query = $this->db->query("SELECT MAX(vc_nm_barang) AS maxkode FROM aset_barang WHERE aset_barang.vc_nm_barang LIKE '%".$id."%'AND aset_barang.vc_nm_barang LIKE '%".$th."%'");
+		return $query->result();
+	}
 	function get_total_dt(){
 		$query = $this->db->query("select count(*) as allcount from inv_barang
 		left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
