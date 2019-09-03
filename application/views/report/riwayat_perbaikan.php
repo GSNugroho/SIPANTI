@@ -52,7 +52,7 @@
                         <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
                         <h5>Daftar Inventaris</h5>
                         <table id="pop" border="1">
-                        <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                        <tr><td><b>Kode Inventaris</b></td><td><b>Kode Aset</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
                         </table>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
             
             $.ajax({
                 type: "POST", // Method pengiriman data bisa dengan GET atau POST
-                url: "<?php echo base_url("mutasi/list_inv"); ?>", // Isi dengan url/path file php yang dituju
+                url: "<?php echo base_url("Mutasi/list_inv"); ?>", // Isi dengan url/path file php yang dituju
                 data: {id_ruang : $("#id_ruang").val()}, // data yang akan dikirim ke file yang dituju
                 dataType: "json",
                 beforeSend: function(e) {

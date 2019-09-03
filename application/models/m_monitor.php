@@ -2,6 +2,7 @@
 class M_monitor extends CI_Model{
 
 	public $table = 'inv_barang';
+	public $tbaset = 'aset_barang';
 	public $id = 'kd_inv';
 	public $order = 'DESC';
 	
@@ -22,7 +23,7 @@ class M_monitor extends CI_Model{
 		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
 		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol', 'left');
 		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis', 'left');
-		// $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
+		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
 		//$this->db->where('inv_barang.kd_aset IS NOT NULL');
 		$this->db->where('inv_barang.aktif = 1');
 		return $this->db->get('inv_barang')->result();
@@ -39,13 +40,18 @@ class M_monitor extends CI_Model{
 		$this->db->insert($this->table, $data);
 	}
 
+	function insertaset($dataaset){
+		$this->db->insert($this->tbaset, $dataaset);
+	}
+
 	function update($id, $data){
 		$this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
 	}
 
 	function get_by_id($id){
-        $this->db->where($this->id, $id);
+		$this->db->where($this->id, $id);
+		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
         return $this->db->get($this->table)->row();
 	}
 	
@@ -92,6 +98,10 @@ class M_monitor extends CI_Model{
 	}
 	function get_k_aset($id, $th){
 		$query = $this->db->query("SELECT MAX(vc_nm_barang) AS maxkode FROM aset_barang WHERE aset_barang.vc_nm_barang LIKE '%".$id."%'AND aset_barang.vc_nm_barang LIKE '%".$th."%'");
+		return $query->result();
+	}
+	function get_in_kd_barang(){
+		$query = $this->db->query('SELECT MAX(in_kd_barang) AS maxkode FROM aset_barang');
 		return $query->result();
 	}
 	function get_total_dt(){

@@ -130,12 +130,34 @@ class Monitor extends CI_Controller {
 			'kd_inv' => $this->kode()
 			);
 			
+			$vc_online = "ONLINE";
+			$vc_petugas = "a";
+			$bt_aktif = 1;
+			$kd_urut = $this->kode_urut($type);
+			$kd_barang = $this->in_kd_barang();
+
 			$dataaset = array(
 			'vc_nm_barang' => $kodeaset,
 			'vc_kd_inv' => $vc_kd_inv,
-			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE)
+			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
+			'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+			'vc_sn' => $this->input->post('sn', TRUE),
+			'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
+			'vc_online' => $vc_online,
+			'vc_lokasi' => $this->input->post('id_ruang', TRUE),
+			'vc_kd_kondisi' => $kondisi,
+			'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
+			'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
+			'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
+			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+			'vc_petugas' => $vc_petugas,
+			'bt_aktif' => $bt_aktif,
+			'vc_model' => $type,
+			'kd_urut' => $kd_urut,
+			'in_kd_barang' => $kd_barang
 			);
 			$this->M_monitor->insert($data);
+			$this->M_monitor->insertaset($dataaset);
 			$this->session->set_flashdata('message','Data Berhasil Ditambahkan');
 			redirect(site_url('Monitor'));
 		
@@ -152,7 +174,7 @@ class Monitor extends CI_Controller {
 			'merk' => set_value('merk', $row->merk),
 			'satuan' => set_value('satuan', $row->satuan),
 			'jmlh' => set_value('jmlh', $row->jmlh),
-			'tgl_terima' => set_value('tgl_terima', date('m/d/Y', strtotime($row->tgl_terima ))),
+			'tgl_terima' => set_value('tgl_terima', date('Y-m-d', strtotime($row->tgl_terima ))),
 			'status' => set_value('status', $row->status),
 			'kondisi' => set_value('kondisi', $row->kondisi),
 			'ket' => set_value('ket', $row->ket),
@@ -176,7 +198,13 @@ class Monitor extends CI_Controller {
 			'dd_gm' => $this->M_monitor->get_merk(),
 			'dd_gr' => $this->M_monitor->get_ruang(),
 			'dd_gj' => $this->M_monitor->get_jenis(),
-			'dd_gg' => $this->M_monitor->get_golongan()
+			'dd_gg' => $this->M_monitor->get_golongan(),
+			
+			'nm_pengg' => set_value('vc_nm_pengguna', $row->vc_nm_pengguna),
+			'a_spes' => set_value('vc_spesifikasi', $row->vc_spesifikasi),
+			'sn' => set_value('vc_sn', $row->vc_sn),
+			'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
+			'vc_model' => set_value('vc_model', $row->vc_model)
 			);
 				$this->load->view('monitor/monitor_form_edit', $data);
 		} else {
@@ -208,12 +236,29 @@ class Monitor extends CI_Controller {
 			'dt_tgl_update' => date('Y-m-d h:i:s')
 			);
 
+			$kondisi ="";
+			$dkon = $this->input->post('kondisi');
+			if($dkon == 1){$kondisi = "Baik";}else
+			if($dkon == 2){$kondisi = "Kurang Baik";}else
+			if($dkon ==3){$kondisi = "Rusak";}
+			$dataaset = array(
+			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
+			'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+			'vc_sn' => $this->input->post('sn', TRUE),
+			'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
+			'vc_lokasi' => $this->input->post('id_ruang', TRUE),
+			'vc_kd_kondisi' => $kondisi,
+			'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
+			'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
+			'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
+			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+			);
 			$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
 			redirect(base_url('Monitor'));
 	}
 
-	function delete($id){
+	function deleterow($id){
 		$row = $this->M_monitor->get_by_id($id);
 
 		if($row){
@@ -221,6 +266,20 @@ class Monitor extends CI_Controller {
 			$this->session->set_flashdata('message','Hapus Data Berhasil');
 		}else {
 			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			redirect(base_url('Monitor'));
+		}
+	}
+
+	function delete($id){
+		$row = $this->M_monitor->get_by_id($id);
+
+		$aktif = 0;
+
+		if($row){
+			$data = array(
+				'aktif' => $aktif
+			);
+			$this->M_monitor->update($id, $data);
 			redirect(base_url('Monitor'));
 		}
 	}
@@ -294,6 +353,28 @@ class Monitor extends CI_Controller {
 		return $kodebaru;
 	}
 	
+	function kode_urut($id)
+	{
+		$th = date('Y');
+		$k_aset = $this->M_monitor->get_k_aset($id, $th);
+		foreach($k_aset as $row){
+			$data = $row->maxkode;
+		}
+		$kodeaset = $data;
+		$noUrut = (int) substr($kodeaset, 12, 3);
+		$noUrut++;
+		return $noUrut;
+	}
+
+	function in_kd_barang(){
+		$in_kd_barang =  $this->M_monitor->get_in_kd_barang();
+		foreach($in_kd_barang as $row){
+			$data = $row->maxkode;
+		}
+		$kd_barang = (int) $data;
+		$kd_barang++;
+		return $kd_barang;
+	}
 	function dt_tbl(){
 		## Read value
 		$draw = $_POST['draw'];

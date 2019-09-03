@@ -41,7 +41,12 @@
         <td>        
 		<div class="form-group">
             <label for="satuan">Satuan <?php //echo form_error('satuan') ?></label>
-            <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan" value="<?php echo $satuan; ?>">
+            <!-- <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan" value="<?php echo $satuan; ?>"> -->
+            <select name="satuan" class="form-control" id="satuan">
+                    <option value="">--Pilih Satuan--</option>
+                    <option value="1" <?php echo ($satuan == 'Buah')?'selected':''?>>Buah</option>
+                    <option value="2" <?php echo ($satuan == 'Set')?'selected':''?>>Set</option>
+                    <option value="3" <?php echo ($satuan == 'Unit')?'selected':''?>>Unit</option>
 		</div>
         </td>	
         <td></td>
@@ -57,14 +62,22 @@
         <td>	        
 		<div class="form-group">
             <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php echo date('m-d-Y', strtotime($tgl_terima)); ?>">
+            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php echo $tgl_terima; ?>">
 		</div>
         </td>
         <td></td>
         <td>	        
 		<div class="form-group">
             <label for="status">Status <?php //echo form_error('status') ?></label>
-            <input class="form-control" type="text" name="status" id="status" placeholder="Status" value="<?php echo $status; ?>">
+            <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status" value="<?php echo $status; ?>"> -->
+            <select name="status" class="form-control" id="status">
+                    <option value="">--Pilih Status--</option>
+                    <option value="1" <?php echo ($status == 'Beli')?'selected':''?>>Beli</option>
+                    <option value="2" <?php echo ($status == 'Beli Bekas')?'selected':''?>>Beli Bekas</option>
+                    <option value="3" <?php echo ($status == 'Mutasi')?'selected':''?>>Mutasi</option>
+                    <option value="4" <?php echo ($status == 'Pemberian')?'selected':''?>>Pemberian</option>
+                    <option value="5" <?php echo ($status == 'Pindahan')?'selected':''?>>Pindahan</option>
+                    <option value="6" <?php echo ($status == 'Rakitan')?'selected':''?>>Rakitan</option>
 		</div>
 		</tr>
         </td>
@@ -85,8 +98,14 @@
             <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"><?php echo $ket; ?></textarea>
         </div>
         </td>
+        <td></td>
+            <td>
+            <div class="form-group">
+                <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna" value="<?php echo $nm_pengg?>">
+            </div>
+            </td>
         </tr>
-
         <tr>
         <td>
 		<div class="form-group">
@@ -103,17 +122,24 @@
                     ?>
                 </select>
 		</div>
-		</td>
+        </td>
+        <td></td>
+            <td>
+            <div class="form-group">
+                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi" value="<?php echo $a_spes?>">
+            </div>
+            </td>
         </tr>
 
-        <tr>
+        <!-- <tr>
         <td>
 		<div class="form-group">
             <label for="no_aset">Nomor Aset <?php //echo form_error('no_aset') ?></label>
-            <input class="form-control" type="text" name="no_aset" id="no_aset" placeholder="Nomor Aset" value="<?php echo $no_aset; ?>">
+            <input class="form-control" type="text" name="no_aset" id="no_aset" placeholder="Nomor Aset" value="<?php //echo $no_aset; ?>">
 		</div>
 		</td>
-        </tr>	
+        </tr>	 -->
 
         <tr>
         <td>
@@ -131,14 +157,21 @@
                     ?>
                 </select>
 		</div>
-		</td>
+        </td>
+        <td></td>
+            <td>
+            <div class="form-group">
+                <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri" value="<?php echo $sn?>">
+            </div>
+            </td>
         </tr>	
 
-        <tr>
+        <!-- <tr>
         <td>
 		<div class="form-group">
             <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
-            <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="<?php echo $foto_brg; ?>"/>
+            <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="<?php //echo $foto_brg; ?>"/>
         </div>
 		</td>
         </tr>
@@ -147,7 +180,7 @@
         <td>
 		<div class="form-group">
             <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
-			<input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="<?php echo $foto_qr; ?>r"/>
+			<input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="<?php //echo $foto_qr; ?>r"/>
         </div>
 		</td>
         </tr>
@@ -156,10 +189,10 @@
         <td>
 		<div class="form-group">
             <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
-            <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut" value="<?php echo $id_urut; ?>">
+            <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut" value="<?php //echo $id_urut; ?>">
 		</div>
 		</td>
-        </tr>
+        </tr> -->
 
         <tr>
         <td>        
@@ -171,7 +204,22 @@
                 <option value="1" <?php echo ($aktif == '1')?'selected':''?>>Aktif</option>
             </select>
 		</div>
-		</td>
+        </td>
+        <td></td>
+            <td>
+            <div class="form-group">
+                <label for="aktif">Aset Aktif <?php //echo form_error('aktif') ?></label>
+                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
+                <select class="form-control" name="aset_aktif" class="form-control" id="aset_aktif">
+                    <option value="">--Aset Aktif--</option>
+                    <option value="001" <?php echo ($aset_aktif == '001')?'selected':''?>>Kelompok 1</option>
+                    <option value="002" <?php echo ($aset_aktif == '002')?'selected':''?>>Kelompok 2</option>
+                    <option value="003" <?php echo ($aset_aktif == '003')?'selected':''?>>Kelompok 3</option>
+                    <option value="004" <?php echo ($aset_aktif == '004')?'selected':''?>>Kelompok 4</option>
+                    <option value="005" <?php echo ($aset_aktif == '005')?'selected':''?>>Kelompok 5</option>
+                    <option value="006" <?php echo ($aset_aktif == '006')?'selected':''?>>Inventaris</option>
+                </select>
+            </td>
         </tr>
 		<tr>
 		<td>
@@ -189,7 +237,22 @@
                     ?>
                 </select>
 		</div>
-		</td>
+        </td>
+        <td></td>
+            <td>
+            <div class="form-group">
+                <label for="tipeaset">Jenis Aset <?php //echo form_error('jns_brg') ?></label>
+                <select require name="tipe_aset" class="form-control" id="tipe_aset">
+                    <option value="">--Pilih Jenis--</option>
+                    <option value="1" <?php echo ($vc_model == 'PCB')?'selected':''?>>PC Build Up</option>
+                    <option value="2" <?php echo ($vc_model == 'PCR')?'selected':''?>>PC Rakitan</option>
+                    <option value="3" <?php echo ($vc_model == 'PRD')?'selected':''?>>Printer Dot Matrix</option>
+                    <option value="4" <?php echo ($vc_model == 'PRF')?'selected':''?>>Printer Infus</option>
+                    <option value="5" <?php echo ($vc_model == 'PRL')?'selected':''?>>Printer Laser</option>
+                    <option value="6" <?php echo ($vc_model == 'PRT')?'selected':''?>>Printer Thermal</option>
+                    <option value="7" <?php echo ($vc_model == 'LCD')?'selected':''?>>LCD</option>
+                    <option value="8" <?php echo ($vc_model == 'UPS')?'selected':''?>>UPS</option>
+            </td>
 		</tr>
 
         <tr>

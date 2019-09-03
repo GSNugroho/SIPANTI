@@ -1,6 +1,27 @@
 <?php 
     $this->load->view('mainmenu');
 ?>
+<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>
+    <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/elements.css')?>">
+
+    <link href="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap/css/jquery-ui.css')?>" rel="stylesheet">
+
+    <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
+    <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>" type="text/javascript"></script>
+    <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
+	<!-- Custom scripts for all pages-->
+    <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-ui.min.js')?>"></script>
+        
+
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 			<div class="card-header py-3">

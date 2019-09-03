@@ -48,7 +48,7 @@ class Perbaikan extends CI_Controller{
             $data = array(
                 'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
                 'id_ruang' => set_value('id_ruang', $row->kd_ruang),
-                'tgl_inv_pr' => set_value('tgl_inv_pr', $row->tgl_inv_pr),
+                'tgl_inv_pr' => set_value('tgl_inv_pr', date('Y-m-d', strtotime($row->tgl_inv_pr))),
                 'jns_kr' => set_value('jns_kr', $row->jns_kr),
                 'jns_pr' => set_value('jns_pr', $row->jns_pr),
                 'sp_gt' => set_value('sp_gt', $row->sp_gt),
@@ -107,10 +107,10 @@ class Perbaikan extends CI_Controller{
         $id_ruang = $this->input->post('id_ruang', TRUE);
 
         $inv = $this->M_perbaikan->get_inv($id_ruang);
-        $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
+        $lists = "<tr><td><b>Kode Inventaris</b></td><td><b>Kode Aset</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>";
 
         foreach ($inv as $row){
-            $lists .= '<tr><td>'.$row->kd_inv.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_nm_pengguna.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
+            $lists .= '<tr><td>'.$row->kd_inv.'</td><td>'.$row->kd_aset.'</td><td>'.$row->nm_inv.'</td><td>'.$row->vc_nm_pengguna.'</td><td>'.$row->vc_n_gugus.'</td><td><a href="#" onclick=post_value("'.$row->kd_inv.'")>Pilih</a></td></tr>';
             }
 
             $callback = array('list_inv'=>$lists);

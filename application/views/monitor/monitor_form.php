@@ -98,6 +98,13 @@
                 <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"></textarea>
             </div>
             </td>
+            <td></td>
+            <td>
+            <div class="form-group">
+                <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna">
+            </div>
+            </td>
             </tr>
 
             <tr>
@@ -113,6 +120,13 @@
                             echo"
                         </select>"
                     ?>
+            </div>
+            </td>
+            <td></td>
+            <td>
+            <div class="form-group">
+                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi">
             </div>
             </td>
             </tr>
@@ -141,6 +155,13 @@
                     ?>
             </div>
             </td>
+            <td></td>
+            <td>
+            <div class="form-group">
+                <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri">
+            </div>
+            </td>
             </tr>	
 
             <!-- <tr>
@@ -161,14 +182,14 @@
             </td>
             </tr> -->
 
-            <tr>
+            <!-- <tr>
             <td>
             <div class="form-group">
                 <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
                 <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut">
             </div>
             </td>
-            </tr>
+            </tr> -->
 
             <tr>
             <td>        
@@ -182,8 +203,38 @@
                 </select>
             </div>
             </td>
+            <td></td>
+            <td>
+            <div class="form-group">
+                <label for="aktif">Aset Aktif <?php //echo form_error('aktif') ?></label>
+                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
+                <select class="form-control" name="aset_aktif" class="form-control" id="aset_aktif">
+                    <option value="">--Aset Aktif--</option>
+                    <option value="001">Kelompok 1</option>
+                    <option value="002">Kelompok 2</option>
+                    <option value="003">Kelompok 3</option>
+                    <option value="004">Kelompok 4</option>
+                    <option value="005">Kelompok 5</option>
+                    <option value="006">Inventaris</option>
+                </select>
+            </td>
             </tr>
             <tr>
+            <td>
+            <div class="form-group">
+                <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
+                <select require name="jns_brg" class="form-control" id="jns_brg">
+                    <option value="">--Pilih Jenis--</option>
+                    <?php
+                        foreach ($dd_gj as $row) {  
+                            echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
+                            }
+                            echo"
+                        </select>"
+                    ?>
+            </div>
+            </td>
+            <td></td>
             <td>
             <div class="form-group">
                 <label for="tipeaset">Jenis Aset <?php //echo form_error('jns_brg') ?></label>
@@ -197,19 +248,6 @@
                     <option value="6">Printer Thermal</option>
                     <option value="7">LCD</option>
                     <option value="8">UPS</option>
-            </div>
-            </td>
-            <td>
-            <div class="form-group">
-                <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
-                <select require name="jns_brg" class="form-control" id="jns_brg">
-                    <?php
-                        foreach ($dd_gj as $row) {  
-                            echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
-                            }
-                            echo"
-                        </select>"
-                    ?>
             </td>
             </tr>
 

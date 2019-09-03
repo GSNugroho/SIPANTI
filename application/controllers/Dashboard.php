@@ -12,11 +12,6 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		// $nmUser = $this->input->post('nmUser');
-		// $unameApp = $this->input->post('unameApp');
-		// $passwrdApp = $this->input->post('passwrdApp');
-		// $nik = $this->input->post('nik');
-		// $gugus = $this->input->post('gugus');
 
 		// $data = array(
 		// 	'nmUser' => $nmUser,
@@ -26,7 +21,7 @@ class Dashboard extends CI_Controller {
 		// 	'gugus' => $gugus
 		// );
 
-		// $row = $this->M_dashboard->get_dt_login($data);
+		// $this->session->set_userdata($data);
 
 		// if($nmUser == $row->nmUser 
 		// 	&& $unameApp == $row->unameApp
@@ -34,7 +29,7 @@ class Dashboard extends CI_Controller {
 		// 	&& $nik == $row->nik
 		// 	&& $gugus == $row->gugus)
 		// 	{
-				// $this->session->set_userdata('nmUser', $nmUser);
+		// 		$this->session->set_userdata('nmUser', $nmUser);
 			
 				$target = $this->M_dashboard->get_total_target();
 				$capaian = $this->M_dashboard->get_total_targetc();
