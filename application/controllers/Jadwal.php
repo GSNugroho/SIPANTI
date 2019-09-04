@@ -63,9 +63,14 @@ class Jadwal extends CI_Controller{
     public function create_action(){
         $warna = '#03e3fc';
         $dt_sts =1;
+        $nj = $this->input->post('kd_ruang');
+        $db = $this->M_jadwal->nm_ruang($nj);
+        foreach($db as $row){
+            $nm_jd = $row->vc_n_gugus;
+        }
         $data = array(
         'tgl_jd' => $this->input->post('start', TRUE),
-        'nm_jd' => $this->input->post('nm_jd', TRUE),
+        'nm_jd' => $nm_jd,
         'kd_inv' => $this->input->post('kd_inv', TRUE),
         //'color' => $this->input->post('color', TRUE),
         'color' => $warna,
@@ -81,16 +86,27 @@ class Jadwal extends CI_Controller{
     }
 
     public function update_action_konten(){        
-        $data = array(
-        'nm_jd' => $this->input->post('nm_jd', TRUE),
-        'kd_inv' => $this->input->post('kd_inv', TRUE),
-        'kd_ruang' => $this->input->post('kd_ruang', TRUE),
-        'color' => $this->input->post('color', TRUE)
-        );
+        $hapus = $this->input->post('delete');
+        if($hapus == 1){
+            $dlt = 0;
+            $data = array(
+                'dt_sts' => $dlt
+            );
 
-        $this->M_jadwal->updatekonten($this->input->post('id_jd', TRUE), $data);
-        $this->session->set_flashdata('message', 'Ubah Data Berhasil');
-        redirect(base_url('Jadwal'));
+            $this->M_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $data);
+            $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
+            redirect(base_url('Jadwal'));
+        }else{
+             $data = array(
+                // 'nm_jd' => $this->input->post('nm_jd', TRUE),
+                'kd_inv' => $this->input->post('kd_inv', TRUE),
+                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
+             );
+        
+            $this->M_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $data);
+            $this->session->set_flashdata('message', 'Data Berhasil Diubah');
+            redirect(base_url('Jadwal'));
+        }
     }
     
     public function update_action_tgl(){

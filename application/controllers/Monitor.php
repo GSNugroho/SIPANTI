@@ -18,8 +18,8 @@ class Monitor extends CI_Controller {
 		$data['inv_barang'] = $this->M_monitor->data($config['per_page'],$from);
 		*/
 		
-		$data['inv_barang'] = $this->M_monitor->get_data();
-		$this->load->view('monitor/monitor', $data);
+		// $data['inv_barang'] = $this->M_monitor->get_data();
+		$this->load->view('monitor/monitor');
 		}
 		
 	function create(){

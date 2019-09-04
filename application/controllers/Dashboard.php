@@ -12,11 +12,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$set_data = $this->session->all_userdata();
+		$set_data = $this->session->set_userdata('nmUser', 'nmUser');
+		echo $this->session->userdata('nmUser');
 		if (isset($set_data['session_data']) && ($set_data['session_data']['nmUser'] != $_SESSION['nmUser'])
 			&& ($set_data['session_data']['unameApp'] != $_SESSION['unameApp']) && ($set_data['session_data']['passwrdApp'] != $_SESSION['passwrdApp'])
 			&& ($set_data['session_data']['nik'] != $_SESSION['nik']) && ($set_data['session_data']['gugus'] != $_SESSION['gugus'])) {
-		 	echo site_url();
+		 	echo site_url('../');
 		} else {
 		$target = $this->M_dashboard->get_total_target();
 		$capaian = $this->M_dashboard->get_total_targetc();

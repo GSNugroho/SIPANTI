@@ -12,6 +12,7 @@ class M_jadwal extends CI_Model{
     }
 
     function get_data(){
+        $this->db->where('dt_sts = 1');
         return $this->db->get('inv_jadwal')->result();
     }
     function insert($data){
@@ -35,17 +36,21 @@ class M_jadwal extends CI_Model{
         return $this->db->get($this->table)->row();
     }
     function get_inv($id_ruang){
-        $this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
-        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
-        $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
-        $this->db->where("inv_barang.kd_aset != ' '");
-        return $this->db->get('inv_barang')->result();
+        $query = $this->db->query("SELECT * FROM inv_barang
+                                    JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+                                    JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+                                    WHERE inv_pubgugus.vc_k_gugus = '".$id_ruang."' 
+                                    AND inv_barang.kd_aset != ' '");
+        return $query->result();
     }
     function get_ruang(){
         $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
         return $query->result();
     }
-    
+    function nm_ruang($nj){
+        $query = $this->db->query("SELECT vc_n_gugus FROM inv_pubgugus WHERE vc_k_gugus = '".$nj."'");
+        return $query->result();
+    }
     function get_kode(){
         $query = $this->db->query('SELECT MAX(kd_jd) AS maxkode FROM inv_jadwal');
         return $query->result();

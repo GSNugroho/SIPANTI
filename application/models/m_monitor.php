@@ -81,7 +81,7 @@ class M_monitor extends CI_Model{
 		return $query->result();
 	}
 	function get_ruang(){
-		$query = $this->db->query('SELECT * FROM inv_pubgugus');
+		$query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus asc');
 		return $query->result();
 	}
 	function get_jenis(){

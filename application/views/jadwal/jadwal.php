@@ -60,12 +60,12 @@
 			  </div>
 			  <div class="modal-body1">
 				
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="nm_jd" class="col-sm-2 control-label">Nama Perawatan</label>
 					<div class="col-sm-10">
 					  <input type="text" name="nm_jd" class="form-control1" id="nm_jd" placeholder="Nama Perawatan">
 					</div>
-                  </div>
+                  </div> -->
                   <div class="form-group1">
                       <label for="kd_ruang" class="col-sm-2 control-label">Ruang</label>
                       <div class="col-sm-10">
@@ -86,9 +86,6 @@
                         <input type="text" name="kd_inv" class="form-control1" id="vc_no_inv" placeholder="Kode Inventaris " onclick="div_show()">
 					</div>
 					</div>
-
-				  
-
 				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
@@ -121,8 +118,8 @@
 				
 			  </div>
 			  <div class="modal-footer1">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-primary">Simpan</button>
 			  </div>
 			  
 
@@ -181,12 +178,12 @@
 			  </div>
 			  <div class="modal-body1">
 				
-				  <div class="form-group1">
+				  <!-- <div class="form-group1">
 					<label for="nm_jd" class="col-sm-2 control-label">Nama Perawatan</label>
 					<div class="col-sm-10">
 					  <input type="text" name="nm_jd" class="form-control1" id="nm_jd" placeholder="Nama Perawatan">
 					</div>
-                  </div>
+                  </div> -->
                   <div class="form-group1">
                   <label for="kd_ruang" class="col-sm-2 control-label">Ruang</label>
                       <div class="col-sm-10">
@@ -226,14 +223,15 @@
 				    <div class="form-group1"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
-							<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
+							<label class="text-danger"><input type="checkbox" name="delete" value="1"> Delete event</label>
 						  </div>
 						</div>
 					</div>				
 			  </div>
 			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
+				<input type="hidden" name="kd_jd" id="kd_jd">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-primary">Simpan perubahan</button>
 			  </div>
 			</form>
 							  

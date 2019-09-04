@@ -114,7 +114,7 @@
 				<a class="collapse-item" href="<?php echo base_url('report/report_perawatan')?>">Laporan Perawatan</a>
 				<a class="collapse-item" href="<?php echo base_url('report/report_perbaikan')?>">Laporan Perbaikan</a>
         <a class="collapse-item" href="<?php echo base_url('report/report_telat')?>">Laporan Keterlambatan</a>
-        <a class="collapse-item" href="<?php echo base_url('report/report_sparepart')?>">Laporan Sparepart</a>
+        <!--<a class="collapse-item" href="<?php //echo base_url('report/report_sparepart')?>">Laporan Sparepart</a>-->
 			</div>
 			</div>
     </li>
@@ -330,7 +330,7 @@
         <div class="modal-body">Pilih keluar jika sudah yakin</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <a class="btn btn-primary" href="<?php echo site_url();?>">Keluar</a>
+          <a class="btn btn-primary" href="<?php echo site_url('../index');?>">Keluar</a>
         </div>
       </div>
     </div>

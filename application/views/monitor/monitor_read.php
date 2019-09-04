@@ -26,10 +26,10 @@
     
 			<div class="card shadow mb-4">
 			<div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
+           	<h6 class="m-0 font-weight-bold text-primary">Data Inventaris</h6>
 		</div>
     <div class="card-body">
-    <h2>Detail Perawatan Inventaris</h2>
+    <h2>Detail Inventaris</h2>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv; ?></td></tr>
     <tr><td>Nama Inventaris</td><td>:</td><td><?php echo $nm_inv; ?></td></tr>
