@@ -52,6 +52,7 @@ class M_monitor extends CI_Model{
 	function get_by_id($id){
 		$this->db->where($this->id, $id);
 		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
+		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
         return $this->db->get($this->table)->row();
 	}
 	

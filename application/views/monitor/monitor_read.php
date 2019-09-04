@@ -36,13 +36,15 @@
     <tr><td>Merk</td><td>:</td><td><?php echo $merk; ?></td></tr>
     <tr><td>Satuan</td><td>:</td><td><?php echo $satuan; ?></td></tr>
     <tr><td>Jumlah</td><td>:</td><td><?php echo $jmlh; ?></td></tr>
-    <tr><td>Tanggal Terima</td><td>:</td><td><?php echo date('Y-m-d', strtotime($tgl_terima)); ?></td></tr>
+    <tr><td>Tanggal Terima</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_terima)); ?></td></tr>
     <tr><td>Status</td><td>:</td><td><?php echo $status; ?></td></tr>
     <tr><td>Kondisi</td><td>:</td><td><?php echo $kondisi; ?></td></tr>
     <tr><td>Keterangan</td><td>:</td><td><?php echo $ket; ?></td></tr>
     <tr><td>Jenis Barang</td><td>:</td><td><?php echo $kd_bantu; ?></td></tr>
-    <tr><td>Nomor Aset</td><td>:</td><td><?php echo $no_aset; ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $id_ruang; ?></td></tr>
+    <!-- <tr><td>Nomor Aset</td><td>:</td><td><?php //echo $no_aset; ?></td></tr> -->
+    <tr><td>Kode Aset</td><td>:</td><td><?php echo $kd_aset; ?></td></tr>
+    <tr><td>Nama Pengguna</td><td>:</td><td><?php echo $nm_pengg; ?></td></tr>
     
     
     </table>

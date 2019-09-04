@@ -299,7 +299,7 @@ class Monitor extends CI_Controller {
 			'ket' => set_value('ket', $row->ket),
 			'kd_bantu' => set_value('kd_bantu', $row->kd_bantu),
 			'no_aset' => set_value('no_aset', $row->no_aset),
-			'id_ruang' => set_value('id_ruang', $row->id_ruang),
+			'id_ruang' => set_value('id_ruang', $row->vc_n_gugus),
 			'kd_brg' => set_value('kd_brg', $row->kd_brg),
 			'foto_brg' => set_value('foto_brg', $row->foto_brg),
 			'foto_qr' => set_value('foto_qr', $row->foto_qr),
@@ -314,6 +314,12 @@ class Monitor extends CI_Controller {
 			'vc_op_update' => set_value('vc_op_update', $row->vc_op_update),
 			'dt_tgl_update' => set_value('dt_tgl_update', $row->dt_tgl_update),
 			'vc_op' => set_value('vc_op', $row->vc_op),
+			'kd_aset' => set_value('kd_aset', $row->kd_aset),
+			'nm_pengg' => set_value('vc_nm_pengguna', $row->vc_nm_pengguna),
+			'a_spes' => set_value('vc_spesifikasi', $row->vc_spesifikasi),
+			'sn' => set_value('vc_sn', $row->vc_sn),
+			'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
+			'vc_model' => set_value('vc_model', $row->vc_model)
 			);
 			$this->load->view('monitor/monitor_read', $data);
 		}else{
@@ -438,7 +444,7 @@ class Monitor extends CI_Controller {
 
 		$data[] = array( 
 			"kd_inv"=>$row->kd_inv,
-			"tgl_terima"=>date('d-M-Y', strtotime($row->tgl_terima)),
+			"tgl_terima"=>date('d-m-Y', strtotime($row->tgl_terima)),
 			"nm_inv"=>$row->nm_inv,
 			"vc_nm_merk"=>$row->vc_nm_merk,
 			"vc_nm_jenis"=>$row->vc_nm_jenis,

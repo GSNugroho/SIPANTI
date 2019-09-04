@@ -182,7 +182,7 @@ class Mutasi extends CI_Controller{
                 </a>
                 ';
 		$data[] = array( 
-			"tgl_terima_mts"=>date('d-M-Y', strtotime($row->tgl_terima_mts)),
+			"tgl_terima_mts"=>date('d-m-Y', strtotime($row->tgl_terima_mts)),
 			"kd_inv_mts"=>$row->kd_inv_mts,
 			"nm_inv"=>$row->nm_inv,
 			"jmlh_mts"=>$row->jmlh_mts,

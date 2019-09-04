@@ -22,7 +22,7 @@
 					<th>Jenis Perbaikan</th>
 					<th>Sparepart</th>
 					<th>Biaya</th>
-					<th>Keterangan</th>
+					<!-- <th>Keterangan</th> -->
 					<th>Action</th>
 				</tr>
 				</thead>
@@ -93,6 +93,7 @@
 	<script>
 	$(document).ready(function(){
 	   $('#dataBrg').DataTable({
+	  'order': [[ 0, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
@@ -109,7 +110,7 @@
          { data: 'jns_pr' },
 		 { data: 'sp_gt' },
 		 { data: 'sp_by' },
-		 { data: 'ket_pr'},
+		//  { data: 'ket_pr'},
 		 { data: 'action'}
       ]
 	});

@@ -63,6 +63,7 @@
 	<script>
 	$(document).ready(function(){
 	   $('#dataBrg').DataTable({
+	  'order': [[ 1, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',

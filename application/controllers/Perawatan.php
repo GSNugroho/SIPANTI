@@ -2137,7 +2137,7 @@ class Perawatan extends CI_Controller{
         $data[] = array( 
             // "no"=>$baris+1,
             "kd_jd" =>$row->kd_jd,
-			"tgl_jd"=>date('d-M-Y', strtotime($row->tgl_jd)),
+			"tgl_jd"=>date('d-m-Y', strtotime($row->tgl_jd)),
 			// "tgl_jd_selesai"=>date('d-M-Y', strtotime($row->tgl_jd_selesai)),
 			"nm_jd"=>$row->nm_jd,
 			"kd_inv"=>$row->kd_inv,

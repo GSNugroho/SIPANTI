@@ -51,7 +51,7 @@ class M_perbaikan extends CI_Model{
         return $query->result();
     }
     function get_ruang(){
-        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus');
+        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus asc');
         return $query->result();
     }
     function get_sparepart($vc_nm_komponen){
