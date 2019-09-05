@@ -104,6 +104,9 @@ class M_monitor extends CI_Model{
 		$query = $this->db->query("SELECT MAX(vc_nm_barang) AS maxkode FROM aset_barang WHERE aset_barang.vc_nm_barang LIKE '%".$id."%'AND aset_barang.vc_nm_barang LIKE '%".$th."%'");
 		return $query->result();
 	}
+	function get_no_aset(){
+		$query = $this->db->query("");
+	}
 	function get_in_kd_barang(){
 		$query = $this->db->query('SELECT MAX(in_kd_barang) AS maxkode FROM aset_barang');
 		return $query->result();

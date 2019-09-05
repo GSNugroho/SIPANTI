@@ -2139,11 +2139,12 @@ class Perawatan extends CI_Controller{
 
         $data[] = array( 
             // "no"=>$baris+1,
-            "kd_jd" =>$row->kd_jd,
+            // "kd_jd" =>$row->kd_jd,
 			"tgl_jd"=>date('d-m-Y', strtotime($row->tgl_jd)),
-			// "tgl_jd_selesai"=>date('d-M-Y', strtotime($row->tgl_jd_selesai)),
+            // "tgl_jd_selesai"=>date('d-M-Y', strtotime($row->tgl_jd_selesai)),
+            "kd_aset"=>$row->kd_aset,
 			"nm_jd"=>$row->nm_jd,
-			"kd_inv"=>$row->kd_inv,
+			// "kd_inv"=>$row->kd_inv,
 			"nm_inv"=>$row->nm_inv,
 			"vc_n_gugus"=>$row->vc_n_gugus,
             "status_p"=> $sts ,

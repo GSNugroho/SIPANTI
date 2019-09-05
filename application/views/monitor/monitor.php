@@ -17,8 +17,9 @@
 						<thead>
 							<tr>
 								<!-- <th>No</th> -->
-								<th>Kode Inventaris</th>
-								<th>Tanggal Terima Barang</th>
+								<!-- <th>Kode Inventaris</th> -->
+								<th>Tanggal Terima</th>
+								<th>Kode Barang</th>
 								<th>Nama Barang</th>
 								<th>Merk</th>
 								<th>Jenis Barang</th>
@@ -66,7 +67,7 @@
 	<script>
 	$(document).ready(function(){
    $('#dataBrg').DataTable({
-	  'order': [[ 1, "desc" ]],
+	  'order': [[ 0, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
@@ -75,8 +76,9 @@
       },
       'columns': [
          //{ data: 'no' },
-         { data: 'kd_inv' },
+        //  { data: 'kd_inv' },
          { data: 'tgl_terima' },
+		 { data: 'kd_brg'},
          { data: 'nm_inv' },
          { data: 'vc_nm_merk' },
          { data: 'vc_nm_jenis' },

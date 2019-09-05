@@ -263,13 +263,14 @@ class Perbaikan extends CI_Controller{
                         ';
             $data[] = array( 
 			"tgl_inv_pr"=>date('d-m-Y', strtotime($row->tgl_inv_pr)),
-			"kd_inv"=>$row->kd_inv,
+            // "kd_inv"=>$row->kd_inv,
+            "kd_aset"=>$row->kd_aset,
 			"nm_inv"=>$row->nm_inv,
 			"vc_n_gugus"=>$row->vc_n_gugus,
-            "jns_kr"=> $jns_kr,
+            // "jns_kr"=> $jns_kr,
             "jns_pr"=> $jns_pr,
             "sp_gt"=> $row->sp_gt,
-            "sp_by"=> $hasil_rupiah,
+            // "sp_by"=> $hasil_rupiah,
             // "ket_pr"=> $row->ket_pr,
 			"action"=>$button
 		);

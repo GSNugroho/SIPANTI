@@ -107,6 +107,10 @@ class Monitor extends CI_Controller {
 			$vc_kd_inv = "-";
 			$aktif = 1;
 
+			$gol = $this->input->post('kd_bantu');
+			$no_gol = '0'.$gol;
+			$kd_brg = $this->no_aset($no_gol);
+
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
 			'merk' => $this->input->post('merk', TRUE),
@@ -343,6 +347,9 @@ class Monitor extends CI_Controller {
         $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
 	}
+	function no_aset($no_gol){
+		// $no_aset = $this-
+	}
 
 	function kode_aset($id)
 	{
@@ -444,8 +451,9 @@ class Monitor extends CI_Controller {
 		';
 
 		$data[] = array( 
-			"kd_inv"=>$row->kd_inv,
+			// "kd_inv"=>$row->kd_inv,
 			"tgl_terima"=>date('d-m-Y', strtotime($row->tgl_terima)),
+			"kd_brg"=>$row->kd_brg,
 			"nm_inv"=>$row->nm_inv,
 			"vc_nm_merk"=>$row->vc_nm_merk,
 			"vc_nm_jenis"=>$row->vc_nm_jenis,

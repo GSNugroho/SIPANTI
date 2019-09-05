@@ -15,10 +15,11 @@
 						<thead>
 							<tr>
 								<!-- <th>No</th> -->
-								<th>Kode Jadwal</th>
+								<!-- <th>Kode Jadwal</th> -->
 								<th>Tanggal Perawatan</th>
 								<!-- <th>Perkiraan Tanggal Selesai</th> -->
-								<th>Kode Inventaris</th>
+								<th>Kode Aset</th>
+								<!-- <th>Kode Inventaris</th> -->
 								<th>Nama Jadwal</th>
 								<th>Nama Barang</th>
 								<th>Ruang</th>
@@ -64,7 +65,7 @@
 	<script>
 	$(document).ready(function(){
 	   $('#dataBrg').DataTable({
-	  'order': [[ 1, "desc" ]],
+	  'order': [[ 0, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
@@ -73,10 +74,11 @@
       },
       'columns': [
         //  { data: 'no' },
-		 { data: 'kd_jd' },
+		//  { data: 'kd_jd' },
          { data: 'tgl_jd' },
         //  { data: 'tgl_jd_selesai' },
-         { data: 'kd_inv' },
+        //  { data: 'kd_inv' },
+		 { data: 'kd_aset'},
          { data: 'nm_jd' },
          { data: 'nm_inv' },
          { data: 'vc_n_gugus' },

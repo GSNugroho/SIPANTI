@@ -17,13 +17,14 @@
 				<tr>
 					<!-- <th>No</th> -->
 					<th>Tanggal Perbaikan</th>
-					<th>Kode Inventaris</th>
+					<!-- <th>Kode Inventaris</th> -->
+					<th>Kode Aset</th>
 					<th>Nama Barang</th>
 					<th>Ruang</th>
-					<th>Jenis Kerusakan</th>
+					<!-- <th>Jenis Kerusakan</th> -->
 					<th>Jenis Perbaikan</th>
 					<th>Sparepart</th>
-					<th>Biaya</th>
+					<!-- <th>Biaya</th> -->
 					<!-- <th>Keterangan</th> -->
 					<th>Action</th>
 				</tr>
@@ -105,13 +106,14 @@
       'columns': [
          //{ data: 'no' },
          { data: 'tgl_inv_pr' },
-         { data: 'kd_inv' },
+        //  { data: 'kd_inv' },
+		 { data: 'kd_aset'},
          { data: 'nm_inv' },
          { data: 'vc_n_gugus' },
-         { data: 'jns_kr' },
+        //  { data: 'jns_kr' },
          { data: 'jns_pr' },
 		 { data: 'sp_gt' },
-		 { data: 'sp_by' },
+		//  { data: 'sp_by' },
 		//  { data: 'ket_pr'},
 		 { data: 'action'}
       ]
