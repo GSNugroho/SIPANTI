@@ -25,7 +25,7 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 			<div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Data Mutasi</h6>
+           	<h6 class="m-0 font-weight-bold text-primary">Tambah Mutasi</h6>
 		</div>
         <div class="card-body">
         <form action="<?php echo base_url(). 'mutasi/create_action';?>" method="post">
@@ -118,10 +118,11 @@
         <tr>
         <td>
 
-        <button type="submit" class="btn btn-primary">Save</button> 
+        <button type="submit" class="btn btn-success">Simpan</button> 
+        <a href="<?php echo site_url('mutasi') ?>" class="btn btn-danger">Batal</a>
         </td>
         <td>
-        <a href="<?php echo site_url('mutasi') ?>" class="btn btn-default">Cancel</a>
+        
         </td>
         </tr>
         </table>

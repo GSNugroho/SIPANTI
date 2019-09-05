@@ -8,8 +8,10 @@
 					</div>
 					<div class="card-body">
 					<a href="<?php echo base_url('monitor/create')?>" class="btn btn-primary btn-icon-split">
-                    		<span class="text">Tambah Data</span>
-					</a>	  
+                    	<span class="text">Tambah Data</span>
+					</a>
+					<br>
+					<br>
 						<div class="table-responsive">
 						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
 						<thead>

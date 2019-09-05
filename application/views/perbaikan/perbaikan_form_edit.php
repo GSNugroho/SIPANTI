@@ -25,7 +25,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
         <div class="card-header py-3">
-           <h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
+           <h6 class="m-0 font-weight-bold text-primary">Edit Perbaikan</h6>
     </div>
     <div class="card-body">
 
@@ -155,10 +155,11 @@
         </tr>
         <tr>
         <td>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
+            <a href="<?php echo site_url('perbaikan')?>" class="btn btn-danger">Batal</a>
         </td>
         <td>
-            <a href="<?php echo site_url('perbaikan')?>" class="btn btn-warning">Cancel</a>
+            
         </td>
         </tr>
         </table>

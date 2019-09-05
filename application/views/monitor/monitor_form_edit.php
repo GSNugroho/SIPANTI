@@ -4,11 +4,9 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
         <div class="card-header py-3">
-           <h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
+           <h6 class="m-0 font-weight-bold text-primary">Edit Inventaris</h6>
     </div>
     <div class="card-body">
-
-        <h2 style="margin-top:0px">Inventaris <?php //echo $button ?></h2>
         <form action="<?php echo base_url(). 'monitor/update_action';?>" method="post">
 	    <table>
         <tr>
@@ -276,10 +274,11 @@
         <tr>
         <td> -->
 	    <input type="hidden" name="kd_inv" class="form-control" id="kd_inv" value="<?php echo $kd_inv;?>">
-        <button type="submit" class="btn btn-primary">Save</button> 
+        <button type="submit" class="btn btn-success">Save</button> 
+        <a href="<?php echo site_url('monitor') ?>" class="btn btn-danger">Cancel</a>
         </td>
         <td>
-        <a href="<?php echo site_url('monitor') ?>" class="btn btn-default">Cancel</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </td>
         </tr>
     </table>
