@@ -19,13 +19,15 @@ class M_monitor extends CI_Model{
 		return ($query->num_rows() > 0)?$query->result_array():FALSE;
 		*/
 		$this->db->order_by('tgl_terima', 'desc');
-		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk', 'left');
-		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
-		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol', 'left');
-		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis', 'left');
-		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
-		//$this->db->where('inv_barang.kd_aset IS NOT NULL');
+		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk');
+		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus');
+		$this->db->join('inv_golongan', 'inv_barang.kd_bantu = inv_golongan.id_gol');
+		$this->db->join('inv_jenis', 'inv_barang.jns_brg = inv_jenis.in_kd_jenis');
+		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
+		$this->db->where('inv_barang.kd_aset IS NOT NULL');
+		$this->db->where("inv_barang.kd_aset != ''");
 		$this->db->where('inv_barang.aktif = 1');
+		$this->db->where('inv_barang.bt_ti = 1');
 		return $this->db->get('inv_barang')->result();
 	}
 
@@ -53,6 +55,7 @@ class M_monitor extends CI_Model{
 		$this->db->where($this->id, $id);
 		$this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang', 'left');
 		$this->db->join('inv_pubgugus', 'inv_barang.id_ruang = inv_pubgugus.vc_k_gugus', 'left');
+		$this->db->join('inv_merk', 'inv_barang.merk = inv_merk.vc_kd_merk', 'left');
         return $this->db->get($this->table)->row();
 	}
 	
@@ -78,7 +81,7 @@ class M_monitor extends CI_Model{
 	}
 
 	function get_merk(){
-		$query = $this->db->query('SELECT * FROM inv_merk');
+		$query = $this->db->query('SELECT * FROM inv_merk ORDER BY vc_nm_merk asc');
 		return $query->result();
 	}
 	function get_ruang(){
@@ -111,7 +114,8 @@ class M_monitor extends CI_Model{
 		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE kd_inv != 'INV' and inv_barang.aktif = 1 ");
+		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
+		WHERE kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)");
 		return $query->result();
 	}
 	function get_total_fl($searchQuery){
@@ -120,7 +124,8 @@ class M_monitor extends CI_Model{
 		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE 1=1 and kd_inv != 'INV' and inv_barang.aktif = 1 ".$searchQuery);
+		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
+		WHERE 1=1 and kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery);
 		return $query->result();
 	}
 	function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
@@ -129,13 +134,15 @@ class M_monitor extends CI_Model{
 		left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-		WHERE 1=1 and inv_barang.aktif = 1 and inv_barang.kd_inv != 'INV' ".$searchQuery." and inv_barang.kd_inv NOT IN (
+		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
+		WHERE 1=1 and inv_barang.aktif = 1 and inv_barang.kd_inv != 'INV' and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." and inv_barang.kd_inv NOT IN (
 			SELECT TOP ".$baris." inv_barang.kd_inv FROM inv_barang 
 			left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
 			left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 			left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 			left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
-			WHERE inv_barang.kd_inv != 'INV' and inv_barang.aktif = 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
+			left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
+			WHERE inv_barang.kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
 		order by ".$columnName." ".$columnSortOrder);
 		return $query->result();
 	}

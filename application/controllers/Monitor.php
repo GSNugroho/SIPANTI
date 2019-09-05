@@ -103,8 +103,9 @@ class Monitor extends CI_Controller {
 			if($dkon == 2){$kondisi = "Kurang Baik";}else
 			if($dkon ==3){$kondisi = "Rusak";}
 
-			$bt_ti = 0;
+			$bt_ti = 1;
 			$vc_kd_inv = "-";
+			$aktif = 1;
 
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
@@ -121,7 +122,7 @@ class Monitor extends CI_Controller {
 			// 'foto_brg' => $this->input->post('foto_brg', TRUE),
 			// 'foto_qr' => $this->input->post('foto_qr', TRUE),
 			'id_urut' => $this->input->post('id_urut', TRUE),
-			'aktif' => $this->input->post('aktif', TRUE),
+			'aktif' => $aktif,
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
 			'kd_aset' => $kodeaset,
@@ -290,7 +291,7 @@ class Monitor extends CI_Controller {
 			$data = array(
 			'kd_inv' => set_value('kd_inv', $row->kd_inv),
 			'nm_inv' => set_value('nm_inv', $row->nm_inv),
-			'merk' => set_value('merk', $row->merk),
+			'merk' => set_value('merk', $row->vc_nm_merk),
 			'satuan' => set_value('satuan', $row->satuan),
 			'jmlh' => set_value('jmlh', $row->jmlh),
 			'tgl_terima' => set_value('tgl_terima', date('m/d/Y', strtotime($row->tgl_terima ))),

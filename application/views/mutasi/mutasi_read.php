@@ -15,25 +15,25 @@
     }
     </style>
     
-			<!-- DataTales Example -->
-			<div class="card shadow mb-4">
-			<div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+		<div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Data Mutasi</h6>
 		</div>
     <div class="card-body">
-    <h2>Detail Perawatan Inventaris</h2>
+    <h2>Detail Mutasi</h2>
+    <a href="<?php echo site_url('mutasi')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv_mts; ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $id_ruang_mts; ?></td></tr>
     <tr><td>Jumlah Mutasi</td><td>:</td><td><?php echo $jmlh_mts; ?></td></tr>
-    <tr><td>Tanggal Terima Mutasi</td><td>:</td><td><?php echo date('Y-m-d', strtotime($tgl_terima_mts)); ?></td></tr>
+    <tr><td>Tanggal Terima Mutasi</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_terima_mts)); ?></td></tr>
     <tr><td>Status Mutasi</td><td>:</td><td><?php echo $status_mts; ?></td></tr>
     <tr><td>Kondisi Mutasi</td><td>:</td><td><?php echo $kondisi_mts; ?></td></tr>
     <tr><td>Keterangan Mutasi</td><td>:</td><td><?php echo $ket_mts; ?></td></tr>
     <tr><td>Alasan Mutasi</td><td>:</td><td><?php echo $alasan_mts; ?></td></tr>
 
     </table>
-    <a href="<?php echo site_url('mutasi')?>" class="btn btn-default">Kembali</a>
     </div>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">

@@ -26,15 +26,16 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 			<div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
+           	<h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
 		</div>
     <div class="card-body">
-    <h2>Detail Perawatan Inventaris</h2>
+    <h2>Detail Perbaikan</h2>
+    <a href="<?php echo site_url('perbaikan')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv_pr; ?></td></tr>
     <tr><td>Nama Inventaris</td><td>:</td><td><?php echo $nm_inv; ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $vc_n_gugus; ?></td></tr>
-    <tr><td>Tanggal Perbaikan</td><td>:</td><td><?php echo date('Y-m-d', strtotime($tgl_inv_pr)); ?></td></tr>
+    <tr><td>Tanggal Perbaikan</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_inv_pr)); ?></td></tr>
     <tr><td>Jenis Kerusakan</td><td>:</td><td><?php 
     $jkr = $jns_kr;
     if($jkr=='1'){$jns_kr = "Ringan";
@@ -56,7 +57,7 @@
     <tr><td>Keterangan</td><td>:</td><td><?php echo $ket; ?></td></tr>
     
     </table>
-    <a href="<?php echo site_url('perbaikan')?>" class="btn btn-default">Kembali</a>
+    
     </div>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">

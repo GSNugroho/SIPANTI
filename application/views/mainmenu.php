@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+  <link rel="shortcut icon" href="logo_new.png" type="image/x-icon">
   <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -322,7 +322,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Yakin keluar ?</h5>
+          <h6 class="modal-title" id="exampleModalLabel">Yakin keluar ?</h6>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>

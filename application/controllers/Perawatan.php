@@ -332,7 +332,9 @@ class Perawatan extends CI_Controller{
                 'kkmolpwr' => set_value('kkmolpwr', $rows->hw_lis_cmp),
                 'ket' => set_value('ket', $rows->ket),
                 'wtm' => set_value('wtm', $rows->wtm),
-                'wts' => set_value('wts', $rows->wts)
+                'wts' => set_value('wts', $rows->wts),
+                'kd_inv' => set_value('kd_inv', $rows->kd_inv),
+                'kd_aset' => set_value('kd_aset', $rows->kd_aset)
             );
             $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
         } else {
@@ -1924,6 +1926,7 @@ class Perawatan extends CI_Controller{
         $rows = $this->M_perawatan->get_r_id($id);
         if($rows){
             $data = array(
+                'kd_aset' => set_value('kd_aset', $rows->kd_aset),
                 'kcasing' => set_value('kcasing', $rows->cs_cs),
                 'kbaut' => set_value('kbaut', $rows->cs_ba),
                 'kksakelar' => set_value('kksakelar', $rows->cs_saklar),

@@ -30,6 +30,7 @@
 		</div>
     <div class="card-body">
     <h2>Detail Inventaris</h2>
+    <a href="<?php echo site_url('monitor')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv; ?></td></tr>
     <tr><td>Nama Inventaris</td><td>:</td><td><?php echo $nm_inv; ?></td></tr>
@@ -48,7 +49,6 @@
     
     
     </table>
-    <a href="<?php echo site_url('monitor')?>" class="btn btn-default">Kembali</a>
     </div>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">

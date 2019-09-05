@@ -895,6 +895,10 @@
         <table border="1" id="dynamic_field6" width="55%" class="table table-bordered">
         <tr>
             <td width="10%">Hard Disk</td>
+            <td width="25%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
         </tr>
         <?php
             if(!empty($h_ata)){echo '<tr>
@@ -990,6 +994,10 @@
         <table border="1" id="dynamic_field10" width="55%" class="table table-bordered">
         <tr>
             <td width="10%">RAM</td>
+            <td width="25%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
         </tr>
         <?php
             if(!empty($r_ddr1)){echo '<tr>

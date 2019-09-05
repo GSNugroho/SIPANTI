@@ -57,14 +57,14 @@
             <td>	        
             <div class="form-group">
                 <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-                <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima">
+                <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" >
             </div>
             </td>
             <td></td>
-            <td>	        
+            <!-- <td>	        
             <div class="form-group">
                 <label for="status">Status <?php //echo form_error('status') ?></label>
-                <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status"> -->
+                 <input class="form-control" type="text" name="status" id="status" placeholder="Status"> 
                 <select name="status" class="form-control" id="status">
                     <option value="">--Pilih Status--</option>
                     <option value="1">Beli</option>
@@ -74,8 +74,8 @@
                     <option value="5">Pindahan</option>
                     <option value="6">Rakitan</option>
             </div>
+            </td> -->
             </tr>
-            </td>
 
             <tr>
             <td>	
@@ -193,14 +193,25 @@
 
             <tr>
             <td>        
-            <div class="form-group">
-                <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
-                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
+            <!-- <div class="form-group">
+                <label for="aktif">Aktif</label>
                 <select class="form-control" name="aktif" class="form-control" id="aktif">
                     <option value="">--Status Aktif--</option>
                     <option value="0">Tidak Aktif</option>
                     <option value="1">Aktif</option>
                 </select>
+            </div> -->
+            <div class="form-group">
+                <label for="status">Status <?php //echo form_error('status') ?></label>
+                <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status"> -->
+                <select name="status" class="form-control" id="status">
+                    <option value="">--Pilih Status--</option>
+                    <option value="1">Beli</option>
+                    <option value="2">Beli Bekas</option>
+                    <option value="3">Mutasi</option>
+                    <option value="4">Pemberian</option>
+                    <option value="5">Pindahan</option>
+                    <option value="6">Rakitan</option>
             </div>
             </td>
             <td></td>
@@ -285,7 +296,7 @@
         <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Panti Waluyo 2019</span>
           </div>
         </div>
       </footer>
@@ -298,8 +309,17 @@
 
         <!-- Core plugin JavaScript-->
         <script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
+        <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js')?>"></script>
+        <script src="<?php echo base_url('assets/js/jquery-ui.js')?>"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+        <script>
+            // $( function() {
+            //     $( "#tgl_terima" ).datepicker({
+            //         format: 'dd/mm/yyyy'
+            //     });
+            // } );
+        </script>
         </body>
 </html>

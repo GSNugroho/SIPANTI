@@ -72,6 +72,7 @@ class M_perawatan extends CI_Model{
         // $this->db->order_by('inv_jadwal_perawatan','asc');
         $this->db->where($this->idjd, $id);
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
+        $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         return $this->db->get('inv_jadwal ')->row();
     }
     

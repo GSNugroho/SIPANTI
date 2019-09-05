@@ -21,10 +21,13 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 	</div>
     <div class="card-body">
-    <h2>Detail Perawatan Inventaris</h2>
+    <h2>Detail Perawatan </h2>
+    <a href="<?php echo site_url('perawatan')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Jadwal</td><td>:</td><td><?php echo $kd_jd; ?></td></tr>
-    <tr><td>Tanggal Perawatan</td><td>:</td><td><?php echo date('Y-m-d', strtotime($tgl_jd)); ?></td></tr>
+    <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv; ?></td></tr>
+    <tr><td>Kode Aset</td><td>:</td><td><?php echo $kd_aset; ?></td></tr>
+    <tr><td>Tanggal Perawatan</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_jd)); ?></td></tr>
     <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php echo date('H:i', strtotime($wtm)); ?></td></tr>
     <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php echo date('H:i', strtotime($wts)); ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $vc_n_gugus; ?></td></tr>
@@ -813,7 +816,7 @@
         // echo '<tr><td>Keterangan</td><td>:</td><td>'.$ket.'</td></tr>';
     ?>
     </table>
-    <a href="<?php echo site_url('perawatan')?>" class="btn btn-default">Kembali</a>
+    
     </div>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
