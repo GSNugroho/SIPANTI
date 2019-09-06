@@ -26,7 +26,7 @@
             <select require name="id_ruang_mts" class="form-control"  id="id_ruang_mts">
                     <?php
                         foreach($dd_gr as $row) {
-                            if($id_ruang == $row->vc_k_gugus){
+                            if($id_ruang_mts == $row->vc_k_gugus){
                                 echo '<option value="'.$row->vc_k_gugus.'" selected="selected">'.$row->vc_n_gugus.'</option>';
                             }else{
                                 echo '<option value="'.$row->vc_k_gugus.'">'.$row->vc_n_gugus.'</option>';
@@ -37,6 +37,23 @@
         </div>
         </td>
         </tr> 
+        <tr>
+        <td>
+        <div class="form-group">
+            <label for="r_7an_mts">Ruang Tujuan Mutasi</label>
+            <select name="r_7an_mts" class="form-control" id="r_7an_mts">
+                <option value="">--Pilih Ruang Mutasi--</option>
+                <?php
+                    foreach ($dd_gr as $row){
+                        if($id_ruang == $row->vc_k_gugus){
+                            echo '<option value="'.$row->vc_k_gugus.'" selected="selected">'.$row->vc_n_gugus.'</option>';
+                        }else{
+                            echo '<option value="'.$row->vc_k_gugus.'">'.$row->vc_n_gugus.'</option>';
+                        }
+                        }
+                ?>
+        </td>
+        </tr>
         <tr>
         <td>
         <div class="form-group">

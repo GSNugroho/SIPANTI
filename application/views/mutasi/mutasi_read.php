@@ -26,6 +26,7 @@
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv_mts; ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $id_ruang_mts; ?></td></tr>
+    <tr><td>Ruang Mutasi</td><td>:</td><td><?php echo $id_ruang; ?></td></tr>
     <tr><td>Jumlah Mutasi</td><td>:</td><td><?php echo $jmlh_mts; ?></td></tr>
     <tr><td>Tanggal Terima Mutasi</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_terima_mts)); ?></td></tr>
     <tr><td>Status Mutasi</td><td>:</td><td><?php echo $status_mts; ?></td></tr>

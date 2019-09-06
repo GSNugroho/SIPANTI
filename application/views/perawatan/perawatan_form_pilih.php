@@ -7,7 +7,7 @@
 	<!-- DataTales Example -->
     <div class="card shadow mb-4">
 	    <div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Parameter Perawatan</h6>
+           	<h6 class="m-0 font-weight-bold text-primary">Pilih Komponen Perawatan</h6>
 		</div>
     <div class="card-body">
         <form action="<?php echo base_url().'perawatan/set_data_komponen';?>" method="post">
@@ -643,10 +643,10 @@
         <tr>
             <td>
             <input type="hidden" name="kd_jd_ko" class="form-control" id="kd_jd_ko" value="<?php echo $kd_jd_ko;?>">
-            <button type="submit" class="btn btn-primary">Pilih Komponen</button>
+            <button type="submit" class="btn btn-success">Pilih Komponen</button>
             </td>
             <td>
-            <a href="<?php echo site_url('perawatan')?>" class="btn btn-default">Batal</a>
+            <a href="<?php echo site_url('perawatan')?>" class="btn btn-danger">Batal</a>
             </td>
         </tr>
     </table>

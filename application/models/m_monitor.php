@@ -105,7 +105,16 @@ class M_monitor extends CI_Model{
 		return $query->result();
 	}
 	function get_no_aset(){
-		$query = $this->db->query("");
+		$query = $this->db->query("SELECT MAX(no_aset) AS maxkode FROM inv_barang WHERE aktif=1");
+		return $query->result();
+	}
+	function get_p($id_rng, $tgl_m, $merk){
+		$query = $this->db->query("SELECT * FROM inv_barang WHERE id_ruang = '$id_rng' and tgl_terima = '$tgl_m' and merk = '$merk' and aktif=1");
+		return $query->result();
+	}
+	function get_urut_brg($rng, $tgl_m, $merk){
+		$query = $this->db->query("SELECT MAX(id_urut) as maxkode FROM inv_barang WHERE id_ruang = '$rng' and tgl_terima = '$tgl_m' and merk = '$merk' and aktif=1");
+		return $query->result();
 	}
 	function get_in_kd_barang(){
 		$query = $this->db->query('SELECT MAX(in_kd_barang) AS maxkode FROM aset_barang');

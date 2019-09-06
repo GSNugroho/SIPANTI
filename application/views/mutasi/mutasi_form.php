@@ -44,7 +44,7 @@
                 <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
                 <h5>Daftar Inventaris</h5>
                 <table id="pop" border="1">
-                    <tr><td><b>Kode Inventaris</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Kode Aset</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
                 
                 </table>
             </div>
@@ -54,7 +54,7 @@
         <tr>
         <td>
         <div class="form-group">
-            <label for="id_ruang_mts">Ruang Mutasi <?php //echo form_error('nm_inv') ?></label>
+            <label for="id_ruang_mts">Ruang Sebelum Mutasi <?php //echo form_error('nm_inv') ?></label>
             <select require name="id_ruang" class="form-control" id="id_ruang">
                 <option value="">--Pilih Ruang--</option>
                 <?php
@@ -66,7 +66,22 @@
                 ?>
         </div>
         </td>
-        </tr> 
+        </tr>
+        <tr>
+        <td>
+        <div class="form-group">
+            <label for="r_7an_mts">Ruang Tujuan Mutasi</label>
+            <select name="r_7an_mts" class="form-control" id="r_7an_mts">
+                <option value="">--Pilih Ruang Mutasi--</option>
+                <?php
+                    foreach ($dd_gr as $row){
+                        echo "<option value='".$row->vc_k_gugus."'>".$row->vc_n_gugus."</option>";
+                        }
+                        echo"
+                      </select>"
+                ?>
+        </td>
+        </tr>
         <tr>
         <td>
         <div class="form-group">

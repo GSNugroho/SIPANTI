@@ -106,10 +106,16 @@ class Monitor extends CI_Controller {
 			$bt_ti = 1;
 			$vc_kd_inv = "-";
 			$aktif = 1;
-
+			//no aset
 			$gol = $this->input->post('kd_bantu');
+			$rng = $this->input->post('id_ruang');
+			$tgl_m = $this->input->post('tgl_terima');
+			$merk = $this->input->post('merk');
 			$no_gol = '0'.$gol;
-			$kd_brg = $this->no_aset($no_gol);
+			$id_urut = $this->urut($rng, $tgl_m, $merk);
+			$kd_brg = $this->no_aset($no_gol, $rng, $tgl_m, $merk, $id_urut);
+			$no_as = $this->no_as($no_gol, $rng, $tgl_m, $merk);
+			
 
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
@@ -121,11 +127,12 @@ class Monitor extends CI_Controller {
 			'kondisi' => $kondisi,
 			'ket' => $this->input->post('ket', TRUE),
 			'kd_bantu' => $this->input->post('kd_bantu', TRUE),
-			'no_aset' => $this->input->post('no_aset', TRUE),
+			'no_aset' => $no_as,
+			'kd_brg' => $kd_brg,
 			'id_ruang' => $this->input->post('id_ruang', TRUE),
 			// 'foto_brg' => $this->input->post('foto_brg', TRUE),
 			// 'foto_qr' => $this->input->post('foto_qr', TRUE),
-			'id_urut' => $this->input->post('id_urut', TRUE),
+			'id_urut' => $id_urut,
 			'aktif' => $aktif,
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
@@ -347,8 +354,39 @@ class Monitor extends CI_Controller {
         $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
 	}
-	function no_aset($no_gol){
-		// $no_aset = $this-
+	function no_aset($no_gol, $id_rng, $tgl_m, $merk, $urut){
+		 
+		 $g_no_aset = $this->M_monitor->get_no_aset();
+		 foreach($g_no_aset as $row){
+			 $data = $row->maxkode;
+		 }
+		 $no_aset = (int) $data;
+		 $th_aset = date('Y');
+		 $gp = $this->M_monitor->get_p($id_rng, $tgl_m, $merk);
+		 $da_ruang ='';
+		 $d_tgl = '';
+		 $d_merk = '';
+		 foreach($gp as $row){
+			 $da_ruang = $row->id_ruang;
+			 $d_tgl = $row->tgl_terima;
+			 $d_merk = $row->merk;
+		 }
+		 if(($id_rng != $da_ruang) && ($tgl_m != $d_tgl) && ($merk != $d_merk)){
+			$no_aset++;
+		 }
+		 $kd_aset = $no_gol.'-'.$th_aset.'-'.$no_aset.'-'.$urut;
+		 return $kd_aset;
+	}
+
+	function urut($rng, $tgl_m, $merk){
+		$id_u = $this->M_monitor->get_urut_brg($rng, $tgl_m, $merk);
+		$data='';
+		foreach($id_u as $row){
+			$data = $row->maxkode;
+		}
+		$urut = (int) $data;
+		$urut++;
+		return $urut;
 	}
 
 	function kode_aset($id)
@@ -365,6 +403,28 @@ class Monitor extends CI_Controller {
 		$bl = date('m');
 		$kodebaru = $char.'-'.$th.'-'.$bl.'-'.$noUrut;
 		return $kodebaru;
+	}
+
+	function no_as($no_gol, $id_rng, $tgl_m, $merk){
+		
+		 $g_no_aset = $this->M_monitor->get_no_aset();
+		 foreach($g_no_aset as $row){
+			 $no_aset = $row->maxkode;
+		 }
+		 
+		 $gp = $this->M_monitor->get_p($id_rng, $tgl_m, $merk);
+		 $da_ruang ='';
+		 $d_tgl = '';
+		 $d_merk = '';
+		 foreach($gp as $row){
+			 $da_ruang = $row->id_ruang;
+			 $d_tgl = $row->tgl_terima;
+			 $d_merk = $row->merk;
+		 }
+		 if(($id_rng != $da_ruang) && ($tgl_m != $d_tgl) && ($merk != $d_merk)){
+			$no_aset++;
+		 }
+		 return $no_aset;
 	}
 	
 	function kode_urut($id)

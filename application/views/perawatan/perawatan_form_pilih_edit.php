@@ -1495,7 +1495,7 @@
             Keterangan
             </td>
             <td colspan="4">
-                <textarea name="ket" ><?php echo $ket;?></textarea>
+                <textarea name="ket_prwt" ><?php echo $ket_prwt;?></textarea>
             </td>
         </tr>
     </table>
@@ -1505,10 +1505,10 @@
             <input type="hidden" name="kd_jd_ko" class="form-control" id="kd_jd_ko" value="<?php echo $kd_jd_ko;?>">
             <input type="hidden" name="kd_inv" class="form-control" id="kd_inv" value="<?php echo $kd_inv;?>">
             <input type="hidden" name="kd_ruang" class="form-control" id="kd_ruang" value="<?php echo $kd_ruang;?>">
-            <button type="submit" class="btn btn-primary">Simpan Data</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
             </td>
             <td>
-            <a href="<?php echo site_url('perawatan')?>" class="btn btn-default">Batal</a>
+            <a href="<?php echo site_url('perawatan')?>" class="btn btn-danger">Batal</a>
             </td>
         </tr>
     </table>

@@ -330,7 +330,7 @@ class Perawatan extends CI_Controller{
                 'kkpwrmon' => set_value('kkpwrmon', $rows->hw_lis_cpm),
                 'kkpwrsata' => set_value('kkpwrsata', $rows->hw_lis_cpsata),
                 'kkmolpwr' => set_value('kkmolpwr', $rows->hw_lis_cmp),
-                'ket' => set_value('ket', $rows->ket),
+                'ket_prwt' => set_value('ket', $rows->ket_prwt),
                 'wtm' => set_value('wtm', $rows->wtm),
                 'wts' => set_value('wts', $rows->wts),
                 'kd_inv' => set_value('kd_inv', $rows->kd_inv),
@@ -439,7 +439,7 @@ class Perawatan extends CI_Controller{
                 'kkpwrmon' => set_value('kkpwrmon', $row->hw_lis_cpm),
                 'kkpwrsata' => set_value('kkpwrsata', $row->hw_lis_cpsata),
                 'kkmolpwr' => set_value('kkmolpwr', $row->hw_lis_cmp),
-                'ket' => set_value('ket', $row->ket),
+                'ket_prwt' => set_value('ket_prwt', $row->ket_prwt),
                 'status' => set_value('status', $row->status_p),
                 'kd_jd' => set_value('kd_jd', $row->kd_jadwal),
                 'wtm' => set_value('wtm', $row->wtm),
@@ -567,7 +567,7 @@ class Perawatan extends CI_Controller{
                 'kkpwrmon' => set_value('kkpwrmon', $row->hw_lis_cpm),
                 'kkpwrsata' => set_value('kkpwrsata', $row->hw_lis_cpsata),
                 'kkmolpwr' => set_value('kkmolpwr', $row->hw_lis_cmp),
-                'ket' => set_value('ket', $row->ket),
+                'ket' => set_value('ket_prwt', $row->ket_prwt),
                 'wtm' => set_value('wtm', $row->wtm),
                 'wts' => set_value('wts', $row->wts)
               );

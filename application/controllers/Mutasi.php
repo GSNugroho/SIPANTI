@@ -4,6 +4,7 @@ class Mutasi extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('M_mutasi');
+        $this->load->model('M_monitor');
     }
 
     public function index(){
@@ -30,8 +31,12 @@ class Mutasi extends CI_Controller{
             'ket_mts' => $this->input->post('ket_mts', TRUE),
             'alasan_mts' => $this->input->post('alasan_mts', TRUE)
         );
+        $data_up = array(
+            'id_ruang' => $this->input->post('r_7an_mts', TRUE)
+        );
 
         $this->M_mutasi->insert($data);
+        $this->M_monitor->update($this->input->post('kd_inv_mts', TRUE), $data_up);
         $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
         redirect(site_url('Mutasi'));
     }
@@ -43,8 +48,9 @@ class Mutasi extends CI_Controller{
             $data = array(
                 'kd_inv_mts' => set_value('kd_inv_mts', $row->kd_inv_mts),
                 'id_ruang_mts' => set_value('id_ruang_mts', $row->id_ruang_mts),
+                'id_ruang' => set_value('id_ruang', $row->id_ruang),
                 'jmlh_mts' => set_value('jmlh_mts', $row->jmlh_mts),
-                'tgl_terima_mts' => set_value('tgl_terima_mts', $row->tgl_terima_mts),
+                'tgl_terima_mts' => set_value('tgl_terima_mts', date('Y-m-d', strtotime($row->tgl_terima_mts))),
                 'status_mts' => set_value('status_mts', $row->status_mts),
                 'kondisi_mts' => set_value('kondisi_mts', $row->kondisi_mts),
                 'ket_mts' => set_value('ket_mts', $row->ket_mts),
@@ -91,9 +97,14 @@ class Mutasi extends CI_Controller{
         $row = $this->M_mutasi->get_by_id($id);
 
         if($row){
+            $id_ruang = $this->M_mutasi->ruangb($row->id_ruang);
+            foreach($id_ruang as $rows){
+                $nm_r_mt = $rows->vc_n_gugus;
+            }
             $data = array(
                 'kd_inv_mts' => set_value('kd_inv_mts', $row->kd_inv_mts),
-                'id_ruang_mts' => set_value('id_ruang_mts', $row->id_ruang_mts),
+                'id_ruang_mts' => set_value('id_ruang_mts', $row->vc_n_gugus),
+                'id_ruang' => $nm_r_mt,
                 'jmlh_mts' => set_value('jmlh_mts', $row->jmlh_mts),
                 'tgl_terima_mts' => set_value('tgl_terima_mts', $row->tgl_terima_mts),
                 'status_mts' => set_value('status_mts', $row->status_mts),
@@ -167,6 +178,10 @@ class Mutasi extends CI_Controller{
 		$data = array();
 
 		foreach($empRecords as $row){
+        $id_ruang = $this->M_mutasi->ruangb($row->id_ruang);
+        foreach($id_ruang as $rows){
+            $nm_r_mt = $rows->vc_n_gugus;
+        }
         $cek = '<a href="mutasi/cek/'.$row->kd_inv_mts.'" class="btn btn-success btn-circle">
         <i class="fas fa-check"></i>
         </a>';
@@ -183,13 +198,14 @@ class Mutasi extends CI_Controller{
                 ';
 		$data[] = array( 
 			"tgl_terima_mts"=>date('d-m-Y', strtotime($row->tgl_terima_mts)),
-			"kd_inv_mts"=>$row->kd_inv_mts,
+			"kd_inv_mts"=>$row->kd_brg,
 			"nm_inv"=>$row->nm_inv,
 			"jmlh_mts"=>$row->jmlh_mts,
 			"vc_n_gugus"=>$row->vc_n_gugus,
+			"id_ruang"=>$nm_r_mt,
 			"status_mts"=>$row->status_mts,
             "kondisi_mts"=>$row->kondisi_mts,
-            "alasan_mts"=>$row->alasan_mts,
+            // "alasan_mts"=>$row->alasan_mts,
 			"action"=>$button
 		);
 		}

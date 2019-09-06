@@ -17,14 +17,15 @@
 						<thead>
 							<tr>
                                 <!-- <th>No</th> -->
-                                <th>Kode Inventaris</th>
                                 <th>Tanggal Mutasi</th>
+                                <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
-                                <th>Mutasi</th>
+                                <th>Ruang</th>
+                                <th>Ruang Mutasi</th>
                                 <th>Status</th>
                                 <th>Kondisi</th>
-                                <th>Alasan</th>
+                                <!-- <th>Alasan</th> -->
                                 <th>Action</th>
 							</tr>
 							</thead>
@@ -65,7 +66,7 @@
 	<script>
 	$(document).ready(function(){
 	   $('#dataBrg').DataTable({
-	  'order': [[ 1, "desc" ]],
+	  'order': [[ 0, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
@@ -74,14 +75,15 @@
       },
       'columns': [
          //{ data: 'no' },
-         { data: 'kd_inv_mts' },
          { data: 'tgl_terima_mts' },
+         { data: 'kd_inv_mts' },
          { data: 'nm_inv' },
          { data: 'jmlh_mts' },
          { data: 'vc_n_gugus' },
+         { data: 'id_ruang' },
          { data: 'status_mts' },
          { data: 'kondisi_mts' },
-		 { data: 'alasan_mts'},
+		//  { data: 'alasan_mts'},
 		 { data: 'action'}
       ]
 	});
