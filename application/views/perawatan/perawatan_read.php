@@ -223,10 +223,10 @@
         if($ksiide == '1'){
             echo '<tr><td>IDE</td><td>:</td><td>Baik</td></tr>';
         }else
-        if($ksside == '2'){
+        if($ksiide == '2'){
             echo '<tr><td>IDE</td><td>:</td><td>Kurang Baik</td></tr>';
         }else
-        if($ksside == '3'){
+        if($ksiide == '3'){
             echo '<tr><td>IDE</td><td>:</td><td>Rusak</td></tr>';
         }
     }
