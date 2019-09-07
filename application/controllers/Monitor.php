@@ -226,25 +226,32 @@ class Monitor extends CI_Controller {
 	}
 	
 	function update_action(){
+			$sts = "";
+			$status = $this->input->post('status');
+			if($status == 1){$sts = "Beli";}else
+			if($status == 2){$sts = "Beli Bekas";}else
+			if($status == 3){$sts = "Mutasi";}else
+			if($status == 4){$sts = "Pemberian";}else
+			if($status == 5){$sts = "Pindahan";}else
+			if($status == 6){$sts = "Rakitan";}
+
+			$satuan ="";
+			$dsatuan = $this->input->post('satuan');
+			if($dsatuan == 1){$satuan = "Buah";}else
+			if($dsatuan == 2){$satuan = "Set";}else
+			if($dsatuan == 3){$satuan = "Unit";}
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
 			'merk' => $this->input->post('merk', TRUE),
-			'satuan' => $this->input->post('satuan', TRUE),
+			'satuan' => $satuan,
 			'jmlh' => $this->input->post('jmlh', TRUE),
 			'tgl_terima' => $this->input->post('tgl_terima', TRUE),
-			'status' => $this->input->post('status', TRUE),
+			'status' => $sts,
 			'kondisi' => $this->input->post('kondisi', TRUE),
 			'ket' => $this->input->post('ket', TRUE),
 			'kd_bantu' => $this->input->post('kd_bantu', TRUE),
-			'no_aset' => $this->input->post('no_aset', TRUE),
 			'id_ruang' => $this->input->post('id_ruang', TRUE),
-			'foto_brg' => $this->input->post('foto_brg', TRUE),
-			'foto_qr' => $this->input->post('foto_qr', TRUE),
-			'id_urut' => $this->input->post('id_urut', TRUE),
-			'aktif' => $this->input->post('aktif', TRUE),
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
-			'cetak' => $this->input->post('cetak', TRUE),
-			'kd_aset' => $this->input->post('kd_aset', TRUE),
 			'dt_tgl_update' => date('Y-m-d h:i:s')
 			);
 
@@ -465,6 +472,7 @@ class Monitor extends CI_Controller {
 		$searchQuery = " and (
 		kd_inv like '%".$searchValue."%' or 
 		nm_inv like '%".$searchValue."%' or 
+		kd_aset like '%".$searchValue."%' or 
 		tgl_terima like '%".$searchValue."%' or 
 		vc_nm_merk like '%".$searchValue."%' or 
 		vc_nm_jenis like'%".$searchValue."%' or

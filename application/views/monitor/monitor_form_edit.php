@@ -51,7 +51,7 @@
         <td>        
 		<div class="form-group">
             <label for="jumlah">Jumlah <?php //echo form_error('jumlah') ?></label>
-            <input class="form-control" type="text" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?php echo $jmlh; ?>">
+            <input class="form-control" type="text" name="jmlh" id="jmlh" placeholder="Jumlah" value="<?php echo $jmlh; ?>">
 		</div>
         </td>
         </tr>
@@ -64,22 +64,9 @@
 		</div>
         </td>
         <td></td>
-        <td>	        
-		<div class="form-group">
-            <label for="status">Status <?php //echo form_error('status') ?></label>
-            <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status" value="<?php echo $status; ?>"> -->
-            <select name="status" class="form-control" id="status">
-                    <option value="">--Pilih Status--</option>
-                    <option value="1" <?php echo ($status == 'Beli')?'selected':''?>>Beli</option>
-                    <option value="2" <?php echo ($status == 'Beli Bekas')?'selected':''?>>Beli Bekas</option>
-                    <option value="3" <?php echo ($status == 'Mutasi')?'selected':''?>>Mutasi</option>
-                    <option value="4" <?php echo ($status == 'Pemberian')?'selected':''?>>Pemberian</option>
-                    <option value="5" <?php echo ($status == 'Pindahan')?'selected':''?>>Pindahan</option>
-                    <option value="6" <?php echo ($status == 'Rakitan')?'selected':''?>>Rakitan</option>
-		</div>
-		</tr>
-        </td>
 
+		</tr>
+        
         <tr>
         <td>	
 		<div class="form-group">
@@ -195,13 +182,17 @@
         <tr>
         <td>        
 		<div class="form-group">
-            <label for="aktif">Aktif <?php //echo form_error('aktif') ?></label>
-            <select class="form-control" name="aktif" class="form-control" id="aktif">
-                <option value="">--Status Aktif--</option>
-                <option value="0" <?php echo ($aktif == '0')?'selected':''?>>Tidak Aktif</option>
-                <option value="1" <?php echo ($aktif == '1')?'selected':''?>>Aktif</option>
-            </select>
-		</div>
+                <label for="status">Status <?php //echo form_error('status') ?></label>
+                <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status"> -->
+                <select name="status" class="form-control" id="status">
+                    <option value="">--Pilih Status--</option>
+                    <option value="1" <?php echo ($status == 'Beli')?'selected':''?>>Beli</option>
+                    <option value="2" <?php echo ($status == 'Beli Bekas')?'selected':''?>>Beli Bekas</option>
+                    <option value="3" <?php echo ($status == 'Mutasi')?'selected':''?>>Mutasi</option>
+                    <option value="4" <?php echo ($status == 'Pemberian')?'selected':''?>>Pemberian</option>
+                    <option value="5" <?php echo ($status == 'Pindahan')?'selected':''?>>Pindahan</option>
+                    <option value="6" <?php echo ($status == 'Rakitan')?'selected':''?>>Rakitan</option>
+            </div>
         </td>
         <td></td>
             <td>

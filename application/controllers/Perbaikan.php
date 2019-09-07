@@ -197,6 +197,7 @@ class Perbaikan extends CI_Controller{
 		$searchQuery = " and (tgl_inv_pr like '%".$searchValue."%' or 
 		kd_inv like '%".$searchValue."%' or 
 		nm_inv like'%".$searchValue."%' or
+		kd_aset like'%".$searchValue."%' or
 		vc_n_gugus like'%".$searchValue."%' or
 		jns_kr like'%".$searchValue."%' or
 		jns_pr like'%".$searchValue."%' or

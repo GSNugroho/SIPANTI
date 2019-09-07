@@ -37,7 +37,38 @@ class Report extends CI_Controller{
 
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('report/report_pr1',$data,true);
-        $mpdf->WriteHTML($html);
+        // $html = '<html>
+        // <head>
+        //     <style>
+        //         table{
+        //             border-collapse: collapse;
+        //         }
+        //         table, th, td{
+        //             border: 1px solid black;
+        //         }
+        //     </style>
+        // </head>
+        // <body>
+        // <h4 align="center">Laporan Perawatan Inventaris</h4><br><p></p>
+        // <p>Tanggal :'.date('d-m-Y', strtotime($tgl_jd)).' sampai '.date('d-m-Y', strtotime($tgl_jd_s)).'</p>
+		// <table border="1">				
+		// <tr>
+        //     <th align="center" width="5%">No</th>
+        //     <th align="center">Tanggal Perawatan</th>
+        //     <th align="center" width="25%">Jadwal</th>
+        //     <th align="center" width="13%">Kode Inventaris</th>
+        //     <th align="center">Nama Barang</th>
+        //     <th align="center">Ruang</th>
+        //     <th align="center">Lama Pengerjaan</th>
+        //     <th align="center">Kondisi</th>
+        // </tr>'.$i=0;
+        // foreach ($report_p as $row) 
+        //     {
+        //         $i++;
+        //         .'<tr >
+        //          <td align="center">'.$i.'</td>';
+                 
+        $mpdf->WriteHTML($html,'I');
         $mpdf->Output();
     
     }

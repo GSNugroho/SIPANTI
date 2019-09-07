@@ -148,6 +148,7 @@ class Mutasi extends CI_Controller{
 		if($searchValue != ''){
 		$searchQuery = " and (kd_inv_mts like '%".$searchValue."%' or 
 		nm_inv like '%".$searchValue."%' or 
+		kd_aset like '%".$searchValue."%' or 
 		tgl_terima_mts like '%".$searchValue."%' or 
 		jmlh_mts like'%".$searchValue."%' or
 		status_mts like'%".$searchValue."%' or
