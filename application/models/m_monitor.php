@@ -4,6 +4,7 @@ class M_monitor extends CI_Model{
 	public $table = 'inv_barang';
 	public $tbaset = 'aset_barang';
 	public $id = 'kd_inv';
+	public $id_a = 'vc_nm_barang';
 	public $order = 'DESC';
 	
 	function __construct()
@@ -49,6 +50,10 @@ class M_monitor extends CI_Model{
 	function update($id, $data){
 		$this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
+	}
+	function update_aset($id, $dataaset){
+		$this->db->where($this->id_a, $id);
+		$this->db->update($this->tbaset, $dataaset);
 	}
 
 	function get_by_id($id){

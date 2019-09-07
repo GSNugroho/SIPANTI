@@ -261,6 +261,7 @@ class Monitor extends CI_Controller {
 			if($dkon == 2){$kondisi = "Kurang Baik";}else
 			if($dkon ==3){$kondisi = "Rusak";}
 			$dataaset = array(
+			'vc_nm_barang' => $this->input->post('kd_aset', TRUE),
 			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
 			'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
 			'vc_sn' => $this->input->post('sn', TRUE),
@@ -273,21 +274,12 @@ class Monitor extends CI_Controller {
 			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
 			);
 			$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
+			$this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
 			redirect(base_url('Monitor'));
 	}
 
-	function deleterow($id){
-		$row = $this->M_monitor->get_by_id($id);
-
-		if($row){
-			$this->M_monitor->delete($id);
-			$this->session->set_flashdata('message','Hapus Data Berhasil');
-		}else {
-			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('Monitor'));
-		}
-	}
+	
 
 	function delete($id){
 		$row = $this->M_monitor->get_by_id($id);

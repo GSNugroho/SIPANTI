@@ -265,6 +265,7 @@
         <tr>
         <td> -->
 	    <input type="hidden" name="kd_inv" class="form-control" id="kd_inv" value="<?php echo $kd_inv;?>">
+	    <input type="hidden" name="kd_aset" class="form-control" id="kd_aset" value="<?php echo $kd_aset;?>">
         <button type="submit" class="btn btn-success">Save</button> 
         <a href="<?php echo site_url('monitor') ?>" class="btn btn-danger">Cancel</a>
         </td>
