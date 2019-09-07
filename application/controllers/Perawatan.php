@@ -2092,10 +2092,10 @@ class Perawatan extends CI_Controller{
             $this->M_perbaikan->insert($dataperbaikan);
         }
         
-        // $this->M_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
-        // $this->M_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
-        // $this->session->set_flashdata('message', 'Simpan Data Berhasil');
-        // redirect(base_url('Perawatan'));
+        $this->M_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
+        $this->M_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
+        $this->session->set_flashdata('message', 'Simpan Data Berhasil');
+        redirect(base_url('Perawatan'));
     }
 
     function read($id){
