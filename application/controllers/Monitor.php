@@ -7,54 +7,12 @@ class Monitor extends CI_Controller {
 		}
  
 	public function index(){
-		/*$this->load->database();
-		$jumlah_data = $this->M_monitor->jumlah_data();
-		$this->load->library('pagination');
-		$config['base_url'] = base_url().'monitor/';
-		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 50;
-		$from = $this->uri->segment(3);
-		$this->pagination->initialize($config);		
-		$data['inv_barang'] = $this->M_monitor->data($config['per_page'],$from);
-		*/
 		
-		// $data['inv_barang'] = $this->M_monitor->get_data();
 		$this->load->view('monitor/monitor');
 		}
 		
 	function create(){
-		/*$data = array(
-		'button' => 'create',
-        'action' => site_url('monitor/create_action'),
-	    'id_inv' => set_value('id_inv'),
-		'kd_inv' => set_value('kd_inv'),
-	    'nm_inv' => set_value('nm_inv'),
-	    'merk' => set_value('merk'),
-		'satuan' => set_value('satuan'),
-		'jumlah' => set_value('jumlah'),
-		'tgl_terima' => set_value('tgl_terima'),
-		'status' => set_value('status'),
-		'kondisi' => set_value('kondisi'),
-		'ket' => set_value('ket'),
-		'kd_bantu' => set_value('kd_bantu'),
-		'no_aset' => set_value('no_aset'),
-		'id_ruang' => set_value('id_ruang'),
-		'kd_brg' => set_value('kd_brg'),
-		'foto_brg' => set_value('foto_brg'),
-		'foto_qr' => set_value('foto_qr'),
-		'id_urut' => set_value('id_urut'),
-		'aktif' => set_value('aktif'),
-		'jns_brg' => set_value('jns_brg'),
-		'cetak' => set_value('cetak'),
-		'kd_aset' => set_value('kd_aset'),
-		'dt_create' => set_value('dt_create'),
-		'bt_ti' => set_value('bt_ti'),
-		'fl_harga' => set_value('fl_harga'),
-		'vc_op_update' => set_value('vc_op_update'),
-		'dt_tgl_update' => set_value('dt_tgl_update'),
-		'vc_op' => set_value('vc_op')
-		);*/
-
+		
 		$data['dd_gm'] = $this->M_monitor->get_merk();
 		$data = array(
 			'dd_gm' => $this->M_monitor->get_merk(),
@@ -260,6 +218,7 @@ class Monitor extends CI_Controller {
 			if($dkon == 1){$kondisi = "Baik";}else
 			if($dkon == 2){$kondisi = "Kurang Baik";}else
 			if($dkon ==3){$kondisi = "Rusak";}
+			$kd_barang = $this->in_kd_barang();
 			$dataaset = array(
 			'vc_nm_barang' => $this->input->post('kd_aset', TRUE),
 			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
@@ -272,9 +231,11 @@ class Monitor extends CI_Controller {
 			'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
 			'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
 			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+			'in_kd_barang' => $kd_barang
 			);
-			$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
-			$this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
+			// $this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
+			// $this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
+			$this->M_monitor->insertaset($dataaset);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
 			redirect(base_url('Monitor'));
 	}
