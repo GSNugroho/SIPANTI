@@ -125,6 +125,10 @@ class M_monitor extends CI_Model{
 		$query = $this->db->query('SELECT MAX(in_kd_barang) AS maxkode FROM aset_barang');
 		return $query->result();
 	}
+	function cek_aset($kd_aset){
+		$query = $this->db->query("SELECT vc_nm_barang FROM aset_barang WHERE vc_nm_barang = '".$kd_aset."'");
+		return $query->result();
+	}
 	function get_total_dt(){
 		$query = $this->db->query("select count(*) as allcount from inv_barang
 		left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk

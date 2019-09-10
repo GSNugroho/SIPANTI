@@ -152,16 +152,10 @@ class Monitor extends CI_Controller {
 			'no_aset' => set_value('no_aset', $row->no_aset),
 			'id_ruang' => set_value('id_ruang', $row->id_ruang),
 			'kd_brg' => set_value('kd_brg', $row->kd_brg),
-			'foto_brg' => set_value('foto_brg', $row->foto_brg),
-			'foto_qr' => set_value('foto_qr', $row->foto_qr),
-			'id_urut' => set_value('id_urut', $row->id_urut),
-			'aktif' => set_value('aktif', $row->aktif),
 			'jns_brg' => set_value('jns_brg', $row->jns_brg),
-			'cetak' => set_value('cetak', $row->cetak),
 			'kd_aset' => set_value('kd_aset', $row->kd_aset),
 			'dt_create' => set_value('dt_create', $row->dt_create),
 			'bt_ti' => set_value('bt_ti', $row->bt_ti),
-			'fl_harga' => set_value('fl_harga', $row->fl_harga),
 			'vc_op_update' => set_value('vc_op_update', $row->vc_op_update),
 			'dt_tgl_update' => set_value('dt_tgl_update', $row->dt_tgl_update),
 			'vc_op' => set_value('vc_op', $row->vc_op),
@@ -198,6 +192,16 @@ class Monitor extends CI_Controller {
 			if($dsatuan == 1){$satuan = "Buah";}else
 			if($dsatuan == 2){$satuan = "Set";}else
 			if($dsatuan == 3){$satuan = "Unit";}
+
+			$kondisi ="";
+			$vc_online = "ONLINE";
+			$vc_petugas = "a";
+			$bt_aktif = 1;
+			$dkon = $this->input->post('kondisi');
+			if($dkon == 1){$kondisi = "Baik";}else
+			if($dkon == 2){$kondisi = "Kurang Baik";}else
+			if($dkon ==3){$kondisi = "Rusak";}
+
 			$data = array(
 			'nm_inv' => $this->input->post('nm_inv', TRUE),
 			'merk' => $this->input->post('merk', TRUE),
@@ -205,7 +209,7 @@ class Monitor extends CI_Controller {
 			'jmlh' => $this->input->post('jmlh', TRUE),
 			'tgl_terima' => $this->input->post('tgl_terima', TRUE),
 			'status' => $sts,
-			'kondisi' => $this->input->post('kondisi', TRUE),
+			'kondisi' => $kondisi,
 			'ket' => $this->input->post('ket', TRUE),
 			'kd_bantu' => $this->input->post('kd_bantu', TRUE),
 			'id_ruang' => $this->input->post('id_ruang', TRUE),
@@ -213,31 +217,61 @@ class Monitor extends CI_Controller {
 			'dt_tgl_update' => date('Y-m-d h:i:s')
 			);
 
-			$kondisi ="";
-			$dkon = $this->input->post('kondisi');
-			if($dkon == 1){$kondisi = "Baik";}else
-			if($dkon == 2){$kondisi = "Kurang Baik";}else
-			if($dkon ==3){$kondisi = "Rusak";}
 			$kd_barang = $this->in_kd_barang();
+			$kd_aset = $this->input->post('kd_aset', TRUE);
+			$cek_aset = $this->M_monitor->cek_aset($kd_aset);
+			$j_type = $this->input->post('tipe_aset');
+			if($j_type == 1){$type = "PCB";}else
+			if($j_type == 2){$type = "PCR";}else
+			if($j_type == 3){$type = "PRD";}else
+			if($j_type == 4){$type = "PRF";}else
+			if($j_type == 5){$type = "PRL";}else
+			if($j_type == 6){$type = "PRT";}else
+			if($j_type == 7){$type = "LCD";}else
+			if($j_type == 8){$type = "UPS";}
+			if($cek_aset){
+				$dataaset = array(
+					'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
+					'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+					'vc_sn' => $this->input->post('sn', TRUE),
+					'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
+					'vc_lokasi' => $this->input->post('id_ruang', TRUE),
+					'vc_kd_kondisi' => $kondisi,
+					'vc_online' => $vc_online,
+					'vc_petugas' => $vc_petugas,
+					'bt_aktif' => $bt_aktif,
+					'vc_model' => $type,
+					'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
+					'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
+					'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
+					'dt_create_date' => $this->input->post('tgl_terima', TRUE)
+					);
+				$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
+				$this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
+				$this->session->set_flashdata('message','Ubah Data Berhasil');
+				redirect(base_url('Monitor'));
+			}else{
 			$dataaset = array(
-			'vc_nm_barang' => $this->input->post('kd_aset', TRUE),
-			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
-			'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
-			'vc_sn' => $this->input->post('sn', TRUE),
-			'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
-			'vc_lokasi' => $this->input->post('id_ruang', TRUE),
-			'vc_kd_kondisi' => $kondisi,
-			'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
-			'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
-			'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
-			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
-			'in_kd_barang' => $kd_barang
+				'vc_nm_barang' => $this->input->post('kd_aset', TRUE),
+				'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
+				'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+				'vc_sn' => $this->input->post('sn', TRUE),
+				'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
+				'vc_lokasi' => $this->input->post('id_ruang', TRUE),
+				'vc_kd_kondisi' => $kondisi,
+				'vc_online' => $vc_online,
+				'vc_petugas' => $vc_petugas,
+				'bt_aktif' => $bt_aktif,
+				'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
+				'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
+				'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
+				'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+				'vc_model' => $type,
+				'in_kd_barang' => $kd_barang
 			);
-			// $this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
-			// $this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
 			$this->M_monitor->insertaset($dataaset);
 			$this->session->set_flashdata('message','Ubah Data Berhasil');
-			redirect(base_url('Monitor'));
+			redirect(base_url('Monitor'));}
 	}
 
 	

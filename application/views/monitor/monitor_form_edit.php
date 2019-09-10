@@ -71,7 +71,12 @@
         <td>	
 		<div class="form-group">
             <label for="kondisi">Kondisi <?php //echo form_error('kondisi') ?></label>
-            <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi" value="<?php echo $kondisi; ?>">
+            <!-- <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi" value="<?php //echo $kondisi; ?>"> -->
+            <select name="kondisi" class="form-control" id="kondisi">
+                    <option value="">--Pilih Kondisi--</option>
+                    <option value="1" <?php echo ($kondisi == 'Baik')?'selected':''?>>Baik</option>
+                    <option value="2" <?php echo ($kondisi == 'Kurang Baik')?'selected':''?>>Kurang Baik</option>
+                    <option value="3" <?php echo ($kondisi == 'Rusak')?'selected':''?>>Rusak</option>
 		</div>
 		</td>
         </tr>	

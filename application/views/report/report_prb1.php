@@ -16,7 +16,7 @@
 		<tr>
             <th align="center" width="5%">No</th>
             <th align="center">Tanggal Perbaikan</th>
-            <th align="center" width="13%">Kode Inventaris</th>
+            <th align="center" width="13%">Kode Aset</th>
             <th align="center">Nama Barang</th>
             <th align="center">Ruang</th>
             <th align="center">Jenis Perbaikan</th>
@@ -32,7 +32,7 @@
                     <tr >
                     <td align="center"><?php echo $i ?></td>
                     <td><?php echo date('d-M-Y', strtotime($row->tgl_inv_pr))?></td>
-                    <td><?php echo $row->kd_inv?></td>
+                    <td><?php echo $row->kd_aset?></td>
                     <td><?php echo $row->nm_inv?></td>
                     <td><?php echo $row->vc_n_gugus?></td>
                     <?php

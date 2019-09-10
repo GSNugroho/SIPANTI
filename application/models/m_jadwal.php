@@ -49,7 +49,11 @@ class M_jadwal extends CI_Model{
         return $query->result();
     }
     function get_ruang(){
-        $query = $this->db->query('SELECT * FROM inv_pubgugus ORDER BY vc_n_gugus ASC');
+        $query = $this->db->query("SELECT DISTINCT inv_pubgugus.vc_n_gugus, inv_pubgugus.vc_k_gugus FROM inv_barang
+        JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE (inv_barang.kd_aset IS NOT NULL or inv_barang.kd_aset !='') AND inv_barang.aktif = 1 AND
+        inv_barang.bt_ti = 1 ORDER BY inv_pubgugus.vc_n_gugus ASC");
         return $query->result();
     }
     function nm_ruang($nj){

@@ -118,8 +118,8 @@
 				
 			  </div>
 			  <div class="modal-footer1">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-				<button type="submit" class="btn btn-primary">Simpan</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-success">Simpan</button>
 			  </div>
 			  
 
@@ -145,7 +145,7 @@
 							type: "POST", // Method pengiriman data bisa dengan GET atau POST
 							url: "<?php echo base_url("jadwal/list_inv"); ?>", // Isi dengan url/path file php yang dituju
 							data: {id_ruang : $("#kd_ruang").val()}, // data yang akan dikirim ke file yang dituju
-							dataType: "json",
+							
 							beforeSend: function(e) {
 							if(e && e.overrideMimeType) {
 								e.overrideMimeType("application/json;charset=UTF-8");
