@@ -39,12 +39,12 @@ class M_jadwal extends CI_Model{
         $query = $this->db->query("SELECT * FROM inv_barang
         JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
-        WHERE inv_pubgugus.vc_k_gugus = '".$id_ruang."' 
+        WHERE inv_pubgugus.vc_k_gugus = '".$id_ruang."'
         AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL) AND inv_barang.kd_inv NOT IN (
         SELECT kd_inv FROM inv_jadwal 
         JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
-        WHERE inv_pubgugus.vc_k_gugus = '".$id_ruang."' AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL)) 
+        WHERE inv_pubgugus.vc_k_gugus = '".$id_ruang."' AND inv_jadwal.dt_sts = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL)) 
         ORDER BY inv_barang.kd_aset");
         return $query->result();
     }
