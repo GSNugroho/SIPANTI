@@ -67,7 +67,7 @@ class Monitor extends CI_Controller {
 			//no aset
 			$gol = $this->input->post('kd_bantu');
 			$rng = $this->input->post('id_ruang');
-			$tgl_m = $this->input->post('tgl_terima');
+			$tgl_m = date('Y-m-d', strtotime($this->input->post('tgl_terima')));
 			$merk = $this->input->post('merk');
 			$no_gol = '0'.$gol;
 			$id_urut = $this->urut($rng, $tgl_m, $merk);
@@ -80,7 +80,7 @@ class Monitor extends CI_Controller {
 			'merk' => $this->input->post('merk', TRUE),
 			'satuan' => $satuan,
 			'jmlh' => $this->input->post('jmlh', TRUE),
-			'tgl_terima' => $this->input->post('tgl_terima', TRUE),
+			'tgl_terima' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
 			'status' => $sts,
 			'kondisi' => $kondisi,
 			'ket' => $this->input->post('ket', TRUE),
@@ -95,7 +95,7 @@ class Monitor extends CI_Controller {
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
 			'cetak' => $this->input->post('cetak', TRUE),
 			'kd_aset' => $kodeaset,
-			'dt_create' => $this->input->post('tgl_terima', TRUE),
+			'dt_create' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
 			'bt_ti' => $bt_ti,
 			'kd_inv' => $this->kode()
 			);
@@ -117,9 +117,9 @@ class Monitor extends CI_Controller {
 			'vc_lokasi' => $this->input->post('id_ruang', TRUE),
 			'vc_kd_kondisi' => $kondisi,
 			'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
-			'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
-			'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
-			'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+			'dt_tgl_beli' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+			'dt_tgl_habis' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+			'dt_create_date' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
 			'vc_petugas' => $vc_petugas,
 			'bt_aktif' => $bt_aktif,
 			'vc_model' => $type,

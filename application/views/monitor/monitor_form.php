@@ -1,6 +1,13 @@
 <?php 
     $this->load->view('mainmenu');
-?>
+?>	
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
 				<div class="card shadow mb-4">
 				<div class="card-header py-3">
             	<h6 class="m-0 font-weight-bold text-primary">Tambah Inventaris</h6>
@@ -57,7 +64,10 @@
             <td>	        
             <div class="form-group">
                 <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-                <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" >
+                <div class="input-group date" id="tgl1">
+				<input class="form-control" type="text" name="tgl_terima" id="tgl_terima" placeholder="dd-mm-yyyy">
+				<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+				</div>
             </div>
             </td>
             <td></td>
@@ -305,22 +315,20 @@
 		</div>
       </div>
       
-        <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+        
         <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
-        <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js')?>"></script>
+        
         <script src="<?php echo base_url('assets/js/jquery-ui.js')?>"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
         <script>
-            // $( function() {
-            //     $( "#tgl_terima" ).datepicker({
-            //         format: 'dd/mm/yyyy'
-            //     });
-            // } );
+            $(function() { 
+			$('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+			});
         </script>
         </body>
 </html>
