@@ -595,6 +595,7 @@ pre code {
   margin-left: auto;
 }
 
+
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2099,6 +2100,7 @@ select.form-control:focus::-ms-value {
   font-size: inherit;
   line-height: 1.5;
 }
+.input-group-addon{color:#3c763d;background-color:#dff0d8;border-color:#3c763d}
 
 .col-form-label-lg {
   padding-top: calc(0.5rem + 1px);
