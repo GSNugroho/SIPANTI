@@ -1,14 +1,21 @@
 <?php 
     $this->load->view('mainmenu');
 ?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
         <div class="card-header py-3">
-           <h6 class="m-0 font-weight-bold text-primary">Edit Mutasi</h6>
+           <h6 class="m-0 font-weight-bold text-primary">Sunting Mutasi</h6>
     </div>
     <div class="card-body">
 
-        <h2 style="margin-top:0px">Mutasi <?php //echo $button ?></h2>
+        <h2 style="margin-top:0px"> <?php //echo $button ?></h2>
         <form action="<?php echo base_url(). 'mutasi/create_action';?>" method="post">
         <table>
         <tr>
@@ -66,7 +73,10 @@
         <td>
         <div class="form-group">
             <label for="tgl_terima_mts">Tanggal Terima Mutasi<?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="date" name="tgl_terima_mts" id="tgl_terima_mts" placeholder="Tanggal Terima" value="<?php echo $tgl_terima_mts; ?>">
+            <div class="input-group date" id="tgl1">
+            <input class="form-control" type="text" name="tgl_terima_mts" id="tgl_terima_mts" placeholder="dd-mm-yyyy" value="<?php echo $tgl_terima_mts; ?>">
+            <span class="input-group-addon" ><span class="glyphicon-calendar glyphicon"></span></span>
+            </div>
         </div>
         </td>
         </tr>
@@ -126,5 +136,10 @@
 	  <!-- End of Footer -->
 		</div>
       </div>
+      <script>
+            $(function() { 
+			$('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+			});
+      </script>
     </body>
 </html>

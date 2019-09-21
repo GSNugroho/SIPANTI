@@ -27,7 +27,7 @@ class Perbaikan extends CI_Controller{
         $data = array(
             'kd_inv_pr' => $this->input->post('kd_inv_pr', TRUE),
             'kd_ruang' => $this->input->post('id_ruang', TRUE),
-            'tgl_inv_pr' => $this->input->post('tgl_inv_pr', TRUE),
+            'tgl_inv_pr' => date('Y-m-d', strtotime($this->input->post('tgl_inv_pr'))),
             'jns_kr' => $this->input->post('jns_kr', TRUE),
             'jns_pr' => $this->input->post('jns_pr', TRUE),
             'sp_gt' => $this->input->post('sp_gt', TRUE),
@@ -48,7 +48,7 @@ class Perbaikan extends CI_Controller{
             $data = array(
                 'kd_inv_pr' => set_value('kd_inv_pr', $row->kd_inv_pr),
                 'id_ruang' => set_value('id_ruang', $row->kd_ruang),
-                'tgl_inv_pr' => set_value('tgl_inv_pr', date('Y-m-d', strtotime($row->tgl_inv_pr))),
+                'tgl_inv_pr' => set_value('tgl_inv_pr', date('d-m-Y', strtotime($row->tgl_inv_pr))),
                 'jns_kr' => set_value('jns_kr', $row->jns_kr),
                 'jns_pr' => set_value('jns_pr', $row->jns_pr),
                 'sp_gt' => set_value('sp_gt', $row->sp_gt),
@@ -70,7 +70,7 @@ class Perbaikan extends CI_Controller{
         $data = array(
             'kd_inv_pr' => $this->input->post('kd_inv_pr', TRUE),
             'kd_ruang' => $this->input->post('id_ruang', TRUE),
-            'tgl_inv_pr' => $this->input->post('tgl_inv_pr', TRUE),
+            'tgl_inv_pr' => date('Y-m-d', strtotime($this->input->post('tgl_inv_pr'))),
             'jns_kr' => $this->input->post('jns_kr', TRUE),
             'jns_pr' => $this->input->post('jns_pr', TRUE),
             'sp_gt' => $this->input->post('sp_gt', TRUE),

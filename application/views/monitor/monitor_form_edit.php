@@ -1,10 +1,17 @@
 <?php
     $this->load->view('mainmenu');
 ?>
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
         <div class="card-header py-3">
-           <h6 class="m-0 font-weight-bold text-primary">Edit Inventaris</h6>
+           <h6 class="m-0 font-weight-bold text-primary">Sunting Inventaris</h6>
     </div>
     <div class="card-body">
         <form action="<?php echo base_url(). 'monitor/update_action';?>" method="post">
@@ -60,7 +67,11 @@
         <td>	        
 		<div class="form-group">
             <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
-            <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php echo $tgl_terima; ?>">
+            <!-- <input class="form-control" type="date" name="tgl_terima" id="tgl_terima" placeholder="tgl_terima" value="<?php //echo $tgl_terima; ?>"> -->
+            <div class="input-group date" id="tgl1">
+				<input class="form-control" type="text" name="tgl_terima" id="tgl_terima" placeholder="dd-mm-yyyy" value="<?php echo $tgl_terima?>">
+				<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+			</div>
 		</div>
         </td>
         <td></td>
@@ -90,10 +101,10 @@
         </td>
         <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna" value="<?php echo $nm_pengg?>">
-            </div>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna" value="<?php //echo $nm_pengg?>">
+            </div> -->
             </td>
         </tr>
         <tr>
@@ -115,9 +126,13 @@
         </td>
         <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi" value="<?php echo $a_spes?>">
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi" value="<?php //echo $a_spes?>">
+            </div> -->
+            <div class="form-group">
+                <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna" value="<?php echo $nm_pengg?>">
             </div>
             </td>
         </tr>
@@ -150,39 +165,16 @@
         </td>
         <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri" value="<?php echo $sn?>">
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri" value="<?php //echo $sn?>">
+            </div> -->
+            <div class="form-group">
+                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi" value="<?php echo $a_spes?>">
             </div>
             </td>
         </tr>	
-
-        <!-- <tr>
-        <td>
-		<div class="form-group">
-            <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
-            <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="<?php //echo $foto_brg; ?>"/>
-        </div>
-		</td>
-        </tr>
-
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
-			<input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="<?php //echo $foto_qr; ?>r"/>
-        </div>
-		</td>
-        </tr>
-
-        <tr>
-        <td>
-		<div class="form-group">
-            <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
-            <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut" value="<?php //echo $id_urut; ?>">
-		</div>
-		</td>
-        </tr> -->
 
         <tr>
         <td>        
@@ -201,18 +193,22 @@
         </td>
         <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="aktif">Aset Aktif <?php //echo form_error('aktif') ?></label>
-                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
                 <select class="form-control" name="aset_aktif" class="form-control" id="aset_aktif">
                     <option value="">--Aset Aktif--</option>
-                    <option value="001" <?php echo ($aset_aktif == '001')?'selected':''?>>Kelompok 1</option>
-                    <option value="002" <?php echo ($aset_aktif == '002')?'selected':''?>>Kelompok 2</option>
-                    <option value="003" <?php echo ($aset_aktif == '003')?'selected':''?>>Kelompok 3</option>
-                    <option value="004" <?php echo ($aset_aktif == '004')?'selected':''?>>Kelompok 4</option>
-                    <option value="005" <?php echo ($aset_aktif == '005')?'selected':''?>>Kelompok 5</option>
-                    <option value="006" <?php echo ($aset_aktif == '006')?'selected':''?>>Inventaris</option>
+                    <option value="001" <?php //echo ($aset_aktif == '001')?'selected':''?>>Kelompok 1</option>
+                    <option value="002" <?php //echo ($aset_aktif == '002')?'selected':''?>>Kelompok 2</option>
+                    <option value="003" <?php //echo ($aset_aktif == '003')?'selected':''?>>Kelompok 3</option>
+                    <option value="004" <?php //echo ($aset_aktif == '004')?'selected':''?>>Kelompok 4</option>
+                    <option value="005" <?php //echo ($aset_aktif == '005')?'selected':''?>>Kelompok 5</option>
+                    <option value="006" <?php //echo ($aset_aktif == '006')?'selected':''?>>Inventaris</option>
                 </select>
+            </div> -->
+            <div class="form-group">
+                <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri" value="<?php echo $sn?>">
+            </div>
             </td>
         </tr>
 		<tr>
@@ -292,5 +288,10 @@
 	  <!-- End of Footer -->
 		</div>
       </div>
+      <script>
+            $(function() { 
+			$('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+		    });
+      </script>
     </body>
 </html>

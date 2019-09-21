@@ -18,10 +18,10 @@
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 		<div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Data Mutasi</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Info Mutasi</h6>
 		</div>
     <div class="card-body">
-    <h2>Detail Mutasi</h2>
+    <h2></h2>
     <a href="<?php echo site_url('mutasi')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv_mts; ?></td></tr>

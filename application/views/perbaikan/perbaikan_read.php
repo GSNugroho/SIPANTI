@@ -26,10 +26,10 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 			<div class="card-header py-3">
-           	<h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
+           	<h6 class="m-0 font-weight-bold text-primary">Info Perbaikan</h6>
 		</div>
     <div class="card-body">
-    <h2>Detail Perbaikan</h2>
+    <h2></h2>
     <a href="<?php echo site_url('perbaikan')?>" class="btn btn-danger">Kembali</a>
     <table>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv_pr; ?></td></tr>

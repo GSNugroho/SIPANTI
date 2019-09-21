@@ -110,10 +110,10 @@
             </td>
             <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
                 <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna">
-            </div>
+            </div> -->
             </td>
             </tr>
 
@@ -134,9 +134,13 @@
             </td>
             <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
                 <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi">
+            </div> -->
+            <div class="form-group">
+                <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna">
             </div>
             </td>
             </tr>
@@ -167,39 +171,16 @@
             </td>
             <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
                 <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri">
+            </div> -->
+            <div class="form-group">
+                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi">
             </div>
             </td>
             </tr>	
-
-            <!-- <tr>
-            <td>
-            <div class="form-group">
-                <label for="foto_brg">Foto Barang <?php //echo form_error('foto_brg') ?></label>
-                <input  class="form-control" type="file" name="foto_brg" id="foto_brg" placeholder="Foto Barang" value="upload gambar" enctype="multipart/form-data"/>
-            </div>
-            </td>
-            </tr> -->
-
-            <!-- <tr>
-            <td>
-            <div class="form-group">
-                <label for="foto_qr">Foto QR <?php //echo form_error('foto_qr') ?></label>
-                <input  class="form-control" type="file" name="foto_qr" id="foto_qr" placeholder="Foto QR" value="upload gambarqr"/>
-            </div>
-            </td>
-            </tr> -->
-
-            <!-- <tr>
-            <td>
-            <div class="form-group">
-                <label for="id_urut">Urut <?php //echo form_error('id_urut') ?></label>
-                <input class="form-control" type="text" name="id_urut" id="id_urut" placeholder="Urut">
-            </div>
-            </td>
-            </tr> -->
 
             <tr>
             <td>        
@@ -222,13 +203,13 @@
                     <option value="4">Pemberian</option>
                     <option value="5">Pindahan</option>
                     <option value="6">Rakitan</option>
+                </select>
             </div>
             </td>
             <td></td>
             <td>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="aktif">Aset Aktif <?php //echo form_error('aktif') ?></label>
-                <!-- <input class="form-control" type="text" name="aktif" id="aktif" placeholder="Aktif"> -->
                 <select class="form-control" name="aset_aktif" class="form-control" id="aset_aktif">
                     <option value="">--Aset Aktif--</option>
                     <option value="001">Kelompok 1</option>
@@ -238,6 +219,11 @@
                     <option value="005">Kelompok 5</option>
                     <option value="006">Inventaris</option>
                 </select>
+            </div> -->
+            <div class="form-group">
+                <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri">
+            </div>
             </td>
             </tr>
             <tr>

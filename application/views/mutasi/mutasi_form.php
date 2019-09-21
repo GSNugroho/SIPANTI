@@ -1,7 +1,14 @@
 <?php 
     $this->load->view('mainmenu');
 ?>
-<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+	
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
+    <link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>
@@ -11,9 +18,9 @@
     <link href="<?php echo base_url('assets/bootstrap/css/jquery-ui.css')?>" rel="stylesheet">
 
     <script src="<?php echo base_url('assets/js/my_js.js')?>"></script>
-    <script src="<?php echo base_url("assets/js/jquery.min.js"); ?>" type="text/javascript"></script>
+    
     <script type='text/javascript' src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+    
     <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 	<!-- Core plugin JavaScript-->
 	<script src="<?php echo base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
@@ -38,19 +45,7 @@
         </div>
         </td>
         </tr>
-      <td>
-        <div id="abc">
-            <div id="popupContact">
-                <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
-                <h5>Daftar Inventaris</h5>
-                <table id="pop" border="1">
-                    <tr><td><b>Kode Inventaris</b></td><td><b>Kode Aset</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
-                
-                </table>
-            </div>
-        </div>
-      </td>
-    </tr>
+
         <tr>
         <td>
         <div class="form-group">
@@ -94,7 +89,10 @@
         <td>
         <div class="form-group">
             <label for="tgl_terima_mts">Tanggal Terima Mutasi<?php //echo form_error('nm_inv') ?></label>
-			<input class="form-control" type="date" name="tgl_terima_mts" id="tgl_terima_mts" placeholder="Tanggal Terima">
+            <div class="input-group date" id="tgl1">
+                <input class="form-control" type="text" name="tgl_terima_mts" id="tgl_terima_mts" placeholder="dd-mm-yyyy">
+            <span class="input-group-addon" style="padding-right: 25px;padding-top: 9px;"><span class="glyphicon-calendar glyphicon"></span></span>
+            </div>
         </div>
         </td>
         </tr>
@@ -140,6 +138,19 @@
         
         </td>
         </tr>
+        <tr>
+      <td>
+        <div id="abc">
+            <div id="popupContact">
+                <img id="close" src="<?php echo base_url('assets/bootstrap/image/3.png')?>" onclick ="div_hide()">
+                <h5>Daftar Inventaris</h5>
+                <table id="pop" border="1">
+                    <tr><td><b>Kode Inventaris</b></td><td><b>Kode Aset</b></td><td><b>Nama Barang</b></td><td><b>Nama Pengguna</b></td><td><b>Ruang</b></td><td><b>Action</b></td></tr>
+                </table>
+            </div>
+        </div>
+      </td>
+    </tr>
         </table>
         <script>
 
@@ -185,5 +196,10 @@
 	  <!-- End of Footer -->
 		</div>
       </div>
+      <script>
+            $(function() { 
+			$('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+			});
+        </script>
     </body>
 </html>

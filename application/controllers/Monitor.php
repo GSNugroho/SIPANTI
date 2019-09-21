@@ -110,7 +110,7 @@ class Monitor extends CI_Controller {
 			'vc_nm_barang' => $kodeaset,
 			'vc_kd_inv' => $vc_kd_inv,
 			'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
-			'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+			// 'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
 			'vc_sn' => $this->input->post('sn', TRUE),
 			'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
 			'vc_online' => $vc_online,
@@ -144,7 +144,7 @@ class Monitor extends CI_Controller {
 			'merk' => set_value('merk', $row->merk),
 			'satuan' => set_value('satuan', $row->satuan),
 			'jmlh' => set_value('jmlh', $row->jmlh),
-			'tgl_terima' => set_value('tgl_terima', date('Y-m-d', strtotime($row->tgl_terima ))),
+			'tgl_terima' => set_value('tgl_terima', date('d/m/Y', strtotime($row->tgl_terima ))),
 			'status' => set_value('status', $row->status),
 			'kondisi' => set_value('kondisi', $row->kondisi),
 			'ket' => set_value('ket', $row->ket),
@@ -167,7 +167,7 @@ class Monitor extends CI_Controller {
 			'nm_pengg' => set_value('vc_nm_pengguna', $row->vc_nm_pengguna),
 			'a_spes' => set_value('vc_spesifikasi', $row->vc_spesifikasi),
 			'sn' => set_value('vc_sn', $row->vc_sn),
-			'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
+			// 'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
 			'vc_model' => set_value('vc_model', $row->vc_model)
 			);
 				$this->load->view('monitor/monitor_form_edit', $data);
@@ -232,7 +232,7 @@ class Monitor extends CI_Controller {
 			if($cek_aset){
 				$dataaset = array(
 					'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
-					'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+					// 'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
 					'vc_sn' => $this->input->post('sn', TRUE),
 					'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
 					'vc_lokasi' => $this->input->post('id_ruang', TRUE),
@@ -254,7 +254,7 @@ class Monitor extends CI_Controller {
 			$dataaset = array(
 				'vc_nm_barang' => $this->input->post('kd_aset', TRUE),
 				'vc_kd_jenis' => $this->input->post('jns_brg', TRUE),
-				'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
+				// 'vc_kd_aktv' => $this->input->post('aset_aktif', TRUE),
 				'vc_sn' => $this->input->post('sn', TRUE),
 				'vc_spesifikasi' => $this->input->post('a_spes', TRUE),
 				'vc_lokasi' => $this->input->post('id_ruang', TRUE),
@@ -324,7 +324,7 @@ class Monitor extends CI_Controller {
 			'nm_pengg' => set_value('vc_nm_pengguna', $row->vc_nm_pengguna),
 			'a_spes' => set_value('vc_spesifikasi', $row->vc_spesifikasi),
 			'sn' => set_value('vc_sn', $row->vc_sn),
-			'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
+			// 'aset_aktif' => set_value('vc_kd_aktv', $row->vc_kd_aktv),
 			'vc_model' => set_value('vc_model', $row->vc_model)
 			);
 			$this->load->view('monitor/monitor_read', $data);
