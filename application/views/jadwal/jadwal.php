@@ -204,6 +204,12 @@
                         <input type="text" name="kd_inv" class="form-control1" id="kd_inv" placeholder="Kode Inventaris">
                     </div>
                   </div>  
+                  <div class="form-group1">
+                    <label for="kd_aset" class="col-sm-2 control-label">Kode Aset</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kd_aset" class="form-control1" id="kd_aset" placeholder="Kode Aset" readonly>
+                    </div>
+                  </div>  
 				  <!-- <div class="form-group1">
 					<label for="color" class="col-sm-2 control-label">Warna</label>
 					<div class="col-sm-10">
@@ -282,6 +288,7 @@
                     $('#ModalEdit #kd_inv').val(event.kd_inv);
 					$('#ModalEdit #kd_jd').val(event.kd_jd);
 					$('#ModalEdit #dt_sts').val(event.dt_sts);
+					$('#ModalEdit #kd_aset').val(event.kd_aset);
 					$('#ModalEdit').modal('show');
 				});
 			},
@@ -319,6 +326,7 @@
                     kd_inv: '<?php echo $event->kd_inv ?>',
                     kd_ruang: '<?php echo $event->kd_ruang ?>',
 					dt_sts: '<?php echo $event->dt_sts?>',
+					kd_aset: '<?php echo $event->kd_aset?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event->color ?>',
