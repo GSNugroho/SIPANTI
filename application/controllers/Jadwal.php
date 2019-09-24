@@ -3,47 +3,54 @@ class Jadwal extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_jadwal');
+        $this->load->library('session');
+        // if ((isset($_SESSION['nmUser'])) && (isset($_SESSION['unameApp'])) && (isset($_SESSION['passwrdApp'])) && (isset($_SESSION['nik'])) && (isset($_SESSION['gugus']))
+        // ||((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus'])))) {
+        // if ((isset($_SESSION['email'])) && (isset($_SESSION['pass'])) && (!empty($_SESSION['email'])) && (!empty($_SESSION['pass']))) {
+            $this->load->model('M_jadwal');
+        // }else {
+        //      echo redirect(base_url('../'));
+        // }
     }
 
     public function index(){
-        //Merubah Jadwal Yg Belum Dikerjakan
-        $row = $this->M_jadwal->data_tlt();
-        $warna = '#ff0000';
-        if($row){
-        $dt_tlt = $this->M_jadwal->get_data_telat();
-        foreach($dt_tlt as $row) {
-            $kd_jd = $row->kd_jd;
         
-            $jd_wr_tlt = array(
+            //Merubah Jadwal Yg Belum Dikerjakan
+            $row = $this->M_jadwal->data_tlt();
+            $warna = '#ff0000';
+            if ($row) {
+                $dt_tlt = $this->M_jadwal->get_data_telat();
+                foreach ($dt_tlt as $row) {
+                    $kd_jd = $row->kd_jd;
+        
+                    $jd_wr_tlt = array(
                 'color' => $warna
             );
-        $this->M_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
-        }
-    }
+                    $this->M_jadwal->updatekonten($kd_jd, $jd_wr_tlt);
+                }
+            }
 
-        //Merubah Jadwal Yg Harus Dikerjakan Hari ini
-        $row = $this->M_jadwal->data_hr();
-        $warna = '#FFD700';
-        if($row){
-        $dt_hr = $this->M_jadwal->get_data_hr();
-        foreach($dt_hr as $row){
-            $kd_jd = $row->kd_jd;
+            //Merubah Jadwal Yg Harus Dikerjakan Hari ini
+            $row = $this->M_jadwal->data_hr();
+            $warna = '#FFD700';
+            if ($row) {
+                $dt_hr = $this->M_jadwal->get_data_hr();
+                foreach ($dt_hr as $row) {
+                    $kd_jd = $row->kd_jd;
 
-            $jd_wr_hr = array(
+                    $jd_wr_hr = array(
                 'color' => $warna
             );
-        $this->M_jadwal->updatekonten($kd_jd, $jd_wr_hr);
-        }
-        }
+                    $this->M_jadwal->updatekonten($kd_jd, $jd_wr_hr);
+                }
+            }
         
-        $data = array(
+            $data = array(
             'dd_gr' => $this->M_jadwal->get_ruang(),
             'inv_jadwal' => $this->M_jadwal->get_data()
         );
-        $this->load->view('jadwal/jadwal', $data);
-    }
-    
+            $this->load->view('jadwal/jadwal', $data);
+        }    
 
     public function coba(){
         $data = array(

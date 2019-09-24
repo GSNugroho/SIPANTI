@@ -1,5 +1,6 @@
 <?php
 	$this->load->view('mainmenu');
+	// print_r($_SESSION);
 ?>
     <!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.css')?>">

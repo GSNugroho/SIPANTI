@@ -330,7 +330,7 @@
         <div class="modal-body">Pilih keluar jika sudah yakin</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <a class="btn btn-primary" href="<?php echo site_url('../index');?>">Keluar</a>
+          <a class="btn btn-primary" href="<?php session_destroy(); echo site_url('../index');?>">Keluar</a>
         </div>
       </div>
     </div>

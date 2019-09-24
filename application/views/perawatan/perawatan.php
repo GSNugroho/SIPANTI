@@ -1,5 +1,6 @@
 <?php 
 	$this->load->view('mainmenu');
+	// print_r($_SESSION);
 ?>
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4">
