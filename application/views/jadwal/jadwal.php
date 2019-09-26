@@ -237,8 +237,8 @@
 			  </div>
 			  <div class="modal-footer">
 				<input type="hidden" name="kd_jd" id="kd_jd">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-				<button type="submit" class="btn btn-primary">Simpan perubahan</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-success">Simpan perubahan</button>
 			  </div>
 			</form>
 							  

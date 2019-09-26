@@ -180,17 +180,17 @@
             </li> -->
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+                <i class="fas fa-bell fa-fw"></i> -->
                 <!-- Counter - Alerts -->
                 <!-- <span class="badge badge-danger badge-counter">3+</span> -->
-              </a>
+              <!-- </a> -->
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
-                </h6>
+                </h6> -->
                 <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
@@ -225,21 +225,21 @@
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
-              </div>
-            </li>
+              <!-- </div>
+            </li> -->
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
+                <i class="fas fa-envelope fa-fw"></i> -->
                 <!-- Counter - Messages -->
                 <!-- <span class="badge badge-danger badge-counter">7</span> -->
-              </a>
+              <!-- </a> -->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown"> -->
+                <!-- <h6 class="dropdown-header">
                   Message Center
-                </h6>
+                </h6> -->
                 <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
                     <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
@@ -281,15 +281,15 @@
                   </div>
                 </a> -->
                 <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a> -->
-              </div>
-            </li>
+              <!-- </div>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span> -->
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata('nmUser')?></span>
                 <img class="img-profile rounded-circle" src="<?php echo base_url('assets/bootstrap/image/icno.png')?>">
               </a> 
               <!-- Dropdown - User Information -->
@@ -330,7 +330,7 @@
         <div class="modal-body">Pilih keluar jika sudah yakin</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <a class="btn btn-primary" href="<?php session_destroy(); echo site_url('../index');?>">Keluar</a>
+          <a class="btn btn-primary" href="<?php echo base_url('Cekses/destroy');?>">Keluar</a>
         </div>
       </div>
     </div>

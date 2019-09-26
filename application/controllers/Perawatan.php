@@ -3,18 +3,15 @@ class Perawatan extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('session');
-        // if ((isset($_SESSION['email'])) && (isset($_SESSION['pass'])) && (!empty($_SESSION['email'])) && (!empty($_SESSION['pass']))) {
-        // if ((isset($_SESSION['nmUser'])) && (isset($_SESSION['unameApp'])) && (isset($_SESSION['passwrdApp'])) && (isset($_SESSION['nik'])) && (isset($_SESSION['gugus']))
-        // ||((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus'])))) {
+        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
             $this->load->model('M_perawatan');
             $this->load->model('M_perbaikan');
             $this->load->model('M_jadwal');
-        // } else {
-        //     echo "Silahkan Login Terlebih Dahulu";
-        //     // print_r($_SESSION); 
-        //     echo redirect(base_url('../'));
-        // }
+        } else {
+            echo "Silahkan Login Terlebih Dahulu";
+            // print_r($_SESSION); 
+            echo redirect(base_url('../'));
+        }
     }
 
     public function index(){

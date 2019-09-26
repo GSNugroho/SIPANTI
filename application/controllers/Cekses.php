@@ -35,5 +35,45 @@ class Cekses extends CI_Controller
         //     echo redirect(base_url('../'));
         // }
     }
+
+    public function destroy()
+    {
+        $this->session->sess_destroy();
+        redirect(site_url('../index'));
+    }
+
+    public function setflash()
+    {
+        $this->session->set_flashdata('flash_welcome', 'Selamat Datang');
+        $this->session->set_userdata('flash_message', 'I am flash message!');
+        $this->session->mark_as_flash('flash_message');
+         
+        redirect('Cekses/getflash');
+    }
+
+    public function getflash()
+    {
+        echo "Pesan Flash: ". $this->session->flashdata('flash_welcome');
+        echo '<pre>';
+        print_r($this->session->flashdata());
+    }
+
+    public function tempdata()
+    {
+        // set temp data
+        $this->session->set_tempdata('coupon_code', 'XYEceQ!', 300);
+ 
+        // mark existing data as temp data
+        $this->session->set_userdata('coupon_code', 'XYEceQ!');
+        $this->session->mark_as_temp('coupon_code', 300);
+         
+        // get temp data
+        echo $this->session->tempdata('coupon_code');
+    }
+
+    public function notfound()
+    {
+        $this->load->view('404');
+    }
 }
 ?>

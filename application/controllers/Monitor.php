@@ -3,13 +3,11 @@ class Monitor extends CI_Controller {
 	public function __construct()
 		{
 			parent::__construct();
-			// if ((isset($_SESSION['nmUser'])) && (isset($_SESSION['unameApp'])) && (isset($_SESSION['passwrdApp'])) && (isset($_SESSION['nik'])) && (isset($_SESSION['gugus']))
-			// ||((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus'])))) {
-			// if ((isset($_SESSION['email'])) && (isset($_SESSION['pass'])) && (!empty($_SESSION['email'])) && (!empty($_SESSION['pass']))) {
+			if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
 			$this->load->model('M_monitor');
-			// }else {
-			// 	echo redirect(base_url('../'));
-			// }
+			}else {
+				echo redirect(base_url('../'));
+			}
 	   }
  
 	public function index(){
