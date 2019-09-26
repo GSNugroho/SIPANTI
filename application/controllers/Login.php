@@ -25,8 +25,11 @@ class Login extends CI_Controller{
         );
 
         $this->session->set_userdata($dataarray);
+        echo $this->session->userdata('email');
+        echo $this->session->userdata('pass');
+        var_dump($this->session->userdata());
         print_r($this->session->userdata());
-        redirect(base_url('../sihvq/Dashboard'));
+        $this->load->view('Chain');
     }
 }
 ?>

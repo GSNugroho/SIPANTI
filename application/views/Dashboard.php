@@ -1,5 +1,6 @@
 <?php
   $this->load->view('mainmenu');
+  print_r($this->session->userdata());
 ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
