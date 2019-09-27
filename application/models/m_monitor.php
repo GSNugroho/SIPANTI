@@ -136,7 +136,7 @@ class M_monitor extends CI_Model{
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
 		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
-		WHERE kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)");
+		WHERE kd_inv != 'INV' and inv_barang.aktif = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)");
 		return $query->result();
 	}
 	function get_total_fl($searchQuery){
@@ -146,7 +146,7 @@ class M_monitor extends CI_Model{
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
 		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
-		WHERE 1=1 and kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery);
+		WHERE 1=1 and kd_inv != 'INV' and inv_barang.aktif = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery);
 		return $query->result();
 	}
 	function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
@@ -156,14 +156,14 @@ class M_monitor extends CI_Model{
 		left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 		left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
 		left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
-		WHERE 1=1 and inv_barang.aktif = 1 and inv_barang.kd_inv != 'INV' and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." and inv_barang.kd_inv NOT IN (
+		WHERE 1=1 and inv_barang.aktif = 1 and inv_barang.kd_inv != 'INV' and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." and inv_barang.kd_inv NOT IN (
 			SELECT TOP ".$baris." inv_barang.kd_inv FROM inv_barang 
 			left join inv_merk on inv_barang.merk = inv_merk.vc_kd_merk
 			left join inv_pubgugus on inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
 			left join inv_golongan on inv_barang.kd_bantu = inv_golongan.id_gol
 			left join inv_jenis on inv_barang.jns_brg = inv_jenis.in_kd_jenis
 			left join aset_barang on inv_barang.kd_aset = aset_barang.vc_nm_barang
-			WHERE inv_barang.kd_inv != 'INV' and inv_barang.aktif = 1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
+			WHERE inv_barang.kd_inv != 'INV' and inv_barang.aktif = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery." order by ".$columnName." ".$columnSortOrder.") 
 		order by ".$columnName." ".$columnSortOrder);
 		return $query->result();
 	}

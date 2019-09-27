@@ -246,13 +246,13 @@ class Monitor extends CI_Controller {
 					'bt_aktif' => $bt_aktif,
 					'vc_model' => $type,
 					'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
-					'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
-					'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
-					'dt_create_date' => $this->input->post('tgl_terima', TRUE)
+					'dt_tgl_beli' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+					'dt_tgl_habis' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+					'dt_create_date' => date('Y-m-d', strtotime($this->input->post('tgl_terima')))
 					);
 				$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
 				$this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
-				$this->session->set_flashdata('message','Ubah Data Berhasil');
+				
 				redirect(base_url('Monitor'));
 			}else{
 			$dataaset = array(
@@ -267,14 +267,14 @@ class Monitor extends CI_Controller {
 				'vc_petugas' => $vc_petugas,
 				'bt_aktif' => $bt_aktif,
 				'vc_nm_pengguna' => $this->input->post('nm_pengg', TRUE),
-				'dt_tgl_beli' => $this->input->post('tgl_terima', TRUE),
-				'dt_tgl_habis' => $this->input->post('tgl_terima', TRUE),
-				'dt_create_date' => $this->input->post('tgl_terima', TRUE),
+				'dt_tgl_beli' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+				'dt_tgl_habis' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
+				'dt_create_date' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
 				'vc_model' => $type,
 				'in_kd_barang' => $kd_barang
 			);
 			$this->M_monitor->insertaset($dataaset);
-			$this->session->set_flashdata('message','Ubah Data Berhasil');
+			
 			redirect(base_url('Monitor'));}
 	}
 

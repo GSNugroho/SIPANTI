@@ -41,7 +41,7 @@ class Report extends CI_Controller{
         $report_p = $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
         $report_l = $this->M_report->get_data_wperawatan($tgl_a, $tgl_s);
 
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/custom/temp/dir/path']);
+        $mpdf = new \Mpdf\Mpdf();
         // $html = $this->load->view('report/report_pr1',$data,true);
         $mpdf->WriteHTML('<html>
         <head>
@@ -726,7 +726,7 @@ class Report extends CI_Controller{
         );
         $report_p = $this->M_report->get_data_perbaikan($tgl_a, $tgl_s);
 
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/custom/temp/dir/path']);
+        $mpdf = new \Mpdf\Mpdf();
         // $html = $this->load->view('report/report_prb1', $data, true);
         // $mpdf->WriteHTML($html);
         $mpdf->WriteHTML('<html>
@@ -862,7 +862,7 @@ class Report extends CI_Controller{
         $report_p = $this->M_report->get_data_telat($tgl_a, $tgl_s);
         $report_l = $this->M_report->get_data_wtelat($tgl_a, $tgl_s);
 
-        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/custom/temp/dir/path']);
+        $mpdf = new \Mpdf\Mpdf();
         // $html = $this->load->view('report/report_tlt1', $data, true);
         $mpdf->SetFontSize('12');
         // $mpdf->WriteHTML($html);
