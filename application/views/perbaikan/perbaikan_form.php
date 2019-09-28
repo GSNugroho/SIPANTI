@@ -27,6 +27,17 @@
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.min.js')?>"></script>
         
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+        } 
+    </style>
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
         <div class="card-header py-3">

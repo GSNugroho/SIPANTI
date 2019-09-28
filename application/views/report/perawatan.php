@@ -1,15 +1,37 @@
 <?php
     $this->load->view('mainmenu');
 ?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
+
     <div class="card shadow mb-4">
             <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
             </div>
             <div class="card-body">
                 <form action="<?php echo base_url().'report/get_report_perawatanm'?>" method="post">
-                <input type="date" name="tgl_jd">Tanggal Awal
-                <input type="date" name="tgl_jd_s">Tanggal Akhir
-                <button type="submit" class="btn btn-primary">Cetak</button>
+                <div class="form-group">
+                <label for="tgl_jd">Tanggal Awal</label>
+                    <div class="input-group date" id="tgl1">
+				        <input class="form-control" type="text" name="tgl_jd" id="tgl_jd" placeholder="dd-mm-yyyy">
+				        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                    </div>
+                </div>
+                <!-- <input type="date" name="tgl_jd_s">Tanggal Akhir -->
+                <div class="form-group">
+                <label for="tgl_jd_s">Tanggal Akhir</label>
+                    <div class="input-group date" id="tgl2">
+				        <input class="form-control" type="text" name="tgl_jd_s" id="tgl_jd_s" placeholder="dd-mm-yyyy">
+				        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" terget="_blank">Cetak</button>
                 </form>
             </div>
     </div>
@@ -35,7 +57,7 @@
                     <option value="12">Desember</option>
                 </select>
                 <input type="text" name="tahun_jd" placeholder="Tahun">
-                <button type="submit" class="btn btn-primary">Cetak</button>
+                <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
                 </form>
             </div>
     </div>
@@ -59,7 +81,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
     </a>
-    <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+    <!-- <script src="<?php //echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script> -->
 	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -73,6 +95,15 @@
 	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>    
+    <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>    
+    <script>
+        $(function() { 
+  	    $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+
+	    $(function() { 
+  	    $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+    </script>
 </body>
 </html>

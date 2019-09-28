@@ -21,15 +21,15 @@ class Report extends CI_Controller{
     }
 
     function get_report_perawatan(){
-        $tgl_a = $this->input->post('tgl_jd', TRUE);
-        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $tgl_a = date('Y-m-d', strtotime($this->input->post('tgl_jd')));
+        $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         $data['report_p'] = $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
         $this->load->view('report/report_pr', $data);
     }
 
     function get_report_perawatanm(){
-        $tgl_a = $this->input->post('tgl_jd', TRUE);
-        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $tgl_a = date('Y-m-d', strtotime($this->input->post('tgl_jd')));
+        $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         // $data['report_p']= $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
 
         $data = array(
@@ -715,8 +715,8 @@ class Report extends CI_Controller{
     }
 
     function get_report_perbaikanm(){
-        $tgl_a = $this->input->post('tgl_jd', TRUE);
-        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $tgl_a = date('Y-m-d', strtotime($this->input->post('tgl_jd')));
+        $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         // $data['report_p'] = $this->M_report->get_data_perbaikan($tgl_a, $tgl_s);
         
         $data = array(
@@ -849,8 +849,8 @@ class Report extends CI_Controller{
     }
 
     function get_report_telatm(){
-        $tgl_a = $this->input->post('tgl_jd', TRUE);
-        $tgl_s = $this->input->post('tgl_jd_s', TRUE);
+        $tgl_a = date('Y-m-d', strtotime($this->input->post('tgl_jd')));
+        $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         // $data['report_p'] = $this->M_report->get_data_telat($tgl_a, $tgl_s);
         
         $data = array(
