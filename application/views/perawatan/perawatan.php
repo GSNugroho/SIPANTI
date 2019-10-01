@@ -7,6 +7,11 @@
 					<div class="card-header py-3">
               			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
+					<div class="col-md-12 text-center">
+                		<div class="btn btn-success btn-icon-split">
+        		            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+		                </div>
+            		</div>
 					<div class="card-body">
 					<!-- <a href="<?php //echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
                     		<span class="text">Komponen</span>

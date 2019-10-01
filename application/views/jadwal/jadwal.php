@@ -24,6 +24,8 @@
 	<!-- Untuk Font-->
 	<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url('assets/dist/jquery-editable-select.css')?>">
+	<script type="text/javascript" src="<?php echo base_url('assets/dist/jquery-editable-select.js');?>"></script>
 	<style>
     body {
         /* padding-top: 70px; */
@@ -138,7 +140,7 @@
 					</div>
 					</div>
 					<script>
-
+					$('#kd_ruang').editableSelect();
 					$(document).ready(function(){ 
 						$("#kd_ruang").change(function(){ // Ketika user mengganti atau memilih data provinsi
 

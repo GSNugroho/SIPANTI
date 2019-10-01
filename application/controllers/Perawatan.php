@@ -2204,7 +2204,8 @@ class Perawatan extends CI_Controller{
                 'kd_jd' => set_value('kd_jd', $rows->kd_jd),
                 'kd_inv' => set_value('kd_inv', $rows->kd_inv),
                 'tgl_jd' => set_value('tgl_jd', $rows->tgl_jd),
-                'vc_n_gugus' => set_value('vc_n_gugus', $rows->vc_n_gugus)
+                'vc_n_gugus' => set_value('vc_n_gugus', $rows->vc_n_gugus),
+                'nm_pengguna' => set_value('vc_nm_pengguna', $rows->vc_nm_pengguna)
             );
             $this->load->view('perawatan/perawatan_read', $data);
             }else{
@@ -2215,34 +2216,57 @@ class Perawatan extends CI_Controller{
 
     function cek($id){
         $row = $this->M_perawatan->get_by_id_jd($id);
-        $j_valid = '1';
-        if($row){
-            $data = array(
-                'j_valid' => $j_valid
+        if ($row) {
+            if (($row->wtm != null) && ($row->wts != null)) {
+                $j_valid = '1';
+                $data = array(
+               'j_valid' => $j_valid
             );
-        }
-        $stanggal = $row->tgl_jd;
-        $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
-        $nama = $row->nm_jd;
-        $kdinv = $row->kd_inv;
-        $warna = '#03e3fc';
-        $stanggals = $row->tgl_jd_selesai;
-        $tanggals = date('m-d-Y', strtotime('+3 month', strtotime($stanggals)));
-        $ruang = $row->kd_ruang;
-        $dt_sts = 1;
-        $data3 = array(
-            'tgl_jd' => $tanggal,
-            'nm_jd' => $nama,
-            'kd_inv' => $kdinv,
-            'color' => $warna,
-            'tgl_jd_selesai' => $tanggals,
-            'kd_ruang' => $ruang,
-            'kd_jd' => $this->kodejd(),
-            'dt_sts' => $dt_sts
+            
+                $stanggal = $row->tgl_jd;
+                $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
+                $nama = $row->nm_jd;
+                $kdinv = $row->kd_inv;
+                $warna = '#03e3fc';
+                $stanggals = $row->tgl_jd_selesai;
+                $tanggals = date('m-d-Y', strtotime('+3 month', strtotime($stanggals)));
+                $ruang = $row->kd_ruang;
+                $dt_sts = 1;
+                $data3 = array(
+                    'tgl_jd' => $tanggal,
+                    'nm_jd' => $nama,
+                    'kd_inv' => $kdinv,
+                    'color' => $warna,
+                    'tgl_jd_selesai' => $tanggals,
+                    'kd_ruang' => $ruang,
+                    'kd_jd' => $this->kodejd(),
+                    'dt_sts' => $dt_sts
         );
-        $this->M_jadwal->insert($data3);
-        $this->M_perawatan->update_v($id, $data);
-        redirect(base_url('Perawatan'));
+                $this->M_jadwal->insert($data3);
+                $this->M_perawatan->update_v($id, $data);
+                $this->session->set_flashdata('message', 'Validasi Perawatan Sudah Dilakukan');
+                redirect(base_url('Perawatan'));
+            }
+        else{
+            if($row->wtm == null){
+                date_default_timezone_set("Asia/Jakarta");
+                $data = array(
+                    'wtm' => date('h:i:s')
+                );
+                $this->M_perawatan->update_waktu($id, $data);
+                $this->session->set_flashdata('message', 'Waktu Mulai Perawatan Sudah Di Set');
+                redirect(base_url('Perawatan'));
+            }else{
+                date_default_timezone_set("Asia/Jakarta");
+                $data = array(
+                    'wts' => date('h:i:s')
+                );
+                $this->M_perawatan->update_waktu($id, $data);
+                $this->session->set_flashdata('message', 'Waktu Selesai Perawatan Sudah Di Set');
+                redirect(base_url('Perawatan'));
+            }
+        }
+    }
     }
 
     function delete($id){

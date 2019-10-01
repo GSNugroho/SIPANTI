@@ -27,9 +27,10 @@
     <tr><td>Kode Jadwal</td><td>:</td><td><?php echo $kd_jd; ?></td></tr>
     <tr><td>Kode Inventaris</td><td>:</td><td><?php echo $kd_inv; ?></td></tr>
     <tr><td>Kode Aset</td><td>:</td><td><?php echo $kd_aset; ?></td></tr>
+    <tr><td>Nama Pengguna</td><td>:</td><td><?php echo $nm_pengguna; ?></td></tr>
     <tr><td>Tanggal Perawatan</td><td>:</td><td><?php echo date('d-m-Y', strtotime($tgl_jd)); ?></td></tr>
-    <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php echo date('H:i', strtotime($wtm)); ?></td></tr>
-    <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php echo date('H:i', strtotime($wts)); ?></td></tr>
+    <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php if($wtm == null) {echo '';}else{echo date('H:i', strtotime($wtm));} ?></td></tr>
+    <tr><td>Waktu Mulai Perawatan</td><td>:</td><td><?php if($wts == null) {echo '';}else{echo date('H:i', strtotime($wts));} ?></td></tr>
     <tr><td>Ruang</td><td>:</td><td><?php echo $vc_n_gugus; ?></td></tr>
     <?php
     if(!empty($kcasing)){

@@ -27,6 +27,7 @@ class M_perawatan extends CI_Model{
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
+        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
         $this->db->where("inv_barang.aktif = '1'");
         $this->db->where("inv_jadwal.dt_sts = '1'");
         $this->db->where("inv_barang.kd_aset != ' '");
@@ -46,6 +47,10 @@ class M_perawatan extends CI_Model{
     function update_v($id, $data){
         $this->db->where('kd_jd', $id);
         $this->db->update('inv_jadwal', $data);
+    }
+    function update_waktu($id, $data){
+        $this->db->where('kd_jadwal', $id);
+        $this->db->update('inv_jadwal_perawatan', $data);
     }
     function get_by_id_komp($id){
         $this->db->join('inv_komponen', 'inv_jadwal.kd_jd = inv_komponen.kd_jd_ko');

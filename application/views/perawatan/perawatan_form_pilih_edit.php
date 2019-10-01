@@ -25,14 +25,14 @@
 
     <form action="<?php echo base_url().'perawatan/update_action_perawatan';?>" method="post">
     <div class="table-responsive">
-    <table class="table table-bordered">
+    <!-- <table class="table table-bordered">
         <tr>
             <td>Waktu Mulai</td>
-            <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wtm))?>" name="wtm"></td>
+            <td><input class="time" type="text" value="<?php //echo date('H:i', strtotime($wtm))?>" name="wtm"></td>
             <td>Waktu Selesai</td>
-            <td><input class="time" type="text" value="<?php echo date('H:i', strtotime($wts))?>" name="wts"></td>
+            <td><input class="time" type="text" value="<?php //echo date('H:i', strtotime($wts))?>" name="wts"></td>
         </tr>
-    </table>
+    </table> -->
     <table border="1" width="55%" class="table table-bordered">
         <tr>
             <th rowspan="2" align="center" width="10%">Golongan</th>
@@ -46,6 +46,10 @@
         </tr>
         <tr>
             <td>Casing</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <?php
             if(!empty($c_casing)){echo '<tr>
@@ -872,22 +876,22 @@
                                     }
                                 echo'</tr>';}
             if(!empty($m_bios)){echo '<tr>
-                                    <td></td>
-                                    <td>BIOS</td>';
+                                    <td width="10%"></td>
+                                    <td width="25%">BIOS</td>';
                                     if($kbios == '1'){
-                                        echo '<td><input type="radio" name="kbios" value="1" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="1" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kbios" value="1"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="1"></td>';
                                     }
                                     if($kbios == '2'){
-                                        echo '<td><input type="radio" name="kbios" value="2" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="2" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kbios" value="2"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="2"></td>';
                                     }
                                     if($kbios == '3'){
-                                        echo '<td><input type="radio" name="kbios" value="3" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="3" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kbios" value="3"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kbios" value="3"></td>';
                                     }
                                 echo'</tr>';}
         ?>
@@ -1289,9 +1293,14 @@
                                         echo '<td><input type="radio" name="kvgac" value="3"></td>';
                                     }
                                 echo'</tr>';}
-        ?>
+        ?></table>
+        <table border="1" id="dynamic_field10" width="55%" class="table table-bordered">
         <tr>
-            <td>Card</td>
+            <td width="20%">Card</td>
+            <td width="50%"></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <?php 
             if(!empty($cr_lancard)){echo '<tr>
@@ -1389,9 +1398,14 @@
                                         echo '<td><input type="radio" name="krsc" value="3"></td>';
                                     }
                                 echo'</tr>';}
-        ?>
+        ?></table>
+        <table border="1" id="dynamic_field10" width="55%" class="table table-bordered">
         <tr>
-            <td>Kelistrikan</td>
+            <td width="20%">Kelistrikan</td>
+            <td width="50%"></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <?php
             if(!empty($l_powersupply)){echo '<tr>
