@@ -31,7 +31,8 @@
         /* padding-top: 70px; */
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
-	#calendar {
+	#calendar 
+	{
 		max-width: 800px;
 	}
 	.col-centered{
@@ -43,7 +44,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h3>Jadwal Perawatan Inventaris</h3>
+				<h3>Jadwal Perawatan Inventaris</h3>
+				<div class="col-md-12 text-center">
+                	<div class="btn btn-success btn-icon-split">
+        		        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+		            </div>
+
+					<div class="btn btn-danger btn-icon-split">
+        		        <?php echo $this->session->userdata('gagal') <> '' ? $this->session->userdata('gagal') : ''; ?>
+					</div>
+				</div>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -140,7 +150,7 @@
 					</div>
 					</div>
 					<script>
-					$('#kd_ruang').editableSelect();
+					// $('#kd_ruang').editableSelect();
 					$(document).ready(function(){ 
 						$("#kd_ruang").change(function(){ // Ketika user mengganti atau memilih data provinsi
 
@@ -231,9 +241,13 @@
 				  </div>			 -->
 				    <div class="form-group1"> 
 						<div class="col-sm-offset-2 col-sm-10">
-						  <div class="checkbox">
+						  <!-- <div class="checkbox"> -->
 							<label class="text-danger"><input type="checkbox" name="delete" value="1"> Delete event</label>
-						  </div>
+							&nbsp;&nbsp;
+							<label class="text-success"><input type="checkbox" name="set_time" value="1"> Atur Waktu Perawatan</label>
+							&nbsp;&nbsp;
+							<label class="text-info"><input type="checkbox" name="validasi" value="1"> Validasi Sudah Dilakukan Perawatan</label>
+						  <!-- </div> -->
 						</div>
 					</div>				
 			  </div>
@@ -247,7 +261,7 @@
 			<form method="post" action="<?php echo base_url().'perawatan/komponen'?>">
 			<div class="modal-footer">
 			<input type="hidden" name="kd_jd" class="form-control" id="kd_jd">
-			<button type="submit" class="btn btn-primary" >Data Perawatan</button>
+			<button type="submit" class="btn btn-info" >Data Perawatan</button>
 			</div>
 			</form>
 			</div>

@@ -2217,11 +2217,11 @@ class Perawatan extends CI_Controller{
     function cek($id){
         $row = $this->M_perawatan->get_by_id_jd($id);
         if ($row) {
-            if (($row->wtm != null) && ($row->wts != null)) {
+            if (($row->wtm != null) && ($row->wts != null) && ($row->tgl_trs != null)) {
                 $j_valid = '1';
                 $data = array(
-               'j_valid' => $j_valid
-            );
+                    'j_valid' => $j_valid
+                );
             
                 $stanggal = $row->tgl_jd;
                 $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
@@ -2241,14 +2241,13 @@ class Perawatan extends CI_Controller{
                     'kd_ruang' => $ruang,
                     'kd_jd' => $this->kodejd(),
                     'dt_sts' => $dt_sts
-        );
+                );
                 $this->M_jadwal->insert($data3);
                 $this->M_perawatan->update_v($id, $data);
                 $this->session->set_flashdata('message', 'Validasi Perawatan Sudah Dilakukan');
                 redirect(base_url('Perawatan'));
             }
-        else{
-            if($row->wtm == null){
+            else if($row->wtm == null){
                 date_default_timezone_set("Asia/Jakarta");
                 $data = array(
                     'wtm' => date('h:i:s')
@@ -2256,7 +2255,8 @@ class Perawatan extends CI_Controller{
                 $this->M_perawatan->update_waktu($id, $data);
                 $this->session->set_flashdata('message', 'Waktu Mulai Perawatan Sudah Di Set');
                 redirect(base_url('Perawatan'));
-            }else{
+            }
+            else if($row->wts == null){
                 date_default_timezone_set("Asia/Jakarta");
                 $data = array(
                     'wts' => date('h:i:s')
@@ -2265,7 +2265,11 @@ class Perawatan extends CI_Controller{
                 $this->session->set_flashdata('message', 'Waktu Selesai Perawatan Sudah Di Set');
                 redirect(base_url('Perawatan'));
             }
-        }
+            else{
+                $this->session->set_flashdata('gagal', 'Validasi Perawatan Gagal Dilakukan');
+                redirect(base_url('Perawatan'));
+            }
+        
     }
     }
 

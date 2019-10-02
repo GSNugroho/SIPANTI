@@ -10,7 +10,10 @@
 					<div class="col-md-12 text-center">
                 		<div class="btn btn-success btn-icon-split">
         		            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-		                </div>
+						</div>
+						<div class="btn btn-danger btn-icon-split">
+        		        	<?php echo $this->session->userdata('gagal') <> '' ? $this->session->userdata('gagal') : ''; ?>
+						</div>
             		</div>
 					<div class="card-body">
 					<!-- <a href="<?php //echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">

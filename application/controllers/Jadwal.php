@@ -5,6 +5,7 @@ class Jadwal extends CI_Controller{
         parent::__construct();
         if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
             $this->load->model('M_jadwal');
+            $this->load->model('M_perawatan');
         }else {
              echo redirect(base_url('../'));
         }
@@ -89,8 +90,12 @@ class Jadwal extends CI_Controller{
         redirect(site_url('Jadwal'));
     }
 
-    public function update_action_konten(){        
+    public function update_action_konten(){    
+        $id = $this->input->post('kd_jd');
         $hapus = $this->input->post('delete');
+        $set_time = $this->input->post('set_time');
+        $validasi = $this->input->post('validasi');
+        $row = $this->M_perawatan->get_by_id_jd($id);
         if($hapus == 1){
             $dlt = 0;
             $data = array(
@@ -100,32 +105,67 @@ class Jadwal extends CI_Controller{
             $this->M_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $data);
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
             redirect(base_url('Jadwal'));
-        }else{
-             $data = array(
-                // 'nm_jd' => $this->input->post('nm_jd', TRUE),
-                'kd_inv' => $this->input->post('kd_inv', TRUE),
-                'kd_ruang' => $this->input->post('kd_ruang', TRUE),
-             );
-        
-            $this->M_jadwal->updatekonten($this->input->post('kd_jd', TRUE), $data);
-            $this->session->set_flashdata('message', 'Data Berhasil Diubah');
-            redirect(base_url('Jadwal'));
+        }else if($set_time == 1){
+            // $row = $this->M_perawatan->get_by_id_jd($id);
+            if($row){
+                if($row->wtm == null){
+                    date_default_timezone_set("Asia/Jakarta");
+                    $data = array(
+                        'wtm' => date('h:i:s')
+                    );
+                    $this->M_perawatan->update_waktu($id, $data);
+                    $this->session->set_flashdata('message', 'Waktu Mulai Perawatan Sudah Di Set');
+                    redirect(base_url('Jadwal'));
+                }else if($row->wts == null){
+                    date_default_timezone_set("Asia/Jakarta");
+                    $data = array(
+                        'wts' => date('h:i:s')
+                    );
+                    $this->M_perawatan->update_waktu($id, $data);
+                    $this->session->set_flashdata('message', 'Waktu Selesai Perawatan Sudah Di Set');
+                    redirect(base_url('Jadwal'));
+                }else{
+                    redirect(base_url('Jadwal'));
+                }
+            }
+        }else if($validasi == 1){
+            if($row->tgl_trs != NULL){
+                $j_valid = '1';
+                $data = array(
+                    'j_valid' => $j_valid
+                );
+
+                $stanggal = $row->tgl_jd;
+                $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
+                $nama = $row->nm_jd;
+                $kdinv = $row->kd_inv;
+                $warna = '#03e3fc';
+                $stanggals = $row->tgl_jd_selesai;
+                $tanggals = date('m-d-Y', strtotime('+3 month', strtotime($stanggals)));
+                $ruang = $row->kd_ruang;
+                $dt_sts = 1;
+                $data3 = array(
+                    'tgl_jd' => $tanggal,
+                    'nm_jd' => $nama,
+                    'kd_inv' => $kdinv,
+                    'color' => $warna,
+                    'tgl_jd_selesai' => $tanggals,
+                    'kd_ruang' => $ruang,
+                    'kd_jd' => $this->kode(),
+                    'dt_sts' => $dt_sts
+                );
+                $this->M_jadwal->insert($data3);
+                $this->M_perawatan->update_v($id, $data);
+                $this->session->set_flashdata('message', 'Validasi Perawatan Sudah Dilakukan');
+                redirect(base_url('Jadwal'));
+            }else{
+                $this->session->set_flashdata('gagal', 'Validasi Perawatan Gagal Dilakukan');
+                redirect(base_url('Jadwal'));
+            }
         }
     }
     
     public function update_action_tgl(){
-        // if (isset($_POST['event'][0]) && isset($_POST['event'][1]) && isset($_POST['event'][2])){
-        // $data = array(
-        // // 'tgl_jd' => $this->input->post(event[1], TRUE),
-        // // 'tgl_jd_selesai' => $this->input->post(event[2], TRUE)
-        // 'tgl_jd' => $_POST['event'][1],
-	    // 'tgl_jd_selesai' => $_POST['event'][2]
-        // );
-
-        // $data = $this->input->post();
-        // $id_jd = $data['id_jd'];echo $id_jd;
-        // $tgl_jd = $data['start'];echo $tgl_jd;
-        // $tgl_jd_selesai = $data['end'];echo $tgl_jd_selesai;
         
         $id = $_POST['event'][0];
         $data = array (
