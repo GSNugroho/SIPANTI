@@ -55,6 +55,7 @@ class Report extends CI_Controller{
             </style>
         </head>
         <body>
+        <img src = "'.base_url('assets/bootstrap/image/logo_new1.png').'" height="42" weight="42">
         <h4 align="center">Laporan Perawatan Inventaris</h4><br><p></p>
         <p>Tanggal :'.date('d-m-Y', strtotime($tgl_a)).' sampai '.date('d-m-Y', strtotime($tgl_s)).'</p>
 		<table border="1">				
@@ -741,6 +742,7 @@ class Report extends CI_Controller{
             </style>
         </head>
         <body>
+            <img src = "'.base_url('assets/bootstrap/image/logo_new1.png').'" height="42" weight="42">
             <h4 align="center">Laporan Perbaikan Inventaris</h4><br><p></p>
             <p>Tanggal :'.date('d-m-Y', strtotime($tgl_a)).' sampai '.date('d-m-Y', strtotime($tgl_s)).'</p>
             <table border="1">				
@@ -865,6 +867,7 @@ class Report extends CI_Controller{
         $mpdf = new \Mpdf\Mpdf();
         // $html = $this->load->view('report/report_tlt1', $data, true);
         $mpdf->SetFontSize('12');
+        // $mpdf->Image(base_url('assets/bootstrap/image/logo_new1.png'), 0, 0, 270, 297, png, '', true, true);
         // $mpdf->WriteHTML($html);
         $mpdf->WriteHTML('<html>
         <head>
@@ -878,6 +881,7 @@ class Report extends CI_Controller{
             </style>
         </head>
         <body>
+            <img src = "'.base_url('assets/bootstrap/image/logo_new1.png').'" height="42" weight="42">
             <h4 align="center">Laporan Keterlambatan Perawatan Inventaris</h4><br><p></p>
             <p>Tanggal :'.date('d-m-Y', strtotime($tgl_a)).' sampai '.date('d-m-Y', strtotime($tgl_s)).'</p>
             <table border="1">				
@@ -894,20 +898,20 @@ class Report extends CI_Controller{
         $i=0;
         foreach ($report_p as $row) 
             {
-        $i++;
-        $mpdf->WriteHTML('<tr >
-        <td align="center">'.$i.'</td>
-        <td>'.date('d-m-Y', strtotime($row->tgl_jd)).'</td>
-        <td>'.$row->kd_aset.'</td>
-        <td>'.$row->nm_jd.'</td>
-        <td>'.$row->nm_inv.'</td>
-        <td>'.$row->vc_n_gugus.'</td>
-        <td>'.date('d-m-Y', strtotime($row->tgl_trs)).'</td>
-        ');
-        $tgl_s = strtotime($row->tgl_trs);
-        $tgl_a = strtotime($row->tgl_jd);
-        $selisih = $tgl_s - $tgl_a;
-        $mpdf->WriteHTML('<td>'.floor($selisih / (60 * 60 * 24)).' Hari</td></tr>');
+                $i++;
+                $mpdf->WriteHTML('<tr >
+                <td align="center">'.$i.'</td>
+                <td>'.date('d-m-Y', strtotime($row->tgl_jd)).'</td>
+                <td>'.$row->kd_aset.'</td>
+                <td>'.$row->nm_jd.'</td>
+                <td>'.$row->nm_inv.'</td>
+                <td>'.$row->vc_n_gugus.'</td>
+                <td>'.date('d-m-Y', strtotime($row->tgl_trs)).'</td>
+                ');
+                $tgl_s = strtotime($row->tgl_trs);
+                $tgl_a = strtotime($row->tgl_jd);
+                $selisih = $tgl_s - $tgl_a;
+                $mpdf->WriteHTML('<td>'.floor($selisih / (60 * 60 * 24)).' Hari</td></tr>');
             }
         $mpdf->WriteHTML('</table>');
         $mpdf->Output();

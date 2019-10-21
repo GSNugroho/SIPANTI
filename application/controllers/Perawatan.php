@@ -45,7 +45,7 @@ class Perawatan extends CI_Controller{
             $this->update_komponen($id);
         }else{
          if($id==NULL){ 
-             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ditemukan');
              redirect(base_url('Jadwal'));
         }else{
         $row = $this->M_perawatan->get_by_id_komp($id);
@@ -70,7 +70,7 @@ class Perawatan extends CI_Controller{
             $this->update_komponen($id);
         }else{
          if($id==NULL){ 
-             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ditemukan');
              redirect(base_url('Jadwal'));
         }else{
         $row = $this->M_perawatan->get_by_id_komp($id);
@@ -170,9 +170,9 @@ class Perawatan extends CI_Controller{
 
         $row = $this->M_perawatan->get_by_id_komp($id);
         $rows = $this->M_perawatan->get_by_id_jd($id);
-
-        if($row){
-            $data = array(
+        if ($rows->wtm != Null) {
+            if ($row) {
+                $data = array(
             'c_casing' => set_value('c_casing', $row->c_casing),
             'm_cpu' => set_value('m_cpu', $row->m_cpu),
             'h_ata' => set_value('h_ata', $row->h_ata),
@@ -342,20 +342,25 @@ class Perawatan extends CI_Controller{
                 'kd_inv' => set_value('kd_inv', $rows->kd_inv),
                 'kd_aset' => set_value('kd_aset', $rows->kd_aset)
             );
-            $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('Perawatan'));
+                $this->load->view('perawatan/perawatan_form_pilih_edit', $data);
+            } else {
+                $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+                redirect(base_url('Jadwal'));
+            };
+        }else{
+            $this->session->set_flashdata('messages', 'Mohon Atur Waktu Mulai Perawatan');
+            redirect(base_url('Jadwal'));
         }
     }
     // }
 
     function update($id){
         $row = $this->M_perawatan->get_by_id_jd($id);
-        if(($row->j_valid) == 0){
-
-        if($row) {
-            $data = array(
+        if (($row->j_valid) == 0) {
+            $rows = $this->M_perawatan->get_by_id($id);
+            if ($rows->wtm != null) {
+            if ($row) {
+                $data = array(
                 'kcasing' => set_value('kcasing', $row->cs_cs),
                 'kbaut' => set_value('kbaut', $row->cs_ba),
                 'kksakelar' => set_value('kksakelar', $row->cs_saklar),
@@ -451,10 +456,14 @@ class Perawatan extends CI_Controller{
                 'wtm' => set_value('wtm', $row->wtm),
                 'wts' => set_value('wts', $row->wts)
             );
-            $this->load->view('perawatan/perawatan_form_edit', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-			redirect(base_url('Perawatan'));
+                $this->load->view('perawatan/perawatan_form_edit', $data);
+            } else {
+                $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ditemukan');
+                redirect(base_url('Perawatan'));
+            }
+        ;}else{
+            $this->session->set_flashdata('messages', 'Mohon Isi Waktu Mulai Perawatan');
+            redirect(base_url('Perawatan'));
         }
     }else{redirect(base_url('Perawatan'));}
     }
@@ -464,10 +473,10 @@ class Perawatan extends CI_Controller{
 
         if($row){
             $this->M_perawatan->delete($id);
-            $this->session->set_flashdata('message', 'Hapus Data Berhasil');
+            $this->session->set_flashdata('messages', 'Hapus Data Perawatan Berhasil');
             redirect(base_url('Perawatan'));
         }else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('message', 'Data Perawatan Tidak Ditemukan');
             redirect(base_url('Perawatan'));
         }
     }
@@ -475,7 +484,7 @@ class Perawatan extends CI_Controller{
     function updateperawatan(){
          $id = $this->input->post('kd_jd', TRUE);
          if($id==NULL){ 
-             $this->session->set_flashdata('message', 'Data Tidak Ada');
+             $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ada');
              redirect(base_url('Jadwal'));
         }else{
          $row = $this->M_perawatan->get_by_id_jd($id);
@@ -579,8 +588,8 @@ class Perawatan extends CI_Controller{
               );
             $this->load->view('perawatan/perawatan_form_edit1',$data);
          }else {
-             $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
-             echo 'Data tidak ditemukan';
+             $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ditemukan');
+            //  echo 'Data tidak ditemukan';
              redirect(base_url('Jadwal'));
          };
         }
@@ -682,8 +691,8 @@ class Perawatan extends CI_Controller{
             //'status_p' => $this->input->post('status', TRUE),
             'status_p' => $status,
             'tgl_trs' => date('Y-m-d h:i:s'),
-            'wtm' => $this->input->post('wtm', TRUE),
-            'wts' => $this->input->post('wts', TRUE)
+            // 'wtm' => $this->input->post('wtm', TRUE),
+            // 'wts' => $this->input->post('wts', TRUE)
         );
         $color = '#00ff88';
         $datawarna = array(
@@ -2100,7 +2109,7 @@ class Perawatan extends CI_Controller{
         
         $this->M_jadwal->updatekonten($this->input->post('kd_jd_ko', TRUE), $datawarna);
         $this->M_perawatan->update_perawatan($this->input->post('kd_jd_ko', TRUE), $data);
-        $this->session->set_flashdata('message', 'Simpan Data Berhasil');
+        $this->session->set_flashdata('message', 'Simpan Data Perawatan Berhasil');
         redirect(base_url('Perawatan'));
     }
 
@@ -2209,7 +2218,7 @@ class Perawatan extends CI_Controller{
             );
             $this->load->view('perawatan/perawatan_read', $data);
             }else{
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('messages', 'Data Perawatan Tidak Ditemukan');
 			redirect(base_url('Perawatan'));
        }
     }
@@ -2266,7 +2275,7 @@ class Perawatan extends CI_Controller{
                 redirect(base_url('Perawatan'));
             }
             else{
-                $this->session->set_flashdata('gagal', 'Validasi Perawatan Gagal Dilakukan');
+                $this->session->set_flashdata('messages', 'Validasi Perawatan Gagal Dilakukan');
                 redirect(base_url('Perawatan'));
             }
         
@@ -2282,6 +2291,7 @@ class Perawatan extends CI_Controller{
             );
         }
         $this->M_perawatan->update_delete($id, $data);
+        $this->session->set_flashdata('messages', 'Hapus Data Perawatan Berhasil');
         redirect(base_url('Perawatan'));
     }
 

@@ -2,18 +2,52 @@
 	$this->load->view('mainmenu');
 	// print_r($_SESSION);
 ?>
+	<style>
+		.pesan{
+			display: none;
+			position: fixed;
+			border: 1px solid greenyellow;
+			width: 200px;
+			top: 75px;
+			left: 500px;
+			padding: 5px 10px;
+			background-color: #00a65a;
+			text-align: center;
+			color: white;
+		}
+		.pesans{
+			display: none;
+			position: fixed;
+			border: 1px solid red;
+			width: 200px;
+			top: 95px;
+			left: 500px;
+			padding: 5px 10px;
+			background-color: #f56954;
+			text-align: center;
+			color: white;
+		}
+	</style>
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
               			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
 					<div class="col-md-12 text-center">
-                		<div class="btn btn-success btn-icon-split">
-        		            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                		<!-- <div class="btn btn-success btn-icon-split">
+        		            <?php //echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
 						</div>
 						<div class="btn btn-danger btn-icon-split">
-        		        	<?php echo $this->session->userdata('gagal') <> '' ? $this->session->userdata('gagal') : ''; ?>
-						</div>
+        		        	<?php //echo $this->session->userdata('messages') <> '' ? $this->session->userdata('messages') : ''; ?>
+						</div> -->
+						<?php 
+							if (($this->session->userdata('message')) <> ''){
+								echo '<div class="pesan">'.$this->session->userdata('message').'</div>';
+							}
+							if (($this->session->userdata('messages')) <> ''){
+								echo '<div class="pesans">'.$this->session->userdata('messages').'</div>';
+							}
+						?>
             		</div>
 					<div class="card-body">
 					<!-- <a href="<?php //echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
@@ -137,6 +171,12 @@
 	}
 	});
 	}
+
+	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 0);});
+	setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
+	
+	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
+    setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
 	</script>
 	</body>
 </html>

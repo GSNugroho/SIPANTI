@@ -1,13 +1,14 @@
 <?php 
     $this->load->view('mainmenu');
 ?>	
-	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
-	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
-	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
+        <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
+        <script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js')?>"></script>
+        <script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
+        <script src="<?php echo base_url('assets/datepicker/js/bootstrap.min.js')?>"></script>
+        <script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
+
 				<div class="card shadow mb-4">
 				<div class="card-header py-3">
             	<h6 class="m-0 font-weight-bold text-primary">Tambah Inventaris</h6>
@@ -18,19 +19,19 @@
             <tr>
             <td>
             <div class="form-group">
-                <label for="nm_inv">Nama Barang <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="nm_inv" id="nm_inv" placeholder="Nama Barang">
+                <label for="nm_inv">Nama Barang </label> <?php echo form_error('nm_inv')?>
+                <input class="form-control" type="text" name="nm_inv" id="nm_inv" placeholder="Nama Barang" value="<?php echo $nm_inv?>">
             </div>
             </td>
             <td></td>
             <td>
             <div class="form-group">
-                <label for="merk">Merk <?php //echo form_error('merk') ?></label>
+                <label for="merk">Merk </label> <?php echo form_error('merk') ?>
                 <select require name="merk" class="form-control" id="merk">
                     <option value="">--Pilih Merk--</option>
                     <?php
                         foreach ($dd_gm as $row) {  
-                            echo "<option value='".$row->vc_kd_merk."'>".$row->vc_nm_merk."</option>";
+                            echo "<option value='".$row->vc_kd_merk."' >".$row->vc_nm_merk."</option>";
                             }
                             echo"
                         </select>"
@@ -42,20 +43,20 @@
             <tr>
             <td>        
             <div class="form-group">
-                <label for="satuan">Satuan <?php //echo form_error('satuan') ?></label>
+                <label for="satuan">Satuan </label> <?php echo form_error('satuan') ?>
                 <!-- <input class="form-control" type="text" name="satuan" id="satuan" placeholder="Satuan"> -->
                 <select name="satuan" class="form-control" id="satuan">
                     <option value="">--Pilih Satuan--</option>
-                    <option value="1">Buah</option>
-                    <option value="2">Set</option>
-                    <option value="3">Unit</option>
+                    <option value="1" <?php echo ($satuan == '1')?'selected':''?>>Buah</option>
+                    <option value="2" <?php echo ($satuan == '2')?'selected':''?>>Set</option>
+                    <option value="3" <?php echo ($satuan == '3')?'selected':''?>>Unit</option>
             </div>
             </td>	
             <td></td>
             <td>        
             <div class="form-group">
-                <label for="jmlh">Jumlah <?php //echo form_error('jumlah') ?></label>
-                <input class="form-control" type="text" name="jmlh" id="jmlh" placeholder="Jumlah">
+                <label for="jmlh">Jumlah </label> <?php echo form_error('jmlh') ?>
+                <input class="form-control" type="text" name="jmlh" id="jmlh" placeholder="Jumlah" value="<?php echo $jmlh?>">
             </div>
             </td>
             </tr>
@@ -63,40 +64,26 @@
             <tr>
             <td>	        
             <div class="form-group">
-                <label for="tgl_terima">Tanggal Terima <?php //echo form_error('tgl_terima') ?></label>
+                <label for="tgl_terima">Tanggal Terima </label> <?php echo form_error('tgl_terima') ?>
                 <div class="input-group date" id="tgl1">
-				<input class="form-control" type="text" name="tgl_terima" id="tgl_terima" placeholder="dd-mm-yyyy">
+				<input class="form-control" type="text" name="tgl_terima" id="tgl_terima" placeholder="dd-mm-yyyy" value="<?php $tgl_terima?>">
 				<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
 				</div>
             </div>
             </td>
             <td></td>
-            <!-- <td>	        
-            <div class="form-group">
-                <label for="status">Status <?php //echo form_error('status') ?></label>
-                 <input class="form-control" type="text" name="status" id="status" placeholder="Status"> 
-                <select name="status" class="form-control" id="status">
-                    <option value="">--Pilih Status--</option>
-                    <option value="1">Beli</option>
-                    <option value="2">Beli Bekas</option>
-                    <option value="3">Mutasi</option>
-                    <option value="4">Pemberian</option>
-                    <option value="5">Pindahan</option>
-                    <option value="6">Rakitan</option>
-            </div>
-            </td> -->
             </tr>
 
             <tr>
             <td>	
             <div class="form-group">
-                <label for="kondisi">Kondisi <?php //echo form_error('kondisi') ?></label>
+                <label for="kondisi">Kondisi </label> <?php echo form_error('kondisi') ?>
                 <!-- <input class="form-control" type="text" name="kondisi" id="kondisi" placeholder="Kondisi"> -->
                 <select name="kondisi" class="form-control" id="kondisi">
                     <option value="">--Pilih Kondisi--</option>
-                    <option value="1">Baik</option>
-                    <option value="2">Kurang Baik</option>
-                    <option value="3">Rusak</option>
+                    <option value="1" <?php echo ($satuan == '1')?'selected':''?>>Baik</option>
+                    <option value="2" <?php echo ($satuan == '2')?'selected':''?>>Kurang Baik</option>
+                    <option value="3" <?php echo ($satuan == '3')?'selected':''?>>Rusak</option>
             </div>
             </td>
             </tr>	
@@ -105,7 +92,7 @@
             <td>
             <div class="form-group">
                 <label for="ket">Keterangan <?php //echo form_error('ket') ?></label>
-                <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"></textarea>
+                <textarea class="form-control" rows="3" name="ket" id="ket" placeholder="Keterangan"><?php echo $ket?></textarea>
             </div>
             </td>
             <td></td>
@@ -120,12 +107,12 @@
             <tr>
             <td>
             <div class="form-group">
-                <label for="kd_bantu">Jenis Barang<?php //echo form_error('kd_bantu') ?></label>
+                <label for="kd_bantu">Jenis Barang </label> <?php echo form_error('kd_bantu') ?>
                 <select require name="kd_bantu" class="form-control" id="kd_bantu">
                     <option value="">--Pilih Jenis--</option>
                     <?php
                         foreach ($dd_gg as $row) {  
-                            echo "<option value='".$row->kd_gol."'>".$row->nm_gol."</option>";
+                            echo "<option value='".$row->kd_gol."' >".$row->nm_gol."</option>";
                             }
                             echo"
                         </select>"
@@ -134,13 +121,10 @@
             </td>
             <td></td>
             <td>
-            <!-- <div class="form-group">
-                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi">
-            </div> -->
+            
             <div class="form-group">
-                <label for="nm_pengg">Nama Pengguna <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna">
+                <label for="nm_pengg">Nama Pengguna </label> <?php echo form_error('nm_pengg')?>
+                <input class="form-control" type="text" name="nm_pengg" id="nm_pengg" placeholder="Nama Pengguna" value="<?php echo $nm_pengg?>">
             </div>
             </td>
             </tr>
@@ -157,12 +141,12 @@
             <tr>
             <td>
             <div class="form-group">
-                <label for="id_ruang">Ruang <?php //echo form_error('id_ruang') ?></label>
+                <label for="id_ruang">Ruang </label> <?php echo form_error('id_ruang') ?>
                 <select require name="id_ruang" class="form-control" id="id_ruang">
                     <option value="">--Pilih Ruang--</option>
                     <?php
                         foreach ($dd_gr as $row) {  
-                            echo "<option value='".$row->vc_k_gugus."'>".$row->vc_n_gugus."</option>";
+                            echo "<option value='".$row->vc_k_gugus."' >".$row->vc_n_gugus."</option>";
                             }
                             echo"
                         </select>"
@@ -171,38 +155,27 @@
             </td>
             <td></td>
             <td>
-            <!-- <div class="form-group">
-                <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri">
-            </div> -->
+
             <div class="form-group">
-                <label for="a_spes">Aset Spesifikasi <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi">
+                <label for="a_spes">Aset Spesifikasi </label> 
+                <input class="form-control" type="text" name="a_spes" id="a_spes" placeholder="Aset Spisifikasi" value="<?php echo $a_spes?>">
             </div>
             </td>
             </tr>	
 
             <tr>
             <td>        
-            <!-- <div class="form-group">
-                <label for="aktif">Aktif</label>
-                <select class="form-control" name="aktif" class="form-control" id="aktif">
-                    <option value="">--Status Aktif--</option>
-                    <option value="0">Tidak Aktif</option>
-                    <option value="1">Aktif</option>
-                </select>
-            </div> -->
             <div class="form-group">
-                <label for="status">Status <?php //echo form_error('status') ?></label>
+                <label for="status">Status </label> <?php echo form_error('status') ?>
                 <!-- <input class="form-control" type="text" name="status" id="status" placeholder="Status"> -->
                 <select name="status" class="form-control" id="status">
                     <option value="">--Pilih Status--</option>
-                    <option value="1">Beli</option>
-                    <option value="2">Beli Bekas</option>
-                    <option value="3">Mutasi</option>
-                    <option value="4">Pemberian</option>
-                    <option value="5">Pindahan</option>
-                    <option value="6">Rakitan</option>
+                    <option value="1" <?php echo ($status == '1')?'selected':''?>>Beli</option>
+                    <option value="2" <?php echo ($status == '2')?'selected':''?>>Beli Bekas</option>
+                    <option value="3" <?php echo ($status == '3')?'selected':''?>>Mutasi</option>
+                    <option value="4" <?php echo ($status == '4')?'selected':''?>>Pemberian</option>
+                    <option value="5" <?php echo ($status == '5')?'selected':''?>>Pindahan</option>
+                    <option value="6" <?php echo ($status == '6')?'selected':''?>>Rakitan</option>
                 </select>
             </div>
             </td>
@@ -222,19 +195,19 @@
             </div> -->
             <div class="form-group">
                 <label for="sn">Aset Nomor Seri <?php //echo form_error('nm_inv') ?></label>
-                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri">
+                <input class="form-control" type="text" name="sn" id="sn" placeholder="Aset Nomor Seri" value="<?php echo $sn?>">
             </div>
             </td>
             </tr>
             <tr>
             <td>
             <div class="form-group">
-                <label for="jns_brg">Jenis Tipe <?php //echo form_error('jns_brg') ?></label>
+                <label for="jns_brg">Jenis Tipe </label> <?php echo form_error('jns_brg') ?>
                 <select require name="jns_brg" class="form-control" id="jns_brg">
                     <option value="">--Pilih Jenis--</option>
                     <?php
                         foreach ($dd_gj as $row) {  
-                            echo "<option value='".$row->vc_kd_jenis."'>".$row->vc_nm_jenis."</option>";
+                            echo "<option value='".$row->vc_kd_jenis."' >".$row->vc_nm_jenis."</option>";
                             }
                             echo"
                         </select>"
@@ -244,37 +217,19 @@
             <td></td>
             <td>
             <div class="form-group">
-                <label for="tipeaset">Jenis Aset <?php //echo form_error('jns_brg') ?></label>
+                <label for="tipeaset">Jenis Aset </label> <?php echo form_error('jns_brg') ?>
                 <select require name="tipe_aset" class="form-control" id="tipe_aset">
                     <option value="">--Pilih Jenis--</option>
-                    <option value="1">PC Build Up</option>
-                    <option value="2">PC Rakitan</option>
-                    <option value="3">Printer Dot Matrix</option>
-                    <option value="4">Printer Infus</option>
-                    <option value="5">Printer Laser</option>
-                    <option value="6">Printer Thermal</option>
-                    <option value="7">LCD</option>
-                    <option value="8">UPS</option>
+                    <option value="1" <?php echo ($tipe_aset == '1')?'selected':''?>>PC Build Up</option>
+                    <option value="2" <?php echo ($tipe_aset == '2')?'selected':''?>>PC Rakitan</option>
+                    <option value="3" <?php echo ($tipe_aset == '3')?'selected':''?>>Printer Dot Matrix</option>
+                    <option value="4" <?php echo ($tipe_aset == '4')?'selected':''?>>Printer Infus</option>
+                    <option value="5" <?php echo ($tipe_aset == '5')?'selected':''?>>Printer Laser</option>
+                    <option value="6" <?php echo ($tipe_aset == '6')?'selected':''?>>Printer Thermal</option>
+                    <option value="7" <?php echo ($tipe_aset == '7')?'selected':''?>>LCD</option>
+                    <option value="8" <?php echo ($tipe_aset == '8')?'selected':''?>>UPS</option>
             </td>
             </tr>
-
-            <!-- <tr>
-            <td>
-            <div class="form-group">
-                <label for="cetak">Cetak <?php //echo form_error('cetak') ?></label>
-                <input class="form-control" type="text" name="cetak" id="cetak" placeholder="Cetak">
-            </div>
-            </td>
-            </tr> -->
-            
-            <!-- <tr>
-            <td>
-            <div class="form-group">
-                <label for="kd_aset">Kode Aset <?php //echo form_error('kd_aset') ?></label>
-                <input class="form-control" type="text" name="kd_aset" id="kd_aset" placeholder="Kode Aset">
-            </div>
-            </td>
-            </tr>	 -->
             
             <tr>
             <td>

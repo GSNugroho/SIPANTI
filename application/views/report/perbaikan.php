@@ -17,18 +17,18 @@
                 <form action="<?php echo base_url().'report/get_report_perbaikanm'?>" method="post">
                 <div class="form-group">
                 <label for="tgl_jd">Tanggal Awal</label>
-                    <div class="input-group date" id="tgl1">
-				        <input class="form-control" type="text" name="tgl_jd" id="tgl_jd" placeholder="dd-mm-yyyy">
-				        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-                    </div>
+                    <!-- <div class="input-group date" id="tgl1"> -->
+				        <input class="form-control" type="text" name="tgl_jd" id="tgl1" placeholder="dd-mm-yyyy">
+				        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                    </div> -->
                 </div>
                 <!-- <input type="date" name="tgl_jd_s">Tanggal Akhir -->
                 <div class="form-group">
                 <label for="tgl_jd_s">Tanggal Akhir</label>
-                    <div class="input-group date" id="tgl2">
-				        <input class="form-control" type="text" name="tgl_jd_s" id="tgl_jd_s" placeholder="dd-mm-yyyy">
-				        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-                    </div>
+                    <!-- <div class="input-group date" id="tgl2"> -->
+				        <input class="form-control" type="text" name="tgl_jd_s" id="tgl2" placeholder="dd-mm-yyyy">
+				        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                    </div> -->
                 </div>
                 <button type="submit" class="btn btn-primary">Cetak</button>
                 </form>

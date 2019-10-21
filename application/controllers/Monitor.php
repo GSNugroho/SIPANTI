@@ -5,6 +5,7 @@ class Monitor extends CI_Controller {
 			parent::__construct();
 			if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
 			$this->load->model('M_monitor');
+			$this->load->library('form_validation');
 			}else {
 				echo redirect(base_url('../'));
 			}
@@ -22,15 +23,30 @@ class Monitor extends CI_Controller {
 			'dd_gm' => $this->M_monitor->get_merk(),
 			'dd_gr' => $this->M_monitor->get_ruang(),
 			'dd_gj' => $this->M_monitor->get_jenis(),
-			'dd_gg' => $this->M_monitor->get_golongan()
+			'dd_gg' => $this->M_monitor->get_golongan(),
+			'nm_inv' => set_value('nm_inv'),
+			'merk' => set_value('merk'),
+			'satuan' => set_value('satuan'),
+			'jmlh' => set_value('jmlh'),
+			'tgl_terima' => set_value('tgl_terima'),
+			'status' => set_value('status'),
+			'kd_bantu' => set_value('kd_bantu'),
+			'id_ruang' => set_value('id_ruang'),
+			'jns_brg' => set_value('jns_brg'),
+			'nm_pengg' => set_value('nm_pengg'),
+			'kondisi' => set_value('kondisi'),
+			'tipe_aset' => set_value('tipe_aset'),
+			'ket' => set_value('ket'),
+			'a_spes' => set_value('a_spes'),
+			'sn' => set_value('sn'),
 		);
 		 $this->load->view('monitor/monitor_form', $data);
 	}
 	public function create_action(){
-		/*$this->_rules();
+		$this->_rules();
 		if ($this->form_validation->run() == FALSE) {
-			$this->create();
-		} else {*/
+            $this->create();
+        } else {
 			$type = "";
 			$j_type = $this->input->post('tipe_aset');
 			if($j_type == 1){$type = "PCB";}else
@@ -97,7 +113,7 @@ class Monitor extends CI_Controller {
 			'id_urut' => $id_urut,
 			'aktif' => $aktif,
 			'jns_brg' => $this->input->post('jns_brg', TRUE),
-			'cetak' => $this->input->post('cetak', TRUE),
+			// 'cetak' => $this->input->post('cetak', TRUE),
 			'kd_aset' => $kodeaset,
 			'dt_create' => date('Y-m-d', strtotime($this->input->post('tgl_terima'))),
 			'bt_ti' => $bt_ti,
@@ -130,11 +146,29 @@ class Monitor extends CI_Controller {
 			'kd_urut' => $kd_urut,
 			'in_kd_barang' => $kd_barang
 			);
-			$this->M_monitor->insert($data);
-			$this->M_monitor->insertaset($dataaset);
-			$this->session->set_flashdata('message','Data Berhasil Ditambahkan');
+			// $this->M_monitor->insert($data);
+			// $this->M_monitor->insertaset($dataaset);
+			$this->session->set_flashdata('message','Data Barang Berhasil Ditambahkan');
 			redirect(site_url('Monitor'));
-		
+		}
+	}
+
+	public function _rules()
+	{
+		$this->form_validation->set_rules('nm_inv', 'Nama Barang', 'trim|required');
+		$this->form_validation->set_rules('kondisi', 'Kondisi Barang', 'trim|required');
+		$this->form_validation->set_rules('merk', 'Merk', 'trim|required');
+		$this->form_validation->set_rules('satuan', 'Satuan', 'trim|required');
+		$this->form_validation->set_rules('jmlh', 'Jumlah', 'trim|required');
+		$this->form_validation->set_rules('tgl_terima', 'Tanggal Terima', 'trim|required');
+		$this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('kd_bantu', 'Jenis Barang', 'trim|required');
+		$this->form_validation->set_rules('id_ruang', 'Ruang', 'trim|required');
+		$this->form_validation->set_rules('jns_brg', 'Jenis Tipe', 'trim|required');
+		$this->form_validation->set_rules('nm_pengg', 'Nama Pengguna', 'trim|required');
+		$this->form_validation->set_rules('tipe_aset', 'Jenis Aset', 'trim|required');
+
+		$this->form_validation->set_error_delimiters('<i class="fa fa-fw fa-info-circle text-danger"></i><span class="text-danger">', '</span>');
 	}
 	
 	function update($id){
@@ -252,7 +286,7 @@ class Monitor extends CI_Controller {
 					);
 				$this->M_monitor->update($this->input->post('kd_inv', TRUE), $data);
 				$this->M_monitor->update_aset($this->input->post('kd_aset', TRUE), $dataaset);
-				
+				$this->session->set_flashdata('message','Ubah Data Barang Berhasil');
 				redirect(base_url('Monitor'));
 			}else{
 			$dataaset = array(
@@ -274,7 +308,7 @@ class Monitor extends CI_Controller {
 				'in_kd_barang' => $kd_barang
 			);
 			$this->M_monitor->insertaset($dataaset);
-			
+			$this->session->set_flashdata('message','Ubah Data Barang Berhasil');
 			redirect(base_url('Monitor'));}
 	}
 
@@ -290,6 +324,7 @@ class Monitor extends CI_Controller {
 				'aktif' => $aktif
 			);
 			$this->M_monitor->update($id, $data);
+			$this->session->set_flashdata('messages', 'Hapus Data Barang Berhasil');
 			redirect(base_url('Monitor'));
 		}
 	}
@@ -333,7 +368,7 @@ class Monitor extends CI_Controller {
 			);
 			$this->load->view('monitor/monitor_read', $data);
 		}else{
-			$this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+			$this->session->set_flashdata('messages', 'Data Barang Tidak Ditemukan');
 			redirect(base_url('Monitor'));
 		}
 	}

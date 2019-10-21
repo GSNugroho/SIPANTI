@@ -39,6 +39,30 @@
 		float: none;
 		margin: 0 auto;
 	}
+	.pesan{
+		display: none;
+		position: fixed;
+		border: 1px solid greenyellow;
+		width: 200px;
+		top: 75px;
+		left: 500px;
+		padding: 5px 10px;
+		background-color: #00a65a;
+		text-align: center;
+		color: white;
+	}
+	.pesans{
+		display: none;
+		position: fixed;
+		border: 1px solid red;
+		width: 200px;
+		top: 95px;
+		left: 500px;
+		padding: 5px 10px;
+		background-color: #f56954;
+		text-align: center;
+		color: white;
+	}
     </style>
 
     <div class="container">
@@ -46,13 +70,20 @@
             <div class="col-lg-12 text-center">
 				<h3>Jadwal Perawatan Inventaris</h3>
 				<div class="col-md-12 text-center">
-                	<div class="btn btn-success btn-icon-split">
-        		        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                	<!-- <div class="btn btn-success btn-icon-split">
+        		        <?php //echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
 		            </div>
-
 					<div class="btn btn-danger btn-icon-split">
-        		        <?php echo $this->session->userdata('gagal') <> '' ? $this->session->userdata('gagal') : ''; ?>
-					</div>
+        		        <?php //echo $this->session->userdata('gagal') <> '' ? $this->session->userdata('gagal') : ''; ?>
+					</div> -->
+					<?php
+						if (($this->session->userdata('message')) <> ''){
+							echo '<div class="pesan">'.$this->session->userdata('message').'</div>';
+						}
+						if (($this->session->userdata('messages')) <> ''){
+							echo '<div class="pesans">'.$this->session->userdata('messages').'</div>';
+						}
+					?>
 				</div>
                 <div id="calendar" class="col-centered">
                 </div>
@@ -380,8 +411,13 @@
 				}
 			});
 		}
-		
 	});
+
+	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 0);});
+	setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
+	
+	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
+    setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
 </script>
 
 <footer class="sticky-footer bg-white">

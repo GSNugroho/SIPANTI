@@ -41,7 +41,7 @@ class Mutasi extends CI_Controller{
 
         $this->M_mutasi->insert($data);
         $this->M_monitor->update($this->input->post('kd_inv_mts', TRUE), $data_up);
-        $this->session->set_flashdata('message','Data Berhasil Ditambahkan');
+        $this->session->set_flashdata('message','Data Mutasi Berhasil Ditambahkan');
         redirect(site_url('Mutasi'));
     }
 
@@ -63,7 +63,7 @@ class Mutasi extends CI_Controller{
             );
             $this->load->view('mutasi/mutasi_form_edit', $data);
         } else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('message', 'Data Mutasi Tidak Ditemukan');
             redirect(base_url('Mutasi'));
         }
     }
@@ -80,7 +80,7 @@ class Mutasi extends CI_Controller{
             'alasan_mts' => $this->input->post('alasan_mts', TRUE)
         );
         $this->M_mutasi->update($this->input->post('id', TRUE), $data);
-        $this->session->set_flashdata('message','Ubah Data Berhasil');
+        $this->session->set_flashdata('message','Ubah Data Mutasi Berhasil');
         redirect(base_url('Mutasi'));
     }
 
@@ -89,10 +89,10 @@ class Mutasi extends CI_Controller{
 
         if($row){
             $this->M_mutasi->delete($id);
-            $this->session->set_flashdata('message','Hapus Data Berhasil');
+            $this->session->set_flashdata('messages','Hapus Mutasi Data Berhasil');
             redirect(base_url('Mutasi'));
         } else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('messages', 'Data Mutasi Tidak Ditemukan');
             redirect(base_url('Mutasi'));
         }
     }
@@ -118,7 +118,7 @@ class Mutasi extends CI_Controller{
             );
             $this->load->view('mutasi/mutasi_read', $data);
         }else{
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('messages', 'Data Mutasi Tidak Ditemukan');
             redirect(base_url('Mutasi'));
         }
     }

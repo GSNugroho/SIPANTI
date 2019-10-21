@@ -1,9 +1,45 @@
 <?php
 	$this->load->view('mainmenu');
 ?>
+<style>
+	.pesan{
+		display: none;
+		position: fixed;
+		border: 1px solid greenyellow;
+		width: 200px;
+		top: 75px;
+		left: 500px;
+		padding: 5px 10px;
+		background-color: #00a65a;
+		text-align: center;
+		color: white;
+	}
+	.pesans{
+		display: none;
+		position: fixed;
+		border: 1px solid red;
+		width: 200px;
+		top: 95px;
+		left: 500px;
+		padding: 5px 10px;
+		background-color: #f56954;
+		text-align: center;
+		color: white;
+	}
+</style>
 		<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
+		</div>
+		<div class="col-md-12 text-center">
+			<?php
+				if (($this->session->userdata('message')) <> ''){
+					echo '<div class="pesan">'.$this->session->userdata('message').'</div>';
+				}
+				if (($this->session->userdata('messages')) <> ''){
+					echo '<div class="pesans">'.$this->session->userdata('messages').'</div>';
+				}
+			?>
 		</div>
 		<div class="card-body">
 		<a href="<?php echo base_url('perbaikan/create')?>" class="btn btn-primary btn-icon-split">
@@ -59,24 +95,7 @@
 <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-  <span aria-hidden="true">×</span>
-</button>
-</div>
-<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-<div class="modal-footer">
-<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-<a class="btn btn-primary" href="login.html">Logout</a>
-</div>
-</div>
-</div>
-</div>
+
 <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
@@ -137,6 +156,12 @@
       ]
 	});
 	});
+	
+	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 0);});
+	setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
+	
+	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
+    setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
 	</script>
 
 	</body>

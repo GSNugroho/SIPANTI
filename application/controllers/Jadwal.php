@@ -159,7 +159,7 @@ class Jadwal extends CI_Controller{
                 $this->session->set_flashdata('message', 'Validasi Perawatan Sudah Dilakukan');
                 redirect(base_url('Jadwal'));
             }else{
-                $this->session->set_flashdata('gagal', 'Validasi Perawatan Gagal Dilakukan');
+                $this->session->set_flashdata('messages', 'Validasi Perawatan Gagal Dilakukan');
                 redirect(base_url('Jadwal'));
             }
         }
@@ -175,7 +175,7 @@ class Jadwal extends CI_Controller{
 
        $this->M_jadwal->updatetgl($id, $data);
         // $this->M_jadwal->updatetgl($this->input->post(event[0], $data));
-        $this->session->set_flashdata('message', 'Ubah Data Berhasil');
+        $this->session->set_flashdata('message', 'Ubah Jadwal Berhasil');
         redirect(base_url('Jadwal'));
         // }else {echo 'gagal';}
     }
@@ -187,9 +187,9 @@ class Jadwal extends CI_Controller{
 
         if($row){
             $this->M_monitor->delete($id);
-            $this->session_flashdata('message', 'Hapus Data Berhasil');
+            $this->session_flashdata('messages', 'Hapus Jadwal Berhasil');
         }else {
-            $this->session->set_flashdata('message', 'Data Tidak Ditemukan');
+            $this->session->set_flashdata('messages', 'Jadwal Tidak Ditemukan');
 			redirect(base_url('Jadwal'));
         }
     }
