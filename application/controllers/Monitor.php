@@ -496,9 +496,8 @@ class Monitor extends CI_Controller {
 		$searchQuery = " ";
 		if($searchValue != ''){
 		$searchQuery = " and (
-		kd_inv like '%".$searchValue."%' or 
 		nm_inv like '%".$searchValue."%' or 
-		kd_aset like '%".$searchValue."%' or 
+		kd_brg like '%".$searchValue."%' or 
 		tgl_terima like '%".$searchValue."%' or 
 		vc_nm_merk like '%".$searchValue."%' or 
 		vc_nm_jenis like'%".$searchValue."%' or
