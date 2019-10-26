@@ -131,17 +131,29 @@ class Jadwal extends CI_Controller{
         }else if($validasi == 1){
             if($row->tgl_trs != NULL){
                 $j_valid = '1';
+                $param = 0;
                 $data = array(
                     'j_valid' => $j_valid
                 );
 
                 $stanggal = $row->tgl_jd;
-                $tanggal = date('m-d-Y', strtotime('+3 month', strtotime($stanggal)));
+                $tanggal = date('Y-m-d', strtotime('+3 month', strtotime($stanggal)));
+                // echo $tanggal.'Mulai lama<br>';
+                if(date('w', strtotime($tanggal)) == 0) {
+                    $tanggal = date('Y-m-d', strtotime('+1 day', strtotime($tanggal)));
+                    $param = 1;
+                }
+                // echo $tanggal.'Mulai baru<br>';
                 $nama = $row->nm_jd;
                 $kdinv = $row->kd_inv;
                 $warna = '#03e3fc';
                 $stanggals = $row->tgl_jd_selesai;
-                $tanggals = date('m-d-Y', strtotime('+3 month', strtotime($stanggals)));
+                $tanggals = date('Y-m-d', strtotime('+3 month', strtotime($stanggals)));
+                // echo $tanggals.'Selesai lama<br>';
+                if($param == 1) {
+                    $tanggals = date('Y-m-d', strtotime('+1 day', strtotime($tanggals)));
+                }
+                // echo $tanggals.'Selesai baru<br>';
                 $ruang = $row->kd_ruang;
                 $dt_sts = 1;
                 $data3 = array(
