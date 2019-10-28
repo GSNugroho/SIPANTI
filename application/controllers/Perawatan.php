@@ -3,7 +3,7 @@ class Perawatan extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
+        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
             $this->load->model('M_perawatan');
             $this->load->model('M_perbaikan');
             $this->load->model('M_jadwal');
@@ -713,7 +713,7 @@ class Perawatan extends CI_Controller{
                 'kd_pr' => $this->kode()
             );
             // $this->M_perbaikan->insert($dataperbaikan);
-        }else{echo "Kosong";}
+        }
         if($this->input->post('kbaut')==3){
             $sparepart = 'Baut';
             $dl_sts = 1;

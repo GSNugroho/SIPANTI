@@ -3,7 +3,7 @@ class Perbaikan extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) && (!empty($_SESSION['gugus']))) {
+        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
         $this->load->model('M_perbaikan');
         }else {
             echo redirect(base_url('../'));
