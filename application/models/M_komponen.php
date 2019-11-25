@@ -52,5 +52,11 @@
             WHERE (inv_barang.kd_aset != '' OR inv_barang.kd_aset != NULL) AND inv_barang.bt_ti = 1 AND inv_barang.aktif = 1 AND inv_komponen.kd_ko = '".$id."'");
             return $query->row();
         }
+
+        function update_komponen($id, $data)
+        {
+            $this->db->where('kd_ko', $id);
+            $this->db->update('inv_komponen', $data);
+        }
     }
 ?>

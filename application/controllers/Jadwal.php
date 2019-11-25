@@ -45,7 +45,8 @@ class Jadwal extends CI_Controller{
         
             $data = array(
             'dd_gr' => $this->M_jadwal->get_ruang(),
-            'inv_jadwal' => $this->M_jadwal->get_data()
+            'inv_jadwal' => $this->M_jadwal->get_data(),
+            'prio_jadwal' => $this->M_jadwal->prio_jadwal()
         );
             $this->load->view('jadwal/jadwal', $data);
         }    

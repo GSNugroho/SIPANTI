@@ -98,7 +98,15 @@
 			</div>
 			</div>
 		</li>
-	  
+
+    <!-- Komponen -->
+
+    	<li class="nav-item">
+      <a class="nav-link" href="<?php echo base_url('komponen')?>">
+        <i class="fas fa-memory"></i>
+        <span>Komponen</span></a>
+      </li>
+
 	  	<hr class="sidebar-divider">
 	  	<div class="sidebar-heading">
 		Laporan
