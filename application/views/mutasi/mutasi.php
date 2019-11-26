@@ -54,7 +54,7 @@
 							<tr>
                                 <!-- <th>No</th> -->
                                 <th>Tanggal Mutasi</th>
-                                <th>Kode Barang</th>
+                                <th>Kode Aset</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
                                 <th>Ruang Sebelum</th>
@@ -130,7 +130,7 @@
       'columns': [
          //{ data: 'no' },
          { data: 'tgl_terima_mts' },
-         { data: 'kd_inv_mts' },
+         { data: 'kd_aset' },
          { data: 'nm_inv' },
          { data: 'jmlh_mts' },
          { data: 'vc_n_gugus' },

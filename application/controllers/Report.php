@@ -1,4 +1,9 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+require('./application/third_party/vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Report extends CI_Controller{
     public function __construct()
     {
@@ -31,14 +36,16 @@ class Report extends CI_Controller{
         $tgl_a = date('Y-m-d', strtotime($this->input->post('tgl_jd')));
         $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         // $data['report_p']= $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
+        $order = $this->input->post('ordere', TRUE);
+
 
         $data = array(
-            'report_p' => $this->M_report->get_data_perawatan($tgl_a, $tgl_s),
+            'report_p' => $this->M_report->get_data_perawatan($tgl_a, $tgl_s, $order),
             'report_l' => $this->M_report->get_data_wperawatan($tgl_a, $tgl_s),
             'tgl_jd' => $tgl_a,
             'tgl_jd_s' => $tgl_s
         );
-        $report_p = $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
+        $report_p = $this->M_report->get_data_perawatan($tgl_a, $tgl_s, $order);
         $report_l = $this->M_report->get_data_wperawatan($tgl_a, $tgl_s);
 
         $mpdf = new \Mpdf\Mpdf();
@@ -649,6 +656,49 @@ class Report extends CI_Controller{
         $mpdf->WriteHTML($menit.' menit '.$detik.' detik');
         $mpdf->Output();
     
+    }
+
+    function get_report_blm(){
+        // $bulan = $this->input->post('bln_blm', TRUE);
+        // $tahun = $this->input->post('th_blm', TRUE);
+
+        // if($bulan != 0){
+            $order = $this->input->post('ordere', TRUE);
+            $data = $this->M_report->get_report_blm($order);
+
+            $spreadsheet = new Spreadsheet;
+
+            $spreadsheet->setActiveSheetIndex(0)
+                      ->setCellValue('A1', 'No')
+                      ->setCellValue('B1', 'Kode Aset')
+					  ->setCellValue('C1', 'Ruang')
+					  ->setCellValue('D1', 'Nama Barang')
+					  ->setCellValue('E1', 'Nama Pengguna');
+
+            $kolom = 2;
+            $nomor = 1;
+            foreach($data as $row) {
+
+               $spreadsheet->setActiveSheetIndex(0)
+                           ->setCellValue('A' . $kolom, $nomor)
+                           ->setCellValue('B' . $kolom, $row->kd_aset)
+						   ->setCellValue('C' . $kolom, $row->vc_n_gugus)
+						   ->setCellValue('D' . $kolom, $row->nm_inv)
+						   ->setCellValue('E' . $kolom, $row->vc_nm_pengguna);
+               $kolom++;
+               $nomor++;
+
+            }
+
+            $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="Belum_Perawatan.xlsx"');
+		// header('Content-Disposition: attachment;filename="Data_PKS.xls"');
+	  	header('Cache-Control: max-age=0');
+
+	    $writer->save('php://output');
+        // }
     }
 
     function get_report_gperawatan(){

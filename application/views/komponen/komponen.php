@@ -1,35 +1,9 @@
 <?php
-	$this->load->view('mainmenu');
+    $this->load->view('mainmenu');
 ?>
-	<style>
-		.pesan{
-			display: none;
-			position: fixed;
-			border: 1px solid greenyellow;
-			width: 200px;
-			top: 75px;
-			left: 500px;
-			padding: 5px 10px;
-			background-color: #00a65a;
-			text-align: center;
-			color: white;
-		}
-		.pesans{
-			display: none;
-			position: fixed;
-			border: 1px solid red;
-			width: 200px;
-			top: 95px;
-			left: 500px;
-			padding: 5px 10px;
-			background-color: #f56954;
-			text-align: center;
-			color: white;
-		}
-	</style>
-				<div class="card shadow mb-4">
+                <div class="card shadow mb-4">
 					<div class="card-header py-3">
-              			<h6 class="m-0 font-weight-bold text-primary">Data Inventaris</h6>
+              			<h6 class="m-0 font-weight-bold text-primary">Data Perawatan</h6>
 					</div>
 					<div class="col-md-12 text-center">
 						<?php 
@@ -40,39 +14,30 @@
 								echo '<div class="pesans">'.$this->session->userdata('messages').'</div>';
 							}
 						?>
-					</div>
+            		</div>
 					<div class="card-body">
-					<a href="<?php echo base_url('monitor/create')?>" class="btn btn-primary btn-icon-split">
-                    	<span class="text">Tambah Data</span>
-					</a>
-					<br>
-					<br>
+					<!-- <a href="<?php //echo base_url('perawatan/komponen')?>" class="btn btn-primary btn-icon-split">
+                    		<span class="text">Komponen</span>
+					</a>	   -->
 						<div class="table-responsive">
-						<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="dataKom" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<!-- <th>No</th> -->
-								<!-- <th>Kode Inventaris</th> -->
-								<th>Tanggal Terima</th>
+                                <th>Kode Barang</th>
 								<th>Kode Aset</th>
 								<th>Nama Barang</th>
-								<th>Merk</th>
-								<th>Jenis Barang</th>
-								<th>Golongan Barang</th>
 								<th>Ruang</th>
-								<!-- <th>Lokasi</th> -->
-								<th style="width:13%;">Action</th>
+								<th>Nama Pengguna</th>
+								<th>Action</th>
 							</tr>
 							</thead>
-
 						</table>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
+            </div>
+            <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Your Website 2019</span>
@@ -91,17 +56,17 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="<?php echo base_url('assets/js/sb-admin-2.min.js')?>"></script>
+	
 
 	<!-- Page level plugins -->
 	<script src="<?php echo base_url('assets/vendor/datatables/jquery.dataTables.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js')?>"></script>
 
 	<!-- Page level custom scripts -->
-	<!-- <script src="<?php //echo base_url('assets/js/datatables-demo.js')?>"></script> -->
-
-	<script>
-	$(document).ready(function(){
-   $('#dataBrg').DataTable({
+    <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+    <script>
+    $(document).ready(function(){
+	$('#dataKom').DataTable({
 	language: {
 	"sEmptyTable":	 "Tidak ada data yang tersedia pada tabel ini",
 	"sProcessing":   "Sedang memproses...",
@@ -120,34 +85,22 @@
 		"sLast":     "Terakhir"
 	}
 	},
-	  'order': [[ 0, "desc" ]],
+	  //'order': [[ 0, "desc" ]],
       'processing': true,
       'serverSide': true,
       'serverMethod': 'post',
       'ajax': {
-          'url':'<?php echo base_url().'monitor/dt_tbl'?>'
+          'url':'<?php echo base_url().'Komponen/tbl_list'?>'
       },
       'columns': [
-         //{ data: 'no' },
-        //  { data: 'kd_inv' },
-         { data: 'tgl_terima' },
-		 { data: 'kd_aset'},
+         { data: 'kd_brg' },
+		 { data: 'kd_ko' },
          { data: 'nm_inv' },
-         { data: 'vc_nm_merk' },
-         { data: 'vc_nm_jenis' },
-         { data: 'nm_gol' },
          { data: 'vc_n_gugus' },
+         { data: 'vc_nm_pengguna' },
 		 { data: 'action'}
       ]
 	});
 	});
 
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 0);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
-	
-	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
-    setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
-	</script>
-
-	</body>
-</html>
+    </script>

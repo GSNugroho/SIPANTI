@@ -30,8 +30,18 @@
 				        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                     </div> -->
                 </div>
-                
-                <button type="submit" class="btn btn-primary" terget="_blank">Cetak</button>
+                <div class="form-group">
+                    <label for="order">Urutkan Berdasarkan</label>
+                    <select name="ordere" class="form-control">
+                        <option value="">--Urut--</option>
+                        <option value="tgl_jd">Tanggal Perawatan</option>
+                        <option value="nm_jd">Jadwal</option>
+                        <option value="kd_aset">Kode Aset</option>
+                        <option value="nm_inv">Nama Barang</option>
+                        <option value="vc_n_gugus">Ruang</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
                 </form>
             </div>
     </div>
@@ -41,7 +51,7 @@
         </div>
         <div class="card-body">
             <form action="<?php echo base_url().'report/get_report_blm'?>" method="post">
-                <select name="bln_blm" class="form-control">Bulan
+                <!-- <select name="bln_blm" class="form-control">Bulan
                     <option value="">--Pilih Bulan--</option>
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
@@ -58,7 +68,17 @@
                     <option value="0">Semua</option>
                 </select>
                 <label>Tahun</label>
-                <input type="text" id="th_blm" name="th_blm" class="form-control" placeholder="dd-mm-yyyy">
+                <input type="text" id="th_blm" name="th_blm" class="form-control" placeholder="dd-mm-yyyy"> -->
+                <div class="form-group">
+                    <label for="order">Urutkan Berdasarkan</label>
+                    <select name="ordere" class="form-control">
+                        <option value="">--Urut--</option>
+                        <option value="kd_aset">Kode Aset</option>
+                        <option value="nm_inv">Nama Barang</option>
+                        <option value="vc_n_gugus">Ruang</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
             </form>
         </div>
     </div>
@@ -68,23 +88,27 @@
             </div>
             <div class="card-body">
                 <form action="<?php echo base_url().'report/get_report_gperawatan'?>" method="post">
-                <select name="bulan_jd" class="form-control">Bulan
-                    <option value="">--Pilih Bulan--</option>
-                    <option value="1">Januari</option>
-                    <option value="2">Februari</option>
-                    <option value="3">Maret</option>
-                    <option value="4">April</option>
-                    <option value="5">Mei</option>
-                    <option value="6">Juni</option>
-                    <option value="7">Juli</option>
-                    <option value="8">Agustus</option>
-                    <option value="9">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-                <label>Tahun</label>
-                <input type="text" id="tahun_jd" name="tahun_jd" placeholder="Tahun" class="form-control">
+                <div class="form-group">
+                    <select name="bulan_jd" class="form-control">Bulan
+                        <option value="">--Pilih Bulan--</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tahun</label>
+                    <input type="text" id="tahun_jd" name="tahun_jd" placeholder="Tahun" class="form-control">
+                </div>
                 <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
                 </form>
             </div>

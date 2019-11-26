@@ -294,9 +294,9 @@ class Jadwal extends CI_Controller{
                       ->setCellValue('A1', 'No')
                       ->setCellValue('B1', 'Tanggal Perawatan')
 					  ->setCellValue('C1', 'Kode Aset')
-					  ->setCellValue('D1', 'Nama Barang')
-					  ->setCellValue('E1', 'Nama Pengguna')
-                      ->setCellValue('F1', 'Ruang');
+					  ->setCellValue('D1', 'Ruang')
+					  ->setCellValue('E1', 'Nama Barang')
+                      ->setCellValue('F1', 'Nama Pengguna');
 
           $kolom = 2;
           $nomor = 1;
@@ -306,9 +306,9 @@ class Jadwal extends CI_Controller{
                            ->setCellValue('A' . $kolom, $nomor)
                            ->setCellValue('B' . $kolom, date('d-m-Y', strtotime($row->tgl_jd)))
 						   ->setCellValue('C' . $kolom, $row->kd_aset)
-						   ->setCellValue('D' . $kolom, $row->nm_inv)
-						   ->setCellValue('E' . $kolom, $row->vc_nm_pengguna)
-                           ->setCellValue('F' . $kolom, $row->vc_n_gugus);
+						   ->setCellValue('D' . $kolom, $row->vc_n_gugus)
+						   ->setCellValue('E' . $kolom, $row->nm_inv)
+                           ->setCellValue('F' . $kolom, $row->vc_nm_pengguna);
                $kolom++;
                $nomor++;
 

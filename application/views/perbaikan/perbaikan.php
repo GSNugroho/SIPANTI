@@ -62,7 +62,7 @@
 					<th>Sparepart</th>
 					<!-- <th>Biaya</th> -->
 					<!-- <th>Keterangan</th> -->
-					<th>Action</th>
+					<th style="width:15%;">Action</th>
 				</tr>
 				</thead>
 			</table>

@@ -92,10 +92,9 @@
 							echo '<div class="pesans">'.$this->session->userdata('messages').'</div>';
 						}
 					?>
+					<button class="btn btn-info" id="createJadwal" data-toggle="modal" data-target=".bd-example-modal-lg">Buat Jadwal</button>
+					<a href="<?php echo base_url().'Jadwal/export'?>" class="btn btn-warning">Export Jadwal</a>
 				</div>
-				<button class="btn btn-info" id="createJadwal" data-toggle="modal" data-target=".bd-example-modal-lg">Buat Jadwal</button>
-				<!-- <button class="btn btn-warning" id="exportEx">Export Jadwal</button> -->
-				<a href="<?php echo base_url().'Jadwal/export'?>" class="btn btn-warning">Export Jadwal</a>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -103,7 +102,7 @@
         </div>
         <!-- /.row -->
 		<div class="modal fade bd-example-modal-lg" id="modalJadwal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog1" role="document" style="width:auto;margin-left:50px;margin-right:50px">
+		  <div class="modal-dialog1" role="document" style="width:auto;margin-left:150px;margin-right:150px">
 			<div class="modal-content">
 			<form class="form-horizontal" method="post" action="<?php echo base_url().'jadwal/create_action'?>">
 			
@@ -122,7 +121,7 @@
 							<th>Nama Barang</th>
 							<th>Nama Pengguna</th>
 							<th>Ruang</th>
-							<th>Tanggal</th>
+							<th>Tanggal Perawatan</th>
 						</tr>
 					</thead>
 					<tbody>

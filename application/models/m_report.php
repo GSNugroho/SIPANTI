@@ -7,8 +7,8 @@ class M_report extends CI_Model{
         $this->load->database('default',TRUE);
     }
 
-    function get_data_perawatan($tgl_a, $tgl_s){
-        $this->db->order_by('tgl_jd', 'asc');
+    function get_data_perawatan($tgl_a, $tgl_s, $order){
+        // $this->db->order_by('tgl_jd', 'asc');
         $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
@@ -17,6 +17,7 @@ class M_report extends CI_Model{
         $this->db->where("inv_jadwal.dt_sts = 1");
         // $this->db->where('DAY(inv_jadwal.tgl_jd) <= DAY(inv_jadwal_perawatan.tgl_trs)');
         $this->db->where("tgl_jd BETWEEN '$tgl_a' AND '$tgl_s'");
+        $this->db->order_by("'$order' asc");
         return $this->db->get('inv_jadwal')->result();
     }
 
@@ -140,6 +141,18 @@ class M_report extends CI_Model{
         $this->db->where('inv_pubgugus.vc_k_gugus', $id_ruang);
         $this->db->where("inv_barang.kd_aset != ' '");
         return $this->db->get('inv_barang')->result();
+    }
+
+    function get_report_blm($order){
+        $query = $this->db->query("SELECT kd_inv, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus FROM inv_barang 
+        JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' 
+		AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
+        AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
+        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
+        ORDER BY '".$order."' asc");
+        return $query->result();
     }
 
     

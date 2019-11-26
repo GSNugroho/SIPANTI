@@ -67,7 +67,7 @@
 								<th>Nama Barang</th>
 								<th>Ruang</th>
 								<th>Status Pengerjaan</th>
-								<th>Action</th>
+								<th style="width:15%;">Action</th>
 							</tr>
 							</thead>
 						</table>
