@@ -57,7 +57,7 @@
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
-                                <th>Ruang</th>
+                                <th>Ruang Sebelum</th>
                                 <th>Ruang Mutasi</th>
                                 <th>Status</th>
                                 <th>Kondisi</th>

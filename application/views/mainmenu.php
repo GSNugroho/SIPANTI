@@ -101,11 +101,11 @@
 
     <!-- Komponen -->
 
-    	<li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url('komponen')?>">
+    	<!-- <li class="nav-item">
+      <a class="nav-link" href="<?php //echo base_url('komponen')?>">
         <i class="fas fa-memory"></i>
         <span>Komponen</span></a>
-      </li>
+      </li> -->
 
 	  	<hr class="sidebar-divider">
 	  	<div class="sidebar-heading">

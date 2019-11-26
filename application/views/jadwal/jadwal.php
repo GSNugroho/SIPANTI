@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css')?>"/>
 	<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css')?>">
     <!-- jQuery Version 1.11.1 -->
 	<!-- <script type='text/javascript' src="<?php //echo base_url('assets/js/jquery.js'); ?> "></script> -->
 	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js')?>"></script>
@@ -27,6 +28,7 @@
 	<script type='text/javascript' src="<?php echo base_url('assets/js/fullcalendar.min.js'); ?> "></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/my_js.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/locales-all.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/datatables/jquery.dataTables.js');?>"></script>
 	<!-- Untuk Font-->
 	<link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -92,6 +94,8 @@
 					?>
 				</div>
 				<button class="btn btn-info" id="createJadwal" data-toggle="modal" data-target=".bd-example-modal-lg">Buat Jadwal</button>
+				<!-- <button class="btn btn-warning" id="exportEx">Export Jadwal</button> -->
+				<a href="<?php echo base_url().'Jadwal/export'?>" class="btn btn-warning">Export Jadwal</a>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -108,6 +112,7 @@
 				<h4 class="modal-title1" id="myModalLabel">Buat Jadwal Perawatan</h4>
 			  </div>
 			  <div class="modal-body1">
+				<form id="example" class="display" style="width:100%">
 				<table class="table table-bordered" id="myTable">
 					<thead>
 						<tr>
@@ -127,12 +132,12 @@
 									$no = $i+1;
 									echo "<tr>
 									<td>".$no."</td>
-									<td><input type='text' class='form-control' readonly value='".$row->kd_inv."'></td>
-									<td><input type='text' class='form-control' readonly value='".$row->kd_aset."'></td>
-									<td><input type='text' class='form-control' readonly value='".$row->nm_inv."'</td>
-									<td><input type='text' class='form-control' readonly value='".$row->vc_nm_pengguna."'</td>
-									<td><input type='text' class='form-control' readonly value='".$row->vc_n_gugus."'</td>
-									<td><input class='form-control' type='text' name='tgl_jadwal".$i."' id='tgl_jadwal".$i."' placeholder='dd-mm-yyyy'></td>
+									<td>".$row->kd_inv."<input type='hidden' name='kd_inv".$i."' class='form-control' readonly value='".$row->kd_inv."'></td>
+									<td>".$row->kd_aset."<input type='hidden' name='kd_aset".$i."' class='form-control' readonly value='".$row->kd_aset."'></td>
+									<td>".$row->nm_inv."<input type='hidden' name='nm_inv".$i."' class='form-control' readonly value='".$row->nm_inv."'</td>
+									<td>".$row->vc_nm_pengguna."<input type='hidden' name='nm_pengguna".$i."' class='form-control' readonly value='".$row->vc_nm_pengguna."'</td>
+									<td>".$row->vc_n_gugus."<input type='hidden' name='nm_ruang".$i."' class='form-control' readonly value='".$row->vc_n_gugus."'</td>
+									<td><input type='date' name='tgl_jadwal".$i."' class='form-control' placeholder='dd-mm-yyyy'></td>
 									</tr>";
 									$i++;
 								}
@@ -140,6 +145,7 @@
 							?>
 					</tbody>
 				</table>
+				</form>
 			  </div>
 			  <div class="modal-footer1">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -147,52 +153,78 @@
 			  </div>
 			</form>
 			<script>
+				$(document).ready(function() {
+				var table = $('#myTable').DataTable({
+					columnDefs: [{
+						orderable: false,
+						targets: [6]
+					}]
+				});
+				$('#simpan').click( function() {
+					var data = table.$('input, select').serialize();
+					// alert(
+					// 	"The following data would have been submitted to the server: \n\n"+
+					// 	data.substr( 0, 5000 )
+					// );
+					$.ajax({
+						type: "post",
+						// dataType: "json",
+						url: "<?php echo base_url().'jadwal/create_action2'?>",
+						data: data,
+						success: function(){
+							// console.log('hore');
+							$('#modalJadwal').modal('hide');
+							window.location = "<?php base_url('Jadwal')?>";
+							// $('#calendar').fullCalendar( 'refetchEvents' );
+						}
+					})
+					return false;
+				} );
+				});
+
+
 				$(function() {
-					<?php
-						$i = 0;
-						foreach($prio_jadwal as $row){
-							?>
-							$('#tgl_jadwal<?php echo $i;?>').datetimepicker({locale:'id', format:'DD-MM-YYYY'});
-					<?php
-							$i++;
-						}
-					?>
-					
+					$('.datepicker').datetimepicker({locale:'id', format:'DD-MM-YYYY'});
 				});
 
-				$('#simpan').click(function() {
-					var jadwal = [[]];
-					var table = document.getElementById('myTable')
-					for (var r = 1, x = 0, n = table.rows.length; r < n; r++) {
-						var ar = r-1;
-						if($('#tgl_jadwal'+ar).val() != ''){
-							for (var c = 1, y=0, m = table.rows[r].cells.length; c < m; c++, y++) {
-								// console.log(table.rows[r].cells[c].innerHTML);
-								jadwal[x][y] = table.rows[r].cells[c].innerHTML;
-							}
-							x++;
-						}
-					}
-					console.log(jadwal);
-				})
+				// $('#simpan').click(function() {
+				// 	var jadwal = [[]];
+				// 	var table = document.getElementById('myTable')
+				// 	for (var r = 1, x = 0, n = table.rows.length; r < n; r++) {
+				// 		var ar = r-1;
+				// 		if($('#tgl_jadwal'+ar).val() != ''){
+				// 			for (var c = 1, y=0, m = table.rows[r].cells.length; c < m; c++, y++) {
+				// 				// console.log(table.rows[r].cells[c].innerHTML);
+				// 				jadwal[x][y] = table.rows[r].cells[c].innerHTML;
+				// 			}
+				// 			x++;
+				// 		}
+				// 	}
+				// 	console.log(jadwal);
+				// })
 
-				var table = document.getElementsByTagName("table")[0];
-				var tbody = table.getElementsByTagName("tbody")[0];
-				$('#tgl_jadwal0').click(function (e) {
-					e = e || window.event;
-					var data = [];
-					var target = e.srcElement || e.target;
-					while (target && target.nodeName !== "TR") {
-						target = target.parentNode;
-					}
-					if (target) {
-						var cells = target.getElementsByTagName("td");
-						for (var i = 0; i < cells.length; i++) {
-							data.push(cells[i].innerHTML);
-						}
-					}
-					alert(data);
-				});
+				// $('#simpan').click(function() {
+				// 	var data = $('#jadwalin').serialize();
+				// 	console.log(data);
+				// })
+
+				// var table = document.getElementsByTagName("table")[0];
+				// var tbody = table.getElementsByTagName("tbody")[0];
+				// $('#tgl_jadwal0').change(function (e) {
+				// 	e = e || window.event;
+				// 	var data = [];
+				// 	var target = e.srcElement || e.target;
+				// 	while (target && target.nodeName !== "TR") {
+				// 		target = target.parentNode;
+				// 	}
+				// 	if (target) {
+				// 		var cells = target.getElementsByTagName("td");
+				// 		for (var i = 0; i < cells.length; i++) {
+				// 			data.push(cells[i].innerHTML);
+				// 		}
+				// 	}
+				// 	alert(data);
+				// });
 			</script>
 			</div>
 		  </div>

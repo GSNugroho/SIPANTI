@@ -3,12 +3,12 @@ class Monitor extends CI_Controller {
 	public function __construct()
 		{
 			parent::__construct();
-			if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
+			// if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
 			$this->load->model('M_monitor');
 			$this->load->library('form_validation');
-			}else {
-				echo redirect(base_url('../'));
-			}
+			// }else {
+			// 	echo redirect(base_url('../'));
+			// }
 	   }
  
 	public function index(){
@@ -497,7 +497,7 @@ class Monitor extends CI_Controller {
 		if($searchValue != ''){
 		$searchQuery = " and (
 		nm_inv like '%".$searchValue."%' or 
-		kd_brg like '%".$searchValue."%' or 
+		kd_aset like '%".$searchValue."%' or 
 		tgl_terima like '%".$searchValue."%' or 
 		vc_nm_merk like '%".$searchValue."%' or 
 		vc_nm_jenis like'%".$searchValue."%' or
@@ -546,7 +546,7 @@ class Monitor extends CI_Controller {
 		$data[] = array( 
 			// "kd_inv"=>$row->kd_inv,
 			"tgl_terima"=>date('d-m-Y', strtotime($row->tgl_terima)),
-			"kd_brg"=>$row->kd_brg,
+			"kd_aset"=>$row->kd_aset,
 			"nm_inv"=>$row->nm_inv,
 			"vc_nm_merk"=>$row->vc_nm_merk,
 			"vc_nm_jenis"=>$row->vc_nm_jenis,

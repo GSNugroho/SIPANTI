@@ -1,14 +1,20 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+require('./application/third_party/vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Jadwal extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
+        // if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
             $this->load->model('M_jadwal');
             $this->load->model('M_perawatan');
-        }else {
-             echo redirect(base_url('../'));
-        }
+        // }else {
+        //      echo redirect(base_url('../'));
+        // }
     }
 
     public function index(){
@@ -89,6 +95,37 @@ class Jadwal extends CI_Controller{
         $this->M_jadwal->insert($data);
         $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
         redirect(site_url('Jadwal'));
+    }
+
+    public function create_action2(){
+        $warna = '#03e3fc';
+        $dt_sts = 1;
+        $tot = $this->M_jadwal->tot_prio();
+        foreach($tot as $row){
+            $all = $row->total;
+        }
+
+        for($x=0; $x<$all; $x++){
+            if($_POST['tgl_jadwal'.$x] != ''){
+                $kr = $this->input->post('nm_ruang'.$x);
+                $db = $this->M_jadwal->kd_ruang($kr);
+                foreach($db as $row){
+                    $kd_rg = $row->vc_k_gugus;
+                }
+                $data = array(
+                    'tgl_jd' => $this->input->post('tgl_jadwal'.$x, TRUE),
+                    'nm_jd' => $this->input->post('nm_ruang'.$x, TRUE),
+                    'kd_inv' => $this->input->post('kd_inv'.$x, TRUE),
+                    'color' => $warna,
+                    'tgl_jd_selesai' => date('Y-m-d', strtotime('+1 day', strtotime($this->input->post('tgl_jadwal'.$x)))),
+                    'kd_ruang' => $kd_rg,
+                    'kd_jd' => $this->kode(),
+                    'dt_sts' => $dt_sts
+                );
+
+                $this->M_jadwal->insert($data);
+            }
+        }
     }
 
     public function update_action_konten(){    
@@ -238,6 +275,53 @@ class Jadwal extends CI_Controller{
         $char = "JD";
         $kodebaru = $char.sprintf("%06s", $noUrut);
         return $kodebaru;
+    }
+
+    function export_excel(){
+        $data = array( 
+			'title' => 'Jadwal Perawatan Komputer',
+			'isi' => $this->M_jadwal->get_jadwal());
+
+   		$this->load->view('jadwal/jadwal_export',$data);
+    }
+
+    function export(){
+        $data = $this->M_jadwal->get_jadwal();
+
+          $spreadsheet = new Spreadsheet;
+
+          $spreadsheet->setActiveSheetIndex(0)
+                      ->setCellValue('A1', 'No')
+                      ->setCellValue('B1', 'Tanggal Perawatan')
+					  ->setCellValue('C1', 'Kode Aset')
+					  ->setCellValue('D1', 'Nama Barang')
+					  ->setCellValue('E1', 'Nama Pengguna')
+                      ->setCellValue('F1', 'Ruang');
+
+          $kolom = 2;
+          $nomor = 1;
+          foreach($data as $row) {
+
+               $spreadsheet->setActiveSheetIndex(0)
+                           ->setCellValue('A' . $kolom, $nomor)
+                           ->setCellValue('B' . $kolom, date('d-m-Y', strtotime($row->tgl_jd)))
+						   ->setCellValue('C' . $kolom, $row->kd_aset)
+						   ->setCellValue('D' . $kolom, $row->nm_inv)
+						   ->setCellValue('E' . $kolom, $row->vc_nm_pengguna)
+                           ->setCellValue('F' . $kolom, $row->vc_n_gugus);
+               $kolom++;
+               $nomor++;
+
+          }
+
+          $writer = new Xlsx($spreadsheet);
+
+        header('Content-Type: application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="Jadwal_Perawatan.xlsx"');
+		// header('Content-Disposition: attachment;filename="Data_PKS.xls"');
+	  	header('Cache-Control: max-age=0');
+
+	    $writer->save('php://output');
     }
 }
 ?>

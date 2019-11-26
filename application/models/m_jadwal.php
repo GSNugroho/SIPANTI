@@ -64,6 +64,10 @@ class M_jadwal extends CI_Model{
         $query = $this->db->query("SELECT vc_n_gugus FROM inv_pubgugus WHERE vc_k_gugus = '".$nj."'");
         return $query->result();
     }
+    function kd_ruang($kr){
+        $query = $this->db->query("SELECT vc_k_gugus FROM inv_pubgugus WHERE vc_n_gugus = '".$kr."'");
+        return $query->result();
+    }
     function get_kode(){
         $query = $this->db->query('SELECT MAX(kd_jd) AS maxkode FROM inv_jadwal');
         return $query->result();
@@ -113,8 +117,33 @@ class M_jadwal extends CI_Model{
         $query = $this->db->query("SELECT kd_inv, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus FROM inv_barang 
         JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
-        WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
+        WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
+        AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
+        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
         ORDER BY nm_inv asc");
+        return $query->result();
+    }
+
+    function tot_prio(){
+        $query = $this->db->query("SELECT count(*) as total FROM inv_barang 
+        JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
+        AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
+        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
+        ");
+        return $query->result();
+    }
+
+    function get_jadwal(){
+        $query = $this->db->query("SELECT DISTINCT tgl_jd, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus FROM inv_jadwal
+        JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        JOIN inv_pubgugus ON inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
+        WHERE 1=1 AND inv_barang.bt_ti = 1 AND inv_barang.aktif = 1 AND inv_jadwal.dt_sts =1 
+        AND inv_barang.kd_aset != '' AND MONTH(tgl_jd) = MONTH(GETDATE()) AND YEAR(tgl_jd) = YEAR(GETDATE())
+        ");
         return $query->result();
     }
 }

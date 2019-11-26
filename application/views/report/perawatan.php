@@ -36,12 +36,39 @@
             </div>
     </div>
     <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan Yang Belum Dilakukan</h6>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo base_url().'report/get_report_blm'?>" method="post">
+                <select name="bln_blm" class="form-control">Bulan
+                    <option value="">--Pilih Bulan--</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                    <option value="0">Semua</option>
+                </select>
+                <label>Tahun</label>
+                <input type="text" id="th_blm" name="th_blm" class="form-control" placeholder="dd-mm-yyyy">
+            </form>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
             <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Laporan Grafik Perawatan</h6>
             </div>
             <div class="card-body">
                 <form action="<?php echo base_url().'report/get_report_gperawatan'?>" method="post">
-                <select name="bulan_jd">Bulan
+                <select name="bulan_jd" class="form-control">Bulan
                     <option value="">--Pilih Bulan--</option>
                     <option value="1">Januari</option>
                     <option value="2">Februari</option>
@@ -56,7 +83,8 @@
                     <option value="11">November</option>
                     <option value="12">Desember</option>
                 </select>
-                <input type="text" name="tahun_jd" placeholder="Tahun">
+                <label>Tahun</label>
+                <input type="text" id="tahun_jd" name="tahun_jd" placeholder="Tahun" class="form-control">
                 <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
                 </form>
             </div>
@@ -98,12 +126,20 @@
     <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>    
     <script>
         $(function() { 
-  	    $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+  	        $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });
 
 	    $(function() { 
-  	    $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+  	        $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });
+
+        $(function() {
+            $('#th_blm').datetimepicker({locale:'id', format:"YYYY"});
+        });
+
+        $(function() {
+            $('#tahun_jd').datetimepicker({locale:'id', format:"YYYY"});
+        });
     </script>
 </body>
 </html>

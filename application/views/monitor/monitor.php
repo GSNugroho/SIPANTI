@@ -54,7 +54,7 @@
 								<!-- <th>No</th> -->
 								<!-- <th>Kode Inventaris</th> -->
 								<th>Tanggal Terima</th>
-								<th>Kode Barang</th>
+								<th>Kode Aset</th>
 								<th>Nama Barang</th>
 								<th>Merk</th>
 								<th>Jenis Barang</th>
@@ -131,7 +131,7 @@
          //{ data: 'no' },
         //  { data: 'kd_inv' },
          { data: 'tgl_terima' },
-		 { data: 'kd_brg'},
+		 { data: 'kd_aset'},
          { data: 'nm_inv' },
          { data: 'vc_nm_merk' },
          { data: 'vc_nm_jenis' },
