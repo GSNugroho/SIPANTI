@@ -111,5 +111,22 @@ class M_perbaikan extends CI_Model{
         order by '.$columnName.' '.$columnSortOrder);
         return $query->result();
     }
+
+    function get_brg(){
+        $query = $this->db->query("SELECT inv_barang.kd_inv as kd_inv, kd_aset, nm_inv, vc_nm_pengguna, tgl_jd, id_ruang, vc_n_gugus FROM inv_barang 
+        JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        LEFT JOIN inv_jadwal ON inv_barang.kd_inv = inv_jadwal.kd_inv
+        WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
+        AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
+        ORDER BY nm_inv asc");
+        return $query->result();
+    }
+
+    function riwayat($id){
+        $query = $this->db->query("SELECT kd_pr, tgl_inv_pr, sp_gt, kd_ruang, vc_n_gugus FROM inv_perbaikan 
+        JOIN inv_pubgugus ON inv_perbaikan.kd_ruang	= inv_pubgugus.vc_k_gugus WHERE kd_inv_pr = '".$id."'");
+        return $query->result();
+    }
 }
 ?>

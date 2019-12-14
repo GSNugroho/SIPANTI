@@ -2271,7 +2271,7 @@ class Perawatan extends CI_Controller{
             else if($row->wtm == null){
                 date_default_timezone_set("Asia/Jakarta");
                 $data = array(
-                    'wtm' => date('h:i:s')
+                    'wtm' => date('H:i:s')
                 );
                 $this->M_perawatan->update_waktu($id, $data);
                 $this->session->set_flashdata('message', 'Waktu Mulai Perawatan Sudah Di Set');
@@ -2280,7 +2280,7 @@ class Perawatan extends CI_Controller{
             else if($row->wts == null){
                 date_default_timezone_set("Asia/Jakarta");
                 $data = array(
-                    'wts' => date('h:i:s')
+                    'wts' => date('H:i:s')
                 );
                 $this->M_perawatan->update_waktu($id, $data);
                 $this->session->set_flashdata('message', 'Waktu Selesai Perawatan Sudah Di Set');
@@ -2316,11 +2316,17 @@ class Perawatan extends CI_Controller{
 		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
 		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
 		$searchValue = $_POST['search']['value']; // Search value
-
+        $searchByAwal = $_POST['searchByAwal'];
+        $searchByAkhir = $_POST['searchByAkhir'];
 		## Search 
-		$searchQuery = " ";
+        $searchQuery = " ";
+        if(($searchByAwal != '') && ($searchByAkhir != '')){
+            $searchByAwal = date('Y-m-d', strtotime($searchByAwal));
+            $searchByAkhir = date('Y-m-d', strtotime(($searchByAkhir)));
+            $searchQuery .= " AND (tgl_jd BETWEEN '".$searchByAwal."' AND '".$searchByAkhir."' ) ";
+        }
 		if($searchValue != ''){
-		$searchQuery = " and (inv_jadwal.tgl_jd like '%".$searchValue."%' or 
+		$searchQuery .= " AND (inv_jadwal.tgl_jd like '%".$searchValue."%' or 
 		inv_jadwal.tgl_jd_selesai like '%".$searchValue."%' or 
 		inv_barang.kd_aset like '%".$searchValue."%' or 
 		inv_jadwal.nm_jd like'%".$searchValue."%' or

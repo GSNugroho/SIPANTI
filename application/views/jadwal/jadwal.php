@@ -120,6 +120,7 @@
 							<th>Kode Aset</th>
 							<th>Nama Barang</th>
 							<th>Nama Pengguna</th>
+							<th>Terakhir Perawatan</th>
 							<th>Ruang</th>
 							<th>Tanggal Perawatan</th>
 						</tr>
@@ -129,12 +130,18 @@
 								$i = 0;
 								foreach($prio_jadwal as $row){
 									$no = $i+1;
+									if($row->tgl_jd != 0){
+										$tgl = date('d-m-Y', strtotime($row->tgl_jd));
+									}else{
+										$tgl = '';
+									}
 									echo "<tr>
 									<td>".$no."</td>
 									<td>".$row->kd_inv."<input type='hidden' name='kd_inv".$i."' class='form-control' readonly value='".$row->kd_inv."'></td>
 									<td>".$row->kd_aset."<input type='hidden' name='kd_aset".$i."' class='form-control' readonly value='".$row->kd_aset."'></td>
 									<td>".$row->nm_inv."<input type='hidden' name='nm_inv".$i."' class='form-control' readonly value='".$row->nm_inv."'</td>
 									<td>".$row->vc_nm_pengguna."<input type='hidden' name='nm_pengguna".$i."' class='form-control' readonly value='".$row->vc_nm_pengguna."'</td>
+									<td>".$tgl."</td>
 									<td>".$row->vc_n_gugus."<input type='hidden' name='nm_ruang".$i."' class='form-control' readonly value='".$row->vc_n_gugus."'</td>
 									<td><input type='date' name='tgl_jadwal".$i."' class='form-control' placeholder='dd-mm-yyyy'></td>
 									</tr>";

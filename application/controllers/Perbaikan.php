@@ -21,7 +21,7 @@ class Perbaikan extends CI_Controller{
         $data = array(
             'dd_gr' => $this->M_perbaikan->get_ruang(),
             'gki' => $this->M_perbaikan->get_kdinv(),
-            
+            'get_barang' => $this->M_perbaikan->get_brg()
         );
         $this->load->view('perbaikan/perbaikan_form', $data);
     }
@@ -291,5 +291,19 @@ class Perbaikan extends CI_Controller{
 
 		echo json_encode($response);
     }
+
+    function riwayat(){
+        $id = $this->input->get('id', TRUE);
+
+        $data = $this->M_perbaikan->riwayat($id);
+        $trHtml = '';
+        foreach($data as $row){
+            $trHtml .= '<tr>
+                            <td>'.date('d-m-Y', strtotime($row->tgl_inv_pr)).'</td>
+                            <td>'.$row->sp_gt.'</td>
+                        </tr>';
+        }
+        echo $trHtml;
+        return $trHtml;
+    }
 }
-?>

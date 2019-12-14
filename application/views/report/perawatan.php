@@ -14,7 +14,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
             </div>
             <div class="card-body">
-                <form action="<?php echo base_url().'report/get_report_perawatanm'?>" method="post">
+                <form action="<?php echo base_url().'report/get_report_pra'?>" method="post">
                 <div class="form-group">
                 <label for="tgl_jd">Tanggal Awal</label>
                     <!-- <div class="input-group date" id="tgl1"> -->

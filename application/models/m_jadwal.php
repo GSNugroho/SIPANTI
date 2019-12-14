@@ -114,12 +114,15 @@ class M_jadwal extends CI_Model{
     }
 
     function prio_jadwal(){
-        $query = $this->db->query("SELECT kd_inv, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus FROM inv_barang 
+        $query = $this->db->query("SELECT inv_barang.kd_inv as kd_inv, kd_aset, nm_inv, vc_nm_pengguna, tgl_jd, vc_n_gugus FROM inv_barang 
         JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        LEFT JOIN inv_jadwal ON inv_barang.kd_inv = inv_jadwal.kd_inv
         WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
         AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
-        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
+        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE inv_jadwal.dt_sts = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
         ORDER BY nm_inv asc");
         return $query->result();
     }
@@ -130,7 +133,9 @@ class M_jadwal extends CI_Model{
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
         WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
         AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
-        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
+        AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE inv_jadwal.dt_sts = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
         ");
         return $query->result();
     }

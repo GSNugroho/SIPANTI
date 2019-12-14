@@ -115,7 +115,7 @@ class M_perawatan extends CI_Model{
     }
 
     function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
-        $query = $this->db->query("select TOP ".$rowperpage." * from inv_jadwal
+        $query = $this->db->query("SELECT TOP ".$rowperpage." * from inv_jadwal
         join inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         join inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
         join inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus

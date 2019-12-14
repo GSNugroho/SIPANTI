@@ -149,7 +149,7 @@ class Jadwal extends CI_Controller{
                 if($row->wtm == null){
                     date_default_timezone_set("Asia/Jakarta");
                     $data = array(
-                        'wtm' => date('h:i:s')
+                        'wtm' => date('H:i:s')
                     );
                     $this->M_perawatan->update_waktu($id, $data);
                     $this->session->set_flashdata('message', 'Waktu Mulai Perawatan Sudah Di Set');
@@ -157,7 +157,7 @@ class Jadwal extends CI_Controller{
                 }else if($row->wts == null){
                     date_default_timezone_set("Asia/Jakarta");
                     $data = array(
-                        'wts' => date('h:i:s')
+                        'wts' => date('H:i:s')
                     );
                     $this->M_perawatan->update_waktu($id, $data);
                     $this->session->set_flashdata('message', 'Waktu Selesai Perawatan Sudah Di Set');
@@ -237,7 +237,7 @@ class Jadwal extends CI_Controller{
 
         if($row){
             $this->M_monitor->delete($id);
-            $this->session_flashdata('messages', 'Hapus Jadwal Berhasil');
+            $this->session->flashdata('messages', 'Hapus Jadwal Berhasil');
         }else {
             $this->session->set_flashdata('messages', 'Jadwal Tidak Ditemukan');
 			redirect(base_url('Jadwal'));
