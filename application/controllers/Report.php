@@ -1246,7 +1246,7 @@ class Report extends CI_Controller{
                     if($total!=0){
                     $persentase = ($kondisi/$total)*100;
                     $spreadsheet->setActiveSheetIndex(0)
-                    ->setCellValue('H'.$kolom, $persentase);
+                                ->setCellValue('H'.$kolom, $persentase.'%');
                     }
                     else{
                     $spreadsheet->setActiveSheetIndex(0)

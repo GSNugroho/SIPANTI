@@ -44,6 +44,7 @@ class Dashboard extends CI_Controller {
 					'grafik_cpr_ss' => $this->M_dashboard->get_capaian_perawatanth_ss(),
 					'grafik_cpr_tlt' => $this->M_dashboard->get_capaian_perawatanth_tlt(),
 					'grafik_cpr_bs' => $this->M_dashboard->get_capaian_perawatanth_bs(),
+					'grafik_cpr_lc' => $this->M_dashboard->get_capaian_perawatanth_lc(),
 					'grafik_prb' => $this->M_dashboard->get_total_perbaikanth(),
 					'grafik_tlt' => $this->M_dashboard->get_total_telatth(),
 					'progres_tvc' => $tvc
