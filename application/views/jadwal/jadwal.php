@@ -35,10 +35,10 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/dist/jquery-editable-select.css')?>">
 	<script type="text/javascript" src="<?php echo base_url('assets/dist/jquery-editable-select.js');?>"></script>
 	<style>
-    body {
-        /* padding-top: 70px; */
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
+    /* body {
+        padding-top: 70px;
+        Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes.
+    } */
 	#calendar 
 	{
 		max-width: 800px;
@@ -93,7 +93,8 @@
 						}
 					?>
 					<button class="btn btn-info" id="createJadwal" data-toggle="modal" data-target=".bd-example-modal-lg">Buat Jadwal</button>
-					<a href="<?php echo base_url().'Jadwal/export'?>" class="btn btn-warning">Export Jadwal</a>
+					<!-- <a href="<?php //echo base_url().'Jadwal/export'?>" class="btn btn-warning">Export Jadwal</a> -->
+					<button class="btn btn-warning" name="export" id="exportX" onclick="bulan()">Export Jadwal</button>
 				</div>
                 <div id="calendar" class="col-centered">
                 </div>
@@ -564,6 +565,25 @@
 	
 	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
     setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
+
+	function bulan(){
+		var bln = $("#calendar").fullCalendar('getDate').month();
+		var bb = parseInt(bln)+1;
+		dataString = 'bb='+bb;
+		console.log(dataString);
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url().'Jadwal/export/'?>'+bb,
+			data: dataString,
+			success: function(){
+				console.log('sukses');
+				window.open('<?php echo base_url().'Jadwal/export/'?>'+bb,'_blank' );
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	}
 </script>
 
 <footer class="sticky-footer bg-white">

@@ -285,8 +285,10 @@ class Jadwal extends CI_Controller{
    		$this->load->view('jadwal/jadwal_export',$data);
     }
 
-    function export(){
-        $data = $this->M_jadwal->get_jadwal();
+    function export($bb){
+        // $bulan = $_POST['bb'];
+        $bulan = $bb;
+        $data = $this->M_jadwal->get_jadwal($bulan);
 
           $spreadsheet = new Spreadsheet;
 
@@ -316,8 +318,14 @@ class Jadwal extends CI_Controller{
 
           $writer = new Xlsx($spreadsheet);
 
+        // header("Pragma: public");
+        // header("Expires: 0");
+        // header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header('Content-Type: application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment;filename="Jadwal_Perawatan.xlsx"');
+        header("Content-Type: application/force-download");
+        // header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+		header('Content-Disposition: attachment;filename="Jadwal_Perawatan.xls"');
 		// header('Content-Disposition: attachment;filename="Data_PKS.xls"');
 	  	header('Cache-Control: max-age=0');
 

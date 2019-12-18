@@ -1262,6 +1262,7 @@ class Report extends CI_Controller{
 		// header('Content-Disposition: attachment;filename="Data_PKS.xls"');
 	  	header('Cache-Control: max-age=0');
 
+        // $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 	    $writer->save('php://output');
 }
 

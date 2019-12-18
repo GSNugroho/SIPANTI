@@ -140,14 +140,14 @@ class M_jadwal extends CI_Model{
         return $query->result();
     }
 
-    function get_jadwal(){
+    function get_jadwal($bulan){
         $query = $this->db->query("SELECT DISTINCT tgl_jd, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus FROM inv_jadwal
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
         JOIN inv_pubgugus ON inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
         WHERE 1=1 AND inv_barang.bt_ti = 1 AND inv_barang.aktif = 1 AND inv_jadwal.dt_sts =1 
-        AND inv_barang.kd_aset != '' AND MONTH(tgl_jd) = MONTH(GETDATE()) AND YEAR(tgl_jd) = YEAR(GETDATE())
+        AND inv_barang.kd_aset != '' AND MONTH(tgl_jd) = '".$bulan."' AND YEAR(tgl_jd) = YEAR(GETDATE())
         ");
         return $query->result();
     }
