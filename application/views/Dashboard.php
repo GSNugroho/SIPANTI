@@ -260,11 +260,11 @@ $this->load->view('mainmenu');
                 <th>No</th>
                 <th>Tanggal Perawatan</th>
                 <th>Nama Jadwal</th>
-                <th>Kode Inventaris</th>
+                <th>Kode Aset</th>
                 <th>Nama Barang</th>
                 <th>Ruang</th>
                 <th>Status Pengerjaan</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
@@ -275,9 +275,9 @@ $this->load->view('mainmenu');
                 ?>
                 <tr>
                   <td><?php echo $no++ ?></td>
-                  <td><?php echo date('d-M-Y', strtotime($ib->tgl_jd)); ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($ib->tgl_jd)); ?></td>
                   <td><?php echo $ib->nm_jd ?></td>
-                  <td><?php echo $ib->kd_inv ?></td>
+                  <td><?php echo $ib->kd_aset ?></td>
                   <td><?php echo $ib->nm_inv ?></td>
                   <td><?php echo $ib->vc_n_gugus ?></td>
                   <td><?php $data = $ib->status_p;
@@ -289,10 +289,10 @@ $this->load->view('mainmenu');
                           echo "Sudah Selesai Dikerjakan";
                         }
                         ?></td>
-                  <td>
-                    <?php echo anchor('perawatan/update_k/' . $ib->kd_jd, 'Edit'); ?>
-                    <?php echo anchor('perawatan/delete/' . $ib->kd_jd, 'Hapus'); ?>
-                  </td>
+                  <!-- <td> -->
+                    <?php //echo anchor('perawatan/update_k/' . $ib->kd_jd, 'Edit'); ?>
+                    <?php //echo anchor('perawatan/delete/' . $ib->kd_jd, 'Hapus'); ?>
+                  <!-- </td> -->
                 </tr>
               <?php } ?>
             </tbody>
@@ -320,6 +320,100 @@ $this->load->view('mainmenu');
   </div>
 </div>
 <!-- /.container-fluid -->
+<div class="row">
+  <div class="col-lg-12 mb-4">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Kegiatan Perawatan Yang Dilakukan Hari Ini</h6>
+      </div>
+      <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" title="Perawatan">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Tanggal Kegiatan</th>
+                <th>Tanggal Jadwal</th>
+                <th>Nama Jadwal</th>
+                <th>Kode Aset</th>
+                <th>Nama Barang</th>
+                <th>Ruang</th>
+                <!-- <th>Status Pengerjaan</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 1;
+              foreach ($keg_hr_pr as $ib) {
+                ?>
+                <tr>
+                  <td><?php echo $no++ ?></td>
+                  <td><?php echo date('d-m-Y'); ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($ib->tgl_jd));?></td>
+                  <td><?php echo $ib->nm_jd ?></td>
+                  <td><?php echo $ib->kd_aset ?></td>
+                  <td><?php echo $ib->nm_inv ?></td>
+                  <td><?php echo $ib->vc_n_gugus ?></td>
+                  <!-- <td><?php //$data = $ib->status_p;
+                        // if ($data == '1') {
+                        //   echo "Belum Dikerjakan";
+                        // } else if ($data == '2') {
+                        //   echo "Sedang Dikerjakan";
+                        // } else {
+                        //   echo "Sudah Selesai Dikerjakan";
+                        // }
+                        ?></td> -->
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 mb-4">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Kegiatan Perbaikan Yang Dilakukan Hari Ini</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" title="Perbaikan">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Tanggal Kegiatan</th>
+                <th>Kode Aset</th>
+                <th>Nama Barang</th>
+                <th>Sparepart</th>
+                <th>Ruang</th>
+                <th>Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 1;
+              foreach ($keg_hr_pw as $ib) {
+                ?>
+                <tr>
+                  <td><?php echo $no++ ?></td>
+                  <td><?php echo date('d-m-Y'); ?></td>
+                  <td><?php echo $ib->kd_aset ?></td>
+                  <td><?php echo $ib->nm_inv ?></td>
+                  <td><?php echo $ib->sp_gt ?></td>
+                  <td><?php echo $ib->vc_n_gugus ?></td>
+                  <td><?php echo $ib->ket_pr ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 <!-- End of Main Content -->

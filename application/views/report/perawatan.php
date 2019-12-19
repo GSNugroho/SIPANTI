@@ -10,40 +10,58 @@
 	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
 
     <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
+        <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo base_url().'report/get_report_perawatanm'?>" method="post">
+            <div class="form-group">
+            <label for="tgl_jd">Tanggal Awal</label>
+                <!-- <div class="input-group date" id="tgl1"> -->
+			        <input class="form-control" type="text" name="tgl_jd" id="tgl1" placeholder="dd-mm-yyyy">
+			        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                </div> -->
             </div>
-            <div class="card-body">
-                <form action="<?php echo base_url().'report/get_report_pra'?>" method="post">
+            <!-- <input type="date" name="tgl_jd_s">Tanggal Akhir -->
+            <div class="form-group">
+            <label for="tgl_jd_s">Tanggal Akhir</label>
+                <!-- <div class="input-group date" id="tgl2"> -->
+			        <input class="form-control" type="text" name="tgl_jd_s" id="tgl2" placeholder="dd-mm-yyyy">
+			        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="order">Urutkan Berdasarkan</label>
+                <select name="ordere" class="form-control">
+                    <option value="">--Urut--</option>
+                    <option value="tgl_jd">Tanggal Perawatan</option>
+                    <option value="nm_jd">Jadwal</option>
+                    <option value="kd_aset">Kode Aset</option>
+                    <option value="nm_inv">Nama Barang</option>
+                    <option value="vc_n_gugus">Ruang</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
+            </form>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Capaian Target Bulanan</h6>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo base_url().'report/get_report_capaian'?>" method="post">
                 <div class="form-group">
-                <label for="tgl_jd">Tanggal Awal</label>
-                    <!-- <div class="input-group date" id="tgl1"> -->
-				        <input class="form-control" type="text" name="tgl_jd" id="tgl1" placeholder="dd-mm-yyyy">
-				        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-                    </div> -->
+                    <label for="tgl1_cp">Tanggal Awal</label>
+                    <input class="form-control" type="text" name="tgl1_cp" id="tgl1_cp" placeholder="dd-mm-yyyy">
                 </div>
-                <!-- <input type="date" name="tgl_jd_s">Tanggal Akhir -->
                 <div class="form-group">
-                <label for="tgl_jd_s">Tanggal Akhir</label>
-                    <!-- <div class="input-group date" id="tgl2"> -->
-				        <input class="form-control" type="text" name="tgl_jd_s" id="tgl2" placeholder="dd-mm-yyyy">
-				        <!-- <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-                    </div> -->
-                </div>
-                <div class="form-group">
-                    <label for="order">Urutkan Berdasarkan</label>
-                    <select name="ordere" class="form-control">
-                        <option value="">--Urut--</option>
-                        <option value="tgl_jd">Tanggal Perawatan</option>
-                        <option value="nm_jd">Jadwal</option>
-                        <option value="kd_aset">Kode Aset</option>
-                        <option value="nm_inv">Nama Barang</option>
-                        <option value="vc_n_gugus">Ruang</option>
-                    </select>
+                    <label for="tgl2_cp">Tanggal Akhir</label>
+                    <input class="form-control" type="text" name="tgl2_cp" id="tgl2_cp" placeholder="dd-mm-yyyy">
                 </div>
                 <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
-                </form>
-            </div>
+            </form>
+        </div>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -155,6 +173,14 @@
 
 	    $(function() { 
   	        $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+
+	    $(function() { 
+  	        $('#tgl1_cp').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+
+	    $(function() { 
+  	        $('#tgl2_cp').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });
 
         $(function() {

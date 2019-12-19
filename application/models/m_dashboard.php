@@ -53,7 +53,7 @@ class M_dashboard extends CI_Model{
          $this->db->select('COUNT(*) as total');
          $this->db->join('inv_jadwal_perawatan', 'inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal');
          $this->db->where('inv_jadwal.dt_sts = 1');
-         $this->db->where('DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+         $this->db->where('DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
          and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
          and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
          and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())');
@@ -85,7 +85,7 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT YEAR(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
                 WHERE inv_jadwal.dt_sts = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
-                and DAY(inv_jadwal.tgl_jd) != DAY(inv_jadwal_perawatan.tgl_trs)
+                and DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
                 and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
                 and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
                 GROUP BY YEAR(inv_jadwal.tgl_jd)');
@@ -148,6 +148,23 @@ class M_dashboard extends CI_Model{
                  and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
                  and MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())
                  GROUP BY MONTH(inv_jadwal.tgl_jd)');
+        return $query->result();
+    }
+
+    function get_keg_hr_pr(){
+        $query = $this->db->query("SELECT tgl_jd, nm_jd, kd_aset, nm_inv, vc_n_gugus FROM inv_jadwal 
+        JOIN inv_jadwal_perawatan on inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
+        JOIN inv_barang on inv_jadwal.kd_inv = inv_barang.kd_inv
+        JOIN inv_pubgugus on inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
+        WHERE DAY(inv_jadwal_perawatan.tgl_trs) = DAY(GETDATE()) AND MONTH(inv_jadwal_perawatan.tgl_trs) = MONTH(GETDATE()) AND YEAR(inv_jadwal_perawatan.tgl_trs) = YEAR(GETDATE())");
+        return $query->result();
+    }
+
+    function get_keg_hr_pw(){
+        $query = $this->db->query('SELECT kd_aset, nm_inv, sp_gt, vc_n_gugus, ket_pr FROM inv_perbaikan 
+        JOIN inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        JOIN inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        WHERE DAY(tgl_inv_pr) = DAY(GETDATE()) AND MONTH(tgl_inv_pr) = MONTH(GETDATE()) AND YEAR(tgl_inv_pr) = YEAR(GETDATE())');
         return $query->result();
     }
 }
