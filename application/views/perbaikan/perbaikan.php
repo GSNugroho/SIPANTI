@@ -27,6 +27,8 @@
 		color: white;
 	}
 </style>
+<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css') ?>" />
 		<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Perbaikan</h6>
@@ -46,6 +48,22 @@
    		<span class="text">Tambah Data</span>
 		</a>	  
 		<br>
+		<br>
+		<table style="position: relative;">
+			<tr>
+				<td>
+					<input type="text" class="form-control" name="rtm_waktu" id="tgl1" placeholder="dd-mm-yyyy" />
+				</td>
+				<td>&nbsp;&nbsp;-&nbsp;&nbsp;</td>
+				<td>
+					<input type="text" class="form-control" name="rta_waktu" id="tgl2" placeholder="dd-mm-yyyy" />
+				</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>
+					<button onclick="rtgl()" id="rtgl" class="btn btn-danger">Reset</button>
+				</td>
+			</tr>
+		</table>
 		<br>
 			<div class="table-responsive">
 			<table class="table table-bordered" id="dataBrg" width="100%" cellspacing="0">
@@ -96,7 +114,8 @@
 </a>
 
 
-<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+<!-- <script src="<?php //echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script> -->
+	<script src="<?php echo base_url('assets/datepicker/js/jquery-1.11.3.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -111,10 +130,12 @@
 
 	<!-- Page level custom scripts -->
 	<script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
+	<script src="<?php echo base_url('assets/datepicker/js/moment-with-locales.js') ?>"></script>
+<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js') ?>"></script>
 
 	<script>
 	$(document).ready(function(){
-	   $('#dataBrg').DataTable({
+	   var table = $('#dataBrg').DataTable({
 		language: {
 	"sEmptyTable":	 "Tidak ada data yang tersedia pada tabel ini",
 	"sProcessing":   "Sedang memproses...",
@@ -138,7 +159,14 @@
       'serverSide': true,
       'serverMethod': 'post',
       'ajax': {
-          'url':'<?php echo base_url().'perbaikan/dt_tbl'?>'
+          'url':'<?php echo base_url().'perbaikan/dt_tbl'?>',
+		  'data': function(data) {
+				var awal = $('#tgl1').val();
+				var akhir = $('#tgl2').val();
+
+				data.searchByAwal = awal;
+				data.searchByAkhir = akhir;
+			}
       },
       'columns': [
          //{ data: 'no' },
@@ -155,6 +183,9 @@
 		 { data: 'action'}
       ]
 	});
+	$('#tgl2').on('dp.change', function() {
+			table.draw(true);
+		});
 	});
 	
 	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 0);});
@@ -162,6 +193,16 @@
 	
 	$(document).ready(function(){setTimeout(function(){$(".pesans").fadeIn('slow');}, 0);});
     setTimeout(function(){$(".pesans").fadeOut('slow');}, 3000);
+
+	$('#tgl1').datetimepicker({
+		locale: 'id',
+		format: 'DD-MM-YYYY'
+	});
+
+	$('#tgl2').datetimepicker({
+		locale: 'id',
+		format: 'DD-MM-YYYY'
+	});
 	</script>
 
 	</body>

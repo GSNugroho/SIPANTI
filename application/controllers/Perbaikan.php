@@ -193,12 +193,21 @@ class Perbaikan extends CI_Controller{
 		$columnIndex = $_POST['order'][0]['column']; // Column index
 		$columnName = $_POST['columns'][$columnIndex]['data']; // Column name
 		$columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
-		$searchValue = $_POST['search']['value']; // Search value
+        $searchValue = $_POST['search']['value']; // Search value
+        $searchByAwal = $_POST['searchByAwal'];
+        $searchByAkhir = $_POST['searchByAkhir'];
 
 		## Search 
-		$searchQuery = " ";
+        $searchQuery = " ";
+
+        if(($searchByAwal != '') && ($searchByAkhir != '')){
+            $searchByAwal = date('Y-m-d', strtotime($searchByAwal));
+            $searchByAkhir = date('Y-m-d', strtotime(($searchByAkhir)));
+            $searchQuery .= " AND (tgl_inv_pr BETWEEN '".$searchByAwal."' AND '".$searchByAkhir."' ) ";
+        }
+
 		if($searchValue != ''){
-		$searchQuery = " and (tgl_inv_pr like '%".$searchValue."%' or 
+		$searchQuery .= " and (tgl_inv_pr like '%".$searchValue."%' or 
 		kd_inv like '%".$searchValue."%' or 
 		nm_inv like'%".$searchValue."%' or
 		kd_aset like'%".$searchValue."%' or

@@ -30,7 +30,7 @@ $this->load->view('mainmenu');
 	}
 </style>
 
-<link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap.min.css') ?>">
+<!-- <link rel="stylesheet" href="<?php //echo base_url('assets/datepicker/css/bootstrap.min.css') ?>"> -->
 <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/ilmudetil.css') ?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/datepicker/css/bootstrap-datetimepicker.css') ?>" />
 

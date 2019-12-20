@@ -47,7 +47,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Laporan Capaian Target Bulanan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Capaian Target</h6>
         </div>
         <div class="card-body">
             <form action="<?php echo base_url().'report/get_report_capaian'?>" method="post">
@@ -65,7 +65,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan Yang Belum Dilakukan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan Yang Belum Pernah Dilakukan</h6>
         </div>
         <div class="card-body">
             <form action="<?php echo base_url().'report/get_report_blm'?>" method="post">
