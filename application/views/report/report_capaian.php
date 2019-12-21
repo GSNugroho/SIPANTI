@@ -44,6 +44,7 @@ $hasil = $total-$real;
   <script src="<?php echo base_url('assets/js/html2canvas.js')?>"></script>
   <script src="<?php echo base_url('assets/js/canvasjs.min.js')?>"></script>
   <script src="<?php echo base_url('assets/js/jspAutoTable.js')?>"></script>
+  <script src="<?php echo base_url('assets/js/canvg-min.js')?>"></script>
   <script src="<?php echo base_url('assets/vendor/highchart/highcharts.js')?>"></script>
   <script src="<?php echo base_url('assets/vendor/highchart/export-data.js')?>"></script>
   <!-- <script src="<?php //echo base_url('assets/vendor/highchart/exporting.js')?>"></script> -->
@@ -158,6 +159,7 @@ $hasil = $total-$real;
 </div>
     <button id="export" type="button" class="btn btn-primary">Export PDF</button>
     <button id="exportButton" type="button" class="btn btn-primary">Cetak PDF</button>
+    <button id="btnDownload" type="button" class="btn btn-primary">Print PDF</button>
     <button onclick='print()' type="button" class="btn btn-primary">Download PDF</button>
     </div>
     </div>
@@ -303,7 +305,7 @@ function print()
     var res2 = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
     doc.autoTable(res2.columns, res2.data, {
     startY: doc.lastAutoTable.finalY + 50
-});
+    });
      doc.save("table.pdf");
     }
 
@@ -311,6 +313,78 @@ $('#export').click(function (e) {
 	e.preventDefault();   
     generate();
 });
+
+$("#btnDownload").click(function(){    
+  var doc = new jsPDF('p', 'pt', 'a4');
+      var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
+    doc.autoTable(res.columns, res.data);
+    var res2 = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
+    doc.autoTable(res2.columns, res2.data, {
+    startY: doc.lastAutoTable.finalY + 50
+    });
+    
+    var svg = document.querySelector('svg');    
+    var canvas = document.createElement('canvas');    
+    var canvasIE = document.createElement('canvas');    
+    var context = canvas.getContext('2d');    
+    
+    
+    
+    
+    var data = (new XMLSerializer()).serializeToString(svg);    
+    canvg(canvas, data);    
+    var svgBlob = new Blob([data], {    
+        type: 'image/svg+xml;charset=utf-8'    
+    });    
+    
+    var url = canvas.toDataURL(svgBlob);//DOMURL.createObjectURL(svgBlob);    
+    
+    var img = new Image();    
+    img.onload = function() {    
+        context.canvas.width = $('#chartContainer1').find('svg').width();;    
+        context.canvas.height = $('#chartContainer1').find('svg').height();;    
+        context.drawImage(img, 0, 0);    
+        // freeing up the memory as image is drawn to canvas    
+        //DOMURL.revokeObjectURL(url);    
+    
+        var dataUrl;    
+        if (isIEBrowser()) { // Check of IE browser     
+            var svg = $('#chartContainer1').highcharts().container.innerHTML;    
+            canvg(canvasIE, svg);    
+            dataUrl = canvasIE.toDataURL('image/JPEG');    
+        } else {    
+            dataUrl = canvas.toDataURL('image/jpeg');    
+        }    
+        doc.addImage(dataUrl, 'JPEG', 50, 600); // 365 is top     
+    
+        var bottomContent = document.getElementById("bottom-content");    
+        doc.fromHTML(bottomContent, 15, 365, {   //700 is bottom content top  if you increate this then you should increase above 365    
+            'width': 560 
+        });    
+    
+        setTimeout(function() {    
+            doc.save('HTML-To-PDF-Dvlpby-Bhavdip.pdf');    
+        }, 2000);    
+    };    
+    img.src = url;    
+});    
+
+function isIEBrowser() {    
+    var ieBrowser;    
+    var ua = window.navigator.userAgent;    
+    var msie = ua.indexOf("MSIE ");    
+    
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // Internet Explorer    
+    {    
+        ieBrowser = true;    
+    } else //Other browser    
+    {    
+        console.log('Other Browser');    
+        ieBrowser = false;    
+    }    
+    
+    return ieBrowser;    
+};    
   </script>
  </body>
 </html>
