@@ -201,7 +201,9 @@ class M_report extends CI_Model{
     function get_cpt_t($tgl1, $tgl2){
         $query = $this->db->query("SELECT MONTH(inv_jadwal.tgl_jd) as bulan, COUNT(*) as total from inv_jadwal
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
-        WHERE inv_jadwal.dt_sts = 1 AND inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."'
+		JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
+        WHERE inv_jadwal.dt_sts = 1 AND inv_barang.aktif = 1
+		AND inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."'
         GROUP BY MONTH(inv_jadwal.tgl_jd)");
         return $query->result();
     }
@@ -214,8 +216,6 @@ class M_report extends CI_Model{
         and inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."'
         GROUP BY MONTH(inv_jadwal.tgl_jd)");
         return $query->result();
-    }
-
-    
+    }    
 }
 ?>

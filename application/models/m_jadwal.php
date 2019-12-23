@@ -12,12 +12,12 @@ class M_jadwal extends CI_Model{
     }
 
     function get_data(){
-        $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
-        $this->db->join('aset_barang', 'inv_barang.kd_aset = aset_barang.vc_nm_barang');
-        $this->db->where("(inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL)");
-        $this->db->where('dt_sts = 1');
+        $query = $this->db->query("SELECT * FROM inv_jadwal
+        JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
+        JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
+        WHERE (inv_barang.kd_aset != '' or inv_barang.kd_aset IS NOT NULL) AND dt_sts = 1 AND inv_barang.aktif = 1");
 
-        return $this->db->get('inv_jadwal')->result();
+        return $query->result();
     }
     function insert($data){
         $this->db->insert($this->table, $data);

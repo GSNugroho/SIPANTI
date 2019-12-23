@@ -157,10 +157,10 @@ $hasil = $total-$real;
     </div>
 </div>
 </div>
-    <button id="export" type="button" class="btn btn-primary">Export PDF</button>
-    <button id="exportButton" type="button" class="btn btn-primary">Cetak PDF</button>
+    <!-- <button id="export" type="button" class="btn btn-primary">Export PDF</button> -->
+    <!-- <button id="exportButton" type="button" class="btn btn-primary">Cetak PDF</button> -->
     <button id="btnDownload" type="button" class="btn btn-primary">Print PDF</button>
-    <button onclick='print()' type="button" class="btn btn-primary">Download PDF</button>
+    <!-- <button onclick='print()' type="button" class="btn btn-primary">Download PDF</button> -->
     </div>
     </div>
 
@@ -306,7 +306,7 @@ function print()
     doc.autoTable(res2.columns, res2.data, {
     startY: doc.lastAutoTable.finalY + 50
     });
-     doc.save("table.pdf");
+     doc.save("Laporan Capaian.pdf");
     }
 
 $('#export').click(function (e) {
@@ -314,7 +314,7 @@ $('#export').click(function (e) {
     generate();
 });
 
-$("#btnDownload").click(function(){    
+$("#btnDownload").click(function(){
   var doc = new jsPDF('p', 'pt', 'a4');
       var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
     doc.autoTable(res.columns, res.data);
@@ -327,9 +327,6 @@ $("#btnDownload").click(function(){
     var canvas = document.createElement('canvas');    
     var canvasIE = document.createElement('canvas');    
     var context = canvas.getContext('2d');    
-    
-    
-    
     
     var data = (new XMLSerializer()).serializeToString(svg);    
     canvg(canvas, data);    
@@ -355,7 +352,7 @@ $("#btnDownload").click(function(){
         } else {    
             dataUrl = canvas.toDataURL('image/jpeg');    
         }    
-        doc.addImage(dataUrl, 'JPEG', 50, 600); // 365 is top     
+        doc.addImage(dataUrl, 'JPEG', 50, 500, 700, canvas.height); // 365 is top     
     
         var bottomContent = document.getElementById("bottom-content");    
         doc.fromHTML(bottomContent, 15, 365, {   //700 is bottom content top  if you increate this then you should increase above 365    
@@ -363,7 +360,7 @@ $("#btnDownload").click(function(){
         });    
     
         setTimeout(function() {    
-            doc.save('HTML-To-PDF-Dvlpby-Bhavdip.pdf');    
+            doc.save('Laporan Capaian.pdf');    
         }, 2000);    
     };    
     img.src = url;    
