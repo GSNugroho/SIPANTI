@@ -11,6 +11,30 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Harian Perawatan</h6>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo base_url().'report/get_report_harian'?>" method="post">
+            <div class="form-group">
+            <label for="tgl_jd">Tanggal Kegiatan</label>
+			    <input class="form-control" type="text" name="tgl_keg" id="tgl_keg" placeholder="dd-mm-yyyy">
+            </div>
+            <!-- <div class="form-group">
+                <label for="order">Urutkan Berdasarkan</label>
+                <select name="ordere" class="form-control">
+                    <option value="">--Urut--</option>
+                    <option value="tgl_jd">Tanggal Kegiatan</option>
+                    <option value="kd_aset">Kode Aset</option>
+                    <option value="nm_inv">Nama Barang</option>
+                    <option value="vc_n_gugus">Ruang</option>
+                </select>
+            </div> -->
+            <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
+            </form>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Laporan Perawatan</h6>
         </div>
         <div class="card-body">
@@ -167,6 +191,10 @@
 	<!-- Page level custom scripts -->
     <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>    
     <script>
+        $(function() { 
+  	        $('#tgl_keg').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+
         $(function() { 
   	        $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });

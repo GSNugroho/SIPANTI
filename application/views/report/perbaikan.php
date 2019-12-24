@@ -10,6 +10,30 @@
 	<script src="<?php echo base_url('assets/datepicker/js/bootstrap-datetimepicker.js')?>"></script>
 
     <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Laporan Harian Perbaikan</h6>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo base_url().'report/get_report_prb_harian'?>" method="post">
+            <div class="form-group">
+            <label for="tgl_jd">Tanggal Kegiatan</label>
+			    <input class="form-control" type="text" name="tgl_prb_keg" id="tgl_prb_keg" placeholder="dd-mm-yyyy">
+            </div>
+            <!-- <div class="form-group">
+                <label for="order">Urutkan Berdasarkan</label>
+                <select name="ordere" class="form-control">
+                    <option value="">--Urut--</option>
+                    <option value="tgl_jd">Tanggal Kegiatan</option>
+                    <option value="kd_aset">Kode Aset</option>
+                    <option value="nm_inv">Nama Barang</option>
+                    <option value="vc_n_gugus">Ruang</option>
+                </select>
+            </div> -->
+            <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
+            </form>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
             <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Laporan Perbaikan</h6>
             </div>
@@ -97,6 +121,10 @@
 	<!-- Page level custom scripts -->
     <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
     <script>
+        $(function() { 
+  	    $('#tgl_prb_keg').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+	    });
+
         $(function() { 
   	    $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });

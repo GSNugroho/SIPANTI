@@ -8,13 +8,13 @@ class Report extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        // if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
+        if ((!empty($_SESSION['nmUser'])) && (!empty($_SESSION['unameApp'])) && (!empty($_SESSION['passwrdApp'])) && (!empty($_SESSION['nik'])) /*&& (!empty($_SESSION['gugus']))*/) {
         $this->load->model('M_report');
         // $this->load->library('tcpdf');
         // $this->load->library('pdf');
-        // }else {
-        //     echo redirect(base_url('../'));
-        // }
+        }else {
+            echo redirect(base_url('../'));
+        }
     }
 
     public function index(){
@@ -30,6 +30,55 @@ class Report extends CI_Controller{
         $tgl_s = date('Y-m-d', strtotime($this->input->post('tgl_jd_s')));
         $data['report_p'] = $this->M_report->get_data_perawatan($tgl_a, $tgl_s);
         $this->load->view('report/report_pr', $data);
+    }
+
+    function get_report_harian(){
+        $tgl_keg = date('Y-m-d', strtotime($this->input->post('tgl_keg')));
+
+        $report_keg = $this->M_report->get_data_harian($tgl_keg);
+
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('<html>
+        <head>
+            <style>
+                table{
+                    border-collapse: collapse;
+                }
+                table, th, td{
+                    border: 1px solid black;
+                }
+            </style>
+        </head>
+        <body>
+            <img src = "'.base_url('assets/bootstrap/image/logo_new1.png').'" height="42" weight="42">
+            <h4 align="center">Laporan Harian Perawatan</h4><br><p></p>
+            <p>Tanggal :'.date('d-m-Y', strtotime($tgl_keg)).'</p>
+            <table border="1">
+            <tr>
+            <th align="center" width="5%">No</th>
+            <th align="center">Tanggal Kegiatan</th>
+            <th align="center">Tanggal Jadwal</th>
+            <th align="center">Nama Jadwal</th>
+            <th align="center">Kode Aset</th>
+            <th align="center">Nama Barang</th>
+            <th align="center">Ruang</th>
+        </tr>');
+        $i = 0;
+        foreach($report_keg as $row){
+            $i++;
+            $mpdf->WriteHTML('<tr >
+            <td align="center">'.$i.'</td>
+            <td>'.date('d-m-Y', strtotime($tgl_keg)).'</td>
+            <td>'.date('d-m-Y', strtotime($row->tgl_jd)).'</td>
+            <td>'.$row->nm_jd.'</td>
+            <td>'.$row->kd_aset.'</td>
+            <td>'.$row->nm_inv.'</td>
+            <td>'.$row->vc_n_gugus.'</td></tr>
+            ');
+        }
+        $mpdf->WriteHTML('</table>');
+        $mpdf->Output();
+
     }
 
     function get_report_perawatanm(){
@@ -1318,7 +1367,8 @@ class Report extends CI_Controller{
             'cpr' => $this->M_report->get_cpr($tgl1_cp, $tgl2_cp),
             'cpbr' => $this->M_report->get_cpbr($tgl1_cp, $tgl2_cp),
             'cpt_t' => $this->M_report->get_cpt_t($tgl1_cp, $tgl2_cp),
-            'cpr_t' => $this->M_report->get_cpr_t($tgl1_cp, $tgl2_cp)
+            'cpr_t' => $this->M_report->get_cpr_t($tgl1_cp, $tgl2_cp),
+            'cpbr_t' => $this->M_report->get_cpbr_t($tgl1_cp, $tgl2_cp)
         );
         $this->load->view('report/report_capaian', $data);
     }
@@ -1385,6 +1435,53 @@ class Report extends CI_Controller{
         $tgl_s = $this->input->post('tgl_jd_s', TRUE);
         $data['report_p'] = $this->M_report->get_data_perbaikan($tgl_a, $tgl_s);
         $this->load->view('report/report_prb', $data);
+    }
+
+    function get_report_prb_harian(){
+        $tgl_prbk = date('Y-m-d', strtotime($this->input->post('tgl_prb_keg')));
+
+        $report_prb_hr = $this->M_report->get_data_prb_hr($tgl_prbk);
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('<html>
+        <head>
+            <style>
+                table{
+                    border-collapse: collapse;
+                }
+                table, th, td{
+                    border: 1px solid black;
+                }
+            </style>
+        </head>
+        <body>
+            <img src = "'.base_url('assets/bootstrap/image/logo_new1.png').'" height="42" weight="42">
+            <h4 align="center">Laporan Harian Perbaikan</h4><br><p></p>
+            <p>Tanggal :'.date('d-m-Y', strtotime($tgl_prbk)).'</p>
+            <table border="1">
+            <tr>
+            <th align="center" width="5%">No</th>
+            <th align="center">Tanggal Kegiatan</th>
+            <th align="center">Kode Aset</th>
+            <th align="center">Nama Barang</th>
+            <th align="center">Sparepart</th>
+            <th align="center">Ruang</th>
+            <th align="center">Keterangan</th>
+        </tr>');
+        $i = 0;
+        foreach($report_prb_hr as $row){
+            $i++;
+            $mpdf->WriteHTML('<tr >
+            <td align="center">'.$i.'</td>
+            <td>'.date('d-m-Y', strtotime($tgl_prbk)).'</td>
+            <td>'.$row->kd_aset.'</td>
+            <td>'.$row->nm_inv.'</td>
+            <td>'.$row->sp_gt.'</td>
+            <td>'.$row->vc_n_gugus.'</td></tr>
+            <td>'.$row->ket_pr.'</td>
+            ');
+        }
+        $mpdf->WriteHTML('</table>');
+        $mpdf->Output();
     }
 
     function get_report_perbaikanm(){

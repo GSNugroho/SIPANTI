@@ -2,13 +2,18 @@
   $this->load->view('mainmenu');
   $real = 0;
   $total = 0;
+  $totbr = 0;
 foreach ($cpr_t as $row) {
     $real += $row->total;
 }
 foreach ($cpt_t as $row) {
     $total += $row->total;
 }
+foreach ($cpbr_t as $row) {
+    $totbr += $row->total;
+}
 $hasil = $total-$real;
+$ttl = $totbr+$real;
 ?>
 
 
@@ -61,7 +66,7 @@ $hasil = $total-$real;
     <div id="chartContainer1" style="height: 300px;width: 100%"></div>
   </div>
     <div>
-      <label class="text-primary">Target Perawatan : <?php echo $total;?></label>
+      <label class="text-primary">Target Perawatan : <?php echo $ttl;?></label>
     </div>
     <div>
         <label class="text-primary">Realisasi Perawatan : <?php echo $real;?></label>
@@ -209,7 +214,7 @@ $hasil = $total-$real;
         data: [
             <?php
             echo "{name: 'Realisasi', y: " . $real . "},";
-            echo "{name: 'Belum Direalisasi', y: " . $hasil . "},";
+            echo "{name: 'Belum Direalisasi', y: " . $totbr . "},";
             ?>
         ]
     }]

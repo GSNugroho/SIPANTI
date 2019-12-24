@@ -253,7 +253,7 @@ $this->load->view('mainmenu');
         <h6 class="m-0 font-weight-bold text-primary">Jadwal Perawatan Hari Ini </h6>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive" style="max-height: 200px;">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>

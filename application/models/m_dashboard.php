@@ -49,6 +49,7 @@ class M_dashboard extends CI_Model{
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
         WHERE inv_jadwal.dt_sts = 1 AND inv_barang.aktif = 1
+        AND (inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)
         AND YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())
         AND MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
         return $query->result();
@@ -183,7 +184,7 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT kd_aset, nm_inv, sp_gt, vc_n_gugus, ket_pr FROM inv_perbaikan 
         JOIN inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
         JOIN inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
-        WHERE inv_barang.aktif = 1 AND  DAY(tgl_inv_pr) = DAY(GETDATE()) AND MONTH(tgl_inv_pr) = MONTH(GETDATE()) AND YEAR(tgl_inv_pr) = YEAR(GETDATE())');
+        WHERE inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1 AND DAY(tgl_inv_pr) = DAY(GETDATE()) AND MONTH(tgl_inv_pr) = MONTH(GETDATE()) AND YEAR(tgl_inv_pr) = YEAR(GETDATE())');
         return $query->result();
     }
 }
