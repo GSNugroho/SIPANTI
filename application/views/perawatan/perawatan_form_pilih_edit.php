@@ -276,40 +276,40 @@
                                     }
                                 echo'</tr>';}
             if(!empty($m_audio)){echo '<tr>
-                                    <td></td>
-                                    <td>Audio In</td>';
+                                    <td width="10%"></td>
+                                    <td width="25%">Audio In</td>';
                                     if($kain == '1'){
-                                        echo '<td><input type="radio" name="kain" value="1" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="1" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kain" value="1"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="1"></td>';
                                     }
                                     if($kain == '2'){
-                                        echo '<td><input type="radio" name="kain" value="2" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="2" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kain" value="2"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="2"></td>';
                                     }
                                     if($kain == '3'){
-                                        echo '<td><input type="radio" name="kain" value="3" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="3" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kain" value="3"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kain" value="3"></td>';
                                     }
                                 echo'</tr><tr>
-                                    <td></td>
-                                    <td>Audio Out</td>';
+                                    <td width="10%"></td>
+                                    <td width="25%">Audio Out</td>';
                                     if($kaout == '1'){
-                                        echo '<td><input type="radio" name="kaout" value="1" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="1" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kaout" value="1"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="1"></td>';
                                     }
                                     if($kaout == '2'){
-                                        echo '<td><input type="radio" name="kaout" value="2" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="2" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kaout" value="2"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="2"></td>';
                                     }
                                     if($kaout == '3'){
-                                        echo '<td><input type="radio" name="kaout" value="3" checked></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="3" checked></td>';
                                     }else{
-                                        echo '<td><input type="radio" name="kaout" value="3"></td>';
+                                        echo '<td width="5%"><input type="radio" name="kaout" value="3"></td>';
                                     }
                                 echo'</tr>';}
             if(!empty($m_lan)){echo '<tr>

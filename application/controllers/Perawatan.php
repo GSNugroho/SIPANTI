@@ -691,6 +691,7 @@ class Perawatan extends CI_Controller{
             //'status_p' => $this->input->post('status', TRUE),
             'status_p' => $status,
             'tgl_trs' => date('Y-m-d h:i:s'),
+            'user_in' => $_SESSION['nmUser']
             // 'wtm' => $this->input->post('wtm', TRUE),
             // 'wts' => $this->input->post('wts', TRUE)
         );

@@ -1363,7 +1363,7 @@ class Report extends CI_Controller{
         $tgl2_cp = date('Y-m-d', strtotime($this->input->post('tgl2_cp', TRUE)));
 
         $data = array(
-            'cpt' => $this->M_report->get_cpt($tgl1_cp, $tgl2_cp),
+            // 'cpt' => $this->M_report->get_cpt($tgl1_cp, $tgl2_cp),
             'cpr' => $this->M_report->get_cpr($tgl1_cp, $tgl2_cp),
             'cpbr' => $this->M_report->get_cpbr($tgl1_cp, $tgl2_cp),
             'cpt_t' => $this->M_report->get_cpt_t($tgl1_cp, $tgl2_cp),

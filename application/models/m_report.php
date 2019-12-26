@@ -29,10 +29,7 @@ class M_report extends CI_Model{
         $this->db->group_by('DAY(inv_jadwal.tgl_jd), inv_jadwal_perawatan.wtm, inv_jadwal_perawatan.wts');
         return $this->db->get('inv_jadwal')->result();
     }
-
-    function get_data_pperawatan(){
-
-    }
+    
     function get_data_perbaikan($tgl_a, $tgl_s){
         $this->db->order_by('tgl_inv_pr', 'desc');
         $this->db->join('inv_pubgugus', 'inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus');
@@ -166,7 +163,7 @@ class M_report extends CI_Model{
     }
 
     function get_cpr($tgl1, $tgl2){
-        $query = $this->db->query("SELECT * from inv_jadwal
+        $query = $this->db->query("SELECT tgl_jd, tgl_trs, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus from inv_jadwal
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
         JOIN inv_pubgugus ON inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
@@ -179,7 +176,7 @@ class M_report extends CI_Model{
     }
 
     function get_cpbr($tgl1, $tgl2){
-        $query = $this->db->query("SELECT * from inv_jadwal
+        $query = $this->db->query("SELECT tgl_jd, kd_aset, nm_inv, vc_nm_pengguna, vc_n_gugus from inv_jadwal
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
         JOIN inv_pubgugus ON inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus

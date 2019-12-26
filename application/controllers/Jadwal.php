@@ -89,7 +89,9 @@ class Jadwal extends CI_Controller{
         'tgl_jd_selesai' => $this->input->post('end', TRUE),
         'kd_ruang' => $this->input->post('kd_ruang', TRUE),
         'kd_jd' => $this->kode(),
-        'dt_sts' => $dt_sts
+        'dt_sts' => $dt_sts,
+        'tgl_in' => date('Y-m-d'),
+        'user_in' => $_SESSION['nmUser']
         );
 
         $this->M_jadwal->insert($data);
@@ -120,7 +122,9 @@ class Jadwal extends CI_Controller{
                     'tgl_jd_selesai' => date('Y-m-d', strtotime('+1 day', strtotime($this->input->post('tgl_jadwal'.$x)))),
                     'kd_ruang' => $kd_rg,
                     'kd_jd' => $this->kode(),
-                    'dt_sts' => $dt_sts
+                    'dt_sts' => $dt_sts,
+                    'tgl_in' => date('Y-m-d'),
+                    'user_in' => $_SESSION['nmUser']
                 );
 
                 $this->M_jadwal->insert($data);
@@ -202,7 +206,9 @@ class Jadwal extends CI_Controller{
                     'tgl_jd_selesai' => $tanggals,
                     'kd_ruang' => $ruang,
                     'kd_jd' => $this->kode(),
-                    'dt_sts' => $dt_sts
+                    'dt_sts' => $dt_sts,
+                    'tgl_in' => date('Y-m-d'),
+                    'user_in' => $_SESSION['nmUser']
                 );
                 $this->M_jadwal->insert($data3);
                 $this->M_perawatan->update_v($id, $data);

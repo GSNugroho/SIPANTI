@@ -84,23 +84,23 @@ class M_perbaikan extends CI_Model{
     }
 
     function get_total_dt(){
-        $query = $this->db->query('select count(*) as allcount from inv_perbaikan
-        join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
-        join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1');
+        $query = $this->db->query('SELECT count(*) AS allcount FROM inv_perbaikan
+        JOIN inv_pubgugus ON inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        JOIN inv_barang ON inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        WHERE inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1');
         return $query->result();
     }
 
     function get_total_fl($searchQuery){
-        $query = $this->db->query('select count(*) as allcount from inv_perbaikan
-        join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
-        join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
-        where inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1'.$searchQuery);
+        $query = $this->db->query('SELECT count(*) AS allcount FROM inv_perbaikan
+        JOIN inv_pubgugus ON inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
+        JOIN inv_barang ON inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
+        WHERE inv_barang.aktif = 1 AND inv_perbaikan.dl_sts = 1'.$searchQuery);
         return $query->result();
     }
 
     function get_total_ft($searchQuery, $columnName, $columnSortOrder, $baris, $rowperpage){
-        $query = $this->db->query('select TOP '.$rowperpage.' * from inv_perbaikan
+        $query = $this->db->query('SELECT TOP '.$rowperpage.' * from inv_perbaikan
         join inv_pubgugus on inv_perbaikan.kd_ruang = inv_pubgugus.vc_k_gugus
         join inv_barang on inv_perbaikan.kd_inv_pr = inv_barang.kd_inv
         where inv_barang.aktif = 1 and inv_perbaikan.dl_sts = 1'.$searchQuery.' and inv_perbaikan.kd_pr NOT IN (
@@ -118,7 +118,7 @@ class M_perbaikan extends CI_Model{
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
         LEFT JOIN inv_jadwal ON inv_barang.kd_inv = inv_jadwal.kd_inv
         WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
-        AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
+        AND (inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)
         ORDER BY nm_inv asc");
         return $query->result();
     }
