@@ -122,7 +122,7 @@ class M_jadwal extends CI_Model{
         AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
         AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
-        WHERE inv_jadwal.dt_sts = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
+        WHERE inv_jadwal.dt_sts = 1 AND inv_barang.aktif = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
         ORDER BY nm_inv asc");
         return $query->result();
     }
@@ -135,7 +135,7 @@ class M_jadwal extends CI_Model{
         AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
         AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal JOIN inv_pubgugus ON inv_barang.id_ruang = inv_pubgugus.vc_k_gugus
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
-        WHERE inv_jadwal.dt_sts = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
+        WHERE inv_jadwal.dt_sts = 1 AND inv_barang.aktif = 1 AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL))
         ");
         return $query->result();
     }
@@ -147,7 +147,8 @@ class M_jadwal extends CI_Model{
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
         JOIN inv_pubgugus ON inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus
         WHERE 1=1 AND inv_barang.bt_ti = 1 AND inv_barang.aktif = 1 AND inv_jadwal.dt_sts =1 
-        AND inv_barang.kd_aset != '' AND MONTH(tgl_jd) = '".$bulan."' AND YEAR(tgl_jd) = YEAR(GETDATE())
+        AND (inv_barang.kd_aset != ' ' or inv_barang.kd_aset IS NOT NULL)
+        AND MONTH(tgl_jd) = '".$bulan."' AND YEAR(tgl_jd) = YEAR(GETDATE())
         ");
         return $query->result();
     }

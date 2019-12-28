@@ -66,7 +66,7 @@ class M_mutasi extends CI_Model{
     }
 
     function get_total_dt(){
-        $query = $this->db->query("select count(*) as allcount from inv_mutasi
+        $query = $this->db->query("SELECT count(*) as allcount from inv_mutasi
         left join inv_barang on inv_mutasi.kd_inv_mts = inv_barang.kd_inv
         join inv_pubgugus on inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus
         WHERE 1=1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)");
@@ -74,7 +74,7 @@ class M_mutasi extends CI_Model{
     }
 
     function get_total_fl($searchQuery){
-        $query = $this->db->query("select count(*) as allcount from inv_mutasi 
+        $query = $this->db->query("SELECT count(*) as allcount from inv_mutasi 
         left join inv_barang on inv_mutasi.kd_inv_mts = inv_barang.kd_inv
         join inv_pubgugus on inv_mutasi.id_ruang_mts = inv_pubgugus.vc_k_gugus
         WHERE 1=1 and inv_barang.bt_ti = 1 and (inv_barang.kd_aset != ' ' and inv_barang.kd_aset IS NOT NULL)".$searchQuery);

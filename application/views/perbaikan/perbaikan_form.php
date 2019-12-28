@@ -65,7 +65,7 @@ $this->load->view('mainmenu');
                                     <div class="modal-dialog1" role="document" style="width:auto;margin-left:150px;margin-right:150px">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">Buat Jadwal Perawatan</h4>
+                                                <h4 class="modal-title" id="myModalLabel">Data Inventaris IT</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
@@ -87,11 +87,6 @@ $this->load->view('mainmenu');
                                                         $i = 0;
                                                         foreach ($get_barang as $row) {
                                                             $no = $i + 1;
-                                                            if ($row->tgl_jd != 0) {
-                                                                $tgl = date('d-m-Y', strtotime($row->tgl_jd));
-                                                            } else {
-                                                                $tgl = '';
-                                                            }
                                                             echo "<tr>
                                             <td>" . $no . "</td>
                                             <td>" . $row->kd_inv . "<input type='hidden' name='kd_inv" . $i . "' class='form-control' readonly value='" . $row->kd_inv . "'></td>

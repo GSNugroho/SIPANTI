@@ -14,6 +14,7 @@ class M_dashboard extends CI_Model{
         $this->db->where("inv_jadwal_perawatan.status_p = '1'");
         $this->db->where("inv_jadwal.dt_sts = 1");
         $this->db->where('inv_barang.aktif = 1');
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where("YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())");
         $this->db->where("MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())");
         $this->db->where("DAY(inv_jadwal.tgl_jd) = DAY(GETDATE())");
@@ -27,6 +28,7 @@ class M_dashboard extends CI_Model{
         $this->db->join('inv_barang', 'inv_perbaikan.kd_inv_pr = inv_barang.kd_inv');
         $this->db->where("inv_perbaikan.dl_sts = 1");
         $this->db->where('inv_barang.aktif = 1');
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where('MONTH(inv_perbaikan.tgl_inv_pr) = MONTH(GETDATE())');
         return $this->db->get('inv_perbaikan')->result();
     }
@@ -38,7 +40,7 @@ class M_dashboard extends CI_Model{
         $this->db->join('inv_pubgugus', 'inv_jadwal.kd_ruang = inv_pubgugus.vc_k_gugus');
         $this->db->where("inv_jadwal.dt_sts = 1");
         $this->db->where("inv_barang.aktif = '1'");
-        $this->db->where("inv_barang.kd_aset != ' '");
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where('MONTH(inv_jadwal.tgl_jd) = MONTH(GETDATE())');
         $this->db->where('DAY(inv_jadwal.tgl_jd) = DAY(GETDATE())');
         return $this->db->get('inv_jadwal')->result();
@@ -61,6 +63,7 @@ class M_dashboard extends CI_Model{
          $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
          $this->db->where('inv_jadwal.dt_sts = 1');
          $this->db->where('inv_barang.aktif = 1');
+         $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
          $this->db->where('DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
          and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
          and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
@@ -75,6 +78,7 @@ class M_dashboard extends CI_Model{
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->where("inv_jadwal.dt_sts = 1");
         $this->db->where('inv_barang.aktif = 1');
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where('YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE())');
         $this->db->group_by('MONTH(inv_jadwal.tgl_jd)');
         return $this->db->get('inv_jadwal')->result();
@@ -130,6 +134,7 @@ class M_dashboard extends CI_Model{
         $this->db->select('MONTH(inv_perbaikan.tgl_inv_pr) as bulan, COUNT(*) as total');
         $this->db->join('inv_barang', 'inv_perbaikan.kd_inv_pr = inv_barang.kd_inv');
         $this->db->where('inv_barang.aktif = 1');
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where('YEAR(inv_perbaikan.tgl_inv_pr) = YEAR(GETDATE())');
         $this->db->group_by('MONTH(inv_perbaikan.tgl_inv_pr)');
         return $this->db->get('inv_perbaikan')->result();
@@ -141,6 +146,7 @@ class M_dashboard extends CI_Model{
         $this->db->join('inv_barang', 'inv_jadwal.kd_inv = inv_barang.kd_inv');
         $this->db->where('inv_jadwal.dt_sts = 1');
         $this->db->where('inv_barang.aktif = 1');
+        $this->db->where("(inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)");
         $this->db->where('DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
         and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
         and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)');

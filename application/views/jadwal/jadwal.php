@@ -103,7 +103,7 @@
         </div>
         <!-- /.row -->
 		<div class="modal fade bd-example-modal-lg" id="modalJadwal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog1" role="document" style="width:auto;margin-left:150px;margin-right:150px">
+		  <div class="modal-dialog1" role="document" style="width:auto;margin-left:10%;margin-right:10%">
 			<div class="modal-content">
 			<form class="form-horizontal" method="post" action="<?php echo base_url().'jadwal/create_action'?>">
 			
@@ -121,7 +121,7 @@
 							<th>Kode Aset</th>
 							<th>Nama Barang</th>
 							<th>Nama Pengguna</th>
-							<th>Terakhir Perawatan</th>
+							<!-- <th>Terakhir Perawatan</th> -->
 							<th>Ruang</th>
 							<th>Tanggal Perawatan</th>
 						</tr>
@@ -142,7 +142,7 @@
 									<td>".$row->kd_aset."<input type='hidden' name='kd_aset".$i."' class='form-control' readonly value='".$row->kd_aset."'></td>
 									<td>".$row->nm_inv."<input type='hidden' name='nm_inv".$i."' class='form-control' readonly value='".$row->nm_inv."'</td>
 									<td>".$row->vc_nm_pengguna."<input type='hidden' name='nm_pengguna".$i."' class='form-control' readonly value='".$row->vc_nm_pengguna."'</td>
-									<td>".$tgl."</td>
+									
 									<td>".$row->vc_n_gugus."<input type='hidden' name='nm_ruang".$i."' class='form-control' readonly value='".$row->vc_n_gugus."'</td>
 									<td><input type='date' name='tgl_jadwal".$i."' class='form-control' placeholder='dd-mm-yyyy'></td>
 									</tr>";
