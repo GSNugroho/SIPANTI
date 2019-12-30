@@ -173,7 +173,7 @@ class M_report extends CI_Model{
         AND (inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)
         AND MONTH(inv_jadwal.tgl_jd) <= MONTH(inv_jadwal_perawatan.tgl_trs)
         AND YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
-        AND inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."'");
+        AND inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."' ORDER BY tgl_jd asc");
         return $query->result();
     }
 
@@ -196,7 +196,7 @@ class M_report extends CI_Model{
         AND MONTH(inv_jadwal.tgl_jd) <= MONTH(inv_jadwal_perawatan.tgl_trs)
         AND YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
 		AND inv_jadwal.tgl_jd BETWEEN '".$tgl1."' AND '".$tgl2."'
-        )");
+        ) ORDER BY tgl_jd asc");
         return $query->result();
     }
 

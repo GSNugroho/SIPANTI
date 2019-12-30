@@ -14,8 +14,6 @@
     $datarata[] = $row->total;
   }
 ?>
-
-
   <style>
       table{
         border-collapse: collapse;
