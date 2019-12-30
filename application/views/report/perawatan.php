@@ -57,8 +57,8 @@
             <div class="form-group">
                 <label for="order">Urutkan Berdasarkan</label>
                 <select name="ordere" class="form-control">
-                    <option value="">--Urut--</option>
-                    <option value="tgl_jd">Tanggal Perawatan</option>
+                    <!-- <option value="">--Urut--</option> -->
+                    <option value="tgl_jd">Tanggal Jadwal</option>
                     <option value="nm_jd">Jadwal</option>
                     <option value="kd_aset">Kode Aset</option>
                     <option value="nm_inv">Nama Barang</option>
@@ -82,6 +82,16 @@
                 <div class="form-group">
                     <label for="tgl2_cp">Tanggal Akhir</label>
                     <input class="form-control" type="text" name="tgl2_cp" id="tgl2_cp" placeholder="dd-mm-yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="urutkan">Urutkan Berdasarkan</label>
+                    <select name="uurutkan" class="form-control">
+                        <option value="tgl_jd">Tanggal Jadwal</option>
+                        <option value="nm_jd">Jadwal</option>
+                        <option value="kd_aset">Kode Aset</option>
+                        <option value="nm_inv">Nama Barang</option>
+                        <option value="vc_n_gugus">Ruang</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
             </form>
