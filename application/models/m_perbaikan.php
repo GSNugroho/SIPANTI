@@ -123,7 +123,7 @@ class M_perbaikan extends CI_Model{
     }
 
     function riwayat($id){
-        $query = $this->db->query("SELECT kd_pr, tgl_inv_pr, sp_gt, kd_ruang, vc_n_gugus FROM inv_perbaikan 
+        $query = $this->db->query("SELECT kd_pr, tgl_inv_pr, sp_gt, sp_by, ket_pr, kd_ruang, vc_n_gugus FROM inv_perbaikan 
         JOIN inv_pubgugus ON inv_perbaikan.kd_ruang	= inv_pubgugus.vc_k_gugus WHERE kd_inv_pr = '".$id."'");
         return $query->result();
     }

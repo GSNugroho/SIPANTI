@@ -307,9 +307,13 @@ class Perbaikan extends CI_Controller{
         $data = $this->M_perbaikan->riwayat($id);
         $trHtml = '';
         foreach($data as $row){
+            $uang = $row->sp_by;
+            $hasil_rupiah = "Rp ".number_format($uang,2,',','.');
             $trHtml .= '<tr>
                             <td>'.date('d-m-Y', strtotime($row->tgl_inv_pr)).'</td>
                             <td>'.$row->sp_gt.'</td>
+                            <td>'.$hasil_rupiah.'</td>
+                            <td>'.$row->ket_pr.'</td>
                         </tr>';
         }
         echo $trHtml;

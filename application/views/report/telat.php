@@ -40,23 +40,29 @@
             </div>
             <div class="card-body">
                 <form action="<?php echo base_url().'report/get_report_gtelat'?>" method="post">
-                <select name="bulan_jd">Bulan
-                    <option value="">--Pilih Bulan--</option>
-                    <option value="1">Januari</option>
-                    <option value="2">Februari</option>
-                    <option value="3">Maret</option>
-                    <option value="4">April</option>
-                    <option value="5">Mei</option>
-                    <option value="6">Juni</option>
-                    <option value="7">Juli</option>
-                    <option value="8">Agustus</option>
-                    <option value="9">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-                <input type="text" name="tahun_jd" placeholder="Tahun">
+                <div class="form-group">                    
+                    <select name="bulan_jd" class="form-control">Bulan
+                        <option value="">--Pilih Bulan--</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="4">April</option>
+                        <option value="5">Mei</option>
+                        <option value="6">Juni</option>
+                        <option value="7">Juli</option>
+                        <option value="8">Agustus</option>
+                        <option value="9">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="tahun_jd" id="tahun_jd" placeholder="Tahun">
+                </div>
+                <div class="form-group">
                 <button type="submit" class="btn btn-primary">Cetak</button>
+                </div>
                 </form>
             </div>
     </div>
@@ -97,12 +103,15 @@
     <script src="<?php echo base_url('assets/js/datatables-demo.js')?>"></script>
     <script>
         $(function() { 
-  	    $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+  	        $('#tgl1').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });
 
 	    $(function() { 
-  	    $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
+  	        $('#tgl2').datetimepicker({locale:'id',format : "DD-MM-YYYY"});
 	    });
+        $(function() {
+            $('#tahun_jd').datetimepicker({locale:'id', format:"YYYY"});
+        });
     </script>
     </body>
 </html>

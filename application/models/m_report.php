@@ -146,6 +146,7 @@ class M_report extends CI_Model{
         JOIN aset_barang ON inv_barang.kd_aset = aset_barang.vc_nm_barang
         WHERE inv_barang.kd_aset IS NOT NULL AND inv_barang.kd_aset != '' 
 		AND inv_barang.aktif = 1 AND inv_barang.bt_ti = 1 
+        AND (inv_barang.kd_aset != '' OR inv_barang.kd_aset IS NOT NULL)
         AND (inv_barang.kd_aset LIKE '%PCR%' OR inv_barang.kd_aset LIKE '%PCB%')
         AND inv_barang.kd_inv NOT IN (SELECT kd_inv FROM inv_jadwal)
         ORDER BY '".$order."' asc");

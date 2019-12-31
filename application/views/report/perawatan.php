@@ -14,7 +14,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Laporan Harian Perawatan</h6>
         </div>
         <div class="card-body">
-            <form action="<?php echo base_url().'report/get_report_harian'?>" method="post">
+            <form action="<?php echo base_url().'report/get_report_harian_view'?>" method="post">
             <div class="form-group">
             <label for="tgl_jd">Tanggal Kegiatan</label>
 			    <input class="form-control" type="text" name="tgl_keg" id="tgl_keg" placeholder="dd-mm-yyyy">
@@ -83,7 +83,7 @@
                     <label for="tgl2_cp">Tanggal Akhir</label>
                     <input class="form-control" type="text" name="tgl2_cp" id="tgl2_cp" placeholder="dd-mm-yyyy">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="urutkan">Urutkan Berdasarkan</label>
                     <select name="uurutkan" class="form-control">
                         <option value="tgl_jd">Tanggal Jadwal</option>
@@ -92,7 +92,7 @@
                         <option value="nm_inv">Nama Barang</option>
                         <option value="vc_n_gugus">Ruang</option>
                     </select>
-                </div>
+                </div> -->
                 <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
             </form>
         </div>
@@ -124,7 +124,7 @@
                 <div class="form-group">
                     <label for="order">Urutkan Berdasarkan</label>
                     <select name="ordere" class="form-control">
-                        <option value="">--Urut--</option>
+                        <!-- <option value="">--Urut--</option> -->
                         <option value="kd_aset">Kode Aset</option>
                         <option value="nm_inv">Nama Barang</option>
                         <option value="vc_n_gugus">Ruang</option>

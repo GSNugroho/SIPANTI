@@ -88,7 +88,9 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT YEAR(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
                 JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
-                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
+                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 
+                and inv_barang.kd_aset IS NOT NULL
+                and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
                 and DAY(inv_jadwal.tgl_jd) = DAY(inv_jadwal_perawatan.tgl_trs)
                 and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
                 and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
@@ -100,7 +102,9 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT YEAR(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
                 JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
-                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
+                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 
+                and inv_barang.kd_aset IS NOT NULL
+                and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
                 and DAY(inv_jadwal.tgl_jd) < DAY(inv_jadwal_perawatan.tgl_trs)
                 and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
                 and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)
@@ -112,7 +116,9 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT YEAR(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
                 JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
                 JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
-                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
+                WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 
+                and inv_barang.kd_aset IS NOT NULL
+                and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
                 and inv_jadwal_perawatan.tgl_trs IS NULL 
                 GROUP BY YEAR(inv_jadwal.tgl_jd)');
         return $query->result();
@@ -122,7 +128,9 @@ class M_dashboard extends CI_Model{
         $query = $this->db->query('SELECT YEAR(inv_jadwal.tgl_jd) as tahun, COUNT(*) as total from inv_jadwal
         JOIN inv_jadwal_perawatan ON inv_jadwal.kd_jd = inv_jadwal_perawatan.kd_jadwal
         JOIN inv_barang ON inv_jadwal.kd_inv = inv_barang.kd_inv
-        WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
+        WHERE inv_jadwal.dt_sts = 1 and inv_barang.aktif = 1 
+        and inv_barang.kd_aset IS NOT NULL
+        and YEAR(inv_jadwal.tgl_jd) = YEAR(GETDATE()) 
         and DAY(inv_jadwal.tgl_jd) > DAY(inv_jadwal_perawatan.tgl_trs)
         and MONTH(inv_jadwal.tgl_jd) = MONTH(inv_jadwal_perawatan.tgl_trs)
         and YEAR(inv_jadwal.tgl_jd) = YEAR(inv_jadwal_perawatan.tgl_trs)

@@ -32,6 +32,17 @@ class Report extends CI_Controller{
         $this->load->view('report/report_pr', $data);
     }
 
+    function get_report_harian_view(){
+        $tgl_keg = date('Y-m-d', strtotime($this->input->post('tgl_keg')));
+        $report_keg = $this->M_report->get_data_harian($tgl_keg);
+
+        $data = array(
+            'report_harian' => $report_keg,
+            'tgl_keg' => $tgl_keg
+        );
+        $this->load->view('report/report_hr', $data);
+    }
+
     function get_report_harian(){
         $tgl_keg = date('Y-m-d', strtotime($this->input->post('tgl_keg')));
 

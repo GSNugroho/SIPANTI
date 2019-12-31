@@ -58,7 +58,7 @@ $this->load->view('mainmenu');
                                 <div class="form-group">
                                     <label for="kd_inv_pr">Kode Inventaris <?php //echo form_error('nm_inv') 
                                                                             ?></label>
-                                    <input class="form-control" type="text" name="kd_inv_pr" id="vc_no_inv" placeholder="Kode Inventaris">
+                                    <input class="form-control" type="text" name="kd_inv_pr" id="vc_no_inv" placeholder="Kode Inventaris" readonly>
                                     <a href="#" class="btn btn-info" id="pilihBrg" data-toggle="modal" data-target="#modalBarang">Pilih Barang</a>
                                 </div>
                                 <div class="modal fade bd-example-modal-lg" id="modalBarang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -264,10 +264,12 @@ $this->load->view('mainmenu');
                 </script>
             </div>
             <div class="col-md-6">
-                <table class="table table-bordered" id="rwytprb" style="overflow-y:auto; height:200px; width:400px; display:block;">
+                <table class="table table-bordered" id="rwytprb" style="overflow-y:auto; height:200px; width:500px; display:block;">
                     <tr>
                         <th>Tanggal Perbaikan</th>
                         <th>Kerusakan</th>
+                        <th>Biaya</th>
+                        <th>Keterangan</th>
                     </tr>
                 </table>
             </div>

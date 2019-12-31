@@ -127,6 +127,9 @@ $ttl = $totbr+$real;
             </tbody>
         </table>
     </div>
+    <button id="btnDownloadre" type="button" class="btn btn-primary">Print PDF Realisasi</button>
+    <br>
+    <br>
 </div>
 <div>
     <div class="card-header py-3">
@@ -164,7 +167,8 @@ $ttl = $totbr+$real;
 </div>
     <!-- <button id="export" type="button" class="btn btn-primary">Export PDF</button> -->
     <!-- <button id="exportButton" type="button" class="btn btn-primary">Cetak PDF</button> -->
-    <button id="btnDownload" type="button" class="btn btn-primary">Print PDF</button>
+    <button id="btnDownloadbre" type="button" class="btn btn-primary">Print PDF Belum Realisasi</button>
+    <button id="btnDownloadsm" type="button" class="btn btn-primary">Print PDF Semua</button>
     <!-- <button onclick='print()' type="button" class="btn btn-primary">Download PDF</button> -->
     </div>
     </div>
@@ -220,108 +224,9 @@ $ttl = $totbr+$real;
     }]
 });
 
-$("#exportButton").click(function(){
-//   html2canvas(document.querySelector("#printpdf"), { height: 1800, width: window.innerWidth * 2, scale: 1 }).then(canvas => {  	
-//     var dataURL = canvas.toDataURL();    
-//     var pdf = new jsPDF();
-//     // var docDefinition = {
-//     //     pageSize: 'A4',
-//     //     pageOrientation: 'landscape'
-//     // }
-//     pdf.addImage(dataURL, 'PNG', 20, 20, 352, 240); //addImage(image, format, x-coordinate, y-coordinate, width, height)
-//     pdf.setFont("helvetica");
-//     pdf.setFontType("bold");
-//     pdf.setFontSize(20);
-//     pdf.save("Capaian Perawatan.pdf");
-    // pdf.createPdf(docDefinition).save("grafikperawatan.pdf");
-
-//     var doc = new jsPDF();          
-// var elementHandler = {
-//   '#ignorePDF': function (element, renderer) {
-//     return true;
-//   }
-// };
-// var source = window.document.getElementById("printpdf")[0];
-// doc.fromHTML(
-//     source,
-//     15,
-//     15,
-//     {
-//       'width': 180,'elementHandlers': elementHandler
-//     });
-
-// doc.output("dataurlnewwindow");
-//   });
-// $("#btnPrint").live("click", function () {
-            var divContents = $("#printpdf").html();
-            var printWindow = window.open('', '', 'height=400,width=800');
-            printWindow.document.write('<html><head><title>DIV Contents</title>');
-            printWindow.document.write('<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/sb-admin-2.min.css') ?>"/>');
-            printWindow.document.write('</head><body style:"margin:20px;">');
-            printWindow.document.write(divContents);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-        // });
-});
-
-function print()
-        {
-            var pdf = new jsPDF('p', 'pt', 'letter')
-
-            , source = $('#printpdf')[0]
-            , specialElementHandlers = {
-                '#bypassme': function(element, renderer)
-                {
-                    return true
-                }
-            }
-
-            margins = {
-                top: 10,
-                bottom: 10,
-                left: 10,
-                right: 10,
-                width: 800
-            };
-
-            pdf.autoTable({html:'#myTable1'});
-
-            pdf.fromHTML
-            (
-                source 
-              , margins.left 
-              , margins.top 
-              , {'width': margins.width 
-                 , 'elementHandlers': specialElementHandlers
-                }
-              , function (dispose) 
-                {
-                   pdf.save('Capaian Perawatan.pdf');
-                }
-              , margins
-            )
-        }
-
-    function generate() {
-      var doc = new jsPDF('p', 'pt', 'a4');
-      var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
-    doc.autoTable(res.columns, res.data);
-    var res2 = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
-    doc.autoTable(res2.columns, res2.data, {
-    startY: doc.lastAutoTable.finalY + 50
-    });
-     doc.save("Laporan Capaian.pdf");
-    }
-
-$('#export').click(function (e) {
-	e.preventDefault();   
-    generate();
-});
-
 $("#btnDownload").click(function(){
   var doc = new jsPDF('p', 'pt', 'a4');
-      var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
+    var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
     doc.autoTable(res.columns, res.data);
     var res2 = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
     doc.autoTable(res2.columns, res2.data, {
@@ -370,6 +275,45 @@ $("#btnDownload").click(function(){
     };    
     img.src = url;    
 });    
+$("#btnDownloadsm").click(function(){
+  var doc = new jsPDF('p', 'pt', 'a4');
+    var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
+    // doc.autoTable(res.columns, res.data);
+    doc.text(30, 30, 'Laporan Capaian Realisasi'); 
+    doc.autoTable({
+    html: '#myTable1',
+    columnStyles: {
+        0: {cellWidth: 30},
+        1: {cellWidth: 60},
+        2: {cellWidth: 60},
+        5: {cellWidth: 70},
+        6: {cellWidth: 90},
+        // etc
+        }
+    });
+    let finalY = doc.lastAutoTable.finalY;
+    var res2 = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
+    doc.text(30, finalY, 'Laporan Capaian Belum Realisasi'); 
+    // doc.autoTable(res2.columns, res2.data, 
+    doc.autoTable({
+    html: '#myTable2',
+    columnStyles: {
+        0: {cellWidth: 30},
+        1: {cellWidth: 60},
+        2: {cellWidth: 90},
+        3: {cellWidth: 60},
+        3: {cellWidth: 100},
+        5: {cellWidth: 70}
+        // etc
+        }
+    }),
+    {
+    startY: doc.lastAutoTable.finalY + 50
+    };
+    setTimeout(function() {    
+            doc.save('Laporan Capaian Perawatan.pdf');    
+        }, 2000);     
+});    
 
 function isIEBrowser() {    
     var ieBrowser;    
@@ -387,6 +331,49 @@ function isIEBrowser() {
     
     return ieBrowser;    
 };    
+
+$("#btnDownloadre").click(function(){
+  var doc = new jsPDF('p', 'pt', 'a4');
+    var res = doc.autoTableHtmlToJson(document.getElementById('myTable1'));
+    // doc.autoTable(res.columns, res.data);
+    doc.text(30, 30, 'Laporan Capaian Realisasi'); 
+    doc.autoTable({
+    html: '#myTable1',
+    columnStyles: {
+        0: {cellWidth: 30},
+        1: {cellWidth: 60},
+        2: {cellWidth: 60},
+        5: {cellWidth: 70},
+        6: {cellWidth: 90},
+        // etc
+        }
+    });
+    setTimeout(function() {    
+            doc.save('Laporan Capaian Realisasi.pdf');    
+        }, 2000);     
+}); 
+
+$("#btnDownloadbre").click(function(){
+  var doc = new jsPDF('p', 'pt', 'a4');
+    var res = doc.autoTableHtmlToJson(document.getElementById('myTable2'));
+    // doc.autoTable(res.columns, res.data);
+    doc.text(30, 30, 'Laporan Capaian Belum Realisasi'); 
+    doc.autoTable({
+    html: '#myTable2',
+    columnStyles: {
+        0: {cellWidth: 30},
+        1: {cellWidth: 60},
+        2: {cellWidth: 90},
+        3: {cellWidth: 60},
+        3: {cellWidth: 100},
+        5: {cellWidth: 70}
+        // etc
+        }
+    });
+    setTimeout(function() {    
+            doc.save('Laporan Capaian Belum Realisasi.pdf');    
+        }, 2000);     
+}); 
   </script>
  </body>
 </html>
